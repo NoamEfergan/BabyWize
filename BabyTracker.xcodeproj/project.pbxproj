@@ -14,6 +14,19 @@
 		056083902884147900728F1F /* BabyTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560838F2884147900728F1F /* BabyTrackerTests.swift */; };
 		0560839A2884147900728F1F /* BabyTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083992884147900728F1F /* BabyTrackerUITests.swift */; };
 		0560839C2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560839B2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift */; };
+		056083A9288417F700728F1F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
+		05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */; };
+		05DD68B52885B73C0066BFEC /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B42885B73C0066BFEC /* Feed.swift */; };
+		05DD68B72885B74C0066BFEC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B62885B74C0066BFEC /* Sleep.swift */; };
+		05DD68B92885B7600066BFEC /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B82885B7600066BFEC /* DummyData.swift */; };
+		05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05DD68BE2885B7E40066BFEC /* Swinject */; };
+		05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C12885B8460066BFEC /* SwinjectManager.swift */; };
+		05DD68C42885FB2C0066BFEC /* SleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C32885FB2C0066BFEC /* SleepManager.swift */; };
+		05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C52885FC0F0066BFEC /* Swinject+extension.swift */; };
+		05DD68CA2885FC720066BFEC /* DependencyInjectionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C92885FC720066BFEC /* DependencyInjectionProtocols.swift */; };
+		05DD68CC2885FF2E0066BFEC /* NappyChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CB2885FF2E0066BFEC /* NappyChange.swift */; };
+		05DD68CE288603820066BFEC /* Double+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CD288603820066BFEC /* Double+extension.swift */; };
+		05DD68D0288603C30066BFEC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CF288603C30066BFEC /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +57,18 @@
 		056083952884147900728F1F /* BabyTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		056083992884147900728F1F /* BabyTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerUITests.swift; sourceTree = "<group>"; };
 		0560839B2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		056083A8288417F700728F1F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
+		05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenSections.swift; sourceTree = "<group>"; };
+		05DD68B42885B73C0066BFEC /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		05DD68B62885B74C0066BFEC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
+		05DD68B82885B7600066BFEC /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
+		05DD68C12885B8460066BFEC /* SwinjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectManager.swift; sourceTree = "<group>"; };
+		05DD68C32885FB2C0066BFEC /* SleepManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepManager.swift; sourceTree = "<group>"; };
+		05DD68C52885FC0F0066BFEC /* Swinject+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swinject+extension.swift"; sourceTree = "<group>"; };
+		05DD68C92885FC720066BFEC /* DependencyInjectionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectionProtocols.swift; sourceTree = "<group>"; };
+		05DD68CB2885FF2E0066BFEC /* NappyChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyChange.swift; sourceTree = "<group>"; };
+		05DD68CD288603820066BFEC /* Double+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+extension.swift"; sourceTree = "<group>"; };
+		05DD68CF288603C30066BFEC /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +120,11 @@
 		0560837D2884147800728F1F /* BabyTracker */ = {
 			isa = PBXGroup;
 			children = (
+				05DD68C72885FC4C0066BFEC /* Feature */,
+				05DD68C02885B8110066BFEC /* Managers */,
+				05DD68BA2885B7810066BFEC /* View Models */,
+				05DD68B02885B6FD0066BFEC /* Models */,
+				05DD68AB2885B65B0066BFEC /* Screen */,
 				0560837E2884147800728F1F /* BabyTrackerApp.swift */,
 				056083802884147800728F1F /* ContentView.swift */,
 				056083822884147900728F1F /* Assets.xcassets */,
@@ -127,6 +158,101 @@
 			path = BabyTrackerUITests;
 			sourceTree = "<group>";
 		};
+		05DD68AB2885B65B0066BFEC /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68AC2885B6690066BFEC /* Home Screen */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		05DD68AC2885B6690066BFEC /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68AD2885B6710066BFEC /* Views */,
+			);
+			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		05DD68AD2885B6710066BFEC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		05DD68B02885B6FD0066BFEC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68B32885B71E0066BFEC /* Models */,
+				05DD68B22885B70C0066BFEC /* Dummy */,
+				05DD68B12885B7040066BFEC /* Extensions */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		05DD68B12885B7040066BFEC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				056083A8288417F700728F1F /* Date+extension.swift */,
+				05DD68C52885FC0F0066BFEC /* Swinject+extension.swift */,
+				05DD68CD288603820066BFEC /* Double+extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		05DD68B22885B70C0066BFEC /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68B82885B7600066BFEC /* DummyData.swift */,
+			);
+			path = Dummy;
+			sourceTree = "<group>";
+		};
+		05DD68B32885B71E0066BFEC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68B42885B73C0066BFEC /* Feed.swift */,
+				05DD68B62885B74C0066BFEC /* Sleep.swift */,
+				05DD68CB2885FF2E0066BFEC /* NappyChange.swift */,
+				05DD68CF288603C30066BFEC /* DataManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		05DD68BA2885B7810066BFEC /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		05DD68C02885B8110066BFEC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68C32885FB2C0066BFEC /* SleepManager.swift */,
+				05DD68C12885B8460066BFEC /* SwinjectManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		05DD68C72885FC4C0066BFEC /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68C82885FC520066BFEC /* Dependency Injection */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		05DD68C82885FC520066BFEC /* Dependency Injection */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68C92885FC720066BFEC /* DependencyInjectionProtocols.swift */,
+			);
+			path = "Dependency Injection";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +269,9 @@
 			dependencies = (
 			);
 			name = BabyTracker;
+			packageProductDependencies = (
+				05DD68BE2885B7E40066BFEC /* Swinject */,
+			);
 			productName = BabyTracker;
 			productReference = 0560837B2884147800728F1F /* BabyTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +344,9 @@
 				Base,
 			);
 			mainGroup = 056083722884147800728F1F;
+			packageReferences = (
+				05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = 0560837C2884147800728F1F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,8 +389,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */,
+				05DD68B52885B73C0066BFEC /* Feed.swift in Sources */,
+				05DD68CC2885FF2E0066BFEC /* NappyChange.swift in Sources */,
+				05DD68D0288603C30066BFEC /* DataManager.swift in Sources */,
+				05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */,
+				05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */,
+				05DD68CA2885FC720066BFEC /* DependencyInjectionProtocols.swift in Sources */,
+				056083A9288417F700728F1F /* Date+extension.swift in Sources */,
+				05DD68C42885FB2C0066BFEC /* SleepManager.swift in Sources */,
+				05DD68B92885B7600066BFEC /* DummyData.swift in Sources */,
 				056083812884147800728F1F /* ContentView.swift in Sources */,
+				05DD68CE288603820066BFEC /* Double+extension.swift in Sources */,
 				0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */,
+				05DD68B72885B74C0066BFEC /* Sleep.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +727,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		05DD68BE2885B7E40066BFEC /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 056083732884147800728F1F /* Project object */;
 }

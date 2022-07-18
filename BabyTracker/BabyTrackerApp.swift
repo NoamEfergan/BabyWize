@@ -6,9 +6,19 @@
 //
 
 import SwiftUI
+import Swinject
+
+class MyAppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        let mainContainer = ContainerBuilder.buildMainContainer()
+        Resolver.shared.setDependencyContainer(mainContainer)
+        return true
+    }
+}
 
 @main
 struct BabyTrackerApp: App {
+    @UIApplicationDelegateAdaptor(MyAppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             ContentView()
