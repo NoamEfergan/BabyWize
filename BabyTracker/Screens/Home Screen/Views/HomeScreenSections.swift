@@ -37,7 +37,6 @@ struct HomeScreenSections: View {
 
 struct HomeScreenSections_Previews: PreviewProvider {
     static var previews: some View {
-        
         List {
             HomeScreenSections()
         }

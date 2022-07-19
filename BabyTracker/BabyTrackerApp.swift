@@ -21,7 +21,7 @@ struct BabyTrackerApp: App {
     @UIApplicationDelegateAdaptor(MyAppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }

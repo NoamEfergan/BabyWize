@@ -7,6 +7,7 @@
 
 import Foundation
 
-struct NappyChange: Codable {
+struct NappyChange: Codable, Identifiable {
+    var id: String
     let dateTime: Date
 }

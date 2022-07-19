@@ -25,4 +25,23 @@ extension Double {
 
         return "\(hour)\(minutes)"
     }
+    
+    func roundDecimalPoint(to places: Int = 2) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+    
+    func feedDisplayableAmount() -> String {
+        let userPreferredUnit: FeedUnits = .init(
+            rawValue: UserDefaults.standard.string(forKey: Constants.preferredUnit.rawValue) ?? ""
+        ) ?? .ml
+        switch userPreferredUnit {
+        case .ml:
+            return self.description
+        case .ozUS:
+            return (self / 29.574).description
+        case .oz:
+            return (self / 28.413).description
+        }
+    }
 }

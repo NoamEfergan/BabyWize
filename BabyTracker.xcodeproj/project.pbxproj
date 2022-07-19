@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyTrackerApp.swift */; };
-		056083812884147800728F1F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083802884147800728F1F /* ContentView.swift */; };
+		056083812884147800728F1F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083802884147800728F1F /* HomeView.swift */; };
 		056083832884147900728F1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		056083862884147900728F1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083852884147900728F1F /* Preview Assets.xcassets */; };
 		056083902884147900728F1F /* BabyTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560838F2884147900728F1F /* BabyTrackerTests.swift */; };
 		0560839A2884147900728F1F /* BabyTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083992884147900728F1F /* BabyTrackerUITests.swift */; };
 		0560839C2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560839B2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift */; };
 		056083A9288417F700728F1F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
+		05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
 		05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */; };
 		05DD68B52885B73C0066BFEC /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B42885B73C0066BFEC /* Feed.swift */; };
 		05DD68B72885B74C0066BFEC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B62885B74C0066BFEC /* Sleep.swift */; };
@@ -27,6 +28,13 @@
 		05DD68CC2885FF2E0066BFEC /* NappyChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CB2885FF2E0066BFEC /* NappyChange.swift */; };
 		05DD68CE288603820066BFEC /* Double+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CD288603820066BFEC /* Double+extension.swift */; };
 		05DD68D0288603C30066BFEC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CF288603C30066BFEC /* DataManager.swift */; };
+		05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D22886140C0066BFEC /* AddEntryView.swift */; };
+		05DD68D52886144E0066BFEC /* EntryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D42886144E0066BFEC /* EntryType.swift */; };
+		05DD68D7288619B50066BFEC /* NewEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D6288619B50066BFEC /* NewEntryViewModel.swift */; };
+		05DD68D9288619DB0066BFEC /* FeedUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D8288619DB0066BFEC /* FeedUnits.swift */; };
+		05DD68DC28861C930066BFEC /* FeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DB28861C930066BFEC /* FeedEntryView.swift */; };
+		05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DD28861CD70066BFEC /* SleepEntryView.swift */; };
+		05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +57,7 @@
 /* Begin PBXFileReference section */
 		0560837B2884147800728F1F /* BabyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0560837E2884147800728F1F /* BabyTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerApp.swift; sourceTree = "<group>"; };
-		056083802884147800728F1F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		056083802884147800728F1F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		056083822884147900728F1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		056083852884147900728F1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0560838B2884147900728F1F /* BabyTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +66,7 @@
 		056083992884147900728F1F /* BabyTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerUITests.swift; sourceTree = "<group>"; };
 		0560839B2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		056083A8288417F700728F1F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
+		05B8AF6628862C7C00BBC41B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenSections.swift; sourceTree = "<group>"; };
 		05DD68B42885B73C0066BFEC /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		05DD68B62885B74C0066BFEC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
@@ -69,6 +78,13 @@
 		05DD68CB2885FF2E0066BFEC /* NappyChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyChange.swift; sourceTree = "<group>"; };
 		05DD68CD288603820066BFEC /* Double+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+extension.swift"; sourceTree = "<group>"; };
 		05DD68CF288603C30066BFEC /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		05DD68D22886140C0066BFEC /* AddEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
+		05DD68D42886144E0066BFEC /* EntryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryType.swift; sourceTree = "<group>"; };
+		05DD68D6288619B50066BFEC /* NewEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewModel.swift; sourceTree = "<group>"; };
+		05DD68D8288619DB0066BFEC /* FeedUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUnits.swift; sourceTree = "<group>"; };
+		05DD68DB28861C930066BFEC /* FeedEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEntryView.swift; sourceTree = "<group>"; };
+		05DD68DD28861CD70066BFEC /* SleepEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntryView.swift; sourceTree = "<group>"; };
+		05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyEntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,9 +140,8 @@
 				05DD68C02885B8110066BFEC /* Managers */,
 				05DD68BA2885B7810066BFEC /* View Models */,
 				05DD68B02885B6FD0066BFEC /* Models */,
-				05DD68AB2885B65B0066BFEC /* Screen */,
+				05DD68AB2885B65B0066BFEC /* Screens */,
 				0560837E2884147800728F1F /* BabyTrackerApp.swift */,
-				056083802884147800728F1F /* ContentView.swift */,
 				056083822884147900728F1F /* Assets.xcassets */,
 				056083842884147900728F1F /* Preview Content */,
 			);
@@ -158,17 +173,19 @@
 			path = BabyTrackerUITests;
 			sourceTree = "<group>";
 		};
-		05DD68AB2885B65B0066BFEC /* Screen */ = {
+		05DD68AB2885B65B0066BFEC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				05DD68D1288613FF0066BFEC /* Global Views */,
 				05DD68AC2885B6690066BFEC /* Home Screen */,
 			);
-			path = Screen;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		05DD68AC2885B6690066BFEC /* Home Screen */ = {
 			isa = PBXGroup;
 			children = (
+				056083802884147800728F1F /* HomeView.swift */,
 				05DD68AD2885B6710066BFEC /* Views */,
 			);
 			path = "Home Screen";
@@ -217,6 +234,9 @@
 				05DD68B62885B74C0066BFEC /* Sleep.swift */,
 				05DD68CB2885FF2E0066BFEC /* NappyChange.swift */,
 				05DD68CF288603C30066BFEC /* DataManager.swift */,
+				05DD68D42886144E0066BFEC /* EntryType.swift */,
+				05DD68D8288619DB0066BFEC /* FeedUnits.swift */,
+				05B8AF6628862C7C00BBC41B /* Constants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -224,6 +244,7 @@
 		05DD68BA2885B7810066BFEC /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				05DD68D6288619B50066BFEC /* NewEntryViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -251,6 +272,25 @@
 				05DD68C92885FC720066BFEC /* DependencyInjectionProtocols.swift */,
 			);
 			path = "Dependency Injection";
+			sourceTree = "<group>";
+		};
+		05DD68D1288613FF0066BFEC /* Global Views */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68DA28861C820066BFEC /* EntryView */,
+			);
+			path = "Global Views";
+			sourceTree = "<group>";
+		};
+		05DD68DA28861C820066BFEC /* EntryView */ = {
+			isa = PBXGroup;
+			children = (
+				05DD68D22886140C0066BFEC /* AddEntryView.swift */,
+				05DD68DB28861C930066BFEC /* FeedEntryView.swift */,
+				05DD68DD28861CD70066BFEC /* SleepEntryView.swift */,
+				05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */,
+			);
+			path = EntryView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,17 +429,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05DD68DC28861C930066BFEC /* FeedEntryView.swift in Sources */,
+				05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */,
+				05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */,
 				05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */,
 				05DD68B52885B73C0066BFEC /* Feed.swift in Sources */,
+				05DD68D52886144E0066BFEC /* EntryType.swift in Sources */,
 				05DD68CC2885FF2E0066BFEC /* NappyChange.swift in Sources */,
 				05DD68D0288603C30066BFEC /* DataManager.swift in Sources */,
 				05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */,
 				05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */,
+				05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */,
 				05DD68CA2885FC720066BFEC /* DependencyInjectionProtocols.swift in Sources */,
 				056083A9288417F700728F1F /* Date+extension.swift in Sources */,
 				05DD68C42885FB2C0066BFEC /* SleepManager.swift in Sources */,
 				05DD68B92885B7600066BFEC /* DummyData.swift in Sources */,
-				056083812884147800728F1F /* ContentView.swift in Sources */,
+				056083812884147800728F1F /* HomeView.swift in Sources */,
+				05DD68D9288619DB0066BFEC /* FeedUnits.swift in Sources */,
+				05DD68D7288619B50066BFEC /* NewEntryViewModel.swift in Sources */,
+				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
 				05DD68CE288603820066BFEC /* Double+extension.swift in Sources */,
 				0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */,
 				05DD68B72885B74C0066BFEC /* Sleep.swift in Sources */,

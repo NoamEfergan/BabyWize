@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-final class SleepManager: NSObject, DataManager {
+final class SleepManager: DataManager {
     @Published var data: [Sleep] = []
 
-    override init() {
-        super.init()
+    init() {
         self.data = fetchData()
     }
 
@@ -20,11 +19,10 @@ final class SleepManager: NSObject, DataManager {
     }
 }
 
-final class FeedManager: NSObject, DataManager {
+final class FeedManager: DataManager {
     @Published var data: [Feed] = []
 
-    override init() {
-        super.init()
+    init() {
         self.data = fetchData()
     }
 
@@ -33,11 +31,10 @@ final class FeedManager: NSObject, DataManager {
     }
 }
 
-final class NappyManager: NSObject, DataManager {
+final class NappyManager: DataManager {
     @Published var data: [NappyChange] = []
 
-    override init() {
-        super.init()
+    init() {
         self.data = fetchData()
     }
 

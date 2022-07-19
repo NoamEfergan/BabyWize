@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Feed: Identifiable {
+struct Feed: Codable, Identifiable {
     let id: String
     let date: Date
     let amount: Double

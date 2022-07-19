@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Sleep: Identifiable {
+struct Sleep: Codable, Identifiable {
     let id: String
     let date: Date
     let duration: Double
