@@ -17,6 +17,7 @@
 		056083A9288417F700728F1F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
 		05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
 		05B8AF69288633A100BBC41B /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+Extension.swift */; };
+		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
 		05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */; };
 		05DD68B52885B73C0066BFEC /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B42885B73C0066BFEC /* Feed.swift */; };
 		05DD68B72885B74C0066BFEC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B62885B74C0066BFEC /* Sleep.swift */; };
@@ -69,6 +70,7 @@
 		056083A8288417F700728F1F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		05B8AF6628862C7C00BBC41B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		05B8AF68288633A100BBC41B /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		05B8AF6D2886989C00BBC41B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenSections.swift; sourceTree = "<group>"; };
 		05DD68B42885B73C0066BFEC /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		05DD68B62885B74C0066BFEC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
@@ -175,9 +177,18 @@
 			path = BabyTrackerUITests;
 			sourceTree = "<group>";
 		};
+		05B8AF6A2886985800BBC41B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				05B8AF6D2886989C00BBC41B /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		05DD68AB2885B65B0066BFEC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				05B8AF6A2886985800BBC41B /* Settings */,
 				05DD68D1288613FF0066BFEC /* Global Views */,
 				05DD68AC2885B6690066BFEC /* Home Screen */,
 			);
@@ -441,6 +452,7 @@
 				05DD68CC2885FF2E0066BFEC /* NappyChange.swift in Sources */,
 				05DD68D0288603C30066BFEC /* DataManager.swift in Sources */,
 				05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */,
+				05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */,
 				05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */,
 				05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */,
 				05DD68CA2885FC720066BFEC /* DependencyInjectionProtocols.swift in Sources */,

@@ -8,16 +8,21 @@
 import Charts
 import SwiftUI
 
+enum Screens: String {
+    case home, settings, newEntry
+}
+
 struct HomeView: View {
     @Inject private var feedManager: FeedManager
     @Inject private var sleepManager: SleepManager
     @Inject private var nappyManager: NappyManager
-
+    @State private var path: [Screens] = []
     @State private var isShowingNewEntrySheet: Bool = false
+    @State private var isShowingSettings: Bool = false
     @ObservedObject private var entryVM = NewEntryViewModel()
 
     var body: some View {
-        NavigationStack {
+        NavigationStack() {
             List {
                 Section("recent info") {
                     LabeledContent(
@@ -30,10 +35,18 @@ struct HomeView: View {
                 HomeScreenSections()
             }
             .toolbar {
-                Button {
-                    isShowingNewEntrySheet.toggle()
-                } label: {
-                    Image(systemName: "plus.circle")
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    NavigationLink(value: Screens.settings) {
+                        Image(systemName: "gear")
+                    }
+                }
+
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        isShowingNewEntrySheet.toggle()
+                    } label: {
+                        Image(systemName: "plus.circle")
+                    }
                 }
             }
             .navigationTitle("Baby Tracker")
@@ -41,6 +54,15 @@ struct HomeView: View {
                 AddEntryView()
                     .environmentObject(entryVM)
                     .presentationDetents([.fraction(0.3)])
+            }
+            .navigationDestination(for: Screens.self) { screen in
+                switch screen {
+                case .settings:
+                    SettingsView()
+                        
+                default:
+                    EmptyView()
+                }
             }
         }
     }
