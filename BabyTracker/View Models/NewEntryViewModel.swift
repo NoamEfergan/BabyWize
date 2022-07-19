@@ -14,6 +14,7 @@ final class NewEntryViewModel: ObservableObject {
 
     @Published var amount: String = ""
     @Published var feedDate: Date = .init()
+    @Published var sleepDate: Date = .init()
     @Published var startDate: Date = .init()
     @Published var endDate: Date = .init()
     @Published var changeDate: Date = .init()
@@ -24,29 +25,35 @@ final class NewEntryViewModel: ObservableObject {
             guard !amount.isEmpty, let amountDouble = Double(amount) else { throw EntryError.invalidAmount }
             feedManager.data.append(.init(id: UUID().uuidString, date: feedDate, amount: amountDouble))
         case .sleep:
-            guard startDate != endDate else { throw EntryError.sameSleepDate}
-            guard startDate.timeIntervalSince1970 > endDate.timeIntervalSince1970 else { throw EntryError.invalidSleepDate}
+            guard startDate != endDate else { throw EntryError.sameSleepDate }
+            guard startDate.timeIntervalSince1970 < endDate.timeIntervalSince1970 else { throw EntryError.invalidSleepDate }
             let duration = endDate.timeIntervalSince(startDate)
-            sleepManager.data.append(.init(id: UUID().uuidString, date: endDate, duration: duration))
+            sleepManager.data.append(.init(id: UUID().uuidString, date: sleepDate, duration: duration.hourMinuteSecondMS))
         case .nappy:
             nappyManager.data.append(.init(id: UUID().uuidString, dateTime: changeDate))
         }
+        // Reset all values after setting
+        amount = ""
+        feedDate = .init()
+        startDate = .init()
+        endDate = .init()
+        changeDate = .init()
+        sleepDate = .init()
     }
 
     enum EntryError: Error {
         case invalidAmount
         case sameSleepDate
         case invalidSleepDate
-        
-        
+
         var errorText: String {
             switch self {
             case .invalidAmount:
                 return "Please enter a valid amount"
             case .sameSleepDate:
                 return "Start and end date can't be the same"
-            case.invalidSleepDate:
-                return "End date cannot be later than start date"
+            case .invalidSleepDate:
+                return "End date cannot be sooner than start date"
             }
         }
     }

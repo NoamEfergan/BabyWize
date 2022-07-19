@@ -22,10 +22,10 @@ struct HomeView: View {
                 Section("recent info") {
                     LabeledContent(
                         "Last Feed",
-                        value: feedManager.data.first?.amount.roundDecimalPoint().feedDisplayableAmount() ?? "None recorded"
+                        value: feedManager.data.last?.amount.roundDecimalPoint().feedDisplayableAmount() ?? "None recorded"
                     )
-                    LabeledContent("Last Nappy change", value: "12:43 pm")
-                    LabeledContent("Last Sleep", value: "1 hr 07 mins")
+                    LabeledContent("Last Nappy change", value: nappyManager.data.last?.dateTime.formatted() ?? "None recorded")
+                    LabeledContent("Last Sleep", value: sleepManager.data.last?.duration ?? "None recorded")
                 }
                 HomeScreenSections()
             }

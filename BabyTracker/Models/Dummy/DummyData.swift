@@ -16,9 +16,9 @@ enum DummyData {
     ]
 
     static let dummySleeps: [Sleep] = [
-        .init(id: UUID().uuidString, date: .getRandomMockDate(), duration: .getRandomFeedAmount()),
-        .init(id: UUID().uuidString, date: .getRandomMockDate(), duration: .getRandomFeedAmount()),
-        .init(id: UUID().uuidString, date: .getRandomMockDate(), duration: .getRandomFeedAmount()),
-        .init(id: UUID().uuidString, date: .getRandomMockDate(), duration: .getRandomFeedAmount()),
+        .init(id: UUID().uuidString, date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
+        .init(id: UUID().uuidString, date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
+        .init(id: UUID().uuidString, date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
+        .init(id: UUID().uuidString, date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
     ]
 }

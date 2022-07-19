@@ -11,20 +11,6 @@ extension Double {
     static func getRandomFeedAmount() -> Double {
         Self.random(in: 100.0 ..< 180.0)
     }
-
-    func convertDurationToString() -> String {
-        let components = Calendar.current.dateComponents([.hour, .minute], from: Date(timeInterval: TimeInterval(self), since: .getRandomMockDate()))
-        var hour: String {
-            guard let hoursPassed = components.hour else { return "" }
-            return hoursPassed > 1 ? "\(hoursPassed) hours " : "\(hoursPassed) hour "
-        }
-        var minutes: String {
-            guard let minutesPassed = components.minute else { return "" }
-            return minutesPassed > 1 ? "\(minutesPassed) minute" : "\(minutesPassed) minutes"
-        }
-
-        return "\(hour)\(minutes)"
-    }
     
     func roundDecimalPoint(to places: Int = 2) -> Double {
         let divisor = pow(10.0, Double(places))
@@ -45,3 +31,47 @@ extension Double {
         }
     }
 }
+
+extension TimeInterval {
+    var displayableString: String {
+        let hoursString = hour > 1 ? " hrs," : " hour,"
+        let minuteString = minute > 1 ? " mins": " min"
+        return "\(hour > 0 ? hour.description + hoursString : "") \(minute.description + minuteString)"
+    }
+    var hourMinuteSecondMS: String {
+        String(format:"%d:%02d:%02d", hour, minute, second)
+    }
+    var minuteSecondMS: String {
+        String(format:"%d:%02d.%03d", minute, second, millisecond)
+    }
+    var hour: Int {
+        Int((self/3600).truncatingRemainder(dividingBy: 3600))
+    }
+    var minute: Int {
+        Int((self/60).truncatingRemainder(dividingBy: 60))
+    }
+    var second: Int {
+        Int(truncatingRemainder(dividingBy: 60))
+    }
+    var millisecond: Int {
+        Int((self*1000).truncatingRemainder(dividingBy: 1000))
+    }
+}
+
+extension String {
+    func convertToTimeInterval() -> TimeInterval {
+        guard self != "" else {
+            return 0
+        }
+
+        var interval:Double = 0
+
+        let parts = self.components(separatedBy: ":")
+        for (index, part) in parts.reversed().enumerated() {
+            interval += (Double(part) ?? 0) * pow(Double(60), Double(index))
+        }
+
+        return interval
+    }
+}
+

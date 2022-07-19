@@ -39,6 +39,6 @@ final class NappyManager: DataManager {
     }
 
     func fetchData() -> [NappyChange] {
-        []
+        [.init(id: UUID().uuidString, dateTime: .now)]
     }
 }

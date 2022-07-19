@@ -10,5 +10,5 @@ import Foundation
 struct Sleep: Codable, Identifiable {
     let id: String
     let date: Date
-    let duration: Double
+    let duration: String
 }

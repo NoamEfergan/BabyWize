@@ -11,6 +11,8 @@ struct SleepEntryView: View {
     @EnvironmentObject private var vm: NewEntryViewModel
     var body: some View {
         VStack {
+            DatePicker("When", selection: $vm.sleepDate)
+                .datePickerStyle(.compact)
             DatePicker("From", selection: $vm.startDate)
                 .datePickerStyle(.compact)
             DatePicker("Until", selection: $vm.endDate)

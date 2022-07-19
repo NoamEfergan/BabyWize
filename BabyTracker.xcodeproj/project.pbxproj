@@ -16,6 +16,7 @@
 		0560839C2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560839B2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift */; };
 		056083A9288417F700728F1F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
 		05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
+		05B8AF69288633A100BBC41B /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+Extension.swift */; };
 		05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */; };
 		05DD68B52885B73C0066BFEC /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B42885B73C0066BFEC /* Feed.swift */; };
 		05DD68B72885B74C0066BFEC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B62885B74C0066BFEC /* Sleep.swift */; };
@@ -67,6 +68,7 @@
 		0560839B2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		056083A8288417F700728F1F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		05B8AF6628862C7C00BBC41B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		05B8AF68288633A100BBC41B /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenSections.swift; sourceTree = "<group>"; };
 		05DD68B42885B73C0066BFEC /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		05DD68B62885B74C0066BFEC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				056083A8288417F700728F1F /* Date+extension.swift */,
 				05DD68C52885FC0F0066BFEC /* Swinject+extension.swift */,
 				05DD68CD288603820066BFEC /* Double+extension.swift */,
+				05B8AF68288633A100BBC41B /* Array+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */,
 				05DD68CA2885FC720066BFEC /* DependencyInjectionProtocols.swift in Sources */,
 				056083A9288417F700728F1F /* Date+extension.swift in Sources */,
+				05B8AF69288633A100BBC41B /* Array+Extension.swift in Sources */,
 				05DD68C42885FB2C0066BFEC /* SleepManager.swift in Sources */,
 				05DD68B92885B7600066BFEC /* DummyData.swift in Sources */,
 				056083812884147800728F1F /* HomeView.swift in Sources */,
