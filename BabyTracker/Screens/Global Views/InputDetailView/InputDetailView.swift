@@ -20,27 +20,24 @@ struct InputDetailView: View {
             case .feed:
                 List {
                     Section("Swipe right to edit, left to remove") {
-                        ForEach(dataManager.feedData, id: \.id) { feed in
-                            VStack{
+                        ForEach(dataManager.feedData) { feed in
+                            VStack {
                                 LabeledContent("Amount", value: feed.amount.roundDecimalPoint().description)
                                 LabeledContent("Date", value: feed.date.formatted())
-                            }
-                            .sheet(isPresented: $isShowingEntryView) {
-                                
-                                EditEntryView(type: .feed, item: feed)
-                                    .presentationDetents([.height(200)])
-                                
                             }
                             .swipeActions(edge: .leading) {
                                 Button {
                                     isShowingEntryView.toggle()
-                                    entryVM.setInitialValues(type: .feed, with: feed.specifier)
+                                    entryVM.setInitialValues(type: .feed, with: feed.id)
                                 } label: {
                                     Text("Edit")
                                 }
-                                
                             }
                             .tint(.blue)
+                            .sheet(isPresented: $isShowingEntryView) {
+                                EditEntryView(type: .feed, item: feed)
+                                    .presentationDetents([.height(200)])
+                            }
                         }
                         .onDelete { offsets in
                             dataManager.deleteItem(at: offsets, for: .feed)
@@ -48,29 +45,25 @@ struct InputDetailView: View {
                     }
                 }
 
-                
             case .sleep:
                 List {
                     Section("Swipe right to edit, left to remove") {
                         ForEach(dataManager.sleepData, id: \.id) { sleep in
-                            VStack{
+                            VStack {
                                 LabeledContent("Duration", value: sleep.duration)
                                 LabeledContent("Date", value: sleep.date.formatted())
                             }
                             .sheet(isPresented: $isShowingEntryView) {
-                                
                                 EditEntryView(type: .sleep, item: sleep)
                                     .presentationDetents([.height(200)])
-                                
                             }
                             .swipeActions(edge: .leading) {
                                 Button {
                                     isShowingEntryView.toggle()
-                                    entryVM.setInitialValues(type: .sleep , with: sleep.specifier)
+                                    entryVM.setInitialValues(type: .sleep, with: sleep.id)
                                 } label: {
                                     Text("Edit")
                                 }
-                                
                             }
                             .tint(.blue)
                         }
@@ -83,23 +76,20 @@ struct InputDetailView: View {
                 List {
                     Section("Swipe right to edit, left to remove") {
                         ForEach(dataManager.nappyData, id: \.id) { change in
-                            VStack{
+                            VStack {
                                 LabeledContent("Date", value: change.dateTime.formatted())
                             }
                             .sheet(isPresented: $isShowingEntryView) {
-                                
                                 EditEntryView(type: .nappy, item: change)
                                     .presentationDetents([.height(200)])
-                                
                             }
                             .swipeActions(edge: .leading) {
                                 Button {
                                     isShowingEntryView.toggle()
-                                    entryVM.setInitialValues(type: .nappy , with: change.specifier)
+                                    entryVM.setInitialValues(type: .nappy, with: change.id)
                                 } label: {
                                     Text("Edit")
                                 }
-                                
                             }
                             .tint(.blue)
                         }
@@ -112,12 +102,11 @@ struct InputDetailView: View {
         }
         .environment(\.editMode, $editMode)
     }
-    
 }
 
 struct InputDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack{
+        NavigationStack {
             InputDetailView(type: .feed)
                 .environmentObject(EntryViewModel())
         }

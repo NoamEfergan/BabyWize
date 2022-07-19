@@ -56,7 +56,7 @@ final class BabyDataManager: ObservableObject {
     }
 
     private func fetchNappyData() -> [NappyChange] {
-        [.init(specifier: UUID().uuidString, dateTime: .now)]
+        [.init(id: "1", dateTime: .now)]
     }
 
     private func getAverageFeed() -> String {

@@ -8,7 +8,7 @@
 import Foundation
 
 final class EntryViewModel: ObservableObject {
-    @Inject private var dataManager: BabyDataManager
+    @InjectedObject private var dataManager: BabyDataManager
 
     @Published var amount: String = ""
     @Published var feedDate: Date = .init()
@@ -17,60 +17,65 @@ final class EntryViewModel: ObservableObject {
     @Published var endDate: Date = .init()
     @Published var changeDate: Date = .init()
 
+    private var itemID: String = ""
+
     func addEntry(type: EntryType) throws {
         switch type {
         case .feed:
             guard !amount.isEmpty, let amountDouble = Double(amount) else { throw EntryError.invalidAmount }
-            dataManager.feedData.append(.init(specifier: UUID().uuidString, date: feedDate, amount: amountDouble))
+            dataManager.feedData.append(.init(id: UUID().uuidString, date: feedDate, amount: amountDouble))
         case .sleep:
             guard startDate != endDate else { throw EntryError.sameSleepDate }
             guard startDate.timeIntervalSince1970 < endDate.timeIntervalSince1970
             else { throw EntryError.invalidSleepDate }
             let duration = endDate.timeIntervalSince(startDate)
             dataManager.sleepData.append(
-                .init(specifier: UUID().uuidString,
+                .init(id: UUID().uuidString,
                       date: sleepDate,
                       duration: duration.hourMinuteSecondMS)
             )
         case .nappy:
-            dataManager.nappyData.append(.init(specifier: UUID().uuidString, dateTime: changeDate))
+            dataManager.nappyData.append(.init(id: UUID().uuidString, dateTime: changeDate))
         }
         reset()
     }
 
-    func editEntry(type: EntryType, with id: String) throws {
+    func editEntry(type: EntryType) throws {
+        guard !itemID.isEmpty else { throw EntryError.general }
         switch type {
         case .feed:
             guard !amount.isEmpty, let amountDouble = Double(amount)
             else { throw EntryError.invalidAmount }
 
-            guard let index = dataManager.feedData.firstIndex(where: { $0.specifier == id })
+            guard let index = dataManager.feedData.firstIndex(where: { $0.id == itemID })
             else { throw EntryError.general }
 
-            dataManager.feedData[index] = .init(specifier: id, date: feedDate, amount: amountDouble)
+            dataManager.feedData[index] = .init(id: itemID, date: feedDate, amount: amountDouble)
         case .sleep:
             guard startDate != endDate else { throw EntryError.sameSleepDate }
 
             guard startDate.timeIntervalSince1970 < endDate.timeIntervalSince1970
             else { throw EntryError.invalidSleepDate }
 
-            guard let index = dataManager.sleepData.firstIndex(where: { $0.specifier == id })
+            guard let index = dataManager.sleepData.firstIndex(where: { $0.id == itemID })
             else { throw EntryError.general }
 
             let duration = endDate.timeIntervalSince(startDate)
-            dataManager.sleepData[index] = .init(specifier: id, date: sleepDate, duration: duration.hourMinuteSecondMS)
+            dataManager.sleepData[index] = .init(id: itemID, date: sleepDate, duration: duration.hourMinuteSecondMS)
         case .nappy:
-            guard let index = dataManager.nappyData.firstIndex(where: { $0.specifier == id })
+            guard let index = dataManager.nappyData.firstIndex(where: { $0.id == itemID })
             else { throw EntryError.general }
 
-            dataManager.nappyData[index] = .init(specifier: id, dateTime: changeDate)
+            dataManager.nappyData[index] = .init(id: itemID, dateTime: changeDate)
         }
+        reset()
     }
 
     func setInitialValues(type: EntryType, with id: String) {
+        itemID = id
         switch type {
         case .feed:
-            guard let item = dataManager.feedData.first(where: { $0.specifier == id }) else { return }
+            guard let item = dataManager.feedData.first(where: { $0.id == id }) else { return }
             amount = item.amount.roundDecimalPoint().description
             feedDate = item.date
         case .sleep:
@@ -78,7 +83,7 @@ final class EntryViewModel: ObservableObject {
             return
 
         case .nappy:
-            guard let item = dataManager.nappyData.first(where: { $0.specifier == id })
+            guard let item = dataManager.nappyData.first(where: { $0.id == id })
             else { return }
             changeDate = item.dateTime
         }

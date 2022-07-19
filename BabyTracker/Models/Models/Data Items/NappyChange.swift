@@ -8,7 +8,6 @@
 import Foundation
 
 struct NappyChange: DataItem {
-    var id =  UUID()
-    let specifier: String
+    let id: String
     let dateTime: Date
 }

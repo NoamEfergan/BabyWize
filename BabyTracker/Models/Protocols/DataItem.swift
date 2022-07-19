@@ -8,5 +8,5 @@
 import Foundation
 
 protocol DataItem: Codable, Hashable, Identifiable {
-    var specifier: String { get }
+    var id: String { get }
 }

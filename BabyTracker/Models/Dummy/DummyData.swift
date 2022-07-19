@@ -9,16 +9,16 @@ import Foundation
 
 enum DummyData {
     static let dummyFeed: [Feed] = [
-        .init(specifier: UUID().uuidString, date: .getRandomMockDate(), amount: .getRandomFeedAmount()),
-        .init(specifier: UUID().uuidString, date: .getRandomMockDate(), amount: .getRandomFeedAmount()),
-        .init(specifier: UUID().uuidString, date: .getRandomMockDate(), amount: .getRandomFeedAmount()),
-        .init(specifier: UUID().uuidString, date: .getRandomMockDate(), amount: .getRandomFeedAmount()),
+        .init(id: "1", date: .getRandomMockDate(), amount: .getRandomFeedAmount()),
+        .init(id: "2", date: .getRandomMockDate(), amount: .getRandomFeedAmount()),
+        .init(id: "3", date: .getRandomMockDate(), amount: .getRandomFeedAmount()),
+        .init(id: "4", date: .getRandomMockDate(), amount: .getRandomFeedAmount()),
     ]
 
     static let dummySleeps: [Sleep] = [
-        .init(specifier: UUID().uuidString, date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
-        .init(specifier: UUID().uuidString, date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
-        .init(specifier: UUID().uuidString, date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
-        .init(specifier: UUID().uuidString, date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
+        .init(id: "1", date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
+        .init(id: "2", date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
+        .init(id: "3", date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
+        .init(id: "4", date: .getRandomMockDate(), duration: Double.getRandomFeedAmount().hourMinuteSecondMS),
     ]
 }

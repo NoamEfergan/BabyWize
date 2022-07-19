@@ -8,8 +8,7 @@
 import Foundation
 
 struct Sleep: DataItem {
-    var id =  UUID()
-    let specifier: String
+    let id: String
     let date: Date
     let duration: String
 }

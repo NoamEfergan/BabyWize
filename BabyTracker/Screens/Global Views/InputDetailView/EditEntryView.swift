@@ -10,8 +10,6 @@ import SwiftUI
 struct EditEntryView<Item: DataItem>: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var vm: EntryViewModel
-    @State private var startDate: Date = .init()
-    @State private var endDate: Date = .init()
     @State private var errorText: String = ""
     let type: EntryType
     var item: Item
@@ -32,7 +30,7 @@ struct EditEntryView<Item: DataItem>: View {
             }
             Button("Edit") {
                 do {
-                    try vm.editEntry(type: type, with: item.specifier)
+                    try vm.editEntry(type: type)
                     dismiss()
                 } catch {
                     guard let entryError = error as? EntryViewModel.EntryError else {
@@ -54,7 +52,7 @@ struct EditEntryView<Item: DataItem>: View {
 
 struct EditEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        EditEntryView(type: .feed, item: Feed(specifier: "1", date: .now, amount: 180))
+        EditEntryView(type: .feed, item: Feed(id: "1", date: .now, amount: 180))
             .environmentObject(EntryViewModel())
     }
 }

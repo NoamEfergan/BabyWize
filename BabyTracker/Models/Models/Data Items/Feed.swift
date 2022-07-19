@@ -8,8 +8,7 @@
 import Foundation
 
 struct Feed: DataItem {
-    var id =  UUID()
-    let specifier: String
+    let id: String
     let date: Date
     let amount: Double
 }
