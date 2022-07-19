@@ -19,6 +19,7 @@
 		059C68E82886B66B00C90710 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EB2886BD6E00C90710 /* InputDetailView.swift */; };
 		059C68F02886D8CD00C90710 /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EF2886D8CD00C90710 /* EditEntryView.swift */; };
+		059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68F12887015A00C90710 /* InfoScreenViewModel.swift */; };
 		05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
 		05B8AF69288633A100BBC41B /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+Extension.swift */; };
 		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
@@ -76,6 +77,7 @@
 		059C68E72886B66B00C90710 /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
 		059C68EB2886BD6E00C90710 /* InputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDetailView.swift; sourceTree = "<group>"; };
 		059C68EF2886D8CD00C90710 /* EditEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryView.swift; sourceTree = "<group>"; };
+		059C68F12887015A00C90710 /* InfoScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoScreenViewModel.swift; sourceTree = "<group>"; };
 		05B8AF6628862C7C00BBC41B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		05B8AF68288633A100BBC41B /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		05B8AF6D2886989C00BBC41B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				05DD68D6288619B50066BFEC /* EntryViewModel.swift */,
+				059C68F12887015A00C90710 /* InfoScreenViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
 				05DD68CE288603820066BFEC /* Double+extension.swift in Sources */,
 				0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */,
+				059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */,
 				05DD68B72885B74C0066BFEC /* Sleep.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

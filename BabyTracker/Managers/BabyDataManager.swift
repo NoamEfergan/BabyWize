@@ -33,6 +33,28 @@ final class BabyDataManager: ObservableObject {
             return "Something"
         }
     }
+    
+    func getBiggest(for type: EntryType) -> String {
+        switch type {
+        case .feed:
+            return feedData.max(by: { $0.amount < $1.amount})?.amount.roundDecimalPoint().description ?? "None found"
+        case .sleep:
+            return sleepData.max(by: { $0.duration < $1.duration})?.duration ?? "None found"
+        case .nappy:
+            return ""
+        }
+    }
+    
+    func getSmallest(for type: EntryType) -> String {
+        switch type {
+        case .feed:
+            return feedData.min(by: { $0.amount < $1.amount})?.amount.roundDecimalPoint().description ?? "None found"
+        case .sleep:
+            return sleepData.min(by: { $0.duration < $1.duration})?.duration ?? "None found"
+        case .nappy:
+            return ""
+        }
+    }
 
     func deleteItem(at offsets: IndexSet, for type: EntryType) {
         switch type {

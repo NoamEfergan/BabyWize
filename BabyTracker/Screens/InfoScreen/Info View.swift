@@ -6,32 +6,7 @@
 //
 
 import SwiftUI
-
-final class InfoScreenVM: ObservableObject {
-    @InjectedObject private var dataManager: BabyDataManager
-
-    @Published var averageTitle = ""
-    @Published var navigationTitle = ""
-    @Published var screen: InfoScreens = .sleep
-    @Published var inputScreen: InfoScreens = .detailInputSleep
-
-    var type: EntryType {
-        switch inputScreen {
-        case .feed,.detailInputFeed:
-            return .feed
-        case .sleep, .detailInputSleep:
-            return .sleep
-        }
-    }
-
-    init(screen: InfoScreens) {
-        self.screen = screen
-        inputScreen = screen == .feed ? .detailInputFeed : .detailInputSleep
-        navigationTitle = "\(screen.rawValue.capitalized) info"
-        averageTitle = "Average \(screen)"
-    }
-    
-}
+import Charts
 
 struct InfoView: View {
     @InjectedObject private var dataManager: BabyDataManager
@@ -40,7 +15,23 @@ struct InfoView: View {
         List {
             Section("general") {
                 LabeledContent(vm.averageTitle, value: dataManager.getAverage(for: vm.type))
+                LabeledContent(vm.largestTitle, value: dataManager.getBiggest(for: vm.type))
+                LabeledContent(vm.smallestTitle, value: dataManager.getSmallest(for: vm.type))
                 NavigationLink("All inputs", value: vm.inputScreen)
+            }
+            
+            Section("total history") {
+                    Chart(dataManager.feedData) { feed in
+                        LineMark(
+                            x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
+                            y: .value("Amount", feed.amount)
+                        )
+                        .foregroundStyle(Color.blue.gradient)
+                        .interpolationMethod(.cardinal)
+                    }
+                    .frame(height: 200)
+                    
+
             }
         }
         .navigationTitle(vm.navigationTitle)
