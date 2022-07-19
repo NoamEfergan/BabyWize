@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Feed: Codable, Identifiable {
-    let id: String
+struct Feed: DataItem {
+    var id =  UUID()
+    let specifier: String
     let date: Date
     let amount: Double
 }

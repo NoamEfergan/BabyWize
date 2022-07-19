@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Sleep: Codable, Identifiable {
-    let id: String
+struct Sleep: DataItem {
+    var id =  UUID()
+    let specifier: String
     let date: Date
     let duration: String
 }

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct NappyChange: Codable, Identifiable {
-    var id: String
+struct NappyChange: DataItem {
+    var id =  UUID()
+    let specifier: String
     let dateTime: Date
 }

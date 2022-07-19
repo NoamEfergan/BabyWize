@@ -16,16 +16,8 @@ enum ContainerBuilder {
     }
     
     private static func registerManagers(to container: Container) {
-        container.register(SleepManager.self) { _ in
-            SleepManager()
-        }.inObjectScope(.container)
-        
-        container.register(FeedManager.self) { _ in
-            FeedManager()
-        }.inObjectScope(.container)
-        
-        container.register(NappyManager.self) { _ in
-            NappyManager()
+        container.register(BabyDataManager.self) { _ in
+            BabyDataManager()
         }.inObjectScope(.container)
     }
 }

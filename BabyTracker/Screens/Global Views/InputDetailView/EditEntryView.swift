@@ -1,30 +1,24 @@
 //
-//  AddEntryView.swift
+//  EditEntryView.swift
 //  BabyTracker
 //
-//  Created by Noam Efergan on 18/07/2022.
+//  Created by Noam Efergan on 19/07/2022.
 //
 
 import SwiftUI
 
-struct AddEntryView: View {
-
+struct EditEntryView<Item: DataItem>: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var vm: EntryViewModel
     @State private var startDate: Date = .init()
     @State private var endDate: Date = .init()
     @State private var errorText: String = ""
-    @State private var entryType: EntryType = .feed
-    
+    let type: EntryType
+    var item: Item
+
     var body: some View {
         VStack(spacing: 15) {
-            Picker("Entry Type", selection: $entryType) {
-                ForEach(EntryType.allCases, id: \.self) {
-                    Text($0.rawValue.capitalized)
-                }
-            }
-            .pickerStyle(.segmented)
-            switch entryType {
+            switch type {
             case .feed:
                 FeedEntryView()
             case .sleep:
@@ -36,9 +30,9 @@ struct AddEntryView: View {
                 Text(errorText)
                     .foregroundColor(.red)
             }
-            Button("Add") {
+            Button("Edit") {
                 do {
-                    try vm.addEntry(type: entryType)
+                    try vm.editEntry(type: type, with: item.specifier)
                     dismiss()
                 } catch {
                     guard let entryError = error as? EntryViewModel.EntryError else {
@@ -50,17 +44,17 @@ struct AddEntryView: View {
             }.buttonStyle(.borderedProminent)
         }
         .padding()
-        .onChange(of: entryType, perform: { newValue in
+        .onChange(of: type, perform: { _ in
             errorText = ""
         })
         .animation(.easeIn, value: errorText)
-        .animation(.easeIn, value: entryType)
+        .animation(.easeIn, value: type)
     }
 }
 
-struct AddEntryView_Previews: PreviewProvider {
+struct EditEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        AddEntryView()
+        EditEntryView(type: .feed, item: Feed(specifier: "1", date: .now, amount: 180))
             .environmentObject(EntryViewModel())
     }
 }

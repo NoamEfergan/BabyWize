@@ -12,25 +12,27 @@ enum Screens: String {
     case home, settings, newEntry
 }
 
+enum InfoScreens: String {
+    case feed, sleep, detailInputFeed, detailInputSleep
+}
+
 struct HomeView: View {
-    @Inject private var feedManager: FeedManager
-    @Inject private var sleepManager: SleepManager
-    @Inject private var nappyManager: NappyManager
+    @InjectedObject private var dataManager: BabyDataManager
     @State private var path: [Screens] = []
     @State private var isShowingNewEntrySheet: Bool = false
     @State private var isShowingSettings: Bool = false
-    @ObservedObject private var entryVM = NewEntryViewModel()
+    @ObservedObject private var entryVM = EntryViewModel()
 
     var body: some View {
-        NavigationStack() {
+        NavigationStack {
             List {
                 Section("recent info") {
                     LabeledContent(
                         "Last Feed",
-                        value: feedManager.data.last?.amount.roundDecimalPoint().feedDisplayableAmount() ?? "None recorded"
+                        value: dataManager.feedData.last?.amount.roundDecimalPoint().feedDisplayableAmount() ?? "None recorded"
                     )
-                    LabeledContent("Last Nappy change", value: nappyManager.data.last?.dateTime.formatted() ?? "None recorded")
-                    LabeledContent("Last Sleep", value: sleepManager.data.last?.duration ?? "None recorded")
+                    LabeledContent("Last Nappy change", value: dataManager.nappyData.last?.dateTime.formatted() ?? "None recorded")
+                    LabeledContent("Last Sleep", value: dataManager.sleepData.last?.duration ?? "None recorded")
                 }
                 HomeScreenSections()
             }
@@ -53,15 +55,28 @@ struct HomeView: View {
             .sheet(isPresented: $isShowingNewEntrySheet) {
                 AddEntryView()
                     .environmentObject(entryVM)
-                    .presentationDetents([.fraction(0.3)])
+                    .presentationDetents([.height(270)])
             }
             .navigationDestination(for: Screens.self) { screen in
                 switch screen {
                 case .settings:
                     SettingsView()
-                        
                 default:
                     EmptyView()
+                }
+            }
+            .navigationDestination(for: InfoScreens.self) { screen in
+                switch screen {
+                case .feed, .sleep:
+                    InfoView(vm: .init(screen: screen))
+                case .detailInputSleep:
+                    InputDetailView(type: .sleep)
+                        .navigationTitle("All sleeps")
+                        .environmentObject(entryVM)
+                case .detailInputFeed:
+                    InputDetailView(type: .feed)
+                        .navigationTitle("All feeds")
+                        .environmentObject(entryVM)
                 }
             }
         }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NappyEntryView: View {
-    @EnvironmentObject private var vm: NewEntryViewModel
+    @EnvironmentObject private var vm: EntryViewModel
     var body: some View {
         DatePicker("When", selection: $vm.changeDate)
             .datePickerStyle(.compact)
@@ -19,6 +19,6 @@ struct NappyEntryView: View {
 struct NappyEntryView_Previews: PreviewProvider {
     static var previews: some View {
         NappyEntryView()
-            .environmentObject(NewEntryViewModel())
+            .environmentObject(EntryViewModel())
     }
 }

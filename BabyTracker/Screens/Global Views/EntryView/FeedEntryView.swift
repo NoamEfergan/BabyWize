@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeedEntryView: View {
-    @EnvironmentObject private var vm: NewEntryViewModel
+    @EnvironmentObject private var vm: EntryViewModel
 
     var body: some View {
         VStack {
@@ -27,6 +27,6 @@ struct FeedEntryView: View {
 struct FeedEntryView_Previews: PreviewProvider {
     static var previews: some View {
         FeedEntryView()
-            .environmentObject(NewEntryViewModel())
+            .environmentObject(EntryViewModel())
     }
 }

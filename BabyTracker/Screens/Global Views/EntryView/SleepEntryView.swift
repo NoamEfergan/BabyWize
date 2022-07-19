@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SleepEntryView: View {
-    @EnvironmentObject private var vm: NewEntryViewModel
+    @EnvironmentObject private var vm: EntryViewModel
     var body: some View {
         VStack {
             DatePicker("When", selection: $vm.sleepDate)
@@ -25,6 +25,6 @@ struct SleepEntryView: View {
 struct SleepEntryView_Previews: PreviewProvider {
     static var previews: some View {
         SleepEntryView()
-            .environmentObject(NewEntryViewModel())
+            .environmentObject(EntryViewModel())
     }
 }
