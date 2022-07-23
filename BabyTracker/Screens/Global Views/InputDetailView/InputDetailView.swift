@@ -22,13 +22,13 @@ struct InputDetailView: View {
                     Section("Swipe right to edit, left to remove") {
                         ForEach(dataManager.feedData) { feed in
                             VStack {
-                                LabeledContent("Amount", value: feed.amount.roundDecimalPoint().description)
+                                LabeledContent("Amount", value: feed.amount.roundDecimalPoint().feedDisplayableAmount().description)
                                 LabeledContent("Date", value: feed.date.formatted())
                             }
                             .swipeActions(edge: .leading) {
                                 Button {
                                     isShowingEntryView.toggle()
-                                    entryVM.setInitialValues(type: .feed, with: feed.id)
+                                    entryVM.setInitialValues(type: .feed, with: feed.id.description)
                                 } label: {
                                     Text("Edit")
                                 }
@@ -60,7 +60,7 @@ struct InputDetailView: View {
                             .swipeActions(edge: .leading) {
                                 Button {
                                     isShowingEntryView.toggle()
-                                    entryVM.setInitialValues(type: .sleep, with: sleep.id)
+                                    entryVM.setInitialValues(type: .sleep, with: sleep.id.description)
                                 } label: {
                                     Text("Edit")
                                 }
@@ -86,7 +86,7 @@ struct InputDetailView: View {
                             .swipeActions(edge: .leading) {
                                 Button {
                                     isShowingEntryView.toggle()
-                                    entryVM.setInitialValues(type: .nappy, with: change.id)
+                                    entryVM.setInitialValues(type: .nappy, with: change.id.description)
                                 } label: {
                                     Text("Edit")
                                 }

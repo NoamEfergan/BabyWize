@@ -18,6 +18,7 @@ enum InfoScreens: String {
 
 struct HomeView: View {
     @InjectedObject private var dataManager: BabyDataManager
+//    @InjectedObject private var 
     @State private var path: [Screens] = []
     @State private var isShowingNewEntrySheet: Bool = false
     @State private var isShowingSettings: Bool = false

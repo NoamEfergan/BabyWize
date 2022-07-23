@@ -9,7 +9,7 @@ import Foundation
 
 final class EntryViewModel: ObservableObject {
     @InjectedObject private var dataManager: BabyDataManager
-
+    @Inject private var realm: RealmManager
     @Published var amount: String = ""
     @Published var feedDate: Date = .init()
     @Published var sleepDate: Date = .init()
@@ -23,19 +23,22 @@ final class EntryViewModel: ObservableObject {
         switch type {
         case .feed:
             guard !amount.isEmpty, let amountDouble = Double(amount) else { throw EntryError.invalidAmount }
-            dataManager.feedData.append(.init(id: UUID().uuidString, date: feedDate, amount: amountDouble))
+            let feed: Feed = .init(id: UUID().uuidString, date: feedDate, amount: amountDouble)
+            dataManager.feedData.append(feed)
+            realm.add(feed)
+
         case .sleep:
             guard startDate != endDate else { throw EntryError.sameSleepDate }
             guard startDate.timeIntervalSince1970 < endDate.timeIntervalSince1970
             else { throw EntryError.invalidSleepDate }
             let duration = endDate.timeIntervalSince(startDate)
-            dataManager.sleepData.append(
-                .init(id: UUID().uuidString,
-                      date: sleepDate,
-                      duration: duration.hourMinuteSecondMS)
-            )
+            let sleep: Sleep = .init(id: UUID().uuidString, date: sleepDate, duration: duration.hourMinuteSecondMS)
+            dataManager.sleepData.append(sleep)
+            realm.add(sleep)
         case .nappy:
-            dataManager.nappyData.append(.init(id: UUID().uuidString, dateTime: changeDate))
+            let nappyChange: NappyChange = .init(id: UUID().uuidString, dateTime: changeDate)
+            dataManager.nappyData.append(nappyChange)
+            realm.add(nappyChange)
         }
         reset()
     }
@@ -47,26 +50,30 @@ final class EntryViewModel: ObservableObject {
             guard !amount.isEmpty, let amountDouble = Double(amount)
             else { throw EntryError.invalidAmount }
 
-            guard let index = dataManager.feedData.firstIndex(where: { $0.id == itemID })
+            guard let index = dataManager.feedData.firstIndex(where: { $0.id.description == itemID })
             else { throw EntryError.general }
-
-            dataManager.feedData[index] = .init(id: itemID, date: feedDate, amount: amountDouble)
+            let newFeed: Feed = .init(id: itemID, date: feedDate, amount: amountDouble)
+            dataManager.feedData[index] = newFeed
+            realm.update(id: newFeed.id, type: .feed, item: newFeed)
         case .sleep:
             guard startDate != endDate else { throw EntryError.sameSleepDate }
 
             guard startDate.timeIntervalSince1970 < endDate.timeIntervalSince1970
             else { throw EntryError.invalidSleepDate }
 
-            guard let index = dataManager.sleepData.firstIndex(where: { $0.id == itemID })
+            guard let index = dataManager.sleepData.firstIndex(where: { $0.id.description == itemID })
             else { throw EntryError.general }
 
             let duration = endDate.timeIntervalSince(startDate)
-            dataManager.sleepData[index] = .init(id: itemID, date: sleepDate, duration: duration.hourMinuteSecondMS)
+            let newSleep: Sleep = .init(id: itemID, date: sleepDate, duration: duration.hourMinuteSecondMS)
+            dataManager.sleepData[index] = newSleep
+            realm.update(id: newSleep.id, type: .sleep, item: newSleep)
         case .nappy:
-            guard let index = dataManager.nappyData.firstIndex(where: { $0.id == itemID })
+            guard let index = dataManager.nappyData.firstIndex(where: { $0.id.description == itemID })
             else { throw EntryError.general }
-
-            dataManager.nappyData[index] = .init(id: itemID, dateTime: changeDate)
+            let newNappy: NappyChange = .init(id: itemID, dateTime: changeDate)
+            dataManager.nappyData[index] = newNappy
+            realm.update(id: newNappy.id, type: .nappy, item: newNappy)
         }
         reset()
     }
@@ -75,7 +82,7 @@ final class EntryViewModel: ObservableObject {
         itemID = id
         switch type {
         case .feed:
-            guard let item = dataManager.feedData.first(where: { $0.id == id }) else { return }
+            guard let item = dataManager.feedData.first(where: { $0.id.description == id }) else { return }
             amount = item.amount.roundDecimalPoint().description
             feedDate = item.date
         case .sleep:
@@ -83,7 +90,7 @@ final class EntryViewModel: ObservableObject {
             return
 
         case .nappy:
-            guard let item = dataManager.nappyData.first(where: { $0.id == id })
+            guard let item = dataManager.nappyData.first(where: { $0.id.description == id })
             else { return }
             changeDate = item.dateTime
         }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05543F1628884AC0001B6121 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 05543F1528884AC0001B6121 /* Realm */; };
+		05543F1828884AC0001B6121 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 05543F1728884AC0001B6121 /* RealmSwift */; };
+		05543F1A28884B05001B6121 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05543F1928884B05001B6121 /* Realm.swift */; };
 		0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyTrackerApp.swift */; };
 		056083812884147800728F1F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083802884147800728F1F /* HomeView.swift */; };
 		056083832884147900728F1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
@@ -24,15 +27,12 @@
 		05B8AF69288633A100BBC41B /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+Extension.swift */; };
 		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
 		05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */; };
-		05DD68B52885B73C0066BFEC /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B42885B73C0066BFEC /* Feed.swift */; };
-		05DD68B72885B74C0066BFEC /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B62885B74C0066BFEC /* Sleep.swift */; };
 		05DD68B92885B7600066BFEC /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B82885B7600066BFEC /* DummyData.swift */; };
 		05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05DD68BE2885B7E40066BFEC /* Swinject */; };
 		05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C12885B8460066BFEC /* SwinjectManager.swift */; };
 		05DD68C42885FB2C0066BFEC /* BabyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */; };
 		05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C52885FC0F0066BFEC /* Swinject+extension.swift */; };
 		05DD68CA2885FC720066BFEC /* DependencyInjectionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C92885FC720066BFEC /* DependencyInjectionProtocols.swift */; };
-		05DD68CC2885FF2E0066BFEC /* NappyChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CB2885FF2E0066BFEC /* NappyChange.swift */; };
 		05DD68CE288603820066BFEC /* Double+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CD288603820066BFEC /* Double+extension.swift */; };
 		05DD68D0288603C30066BFEC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CF288603C30066BFEC /* DataManager.swift */; };
 		05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D22886140C0066BFEC /* AddEntryView.swift */; };
@@ -42,6 +42,7 @@
 		05DD68DC28861C930066BFEC /* FeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DB28861C930066BFEC /* FeedEntryView.swift */; };
 		05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DD28861CD70066BFEC /* SleepEntryView.swift */; };
 		05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */; };
+		05DFDCFF2889A4710066D567 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFDCFE2889A4710066D567 /* RealmManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05543F1928884B05001B6121 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		0560837B2884147800728F1F /* BabyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0560837E2884147800728F1F /* BabyTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerApp.swift; sourceTree = "<group>"; };
 		056083802884147800728F1F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -82,14 +84,11 @@
 		05B8AF68288633A100BBC41B /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		05B8AF6D2886989C00BBC41B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenSections.swift; sourceTree = "<group>"; };
-		05DD68B42885B73C0066BFEC /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
-		05DD68B62885B74C0066BFEC /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sleep.swift; sourceTree = "<group>"; };
 		05DD68B82885B7600066BFEC /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		05DD68C12885B8460066BFEC /* SwinjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectManager.swift; sourceTree = "<group>"; };
 		05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManager.swift; sourceTree = "<group>"; };
 		05DD68C52885FC0F0066BFEC /* Swinject+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swinject+extension.swift"; sourceTree = "<group>"; };
 		05DD68C92885FC720066BFEC /* DependencyInjectionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectionProtocols.swift; sourceTree = "<group>"; };
-		05DD68CB2885FF2E0066BFEC /* NappyChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyChange.swift; sourceTree = "<group>"; };
 		05DD68CD288603820066BFEC /* Double+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+extension.swift"; sourceTree = "<group>"; };
 		05DD68CF288603C30066BFEC /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		05DD68D22886140C0066BFEC /* AddEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		05DD68DB28861C930066BFEC /* FeedEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEntryView.swift; sourceTree = "<group>"; };
 		05DD68DD28861CD70066BFEC /* SleepEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntryView.swift; sourceTree = "<group>"; };
 		05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyEntryView.swift; sourceTree = "<group>"; };
+		05DFDCFE2889A4710066D567 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +106,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05543F1828884AC0001B6121 /* RealmSwift in Frameworks */,
+				05543F1628884AC0001B6121 /* Realm in Frameworks */,
 				05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				05DD68CF288603C30066BFEC /* DataManager.swift */,
-				059C68E72886B66B00C90710 /* DataItem.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -207,9 +208,7 @@
 		059C68E92886B6AE00C90710 /* Data Items */ = {
 			isa = PBXGroup;
 			children = (
-				05DD68B62885B74C0066BFEC /* Sleep.swift */,
-				05DD68CB2885FF2E0066BFEC /* NappyChange.swift */,
-				05DD68B42885B73C0066BFEC /* Feed.swift */,
+				059C68E72886B66B00C90710 /* DataItem.swift */,
 			);
 			path = "Data Items";
 			sourceTree = "<group>";
@@ -296,6 +295,7 @@
 				05DD68D42886144E0066BFEC /* EntryType.swift */,
 				05DD68D8288619DB0066BFEC /* FeedUnits.swift */,
 				05B8AF6628862C7C00BBC41B /* Constants.swift */,
+				05543F1928884B05001B6121 /* Realm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -314,6 +314,7 @@
 			children = (
 				05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */,
 				05DD68C12885B8460066BFEC /* SwinjectManager.swift */,
+				05DFDCFE2889A4710066D567 /* RealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -372,6 +373,8 @@
 			name = BabyTracker;
 			packageProductDependencies = (
 				05DD68BE2885B7E40066BFEC /* Swinject */,
+				05543F1528884AC0001B6121 /* Realm */,
+				05543F1728884AC0001B6121 /* RealmSwift */,
 			);
 			productName = BabyTracker;
 			productReference = 0560837B2884147800728F1F /* BabyTracker.app */;
@@ -447,6 +450,7 @@
 			mainGroup = 056083722884147800728F1F;
 			packageReferences = (
 				05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */,
+				05543F1428884AC0001B6121 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 0560837C2884147800728F1F /* Products */;
 			projectDirPath = "";
@@ -495,9 +499,9 @@
 				05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */,
 				05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */,
 				059C68E82886B66B00C90710 /* DataItem.swift in Sources */,
-				05DD68B52885B73C0066BFEC /* Feed.swift in Sources */,
+				05DFDCFF2889A4710066D567 /* RealmManager.swift in Sources */,
+				05543F1A28884B05001B6121 /* Realm.swift in Sources */,
 				05DD68D52886144E0066BFEC /* EntryType.swift in Sources */,
-				05DD68CC2885FF2E0066BFEC /* NappyChange.swift in Sources */,
 				05DD68D0288603C30066BFEC /* DataManager.swift in Sources */,
 				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,
 				05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */,
@@ -518,7 +522,6 @@
 				05DD68CE288603820066BFEC /* Double+extension.swift in Sources */,
 				0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */,
 				059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */,
-				05DD68B72885B74C0066BFEC /* Sleep.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +848,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		05543F1428884AC0001B6121 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject.git";
@@ -856,6 +867,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		05543F1528884AC0001B6121 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05543F1428884AC0001B6121 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		05543F1728884AC0001B6121 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05543F1428884AC0001B6121 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		05DD68BE2885B7E40066BFEC /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */;

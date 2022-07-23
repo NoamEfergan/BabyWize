@@ -19,5 +19,8 @@ enum ContainerBuilder {
         container.register(BabyDataManager.self) { _ in
             BabyDataManager()
         }.inObjectScope(.container)
+        container.register(RealmManager.self) { _ in
+            RealmManager()
+        }.inObjectScope(.container)
     }
 }
