@@ -82,6 +82,11 @@ struct HomeView: View {
             .task {
                 WidgetManager().setLatest()
             }
+            .onOpenURL { url in
+                // TODO: Handle more deep links!
+                isShowingNewEntrySheet = true
+            }
+
         }
     }
 }

@@ -85,6 +85,7 @@ struct WidgetView: View {
         switch widgetFamily {
         case .systemSmall:
             buttonView
+                .widgetURL(URL(string: "widget://newEntry")!)
         case .systemMedium:
             summaryView
         default:
@@ -114,13 +115,9 @@ struct WidgetView: View {
             VStack {
                 Text("Add a new entry!")
                     .multilineTextAlignment(.center)
-                Button {
-                    print("hi")
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .aspectRatio(1, contentMode: .fit)
-                }
+                Image(systemName: "plus.circle.fill")
+                    .resizable()
+                    .aspectRatio(1, contentMode: .fit)
 
             }
             .fontWeight(.semibold)
