@@ -9,7 +9,6 @@ import Intents
 import SwiftUI
 import WidgetKit
 
-
 struct Provider: IntentTimelineProvider {
     private func getEntry(configuration: ConfigurationIntent, date: Date) -> SimpleEntry {
         guard let container = UserDefaults(suiteName: "group.babyData") else {
@@ -61,10 +60,40 @@ struct SimpleEntry: TimelineEntry {
     let lastNappy: Date?
 }
 
-struct AddEntryWidgetEntryView: View {
+// MARK: - Main
+
+@main
+struct AddEntryWidget: Widget {
+    let kind: String = "AddEntryWidget"
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+            WidgetView(entry: entry)
+        }
+        .configurationDisplayName("Baby Tracker")
+        .description("Get the latest information about your baby, or quickly add a new entry!")
+        .supportedFamilies([.systemSmall, .systemMedium])
+    }
+}
+
+
+
+struct WidgetView: View {
+    @Environment(\.widgetFamily) private var widgetFamily
     var entry: Provider.Entry
 
     var body: some View {
+        switch widgetFamily {
+        case .systemSmall:
+            buttonView
+        case .systemMedium:
+            summaryView
+        default:
+            EmptyView()
+        }
+
+    }
+    
+    private var summaryView: some View {
         VStack {
             LabeledContent("Last Feed", value: entry.lastFeed ?? "None recorded")
             Divider()
@@ -80,32 +109,53 @@ struct AddEntryWidgetEntryView: View {
         .foregroundColor(.white)
         .background(Color.blue.gradient)
     }
-}
+        
+        private var buttonView: some View {
+            VStack {
+                Text("Add a new entry!")
+                    .multilineTextAlignment(.center)
+                Button {
+                    print("hi")
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fit)
+                }
 
-@main
-struct AddEntryWidget: Widget {
-    let kind: String = "AddEntryWidget"
-
-    var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            AddEntryWidgetEntryView(entry: entry)
+            }
+            .fontWeight(.semibold)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
+            .foregroundColor(.white)
+            .background(Color.blue.gradient)
         }
-        .configurationDisplayName("Baby Tracker")
-        .description("Get the latest information about your baby, or quickly add a new entry!")
-        .supportedFamilies([.systemMedium])
+        
     }
-}
+
+
+// MARK: - Preview
 
 struct AddEntryWidget_Previews: PreviewProvider {
     static var previews: some View {
-        AddEntryWidgetEntryView(entry: SimpleEntry(
-            date: Date(),
-            configuration: ConfigurationIntent(),
-            lastFeed: "120 ml",
-            lastSleep: "1 hr 20 min",
-            lastNappy: Date()
-        )
+        WidgetView(entry:
+            SimpleEntry(
+                date: Date(),
+                configuration: ConfigurationIntent(),
+                lastFeed: "120 ml",
+                lastSleep: "1 hr 20 min",
+                lastNappy: Date()
+            )
         )
         .previewContext(WidgetPreviewContext(family: .systemMedium))
+        WidgetView(entry:
+            SimpleEntry(
+                date: Date(),
+                configuration: ConfigurationIntent(),
+                lastFeed: "120 ml",
+                lastSleep: "1 hr 20 min",
+                lastNappy: Date()
+            )
+        )
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
