@@ -19,9 +19,15 @@ class MyAppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct BabyTrackerApp: App {
     @UIApplicationDelegateAdaptor(MyAppDelegate.self) var appDelegate
+    @Environment(\.scenePhase) var scenePhase
     var body: some Scene {
         WindowGroup {
             HomeView()
+        }
+        .onChange(of: scenePhase) { newValue in
+            if newValue == .background {
+                WidgetManager().setLatest()
+            }
         }
     }
 }

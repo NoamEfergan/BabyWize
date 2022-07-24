@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050AEE92288C64190052A2D1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE91288C64190052A2D1 /* WidgetKit.framework */; };
+		050AEE94288C64190052A2D1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE93288C64190052A2D1 /* SwiftUI.framework */; };
+		050AEE97288C64190052A2D1 /* AddEntryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEE96288C64190052A2D1 /* AddEntryWidget.swift */; };
+		050AEE9A288C641A0052A2D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050AEE99288C641A0052A2D1 /* Assets.xcassets */; };
+		050AEE9C288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 050AEE98288C64190052A2D1 /* AddEntryWidget.intentdefinition */; };
+		050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 050AEE98288C64190052A2D1 /* AddEntryWidget.intentdefinition */; };
+		050AEEA0288C641A0052A2D1 /* AddEntryWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEEA6288C6B170052A2D1 /* WidgetManager.swift */; };
 		05543F1628884AC0001B6121 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 05543F1528884AC0001B6121 /* Realm */; };
 		05543F1828884AC0001B6121 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 05543F1728884AC0001B6121 /* RealmSwift */; };
-		05543F1A28884B05001B6121 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05543F1928884B05001B6121 /* Realm.swift */; };
 		0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyTrackerApp.swift */; };
 		056083812884147800728F1F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083802884147800728F1F /* HomeView.swift */; };
 		056083832884147900728F1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
@@ -34,7 +41,6 @@
 		05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C52885FC0F0066BFEC /* Swinject+extension.swift */; };
 		05DD68CA2885FC720066BFEC /* DependencyInjectionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C92885FC720066BFEC /* DependencyInjectionProtocols.swift */; };
 		05DD68CE288603820066BFEC /* Double+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CD288603820066BFEC /* Double+extension.swift */; };
-		05DD68D0288603C30066BFEC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CF288603C30066BFEC /* DataManager.swift */; };
 		05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D22886140C0066BFEC /* AddEntryView.swift */; };
 		05DD68D52886144E0066BFEC /* EntryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D42886144E0066BFEC /* EntryType.swift */; };
 		05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D6288619B50066BFEC /* EntryViewModel.swift */; };
@@ -46,6 +52,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		050AEE9E288C641A0052A2D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 056083732884147800728F1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 050AEE8E288C64190052A2D1;
+			remoteInfo = AddEntryWidgetExtension;
+		};
 		0560838C2884147900728F1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 056083732884147800728F1F /* Project object */;
@@ -62,8 +75,32 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		050AEEA1288C641A0052A2D1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				050AEEA0288C641A0052A2D1 /* AddEntryWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		05543F1928884B05001B6121 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
+		050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AddEntryWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		050AEE91288C64190052A2D1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		050AEE93288C64190052A2D1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		050AEE96288C64190052A2D1 /* AddEntryWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryWidget.swift; sourceTree = "<group>"; };
+		050AEE98288C64190052A2D1 /* AddEntryWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = AddEntryWidget.intentdefinition; sourceTree = "<group>"; };
+		050AEE99288C641A0052A2D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		050AEE9B288C641A0052A2D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		050AEEA5288C6A860052A2D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		050AEEA6288C6B170052A2D1 /* WidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetManager.swift; sourceTree = "<group>"; };
+		050AEEA8288C6B640052A2D1 /* BabyTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyTracker.entitlements; sourceTree = "<group>"; };
+		050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AddEntryWidgetExtension.entitlements; sourceTree = "<group>"; };
 		0560837B2884147800728F1F /* BabyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0560837E2884147800728F1F /* BabyTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerApp.swift; sourceTree = "<group>"; };
 		056083802884147800728F1F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -90,7 +127,6 @@
 		05DD68C52885FC0F0066BFEC /* Swinject+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swinject+extension.swift"; sourceTree = "<group>"; };
 		05DD68C92885FC720066BFEC /* DependencyInjectionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectionProtocols.swift; sourceTree = "<group>"; };
 		05DD68CD288603820066BFEC /* Double+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+extension.swift"; sourceTree = "<group>"; };
-		05DD68CF288603C30066BFEC /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		05DD68D22886140C0066BFEC /* AddEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
 		05DD68D42886144E0066BFEC /* EntryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryType.swift; sourceTree = "<group>"; };
 		05DD68D6288619B50066BFEC /* EntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewModel.swift; sourceTree = "<group>"; };
@@ -102,6 +138,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		050AEE8C288C64190052A2D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				050AEE94288C64190052A2D1 /* SwiftUI.framework in Frameworks */,
+				050AEE92288C64190052A2D1 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		056083782884147800728F1F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -129,12 +174,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050AEE90288C64190052A2D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				050AEE91288C64190052A2D1 /* WidgetKit.framework */,
+				050AEE93288C64190052A2D1 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		050AEE95288C64190052A2D1 /* AddEntryWidget */ = {
+			isa = PBXGroup;
+			children = (
+				050AEE96288C64190052A2D1 /* AddEntryWidget.swift */,
+				050AEE98288C64190052A2D1 /* AddEntryWidget.intentdefinition */,
+				050AEE99288C641A0052A2D1 /* Assets.xcassets */,
+				050AEE9B288C641A0052A2D1 /* Info.plist */,
+			);
+			path = AddEntryWidget;
+			sourceTree = "<group>";
+		};
 		056083722884147800728F1F = {
 			isa = PBXGroup;
 			children = (
+				050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */,
 				0560837D2884147800728F1F /* BabyTracker */,
 				0560838E2884147900728F1F /* BabyTrackerTests */,
 				056083982884147900728F1F /* BabyTrackerUITests */,
+				050AEE95288C64190052A2D1 /* AddEntryWidget */,
+				050AEE90288C64190052A2D1 /* Frameworks */,
 				0560837C2884147800728F1F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -145,6 +213,7 @@
 				0560837B2884147800728F1F /* BabyTracker.app */,
 				0560838B2884147900728F1F /* BabyTrackerTests.xctest */,
 				056083952884147900728F1F /* BabyTrackerUITests.xctest */,
+				050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +221,8 @@
 		0560837D2884147800728F1F /* BabyTracker */ = {
 			isa = PBXGroup;
 			children = (
+				050AEEA8288C6B640052A2D1 /* BabyTracker.entitlements */,
+				050AEEA5288C6A860052A2D1 /* Info.plist */,
 				05DD68C72885FC4C0066BFEC /* Feature */,
 				05DD68C02885B8110066BFEC /* Managers */,
 				05DD68BA2885B7810066BFEC /* View Models */,
@@ -200,17 +271,8 @@
 		059C68E62886B65100C90710 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				05DD68CF288603C30066BFEC /* DataManager.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		059C68E92886B6AE00C90710 /* Data Items */ = {
-			isa = PBXGroup;
-			children = (
-				059C68E72886B66B00C90710 /* DataItem.swift */,
-			);
-			path = "Data Items";
 			sourceTree = "<group>";
 		};
 		059C68EA2886BD5C00C90710 /* InputDetailView */ = {
@@ -291,11 +353,10 @@
 		05DD68B32885B71E0066BFEC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				059C68E92886B6AE00C90710 /* Data Items */,
+				059C68E72886B66B00C90710 /* DataItem.swift */,
 				05DD68D42886144E0066BFEC /* EntryType.swift */,
 				05DD68D8288619DB0066BFEC /* FeedUnits.swift */,
 				05B8AF6628862C7C00BBC41B /* Constants.swift */,
-				05543F1928884B05001B6121 /* Realm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -315,6 +376,7 @@
 				05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */,
 				05DD68C12885B8460066BFEC /* SwinjectManager.swift */,
 				05DFDCFE2889A4710066D567 /* RealmManager.swift */,
+				050AEEA6288C6B170052A2D1 /* WidgetManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -358,6 +420,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		050AEE8E288C64190052A2D1 /* AddEntryWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 050AEEA4288C641A0052A2D1 /* Build configuration list for PBXNativeTarget "AddEntryWidgetExtension" */;
+			buildPhases = (
+				050AEE8B288C64190052A2D1 /* Sources */,
+				050AEE8C288C64190052A2D1 /* Frameworks */,
+				050AEE8D288C64190052A2D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AddEntryWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = AddEntryWidgetExtension;
+			productReference = 050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		0560837A2884147800728F1F /* BabyTracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0560839F2884147900728F1F /* Build configuration list for PBXNativeTarget "BabyTracker" */;
@@ -365,10 +446,12 @@
 				056083772884147800728F1F /* Sources */,
 				056083782884147800728F1F /* Frameworks */,
 				056083792884147800728F1F /* Resources */,
+				050AEEA1288C641A0052A2D1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				050AEE9F288C641A0052A2D1 /* PBXTargetDependency */,
 			);
 			name = BabyTracker;
 			packageProductDependencies = (
@@ -426,6 +509,9 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					050AEE8E288C64190052A2D1 = {
+						CreatedOnToolsVersion = 14.0;
+					};
 					0560837A2884147800728F1F = {
 						CreatedOnToolsVersion = 14.0;
 					};
@@ -459,11 +545,20 @@
 				0560837A2884147800728F1F /* BabyTracker */,
 				0560838A2884147900728F1F /* BabyTrackerTests */,
 				056083942884147900728F1F /* BabyTrackerUITests */,
+				050AEE8E288C64190052A2D1 /* AddEntryWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		050AEE8D288C64190052A2D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				050AEE9A288C641A0052A2D1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		056083792884147800728F1F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -490,6 +585,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		050AEE8B288C64190052A2D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				050AEE97288C64190052A2D1 /* AddEntryWidget.swift in Sources */,
+				050AEE9C288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		056083772884147800728F1F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -500,11 +604,10 @@
 				05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */,
 				059C68E82886B66B00C90710 /* DataItem.swift in Sources */,
 				05DFDCFF2889A4710066D567 /* RealmManager.swift in Sources */,
-				05543F1A28884B05001B6121 /* Realm.swift in Sources */,
 				05DD68D52886144E0066BFEC /* EntryType.swift in Sources */,
-				05DD68D0288603C30066BFEC /* DataManager.swift in Sources */,
 				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,
 				05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */,
+				050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */,
 				05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */,
 				05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */,
 				059C68F02886D8CD00C90710 /* EditEntryView.swift in Sources */,
@@ -518,6 +621,7 @@
 				056083812884147800728F1F /* HomeView.swift in Sources */,
 				05DD68D9288619DB0066BFEC /* FeedUnits.swift in Sources */,
 				05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */,
+				050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
 				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
 				05DD68CE288603820066BFEC /* Double+extension.swift in Sources */,
 				0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */,
@@ -545,6 +649,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		050AEE9F288C641A0052A2D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 050AEE8E288C64190052A2D1 /* AddEntryWidgetExtension */;
+			targetProxy = 050AEE9E288C641A0052A2D1 /* PBXContainerItemProxy */;
+		};
 		0560838D2884147900728F1F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0560837A2884147800728F1F /* BabyTracker */;
@@ -558,6 +667,62 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		050AEEA2288C641A0052A2D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AddEntryWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4J7W4CYA5S;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AddEntryWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AddEntryWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyTracker.AddEntryWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		050AEEA3288C641A0052A2D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AddEntryWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4J7W4CYA5S;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AddEntryWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AddEntryWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyTracker.AddEntryWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		0560839D2884147900728F1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -675,14 +840,17 @@
 		056083A02884147900728F1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BabyTracker/BabyTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyTracker/Preview Content\"";
-				DEVELOPMENT_TEAM = DN9UYF2744;
+				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BabyTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -704,14 +872,17 @@
 		056083A12884147900728F1F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BabyTracker/BabyTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyTracker/Preview Content\"";
-				DEVELOPMENT_TEAM = DN9UYF2744;
+				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BabyTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -809,6 +980,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		050AEEA4288C641A0052A2D1 /* Build configuration list for PBXNativeTarget "AddEntryWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050AEEA2288C641A0052A2D1 /* Debug */,
+				050AEEA3288C641A0052A2D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		056083762884147800728F1F /* Build configuration list for PBXProject "BabyTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

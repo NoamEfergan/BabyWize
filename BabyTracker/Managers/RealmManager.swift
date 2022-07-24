@@ -131,6 +131,4 @@ final class RealmManager: ObservableObject {
             print("Failed to delete item \(id.description)")
         }
     }
-
-    // MARK: - Private methods
 }
