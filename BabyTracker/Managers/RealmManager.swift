@@ -11,6 +11,7 @@ import RealmSwift
 final class RealmManager: ObservableObject {
     private let schemaVersion: UInt64 = 1
     private(set) var realm: Realm?
+    @Published var isLoggedIn: Bool = false
 
     // MARK: - Init methods
 
@@ -27,6 +28,22 @@ final class RealmManager: ObservableObject {
         catch {
             print("failed to open realm \(error.localizedDescription)")
         }
+    }
+
+    private func logIntoSync() {
+        let app = App(id: Secrets.realmAppId)
+        let anonymousCredentials = Credentials.anonymous
+        app.login(credentials: anonymousCredentials) { (result) in
+            switch result {
+            case .failure(let error):
+                print("Login failed: \(error.localizedDescription)")
+            case .success(let user):
+                print("Successfully logged in as user \(user)")
+                // Now logged in, do something with user
+                // Remember to dispatch to main if you are doing anything on the UI thread
+            }
+        }
+
     }
 
     // MARK: - Public methods
