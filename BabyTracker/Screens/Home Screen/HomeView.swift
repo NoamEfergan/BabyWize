@@ -29,9 +29,14 @@ struct HomeView: View {
                 Section("recent info") {
                     LabeledContent(
                         "Last Feed",
-                        value: dataManager.feedData.last?.amount.roundDecimalPoint().feedDisplayableAmount() ?? "None recorded"
+                        value: dataManager.feedData.last?.amount.roundDecimalPoint().feedDisplayableAmount()
+                            ?? "None recorded"
                     )
-                    LabeledContent("Last Nappy change", value: dataManager.nappyData.last?.dateTime.formatted() ?? "None recorded")
+                    LabeledContent(
+                        "Last Nappy change",
+                        value: dataManager.nappyData.last?.dateTime.formatted()
+                            ?? "None recorded"
+                    )
                     LabeledContent("Last Sleep", value: dataManager.sleepData.last?.duration ?? "None recorded")
                 }
                 HomeScreenSections()
@@ -82,11 +87,10 @@ struct HomeView: View {
             .task {
                 WidgetManager().setLatest()
             }
-            .onOpenURL { url in
+            .onOpenURL { _ in
                 // TODO: Handle more deep links!
                 isShowingNewEntrySheet = true
             }
-
         }
     }
 }

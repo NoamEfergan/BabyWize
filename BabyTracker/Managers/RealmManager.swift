@@ -12,11 +12,13 @@ final class RealmManager: ObservableObject {
     private let schemaVersion: UInt64 = 1
     private(set) var realm: Realm?
     @Published var isLoggedIn: Bool = false
+    @Published var isLoading: Bool = true
 
     // MARK: - Init methods
 
     init() {
-        openRealm()
+//        openRealm()
+        logIntoSync()
     }
 
     private func openRealm() {
@@ -31,19 +33,38 @@ final class RealmManager: ObservableObject {
     }
 
     private func logIntoSync() {
+        isLoading = true
         let app = App(id: Secrets.realmAppId)
         let anonymousCredentials = Credentials.anonymous
-        app.login(credentials: anonymousCredentials) { (result) in
+        app.login(credentials: anonymousCredentials) { result in
             switch result {
             case .failure(let error):
+                self.isLoading = false
                 print("Login failed: \(error.localizedDescription)")
             case .success(let user):
                 print("Successfully logged in as user \(user)")
+                self.setupUser(user)
                 // Now logged in, do something with user
                 // Remember to dispatch to main if you are doing anything on the UI thread
             }
         }
+    }
 
+    private func setupUser(_ user: User) {
+        let configuration = Realm.Configuration(schemaVersion: schemaVersion)
+        // Open the realm asynchronously to ensure backend data is downloaded first.
+        Realm.asyncOpen(configuration: configuration) { result in
+            switch result {
+            case .failure(let error):
+                self.isLoading = false
+                print("Failed to open realm: \(error.localizedDescription)")
+            // Handle error...
+            case .success(let realm):
+                self.isLoading = false
+                // Realm opened
+                self.realm = realm
+            }
+        }
     }
 
     // MARK: - Public methods
