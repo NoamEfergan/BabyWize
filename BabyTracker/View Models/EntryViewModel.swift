@@ -23,8 +23,7 @@ final class EntryViewModel: ObservableObject {
         case .feed:
             guard !amount.isEmpty, let amountDouble = Double(amount) else { throw EntryError.invalidAmount }
             let feed: Feed = .init(id: UUID().uuidString, date: feedDate, amount: amountDouble)
-            dataManager.feedData.append(feed)
-//            realm.add(feed)
+            dataManager.addFeed(feed)
 
         case .sleep:
             guard startDate != endDate else { throw EntryError.sameSleepDate }
@@ -32,12 +31,10 @@ final class EntryViewModel: ObservableObject {
             else { throw EntryError.invalidSleepDate }
             let duration = endDate.timeIntervalSince(startDate)
             let sleep: Sleep = .init(id: UUID().uuidString, date: sleepDate, duration: duration.hourMinuteSecondMS)
-            dataManager.sleepData.append(sleep)
-//            realm.add(sleep)
+            dataManager.addSleep(sleep)
         case .nappy:
             let nappyChange: NappyChange = .init(id: UUID().uuidString, dateTime: changeDate)
-            dataManager.nappyData.append(nappyChange)
-//            realm.add(nappyChange)
+            dataManager.addNappyChange(nappyChange)
         }
         reset()
     }

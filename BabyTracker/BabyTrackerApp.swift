@@ -16,7 +16,7 @@ struct BabyTrackerApp: App {
         let mainContainer = ContainerBuilder.buildMainContainer()
         Resolver.shared.setDependencyContainer(mainContainer)
     }
-
+    
     @Environment(\.scenePhase) var scenePhase
     @StateObject private var dataController = DataController()
     var body: some Scene {
