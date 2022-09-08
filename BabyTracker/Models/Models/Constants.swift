@@ -9,4 +9,7 @@ import Foundation
 
 enum Constants: String {
     case preferredUnit
+    case savedFeed = "SavedFeed"
+    case savedSleep = "SavedSleep"
+    case savedChange = "SavedNappyChange"
 }

@@ -73,6 +73,8 @@ final class BabyDataManager: ObservableObject {
             nappyData.remove(atOffsets: offsets)
         }
     }
+    
+    // MARK: - CRUD methods
 
     func addFeed(_ item: Feed) {
         feedData.append(item)
@@ -91,6 +93,32 @@ final class BabyDataManager: ObservableObject {
         item.mapToSavedChange(context: moc)
         try? moc.save()
     }
+    
+    func updateFeed(_ item: Feed, index: Array<Feed>.Index) {
+        feedData[index] = item
+        let savedFeeds = try? moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed]
+        let relevantFeed = savedFeeds?.first(where: { $0.id == item.id })
+        relevantFeed?.date = item.date
+        relevantFeed?.amount = item.amount
+        try? moc.save()
+    }
+    
+    func updateSleep(_ item: Sleep, index: Array<Sleep>.Index) {
+        sleepData[index] = item
+        let savedSleeps = try? moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
+        let relevantSleep = savedSleeps?.first(where:  { $0.id == item.id } )
+        relevantSleep?.date = item.date
+        relevantSleep?.duration = item.duration
+        try? moc.save()
+    }
+    
+    func updateChange( _ item: NappyChange, index: Array<NappyChange>.Index) {
+        nappyData[index] = item
+        let savedChanges = try? moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
+        let relevantChange = savedChanges?.first(where:  { $0.id == item.id})
+        relevantChange?.dateTime = item.dateTime
+        try? moc.save()
+    }
 
     // MARK: - Private methods
 
@@ -105,9 +133,9 @@ final class BabyDataManager: ObservableObject {
     }
 
     private func fetchSavedValues() {
-        let savedFeeds = try? moc.fetch(.init(entityName: "SavedFeed")) as? [SavedFeed]
-        let savedSleeps = try? moc.fetch(.init(entityName: "SavedSleep")) as? [SavedSleep]
-        let savedChanges = try? moc.fetch(.init(entityName: "SavedNappyChange")) as? [SavedNappyChange]
+        let savedFeeds = try? moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed]
+        let savedSleeps = try? moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
+        let savedChanges = try? moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
 
         if let savedFeeds {
             feedData = savedFeeds.compactMap { $0.mapToFeed() }

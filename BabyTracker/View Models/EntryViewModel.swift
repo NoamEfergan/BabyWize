@@ -49,7 +49,7 @@ final class EntryViewModel: ObservableObject {
             guard let index = dataManager.feedData.firstIndex(where: { $0.id.description == itemID })
             else { throw EntryError.general }
             let newFeed: Feed = .init(id: itemID, date: feedDate, amount: amountDouble)
-            dataManager.feedData[index] = newFeed
+            dataManager.updateFeed(newFeed, index: index)
 //            realm.update(id: newFeed.id, type: .feed, item: newFeed)
         case .sleep:
             guard startDate != endDate else { throw EntryError.sameSleepDate }
