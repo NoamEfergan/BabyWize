@@ -26,10 +26,6 @@ struct HomeView: View {
     @State private var isShowingSettings = false
     @ObservedObject private var entryVM = EntryViewModel()
 
-    @FetchRequest(sortDescriptors: []) var feeds: FetchedResults<SavedFeed>
-    @FetchRequest(sortDescriptors: []) var sleeps: FetchedResults<SavedSleep>
-    @FetchRequest(sortDescriptors: []) var changes: FetchedResults<SavedNappyChange>
-
     var body: some View {
         NavigationStack {
             List {

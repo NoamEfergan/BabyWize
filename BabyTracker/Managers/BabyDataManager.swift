@@ -5,11 +5,13 @@
 //  Created by Noam Efergan on 18/07/2022.
 //
 
+import CoreData
 import SwiftUI
+
 
 final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
-    @Environment(\.managedObjectContext) private var moc
+    private var moc = DataController().container.viewContext
 
     // MARK: - Exposed variables
 
@@ -18,24 +20,29 @@ final class BabyDataManager: ObservableObject {
     @Published var nappyData: [NappyChange] = []
 
     init() {
+        fetchSavedValues()
+    }
+
+    private func fetchSavedValues() {
+        let savedFeeds = try? moc.fetch(.init(entityName: "SavedFeed")) as? [SavedFeed]
+        let savedSleeps = try? moc.fetch(.init(entityName: "SavedSleep")) as? [SavedSleep]
+        let savedChanges = try? moc.fetch(.init(entityName: "SavedNappyChange")) as? [SavedNappyChange]
+
+        if let savedFeeds {
+            feedData = savedFeeds.compactMap { $0.mapToFeed() }
+        }
+
+        if let savedSleeps {
+            sleepData = savedSleeps.compactMap { $0.mapToSleep() }
+        }
         
-        
-//        feedData = realm.get(.feed) ?? []
-//        sleepData = realm.get(.sleep) ?? []
-//        nappyData = realm.get(.nappy) ?? []
+        if let savedChanges {
+            nappyData = savedChanges.compactMap { $0.mapToNappyChange()}
+        }
     }
 
     private func setAll() {
         try? moc.save()
-//        feedData.forEach { feed in
-//            realm.add(feed)
-//        }
-//        sleepData.forEach { sleep in
-//            realm.add(sleep)
-//        }
-//        nappyData.forEach { nappy in
-//            realm.add(nappy)
-//        }
     }
 
     // MARK: - Public methods

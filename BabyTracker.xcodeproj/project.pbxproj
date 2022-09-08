@@ -16,6 +16,11 @@
 		050AEEA0288C641A0052A2D1 /* AddEntryWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEEA6288C6B170052A2D1 /* WidgetManager.swift */; };
 		050AEEBA288DB3870052A2D1 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEEB9288DB3870052A2D1 /* Secrets.swift */; };
+		054B1F6128CA31E00021C5BF /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */; };
+		054B1F6228CA31E00021C5BF /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */; };
+		054B1F6328CA33610021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
+		054B1F6428CA33620021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
+		054B1F6528CA33620021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyTrackerApp.swift */; };
 		056083812884147800728F1F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083802884147800728F1F /* HomeView.swift */; };
 		056083832884147900728F1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
@@ -104,6 +109,7 @@
 		050AEEA8288C6B640052A2D1 /* BabyTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyTracker.entitlements; sourceTree = "<group>"; };
 		050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AddEntryWidgetExtension.entitlements; sourceTree = "<group>"; };
 		050AEEB9288DB3870052A2D1 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		0560837B2884147800728F1F /* BabyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0560837E2884147800728F1F /* BabyTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerApp.swift; sourceTree = "<group>"; };
 		056083802884147800728F1F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -267,6 +273,7 @@
 			children = (
 				05817C5928C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld */,
 				05817C5E28C788580040A4B0 /* DataController.swift */,
+				054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -599,9 +606,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				054B1F6228CA31E00021C5BF /* CoreDataExtensions.swift in Sources */,
 				050AEE97288C64190052A2D1 /* AddEntryWidget.swift in Sources */,
 				05817C6028C788580040A4B0 /* DataController.swift in Sources */,
 				050AEE9C288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
+				054B1F6328CA33610021C5BF /* DataItem.swift in Sources */,
 				05817C5C28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,6 +626,7 @@
 				059C68E82886B66B00C90710 /* DataItem.swift in Sources */,
 				05DD68D52886144E0066BFEC /* EntryType.swift in Sources */,
 				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,
+				054B1F6128CA31E00021C5BF /* CoreDataExtensions.swift in Sources */,
 				05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */,
 				050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */,
 				05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */,
@@ -647,6 +657,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				054B1F6528CA33620021C5BF /* DataItem.swift in Sources */,
 				056083902884147900728F1F /* BabyTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,6 +667,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0560839A2884147900728F1F /* BabyTrackerUITests.swift in Sources */,
+				054B1F6428CA33620021C5BF /* DataItem.swift in Sources */,
 				0560839C2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
