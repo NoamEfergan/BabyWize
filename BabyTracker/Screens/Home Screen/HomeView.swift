@@ -8,35 +8,38 @@
 import Charts
 import SwiftUI
 
+// MARK: - Screens
 enum Screens: String {
     case home, settings, newEntry
 }
 
+// MARK: - InfoScreens
 enum InfoScreens: String {
     case feed, sleep, detailInputFeed, detailInputSleep
 }
 
+// MARK: - HomeView
 struct HomeView: View {
     @InjectedObject private var dataManager: BabyDataManager
     @State private var path: [Screens] = []
-    @State private var isShowingNewEntrySheet: Bool = false
-    @State private var isShowingSettings: Bool = false
+    @State private var isShowingNewEntrySheet = false
+    @State private var isShowingSettings = false
     @ObservedObject private var entryVM = EntryViewModel()
+
+    @FetchRequest(sortDescriptors: []) var feeds: FetchedResults<SavedFeed>
+    @FetchRequest(sortDescriptors: []) var sleeps: FetchedResults<SavedSleep>
+    @FetchRequest(sortDescriptors: []) var changes: FetchedResults<SavedNappyChange>
 
     var body: some View {
         NavigationStack {
             List {
                 Section("recent info") {
-                    LabeledContent(
-                        "Last Feed",
-                        value: dataManager.feedData.last?.amount.roundDecimalPoint().feedDisplayableAmount()
-                            ?? "None recorded"
-                    )
-                    LabeledContent(
-                        "Last Nappy change",
-                        value: dataManager.nappyData.last?.dateTime.formatted()
-                            ?? "None recorded"
-                    )
+                    LabeledContent("Last Feed",
+                                   value: dataManager.feedData.last?.amount.roundDecimalPoint().feedDisplayableAmount()
+                                       ?? "None recorded")
+                    LabeledContent("Last Nappy change",
+                                   value: dataManager.nappyData.last?.dateTime.formatted()
+                                       ?? "None recorded")
                     LabeledContent("Last Sleep", value: dataManager.sleepData.last?.duration ?? "None recorded")
                 }
                 HomeScreenSections()
@@ -62,28 +65,8 @@ struct HomeView: View {
                     .environmentObject(entryVM)
                     .presentationDetents([.height(270)])
             }
-            .navigationDestination(for: Screens.self) { screen in
-                switch screen {
-                case .settings:
-                    SettingsView()
-                default:
-                    EmptyView()
-                }
-            }
-            .navigationDestination(for: InfoScreens.self) { screen in
-                switch screen {
-                case .feed, .sleep:
-                    InfoView(vm: .init(screen: screen))
-                case .detailInputSleep:
-                    InputDetailView(type: .sleep)
-                        .navigationTitle("All sleeps")
-                        .environmentObject(entryVM)
-                case .detailInputFeed:
-                    InputDetailView(type: .feed)
-                        .navigationTitle("All feeds")
-                        .environmentObject(entryVM)
-                }
-            }
+            .navigationDestination(for: Screens.self, destination: handleScreensNavigation(_:))
+            .navigationDestination(for: InfoScreens.self, destination: handleInfoNavigation(_:))
             .task {
                 WidgetManager().setLatest()
             }
@@ -93,8 +76,37 @@ struct HomeView: View {
             }
         }
     }
+
+    // MARK: - Navigation
+
+    @ViewBuilder
+    private func handleInfoNavigation(_ screen: InfoScreens) -> some View {
+        switch screen {
+        case .feed, .sleep:
+            InfoView(vm: .init(screen: screen))
+        case .detailInputSleep:
+            InputDetailView(type: .sleep)
+                .navigationTitle("All sleeps")
+                .environmentObject(entryVM)
+        case .detailInputFeed:
+            InputDetailView(type: .feed)
+                .navigationTitle("All feeds")
+                .environmentObject(entryVM)
+        }
+    }
+
+    @ViewBuilder
+    private func handleScreensNavigation(_ screen: Screens) -> some View {
+        switch screen {
+        case .settings:
+            SettingsView()
+        default:
+            EmptyView()
+        }
+    }
 }
 
+// MARK: - HomeView_Previews
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()

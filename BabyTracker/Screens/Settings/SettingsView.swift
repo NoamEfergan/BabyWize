@@ -11,7 +11,6 @@ struct SettingsView: View {
     @State private var selectedUnitOfFood: FeedUnits = .ml
     @State private var isShowingAlert = false
     @AppStorage(Constants.preferredUnit.rawValue) private var savedUnit = ""
-    @InjectedObject private var realm: RealmManager
     var body: some View {
         List {
             Section {
@@ -31,9 +30,9 @@ struct SettingsView: View {
                     }
                 }
             } footer: {
-                if !realm.isLoggedIn {
-                    Text("You can log in to keep your data between devices.\nYou can still use the app logged out.")
-                }
+//                if !realm.isLoggedIn {
+//                    Text("You can log in to keep your data between devices.\nYou can still use the app logged out.")
+//                }
             }
 
             Section("general") {
@@ -57,9 +56,9 @@ struct SettingsView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 25)
-                .foregroundStyle(realm.isLoggedIn ? Color.red.gradient : Color.blue.gradient)
-            Text(realm.isLoggedIn ? "Log out" : "Log in ")
-                .foregroundColor(realm.isLoggedIn ? .red : nil)
+//                .foregroundStyle(realm.isLoggedIn ? Color.red.gradient : Color.blue.gradient)
+//            Text(realm.isLoggedIn ? "Log out" : "Log in ")
+//                .foregroundColor(realm.isLoggedIn ? .red : nil)
         }
     }
 

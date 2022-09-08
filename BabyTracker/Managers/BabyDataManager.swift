@@ -8,29 +8,34 @@
 import SwiftUI
 
 final class BabyDataManager: ObservableObject {
+    // MARK: - Private variables
+    @Environment(\.managedObjectContext) private var moc
+
     // MARK: - Exposed variables
 
-    @Inject var realm: RealmManager
     @Published var sleepData: [Sleep] = []
     @Published var feedData: [Feed] = []
     @Published var nappyData: [NappyChange] = []
 
     init() {
-        feedData = realm.get(.feed) ?? []
-        sleepData = realm.get(.sleep) ?? []
-        nappyData = realm.get(.nappy) ?? []
+        
+        
+//        feedData = realm.get(.feed) ?? []
+//        sleepData = realm.get(.sleep) ?? []
+//        nappyData = realm.get(.nappy) ?? []
     }
 
     private func setAll() {
-        feedData.forEach { feed in
-            realm.add(feed)
-        }
-        sleepData.forEach { sleep in
-            realm.add(sleep)
-        }
-        nappyData.forEach { nappy in
-            realm.add(nappy)
-        }
+        try? moc.save()
+//        feedData.forEach { feed in
+//            realm.add(feed)
+//        }
+//        sleepData.forEach { sleep in
+//            realm.add(sleep)
+//        }
+//        nappyData.forEach { nappy in
+//            realm.add(nappy)
+//        }
     }
 
     // MARK: - Public methods

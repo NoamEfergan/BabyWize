@@ -9,7 +9,6 @@ import Foundation
 
 final class EntryViewModel: ObservableObject {
     @InjectedObject private var dataManager: BabyDataManager
-    @Inject private var realm: RealmManager
     @Published var amount: String = ""
     @Published var feedDate: Date = .init()
     @Published var sleepDate: Date = .init()
@@ -25,7 +24,7 @@ final class EntryViewModel: ObservableObject {
             guard !amount.isEmpty, let amountDouble = Double(amount) else { throw EntryError.invalidAmount }
             let feed: Feed = .init(id: UUID().uuidString, date: feedDate, amount: amountDouble)
             dataManager.feedData.append(feed)
-            realm.add(feed)
+//            realm.add(feed)
 
         case .sleep:
             guard startDate != endDate else { throw EntryError.sameSleepDate }
@@ -34,11 +33,11 @@ final class EntryViewModel: ObservableObject {
             let duration = endDate.timeIntervalSince(startDate)
             let sleep: Sleep = .init(id: UUID().uuidString, date: sleepDate, duration: duration.hourMinuteSecondMS)
             dataManager.sleepData.append(sleep)
-            realm.add(sleep)
+//            realm.add(sleep)
         case .nappy:
             let nappyChange: NappyChange = .init(id: UUID().uuidString, dateTime: changeDate)
             dataManager.nappyData.append(nappyChange)
-            realm.add(nappyChange)
+//            realm.add(nappyChange)
         }
         reset()
     }
@@ -54,7 +53,7 @@ final class EntryViewModel: ObservableObject {
             else { throw EntryError.general }
             let newFeed: Feed = .init(id: itemID, date: feedDate, amount: amountDouble)
             dataManager.feedData[index] = newFeed
-            realm.update(id: newFeed.id, type: .feed, item: newFeed)
+//            realm.update(id: newFeed.id, type: .feed, item: newFeed)
         case .sleep:
             guard startDate != endDate else { throw EntryError.sameSleepDate }
 
@@ -67,13 +66,13 @@ final class EntryViewModel: ObservableObject {
             let duration = endDate.timeIntervalSince(startDate)
             let newSleep: Sleep = .init(id: itemID, date: sleepDate, duration: duration.hourMinuteSecondMS)
             dataManager.sleepData[index] = newSleep
-            realm.update(id: newSleep.id, type: .sleep, item: newSleep)
+//            realm.update(id: newSleep.id, type: .sleep, item: newSleep)
         case .nappy:
             guard let index = dataManager.nappyData.firstIndex(where: { $0.id.description == itemID })
             else { throw EntryError.general }
             let newNappy: NappyChange = .init(id: itemID, dateTime: changeDate)
             dataManager.nappyData[index] = newNappy
-            realm.update(id: newNappy.id, type: .nappy, item: newNappy)
+//            realm.update(id: newNappy.id, type: .nappy, item: newNappy)
         }
         reset()
     }
