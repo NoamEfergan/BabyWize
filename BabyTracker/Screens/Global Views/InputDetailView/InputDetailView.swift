@@ -40,7 +40,7 @@ struct InputDetailView: View {
                             }
                         }
                         .onDelete { offsets in
-                            dataManager.deleteItem(at: offsets, for: .feed)
+                            dataManager.removeFeed(at: offsets)
                         }
                     }
                 }
@@ -68,7 +68,7 @@ struct InputDetailView: View {
                             .tint(.blue)
                         }
                         .onDelete { offsets in
-                            dataManager.deleteItem(at: offsets, for: .feed)
+                            dataManager.removeSleep(at: offsets)
                         }
                     }
                 }
@@ -94,7 +94,7 @@ struct InputDetailView: View {
                             .tint(.blue)
                         }
                         .onDelete { offsets in
-                            dataManager.deleteItem(at: offsets, for: .feed)
+                            dataManager.removeChange(at: offsets)
                         }
                     }
                 }

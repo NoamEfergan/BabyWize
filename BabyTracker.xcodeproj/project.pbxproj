@@ -21,6 +21,7 @@
 		054B1F6328CA33610021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		054B1F6428CA33620021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		054B1F6528CA33620021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
+		05580E7728CB2B7300E4ECDE /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 05580E7628CB2B7300E4ECDE /* Algorithms */; };
 		0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyTrackerApp.swift */; };
 		056083812884147800728F1F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083802884147800728F1F /* HomeView.swift */; };
 		056083832884147900728F1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
@@ -161,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05580E7728CB2B7300E4ECDE /* Algorithms in Frameworks */,
 				05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +477,7 @@
 			name = BabyTracker;
 			packageProductDependencies = (
 				05DD68BE2885B7E40066BFEC /* Swinject */,
+				05580E7628CB2B7300E4ECDE /* Algorithms */,
 			);
 			productName = BabyTracker;
 			productReference = 0560837B2884147800728F1F /* BabyTracker.app */;
@@ -554,6 +557,7 @@
 			packageReferences = (
 				05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */,
 				05543F1428884AC0001B6121 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				05580E7528CB2B7300E4ECDE /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 0560837C2884147800728F1F /* Products */;
 			projectDirPath = "";
@@ -1062,6 +1066,14 @@
 				kind = branch;
 			};
 		};
+		05580E7528CB2B7300E4ECDE /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject.git";
@@ -1073,6 +1085,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		05580E7628CB2B7300E4ECDE /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05580E7528CB2B7300E4ECDE /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
 		05DD68BE2885B7E40066BFEC /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */;
