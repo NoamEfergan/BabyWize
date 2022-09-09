@@ -8,9 +8,9 @@ import Algorithms
 import CoreData
 import SwiftUI
 
-
 final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
+
     private var moc = DataController().container.viewContext
 
     // MARK: - Exposed variables
@@ -114,11 +114,11 @@ final class BabyDataManager: ObservableObject {
     }
 
     // Remove
-    
+
     func removeFeed(at offsets: IndexSet) {
         let localFeeds = offsets.compactMap { feedData[$0] }
         let savedFeeds = try? moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed]
-        
+
         var itemsToDelete: [SavedFeed] = []
         for (local, saved) in product(localFeeds, savedFeeds ?? []) {
             if saved.id == local.id {
@@ -133,7 +133,7 @@ final class BabyDataManager: ObservableObject {
     func removeSleep(at offsets: IndexSet) {
         let localSleeps = offsets.compactMap { sleepData[$0] }
         let savedSleeps = try? moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
-        
+
         var itemsToDelete: [SavedSleep] = []
         for (local, saved) in product(localSleeps, savedSleeps ?? []) {
             if saved.id == local.id {
@@ -144,11 +144,11 @@ final class BabyDataManager: ObservableObject {
         try? moc.save()
         sleepData.remove(atOffsets: offsets)
     }
-    
+
     func removeChange(at offsets: IndexSet) {
         let localChanges = offsets.compactMap { nappyData[$0] }
         let savedChanged = try? moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
-        
+
         var itemsToDelete: [SavedNappyChange] = []
         for (local, saved) in product(localChanges, savedChanged ?? []) {
             if saved.id == local.id {
@@ -159,8 +159,6 @@ final class BabyDataManager: ObservableObject {
         try? moc.save()
         nappyData.remove(atOffsets: offsets)
     }
-
-
 
     // MARK: - Private methods
 

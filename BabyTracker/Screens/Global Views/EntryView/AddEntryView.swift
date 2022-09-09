@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct AddEntryView: View {
-
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var vm: EntryViewModel
     @State private var startDate: Date = .init()
     @State private var endDate: Date = .init()
     @State private var errorText: String = ""
     @State private var entryType: EntryType = .feed
-    
+
     var body: some View {
         VStack(spacing: 15) {
             Picker("Entry Type", selection: $entryType) {
@@ -50,7 +49,7 @@ struct AddEntryView: View {
             }.buttonStyle(.borderedProminent)
         }
         .padding()
-        .onChange(of: entryType, perform: { newValue in
+        .onChange(of: entryType, perform: { _ in
             errorText = ""
         })
         .animation(.easeIn, value: errorText)

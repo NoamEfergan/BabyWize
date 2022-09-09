@@ -11,12 +11,12 @@ import WidgetKit
 struct WidgetManager {
     @Inject private var dataManager: BabyDataManager
     static let suiteName = "group.babyData"
-    
+
     func setLatest() {
         let lastFeed = dataManager.feedData.last
         let lastSleep = dataManager.sleepData.last
         let lastNappy = dataManager.nappyData.last
-        
+
         guard let container = UserDefaults(suiteName: Self.suiteName) else { return }
         if let lastFeed {
             container.set(lastFeed.amount.roundDecimalPoint().feedDisplayableAmount(), forKey: "lastFeed")
@@ -27,9 +27,7 @@ struct WidgetManager {
         if let lastNappy {
             container.set(lastNappy.dateTime, forKey: "lastNappy")
         }
-        
+
         WidgetCenter.shared.reloadAllTimelines()
-        
     }
-    
 }

@@ -5,8 +5,8 @@
 //  Created by Noam Efergan on 19/07/2022.
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct InfoView: View {
     @InjectedObject private var dataManager: BabyDataManager
@@ -19,19 +19,17 @@ struct InfoView: View {
                 LabeledContent(vm.smallestTitle, value: dataManager.getSmallest(for: vm.type))
                 NavigationLink("All inputs", value: vm.inputScreen)
             }
-            
-            Section("total history") {
-                    Chart(dataManager.feedData) { feed in
-                        LineMark(
-                            x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                            y: .value("Amount", feed.amount)
-                        )
-                        .foregroundStyle(Color.blue.gradient)
-                        .interpolationMethod(.cardinal)
-                    }
-                    .frame(height: 200)
-                    
 
+            Section("total history") {
+                Chart(dataManager.feedData) { feed in
+                    LineMark(
+                        x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
+                        y: .value("Amount", feed.amount)
+                    )
+                    .foregroundStyle(Color.blue.gradient)
+                    .interpolationMethod(.cardinal)
+                }
+                .frame(height: 200)
             }
         }
         .navigationTitle(vm.navigationTitle)

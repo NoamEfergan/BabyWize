@@ -29,15 +29,15 @@ struct Provider: IntentTimelineProvider {
         )
     }
 
-    func placeholder(in context: Context) -> SimpleEntry {
+    func placeholder(in _: Context) -> SimpleEntry {
         getEntry(configuration: ConfigurationIntent(), date: Date())
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    func getSnapshot(for configuration: ConfigurationIntent, in _: Context, completion: @escaping (SimpleEntry) -> Void) {
         completion(getEntry(configuration: configuration, date: Date()))
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: ConfigurationIntent, in _: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         var entries: [SimpleEntry] = []
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
@@ -75,8 +75,6 @@ struct AddEntryWidget: Widget {
     }
 }
 
-
-
 struct WidgetView: View {
     @Environment(\.widgetFamily) private var widgetFamily
     var entry: Provider.Entry
@@ -91,9 +89,8 @@ struct WidgetView: View {
         default:
             EmptyView()
         }
-
     }
-    
+
     private var summaryView: some View {
         VStack {
             LabeledContent("Last Feed", value: entry.lastFeed ?? "None recorded")
@@ -110,25 +107,22 @@ struct WidgetView: View {
         .foregroundColor(.white)
         .background(Color.blue.gradient)
     }
-        
-        private var buttonView: some View {
-            VStack {
-                Text("Add a new entry!")
-                    .multilineTextAlignment(.center)
-                Image(systemName: "plus.circle.fill")
-                    .resizable()
-                    .aspectRatio(1, contentMode: .fit)
 
-            }
-            .fontWeight(.semibold)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            .foregroundColor(.white)
-            .background(Color.blue.gradient)
+    private var buttonView: some View {
+        VStack {
+            Text("Add a new entry!")
+                .multilineTextAlignment(.center)
+            Image(systemName: "plus.circle.fill")
+                .resizable()
+                .aspectRatio(1, contentMode: .fit)
         }
-        
+        .fontWeight(.semibold)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
+        .foregroundColor(.white)
+        .background(Color.blue.gradient)
     }
-
+}
 
 // MARK: - Preview
 

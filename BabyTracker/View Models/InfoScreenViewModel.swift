@@ -19,7 +19,7 @@ final class InfoScreenVM: ObservableObject {
 
     var type: EntryType {
         switch inputScreen {
-        case .feed,.detailInputFeed:
+        case .feed, .detailInputFeed:
             return .feed
         case .sleep, .detailInputSleep:
             return .sleep
@@ -31,7 +31,7 @@ final class InfoScreenVM: ObservableObject {
         inputScreen = screen == .feed ? .detailInputFeed : .detailInputSleep
         setTitles()
     }
-    
+
     private func setTitles() {
         averageTitle = "Average \(screen)"
         navigationTitle = "\(screen.rawValue.capitalized) info"
@@ -46,5 +46,4 @@ final class InfoScreenVM: ObservableObject {
             return
         }
     }
-    
 }

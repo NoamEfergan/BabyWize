@@ -14,7 +14,7 @@ enum ContainerBuilder {
         registerManagers(to: mainContainer)
         return mainContainer
     }
-    
+
     private static func registerManagers(to container: Container) {
         container.register(BabyDataManager.self) { _ in
             BabyDataManager()
@@ -22,6 +22,5 @@ enum ContainerBuilder {
         container.register(WidgetManager.self) { _ in
             WidgetManager()
         }.inObjectScope(.container)
-        
     }
 }

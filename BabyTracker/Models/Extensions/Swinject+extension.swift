@@ -14,22 +14,22 @@ struct Inject<Component> {
     let wrappedValue: Component
 
     init(resolver: ResolverProtocol = Resolver.shared) {
-        self.wrappedValue = resolver.resolve(Component.self)
+        wrappedValue = resolver.resolve(Component.self)
     }
 }
 
 @propertyWrapper public struct InjectedObject<Service>: DynamicProperty where Service: ObservableObject {
     @ObservedObject private var service: Service
     public init() {
-        self.service = Resolver.shared.resolve(Service.self)
+        service = Resolver.shared.resolve(Service.self)
     }
 
     public var wrappedValue: Service {
-        get { return service }
+        get { service }
         mutating set { service = newValue }
     }
 
     public var projectedValue: ObservedObject<Service>.Wrapper {
-        return $service
+        $service
     }
 }

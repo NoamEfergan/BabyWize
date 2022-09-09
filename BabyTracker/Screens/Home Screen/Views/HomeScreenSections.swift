@@ -9,9 +9,9 @@ import Charts
 import SwiftUI
 
 // MARK: - HomeScreenSections
+
 struct HomeScreenSections: View {
     @InjectedObject private var dataManager: BabyDataManager
-
 
     var body: some View {
         let feedInfoTitle =
@@ -57,6 +57,7 @@ struct HomeScreenSections: View {
 }
 
 // MARK: - HomeScreenSections_Previews
+
 struct HomeScreenSections_Previews: PreviewProvider {
     static var previews: some View {
         List {

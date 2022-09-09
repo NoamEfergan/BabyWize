@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FeedUnits: String, CaseIterable  {
+enum FeedUnits: String, CaseIterable {
     case ml
     case ozUS = "oz(US)"
     case oz

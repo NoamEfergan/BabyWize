@@ -20,7 +20,7 @@ struct SettingsView: View {
                     loginIconView
                 }
                 .alert("Are you sure you want to log out?", isPresented: $isShowingAlert) {
-                    VStack{
+                    VStack {
                         Button(role: .destructive) {
                             print("log out")
                         } label: {
