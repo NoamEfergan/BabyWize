@@ -22,13 +22,13 @@
 		054B1F6428CA33620021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		054B1F6528CA33620021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		05580E7728CB2B7300E4ECDE /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 05580E7628CB2B7300E4ECDE /* Algorithms */; };
-		0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyTrackerApp.swift */; };
+		0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyWizeApp.swift */; };
 		056083812884147800728F1F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083802884147800728F1F /* HomeView.swift */; };
 		056083832884147900728F1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		056083862884147900728F1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083852884147900728F1F /* Preview Assets.xcassets */; };
-		056083902884147900728F1F /* BabyTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560838F2884147900728F1F /* BabyTrackerTests.swift */; };
-		0560839A2884147900728F1F /* BabyTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083992884147900728F1F /* BabyTrackerUITests.swift */; };
-		0560839C2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560839B2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift */; };
+		056083902884147900728F1F /* BabyWizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560838F2884147900728F1F /* BabyWizeTests.swift */; };
+		0560839A2884147900728F1F /* BabyWizeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083992884147900728F1F /* BabyWizeUITests.swift */; };
+		0560839C2884147900728F1F /* BabyWizeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */; };
 		056083A9288417F700728F1F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
 		05817C5B28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5928C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld */; };
 		05817C5C28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5928C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld */; };
@@ -120,15 +120,15 @@
 		050AEEB9288DB3870052A2D1 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		0560837B2884147800728F1F /* BabyWize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyWize.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0560837E2884147800728F1F /* BabyTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerApp.swift; sourceTree = "<group>"; };
+		0560837E2884147800728F1F /* BabyWizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeApp.swift; sourceTree = "<group>"; };
 		056083802884147800728F1F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		056083822884147900728F1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		056083852884147900728F1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0560838B2884147900728F1F /* BabyWizeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyWizeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0560838F2884147900728F1F /* BabyTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerTests.swift; sourceTree = "<group>"; };
+		0560838F2884147900728F1F /* BabyWizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeTests.swift; sourceTree = "<group>"; };
 		056083952884147900728F1F /* BabyWizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyWizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		056083992884147900728F1F /* BabyTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerUITests.swift; sourceTree = "<group>"; };
-		0560839B2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		056083992884147900728F1F /* BabyWizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITests.swift; sourceTree = "<group>"; };
+		0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		056083A8288417F700728F1F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		05817C5A28C7806F0040A4B0 /* UserEntriesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserEntriesModel.xcdatamodel; sourceTree = "<group>"; };
 		05817C5E28C788580040A4B0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 				05DD68BA2885B7810066BFEC /* View Models */,
 				05DD68B02885B6FD0066BFEC /* Models */,
 				05DD68AB2885B65B0066BFEC /* Screens */,
-				0560837E2884147800728F1F /* BabyTrackerApp.swift */,
+				0560837E2884147800728F1F /* BabyWizeApp.swift */,
 				056083822884147900728F1F /* Assets.xcassets */,
 				056083842884147900728F1F /* Preview Content */,
 			);
@@ -273,7 +273,7 @@
 		0560838E2884147900728F1F /* BabyWizeTests */ = {
 			isa = PBXGroup;
 			children = (
-				0560838F2884147900728F1F /* BabyTrackerTests.swift */,
+				0560838F2884147900728F1F /* BabyWizeTests.swift */,
 			);
 			path = BabyWizeTests;
 			sourceTree = "<group>";
@@ -281,8 +281,8 @@
 		056083982884147900728F1F /* BabyWizeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				056083992884147900728F1F /* BabyTrackerUITests.swift */,
-				0560839B2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift */,
+				056083992884147900728F1F /* BabyWizeUITests.swift */,
+				0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */,
 			);
 			path = BabyWizeUITests;
 			sourceTree = "<group>";
@@ -303,13 +303,6 @@
 				059C68E42886AF0500C90710 /* Info View.swift */,
 			);
 			path = InfoScreen;
-			sourceTree = "<group>";
-		};
-		059C68E62886B65100C90710 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		059C68EA2886BD5C00C90710 /* InputDetailView */ = {
@@ -360,7 +353,6 @@
 		05DD68B02885B6FD0066BFEC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				059C68E62886B65100C90710 /* Protocols */,
 				05DD68B32885B71E0066BFEC /* Models */,
 				05DD68B22885B70C0066BFEC /* Dummy */,
 				05DD68B12885B7040066BFEC /* Extensions */,
@@ -481,6 +473,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0560839F2884147900728F1F /* Build configuration list for PBXNativeTarget "BabyWize" */;
 			buildPhases = (
+				3BE30FF928D5D90000E75D22 /* ShellScript */,
 				056083772884147800728F1F /* Sources */,
 				056083782884147800728F1F /* Frameworks */,
 				056083792884147800728F1F /* Resources */,
@@ -631,6 +624,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3BE30FF928D5D90000E75D22 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftformat >/dev/null; then\n  swiftformat . --swiftversion 5.7\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		050AEE8B288C64190052A2D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -677,7 +691,7 @@
 				05817C5F28C788580040A4B0 /* DataController.swift in Sources */,
 				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
 				05DD68CE288603820066BFEC /* Double+extension.swift in Sources */,
-				0560837F2884147800728F1F /* BabyTrackerApp.swift in Sources */,
+				0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */,
 				059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */,
 				05817C5B28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */,
 			);
@@ -688,7 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				054B1F6528CA33620021C5BF /* DataItem.swift in Sources */,
-				056083902884147900728F1F /* BabyTrackerTests.swift in Sources */,
+				056083902884147900728F1F /* BabyWizeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,9 +710,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0560839A2884147900728F1F /* BabyTrackerUITests.swift in Sources */,
+				0560839A2884147900728F1F /* BabyWizeUITests.swift in Sources */,
 				054B1F6428CA33620021C5BF /* DataItem.swift in Sources */,
-				0560839C2884147900728F1F /* BabyTrackerUITestsLaunchTests.swift in Sources */,
+				0560839C2884147900728F1F /* BabyWizeUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,7 +982,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyTrackerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWizeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -988,7 +1002,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyTrackerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWizeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1006,12 +1020,12 @@
 				DEVELOPMENT_TEAM = DN9UYF2744;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyTrackerUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWizeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BabyTracker;
+				TEST_TARGET_NAME = BabyWize;
 			};
 			name = Debug;
 		};
@@ -1024,12 +1038,12 @@
 				DEVELOPMENT_TEAM = DN9UYF2744;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyTrackerUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWizeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BabyTracker;
+				TEST_TARGET_NAME = BabyWize;
 			};
 			name = Release;
 		};

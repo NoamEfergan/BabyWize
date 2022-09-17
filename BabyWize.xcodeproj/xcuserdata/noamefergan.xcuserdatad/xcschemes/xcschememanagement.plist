@@ -14,6 +14,16 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>BabyWizeTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>BabyWizeUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>Promises (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -65,6 +75,16 @@
 			<true/>
 		</dict>
 		<key>0560837A2884147800728F1F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0560838A2884147900728F1F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>056083942884147900728F1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
