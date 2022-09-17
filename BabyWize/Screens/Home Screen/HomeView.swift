@@ -1,6 +1,6 @@
 //
 //  HomeView.swift
-//  BabyTracker
+//  BabyWize
 //
 //  Created by Noam Efergan on 17/07/2022.
 //
@@ -58,7 +58,7 @@ struct HomeView: View {
                     }
                 }
             }
-            .navigationTitle("Baby Tracker")
+            .navigationTitle("Baby Wize")
             .sheet(isPresented: $isShowingNewEntrySheet) {
                 AddEntryView()
                     .environmentObject(entryVM)

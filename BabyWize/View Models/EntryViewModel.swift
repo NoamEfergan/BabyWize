@@ -1,6 +1,6 @@
 //
 //  EntryViewModel.swift
-//  BabyTracker
+//  BabyWize
 //
 //  Created by Noam Efergan on 18/07/2022.
 //

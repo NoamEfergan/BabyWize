@@ -1,6 +1,6 @@
 //
 //  WidgetManager.swift
-//  BabyTracker
+//  BabyWize
 //
 //  Created by Noam Efergan on 23/07/2022.
 //

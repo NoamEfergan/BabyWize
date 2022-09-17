@@ -69,7 +69,7 @@ struct AddEntryWidget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             WidgetView(entry: entry)
         }
-        .configurationDisplayName("Baby Tracker")
+        .configurationDisplayName("Baby Wize")
         .description("Get the latest information about your baby, or quickly add a new entry!")
         .supportedFamilies([.systemSmall, .systemMedium])
     }

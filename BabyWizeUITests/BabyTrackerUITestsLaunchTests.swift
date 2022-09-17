@@ -1,13 +1,13 @@
 //
-//  BabyTrackerUITestsLaunchTests.swift
-//  BabyTrackerUITests
+//  BabyWizeUITestsLaunchTests.swift
+//  BabyWizeUITests
 //
 //  Created by Noam Efergan on 17/07/2022.
 //
 
 import XCTest
 
-final class BabyTrackerUITestsLaunchTests: XCTestCase {
+final class BabyWizeUITestsLaunchTests: XCTestCase {
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }

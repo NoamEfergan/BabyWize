@@ -1,6 +1,6 @@
 //
-//  BabyTrackerApp.swift
-//  BabyTracker
+//  BabyWizeApp.swift
+//  BabyWize
 //
 //  Created by Noam Efergan on 17/07/2022.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import Swinject
 
 @main
-struct BabyTrackerApp: App {
+struct BabyWizeApp: App {
     init() {
         let mainContainer = ContainerBuilder.buildMainContainer()
         Resolver.shared.setDependencyContainer(mainContainer)

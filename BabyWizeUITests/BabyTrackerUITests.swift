@@ -1,13 +1,13 @@
 //
-//  BabyTrackerUITests.swift
-//  BabyTrackerUITests
+//  BabyWizeUITests.swift
+//  BabyWizeUITests
 //
 //  Created by Noam Efergan on 17/07/2022.
 //
 
 import XCTest
 
-final class BabyTrackerUITests: XCTestCase {
+final class BabyWizeUITests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
