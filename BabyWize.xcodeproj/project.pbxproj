@@ -57,6 +57,7 @@
 		05DD68DC28861C930066BFEC /* FeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DB28861C930066BFEC /* FeedEntryView.swift */; };
 		05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DD28861CD70066BFEC /* SleepEntryView.swift */; };
 		05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */; };
+		3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002428D65B0700241D65 /* GrayTextField.swift */; };
 		3BE30FE628D5D25A00E75D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		3BE30FEA28D5D40900E75D22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */; };
 		3BE30FEB28D5D40900E75D22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */; };
@@ -66,6 +67,7 @@
 		3BE30FF428D5D59000E75D22 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF328D5D59000E75D22 /* FirebaseFirestore */; };
 		3BE30FF628D5D59000E75D22 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF528D5D59000E75D22 /* FirebaseFirestoreSwift */; };
 		3BE30FF828D5D59000E75D22 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF728D5D59000E75D22 /* FirebaseStorage */; };
+		3BE30FFC28D5DCF100E75D22 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE30FFB28D5DCF100E75D22 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,8 +156,10 @@
 		05DD68DB28861C930066BFEC /* FeedEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEntryView.swift; sourceTree = "<group>"; };
 		05DD68DD28861CD70066BFEC /* SleepEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntryView.swift; sourceTree = "<group>"; };
 		05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyEntryView.swift; sourceTree = "<group>"; };
+		3B64002428D65B0700241D65 /* GrayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayTextField.swift; sourceTree = "<group>"; };
 		3BE30FE828D5D2B900E75D22 /* BabyWize.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyWize.entitlements; sourceTree = "<group>"; };
 		3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3BE30FFB28D5DCF100E75D22 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +321,7 @@
 		05B8AF6A2886985800BBC41B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				3BE30FFB28D5DCF100E75D22 /* LoginView.swift */,
 				05B8AF6D2886989C00BBC41B /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -432,6 +437,7 @@
 			children = (
 				059C68EA2886BD5C00C90710 /* InputDetailView */,
 				05DD68DA28861C820066BFEC /* EntryView */,
+				3B64002428D65B0700241D65 /* GrayTextField.swift */,
 			);
 			path = "Global Views";
 			sourceTree = "<group>";
@@ -628,7 +634,7 @@
 		3BE30FF928D5D90000E75D22 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -639,7 +645,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftformat >/dev/null; then\n  swiftformat . --swiftversion 5.7\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
@@ -667,6 +673,7 @@
 				05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */,
 				05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */,
 				05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */,
+				3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */,
 				059C68E82886B66B00C90710 /* DataItem.swift in Sources */,
 				05DD68D52886144E0066BFEC /* EntryType.swift in Sources */,
 				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,
@@ -693,6 +700,7 @@
 				05DD68CE288603820066BFEC /* Double+extension.swift in Sources */,
 				0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */,
 				059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */,
+				3BE30FFC28D5DCF100E75D22 /* LoginView.swift in Sources */,
 				05817C5B28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -978,7 +986,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DN9UYF2744;
+				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
@@ -998,7 +1006,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DN9UYF2744;
+				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
@@ -1017,7 +1025,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DN9UYF2744;
+				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWizeUITests;
@@ -1035,7 +1043,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DN9UYF2744;
+				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWizeUITests;
