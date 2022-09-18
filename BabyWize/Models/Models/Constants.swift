@@ -19,3 +19,8 @@ enum UserConstants {
     static let isLoggedIn = "IsLoggedIn"
     static let userName = "UserName"
 }
+
+enum GenericNetworkResponse {
+    case succsess
+    case fail(msg: String)
+}
