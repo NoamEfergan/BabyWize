@@ -29,14 +29,14 @@ struct SettingsView: View {
                 } label: {
                     loginIconView
                 }
-                .confirmationDialog("Log in or registeer", isPresented: $isShowingAlert) {
+                .confirmationDialog("Log in or register", isPresented: $isShowingAlert) {
                     Button("Login") {
                         isLoginViewShowing.toggle()
                     }
                     NavigationLink("Register") {
-                        Text("Register")
+                        RegisterView()
                     }
-                    
+
                 } message: {
                     Text("Log into an existing acount or register")
                 }

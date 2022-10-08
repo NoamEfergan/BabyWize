@@ -58,9 +58,9 @@
 		05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DD28861CD70066BFEC /* SleepEntryView.swift */; };
 		05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */; };
 		3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002428D65B0700241D65 /* GrayTextField.swift */; };
-		3B64002728D6620800241D65 /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002628D6620800241D65 /* SigninViewModel.swift */; };
+		3B64002728D6620800241D65 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002628D6620800241D65 /* AuthViewModel.swift */; };
 		3B64002928D665AA00241D65 /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002828D665AA00241D65 /* SignInTests.swift */; };
-		3B64002A28D665C600241D65 /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002628D6620800241D65 /* SigninViewModel.swift */; };
+		3B64002A28D665C600241D65 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002628D6620800241D65 /* AuthViewModel.swift */; };
 		3BE30FE628D5D25A00E75D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		3BE30FEA28D5D40900E75D22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */; };
 		3BE30FEB28D5D40900E75D22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */; };
@@ -70,7 +70,7 @@
 		3BE30FF428D5D59000E75D22 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF328D5D59000E75D22 /* FirebaseFirestore */; };
 		3BE30FF628D5D59000E75D22 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF528D5D59000E75D22 /* FirebaseFirestoreSwift */; };
 		3BE30FF828D5D59000E75D22 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF728D5D59000E75D22 /* FirebaseStorage */; };
-		3BE30FFC28D5DCF100E75D22 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE30FFB28D5DCF100E75D22 /* LoginView.swift */; };
+		3BE30FFC28D5DCF100E75D22 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE30FFB28D5DCF100E75D22 /* RegisterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,11 +160,11 @@
 		05DD68DD28861CD70066BFEC /* SleepEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntryView.swift; sourceTree = "<group>"; };
 		05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyEntryView.swift; sourceTree = "<group>"; };
 		3B64002428D65B0700241D65 /* GrayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayTextField.swift; sourceTree = "<group>"; };
-		3B64002628D6620800241D65 /* SigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
+		3B64002628D6620800241D65 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		3B64002828D665AA00241D65 /* SignInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTests.swift; sourceTree = "<group>"; };
 		3BE30FE828D5D2B900E75D22 /* BabyWize.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyWize.entitlements; sourceTree = "<group>"; };
 		3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3BE30FFB28D5DCF100E75D22 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3BE30FFB28D5DCF100E75D22 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,7 +327,7 @@
 		05B8AF6A2886985800BBC41B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				3BE30FFB28D5DCF100E75D22 /* LoginView.swift */,
+				3BE30FFB28D5DCF100E75D22 /* RegisterView.swift */,
 				05B8AF6D2886989C00BBC41B /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -408,7 +408,7 @@
 			children = (
 				05DD68D6288619B50066BFEC /* EntryViewModel.swift */,
 				059C68F12887015A00C90710 /* InfoScreenViewModel.swift */,
-				3B64002628D6620800241D65 /* SigninViewModel.swift */,
+				3B64002628D6620800241D65 /* AuthViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -700,7 +700,7 @@
 				056083812884147800728F1F /* HomeView.swift in Sources */,
 				050AEEBA288DB3870052A2D1 /* Secrets.swift in Sources */,
 				05DD68D9288619DB0066BFEC /* FeedUnits.swift in Sources */,
-				3B64002728D6620800241D65 /* SigninViewModel.swift in Sources */,
+				3B64002728D6620800241D65 /* AuthViewModel.swift in Sources */,
 				05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */,
 				050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
 				05817C5F28C788580040A4B0 /* DataController.swift in Sources */,
@@ -708,7 +708,7 @@
 				05DD68CE288603820066BFEC /* Double+extension.swift in Sources */,
 				0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */,
 				059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */,
-				3BE30FFC28D5DCF100E75D22 /* LoginView.swift in Sources */,
+				3BE30FFC28D5DCF100E75D22 /* RegisterView.swift in Sources */,
 				05817C5B28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -717,7 +717,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B64002A28D665C600241D65 /* SigninViewModel.swift in Sources */,
+				3B64002A28D665C600241D65 /* AuthViewModel.swift in Sources */,
 				3B64002928D665AA00241D65 /* SignInTests.swift in Sources */,
 				054B1F6528CA33620021C5BF /* DataItem.swift in Sources */,
 				056083902884147900728F1F /* BabyWizeTests.swift in Sources */,

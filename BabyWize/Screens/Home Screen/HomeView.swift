@@ -46,7 +46,7 @@ struct HomeView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     NavigationLink(value: Screens.settings) {
-                        Image(systemName: "gear")
+                        Image(systemName: "person.circle")
                     }
                 }
 
