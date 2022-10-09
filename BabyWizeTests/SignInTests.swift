@@ -9,7 +9,7 @@
 import XCTest
 
 final class SignInTests: XCTestCase {
-    let vm: SigninViewModel
+    let vm: AuthViewModel
 
     override func setUpWithError() throws {
         vm = .init()
@@ -25,5 +25,11 @@ final class SignInTests: XCTestCase {
         let invalidEmail = "asdf"
         XCTAssertTrue(vm.validateEmail(validEmail))
         XCTAssertFalse(vm.validateEmail(invalidEmail))
+    }
+    
+    func test_password_validation() {
+        XCTAssertFalse(vm.validatePassword("1234"))
+        XCTAssertFalse(vm.validatePassword("test"))
+        XCTAssertFalse(vm.validatePassword("Tesst1234"))
     }
 }

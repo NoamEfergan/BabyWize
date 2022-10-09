@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @State private var selectedUnitOfFood: FeedUnits = .ml
     @State private var isShowingAlert = false
+    @State private var isShowingLogoutAlert = false
     @State private var isLoginViewShowing = false
 
     @AppStorage(Constants.preferredUnit.rawValue) private var savedUnit = ""
@@ -25,7 +26,11 @@ struct SettingsView: View {
         List {
             Section {
                 Button {
-                    isShowingAlert.toggle()
+                    if isLoggedIn {
+                        isShowingLogoutAlert.toggle()
+                    } else {
+                        isShowingAlert.toggle()
+                    }
                 } label: {
                     loginIconView
                 }
@@ -38,7 +43,20 @@ struct SettingsView: View {
                     }
 
                 } message: {
-                    Text("Log into an existing acount or register")
+                    Text("Log into an existing account or register")
+                }
+                .confirmationDialog("Logout", isPresented: $isShowingLogoutAlert) {
+                    Button(role: .destructive) {
+                        print("Logout")
+                    } label: {
+                        Text("Yes")
+                    }
+                    
+                    Button("No") {
+                        isShowingLogoutAlert.toggle()
+                    }
+                } message: {
+                    Text("Are you sure you want to log out?")
                 }
             } footer: {
                 if !isLoggedIn {
@@ -71,14 +89,6 @@ struct SettingsView: View {
             Text(isLoggedIn ? "Log out" : "Log in or register!")
                 .foregroundColor(isLoggedIn ? .red : nil)
         }
-    }
-
-    private var logOutAlert: Alert {
-        Alert(
-            title: Text("Are you sure you want to log out?"),
-            primaryButton: .default(Text("Yes")),
-            secondaryButton: .cancel()
-        )
     }
 }
 
