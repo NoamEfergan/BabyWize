@@ -51,7 +51,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Yes")
                     }
-                    
+
                     Button("No") {
                         isShowingLogoutAlert.toggle()
                     }

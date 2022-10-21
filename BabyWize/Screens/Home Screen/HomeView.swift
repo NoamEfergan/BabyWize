@@ -27,22 +27,23 @@ struct HomeView: View {
     @State private var path: [Screens] = []
     @State private var isShowingNewEntrySheet = false
     @State private var isShowingSettings = false
-    @ObservedObject private var entryVM = EntryViewModel()
+    @StateObject private var entryVM = EntryViewModel()
 
     var body: some View {
         NavigationStack {
-            List {
-                Section("recent info") {
-                    LabeledContent("Last Feed",
-                                   value: dataManager.feedData.last?.amount.roundDecimalPoint().feedDisplayableAmount()
-                                       ?? "None recorded")
-                    LabeledContent("Last Nappy change",
-                                   value: dataManager.nappyData.last?.dateTime.formatted()
-                                       ?? "None recorded")
-                    LabeledContent("Last Sleep", value: dataManager.sleepData.last?.duration ?? "None recorded")
-                }
+            ScrollView {
+                QuickInfoSection()
+                    .shadow(radius: 0)
+                    .padding()
+
+                    .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .shadow(radius: 6)
+                        .padding(6)
+                        .foregroundColor(.white))
+
                 HomeScreenSections()
             }
+            .background(.background)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     NavigationLink(value: Screens.settings) {

@@ -26,7 +26,7 @@ final class SignInTests: XCTestCase {
         XCTAssertTrue(vm.validateEmail(validEmail))
         XCTAssertFalse(vm.validateEmail(invalidEmail))
     }
-    
+
     func test_password_validation() {
         XCTAssertFalse(vm.validatePassword("1234"))
         XCTAssertFalse(vm.validatePassword("test"))

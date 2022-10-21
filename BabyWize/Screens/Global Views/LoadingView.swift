@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - LoadingView
+
 struct LoadingView<Content>: View where Content: View {
     @Binding var isShowing: Bool
     var text: String

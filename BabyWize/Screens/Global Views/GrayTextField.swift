@@ -8,12 +8,13 @@
 import SwiftUI
 
 // MARK: - GrayTextField
+
 struct GrayTextField: View {
     @Binding var text: String
     var title: String
     var hint: String
     var isSecure = false
-    var contentType: UITextContentType? = nil
+    var contentType: UITextContentType?
     var isFocused: Bool
     var selectedColor = Color.blue
     var hasError = false
@@ -73,6 +74,7 @@ struct GrayTextField: View {
 }
 
 // MARK: - GrayTextField_Previews
+
 struct GrayTextField_Previews: PreviewProvider {
     static var previews: some View {
         VStack {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - RegisterView
+
 struct RegisterView: View {
     private enum Textfields: Hashable {
         case email
@@ -82,7 +83,6 @@ struct RegisterView: View {
                             focusedField = .none
                         }
 
-
                     Button("Create account") {
                         hasPasswordError = !vm.validatePassword(password)
                         hasEmailError = !vm.validateEmail(email)
@@ -136,6 +136,7 @@ struct RegisterView: View {
 }
 
 // MARK: - LoginView_Previews
+
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterView()
