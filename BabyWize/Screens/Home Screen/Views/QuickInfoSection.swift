@@ -18,14 +18,14 @@ struct QuickInfoSection: View {
     var body: some View {
         Section {
             LazyVGrid(columns: columns, spacing: 10) {
-                QuickInfoView(color: .purple.opacity(0.9),
+                QuickInfoView(color: .init(hex: "#A68AFA"),
                               title: "Last Feed",
                               value: dataManager.feedData.last?.amount.roundDecimalPoint().feedDisplayableAmount()
                                   ?? "None recorded")
-                QuickInfoView(color: .pink.opacity(0.8),
+                QuickInfoView(color: .init(hex: "#E98F32"),
                               title: "Last Nappy change",
                               value: dataManager.nappyData.last?.dateTime.formatted() ?? "None recorded")
-                QuickInfoView(color: .cyan.opacity(0.8),
+                QuickInfoView(color: .init(hex: "#1DB8D2"),
                               title: "Last Sleep",
                               value: dataManager.sleepData.last?.duration.convertToTimeInterval()
                                   .displayableString ?? "None recorded")

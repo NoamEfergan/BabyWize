@@ -16,37 +16,39 @@ struct HomeScreenCharts: View {
     var body: some View {
         let feedData = dataManager.feedData.getUpTo(limit: 6)
         let sleepData = dataManager.sleepData.getUpTo(limit: 3)
-
         VStack {
-            Text(feedInfoTitle)
-            Chart(feedData) { feed in
-                LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                         y: .value("Amount", feed.amount))
-                    .foregroundStyle(Color.blue.gradient)
+            VStack {
+                Text(feedInfoTitle)
+                Chart(feedData) { feed in
+                    LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
+                             y: .value("Amount", feed.amount))
+                        .foregroundStyle(Color.blue.gradient)
+                }
+                .frame(height: 200)
+                if !dataManager.feedData.isEmpty {
+                    NavigationLink("More Info", value: InfoScreens.feed)
+                }
             }
-            .frame(height: 200)
-            if !dataManager.feedData.isEmpty {
-                NavigationLink("More Info", value: InfoScreens.feed)
-            }
-        }
-        VStack {
-            Text(sleepInfoTitle)
-            Chart(sleepData) { sleep in
-                let dateValue = sleep.date.formatted(date: .omitted, time: .shortened)
-                let amountValue = sleep.duration.convertToTimeInterval().displayableString
-                BarMark(x: .value("Time", "\(dateValue)"),
-                        y: .value("Amount", sleep.duration.convertToTimeInterval()))
-                    .annotation(position: .overlay, alignment: .center) {
-                        Text("\(amountValue)")
-                            .foregroundColor(.white)
-                    }
 
-                    .foregroundStyle(Color.red.gradient)
-            }
-            .chartYAxis(.hidden)
-            .frame(height: 200)
-            if !dataManager.sleepData.isEmpty {
-                NavigationLink("More Info", value: InfoScreens.sleep)
+            VStack {
+                Text(sleepInfoTitle)
+                Chart(sleepData) { sleep in
+                    let dateValue = sleep.date.formatted(date: .omitted, time: .shortened)
+                    let amountValue = sleep.duration.convertToTimeInterval().displayableString
+                    BarMark(x: .value("Time", "\(dateValue)"),
+                            y: .value("Amount", sleep.duration.convertToTimeInterval()))
+                        .annotation(position: .overlay, alignment: .center) {
+                            Text("\(amountValue)")
+                                .foregroundColor(.white)
+                        }
+
+                        .foregroundStyle(Color.red.gradient)
+                }
+                .chartYAxis(.hidden)
+                .frame(height: 200)
+                if !dataManager.sleepData.isEmpty {
+                    NavigationLink("More Info", value: InfoScreens.sleep)
+                }
             }
         }
     }

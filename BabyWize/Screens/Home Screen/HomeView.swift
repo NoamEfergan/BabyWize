@@ -26,6 +26,12 @@ struct HomeView: View {
     @State private var isShowingSettings = false
     @StateObject private var entryVM = EntryViewModel()
 
+    init() {
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -33,20 +39,19 @@ struct HomeView: View {
                     QuickInfoSection()
                         .shadow(radius: 0)
                         .padding()
-
+                    HomeScreenCharts()
+                        .padding()
                         .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
                             .shadow(radius: 6)
-                            .padding(6)
-                            .foregroundColor(.white))
-
-                    HomeScreenCharts()
+                            .foregroundColor(Theme.backgroundColor))
                 }
             }
-            .background(.background)
+            .background(Theme.primaryPurple)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     NavigationLink(value: Screens.settings) {
                         Image(systemName: "person.circle")
+                            .foregroundColor(.white)
                     }
                 }
 
@@ -55,6 +60,7 @@ struct HomeView: View {
                         isShowingNewEntrySheet.toggle()
                     } label: {
                         Image(systemName: "plus.circle")
+                            .foregroundColor(.white)
                     }
                 }
             }
@@ -64,8 +70,8 @@ struct HomeView: View {
                     .environmentObject(entryVM)
                     .presentationDetents([.height(270)])
             }
-            .navigationDestination(for: Screens.self, destination: handleScreensNavigation(_:))
-            .navigationDestination(for: InfoScreens.self, destination: handleInfoNavigation(_:))
+            .navigationDestination(for: Screens.self, destination: handleScreensNavigation)
+            .navigationDestination(for: InfoScreens.self, destination: handleInfoNavigation)
             .task {
                 WidgetManager().setLatest()
             }
