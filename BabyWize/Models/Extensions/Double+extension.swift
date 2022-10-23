@@ -38,7 +38,7 @@ extension TimeInterval {
         let minuteString = minute > 1 ? " mins" : " min"
         let separator = minute > 0 ? "," : ""
         let hourDisplayable = hour > 0 ? hour.description + hoursString : ""
-        let minutesDisplayable = minute > 0 ? minuteString + minuteString : ""
+        let minutesDisplayable = minute > 0 ? minute.description + minuteString : ""
         return "\(hourDisplayable)\(separator) \(minutesDisplayable)"
     }
 

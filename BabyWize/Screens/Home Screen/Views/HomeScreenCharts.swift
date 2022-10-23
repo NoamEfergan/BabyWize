@@ -16,7 +16,7 @@ struct HomeScreenCharts: View {
     var body: some View {
         let feedData = dataManager.feedData.getUpTo(limit: 6)
         let sleepData = dataManager.sleepData.getUpTo(limit: 3)
-        VStack {
+        VStack(spacing: 20) {
             VStack {
                 Text(feedInfoTitle)
                 Chart(feedData) { feed in
@@ -27,8 +27,10 @@ struct HomeScreenCharts: View {
                 .frame(height: 200)
                 if !dataManager.feedData.isEmpty {
                     NavigationLink("More Info", value: InfoScreens.feed)
+                        .buttonStyle(.bordered)
                 }
             }
+            Divider()
 
             VStack {
                 Text(sleepInfoTitle)
@@ -48,6 +50,7 @@ struct HomeScreenCharts: View {
                 .frame(height: 200)
                 if !dataManager.sleepData.isEmpty {
                     NavigationLink("More Info", value: InfoScreens.sleep)
+                        .buttonStyle(.bordered)
                 }
             }
         }

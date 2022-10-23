@@ -26,12 +26,6 @@ struct HomeView: View {
     @State private var isShowingSettings = false
     @StateObject private var entryVM = EntryViewModel()
 
-    init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    }
-
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -65,6 +59,11 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Baby Wize")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(Theme.primaryPurple,
+                               for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .sheet(isPresented: $isShowingNewEntrySheet) {
                 AddEntryView()
                     .environmentObject(entryVM)
