@@ -4,14 +4,13 @@
 //
 //  Created by Noam Efergan on 18/07/2022.
 //
-import Algorithms
 import CoreData
 import SwiftUI
 
 final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
 
-    private var moc = DataController().container.viewContext
+    private let coreDataManager = BabyCoreDataManager()
 
     // MARK: - Exposed variables
 
@@ -21,10 +20,6 @@ final class BabyDataManager: ObservableObject {
 
     init() {
         fetchSavedValues()
-    }
-
-    private func setAll() {
-        try? moc.save()
     }
 
     // MARK: - Public methods
@@ -69,94 +64,53 @@ final class BabyDataManager: ObservableObject {
 
     func addFeed(_ item: Feed) {
         feedData.append(item)
-        item.mapToSavedFeed(context: moc)
-        try? moc.save()
+        coreDataManager.addFeed(item)
     }
 
     func addSleep(_ item: Sleep) {
         sleepData.append(item)
-        item.mapToSavedSleep(context: moc)
-        try? moc.save()
+        coreDataManager.addSleep(item)
     }
 
     func addNappyChange(_ item: NappyChange) {
         nappyData.append(item)
-        item.mapToSavedChange(context: moc)
-        try? moc.save()
+        coreDataManager.addNappyChange(item)
     }
 
     // Update
 
     func updateFeed(_ item: Feed, index: Array<Feed>.Index) {
         feedData[index] = item
-        let savedFeeds = try? moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed]
-        let relevantFeed = savedFeeds?.first(where: { $0.id == item.id })
-        relevantFeed?.date = item.date
-        relevantFeed?.amount = item.amount
-        try? moc.save()
+        coreDataManager.updateFeed(item)
     }
 
     func updateSleep(_ item: Sleep, index: Array<Sleep>.Index) {
         sleepData[index] = item
-        let savedSleeps = try? moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
-        let relevantSleep = savedSleeps?.first(where: { $0.id == item.id })
-        relevantSleep?.date = item.date
-        relevantSleep?.duration = item.duration
-        try? moc.save()
+        coreDataManager.addSleep(item)
     }
 
     func updateChange(_ item: NappyChange, index: Array<NappyChange>.Index) {
         nappyData[index] = item
-        let savedChanges = try? moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
-        let relevantChange = savedChanges?.first(where: { $0.id == item.id })
-        relevantChange?.dateTime = item.dateTime
-        try? moc.save()
+        coreDataManager.updateChange(item)
     }
 
     // Remove
 
     func removeFeed(at offsets: IndexSet) {
         let localFeeds = offsets.compactMap { feedData[$0] }
-        let savedFeeds = try? moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed]
-
-        var itemsToDelete: [SavedFeed] = []
-        for (local, saved) in product(localFeeds, savedFeeds ?? []) {
-            if saved.id == local.id {
-                itemsToDelete.append(saved)
-            }
-        }
-        itemsToDelete.forEach { moc.delete($0) }
-        try? moc.save()
+        coreDataManager.removeFeed(localFeeds)
         feedData.remove(atOffsets: offsets)
     }
 
     func removeSleep(at offsets: IndexSet) {
         let localSleeps = offsets.compactMap { sleepData[$0] }
-        let savedSleeps = try? moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
-
-        var itemsToDelete: [SavedSleep] = []
-        for (local, saved) in product(localSleeps, savedSleeps ?? []) {
-            if saved.id == local.id {
-                itemsToDelete.append(saved)
-            }
-        }
-        itemsToDelete.forEach { moc.delete($0) }
-        try? moc.save()
+        coreDataManager.removeSleep(localSleeps)
         sleepData.remove(atOffsets: offsets)
     }
 
     func removeChange(at offsets: IndexSet) {
         let localChanges = offsets.compactMap { nappyData[$0] }
-        let savedChanged = try? moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
-
-        var itemsToDelete: [SavedNappyChange] = []
-        for (local, saved) in product(localChanges, savedChanged ?? []) {
-            if saved.id == local.id {
-                itemsToDelete.append(saved)
-            }
-        }
-        itemsToDelete.forEach { moc.delete($0) }
-        try? moc.save()
+        coreDataManager.removeChange(localChanges)
         nappyData.remove(atOffsets: offsets)
     }
 
@@ -173,20 +127,8 @@ final class BabyDataManager: ObservableObject {
     }
 
     private func fetchSavedValues() {
-        let savedFeeds = try? moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed]
-        let savedSleeps = try? moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
-        let savedChanges = try? moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
-
-        if let savedFeeds {
-            feedData = savedFeeds.compactMap { $0.mapToFeed() }
-        }
-
-        if let savedSleeps {
-            sleepData = savedSleeps.compactMap { $0.mapToSleep() }
-        }
-
-        if let savedChanges {
-            nappyData = savedChanges.compactMap { $0.mapToNappyChange() }
-        }
+        feedData = coreDataManager.fetchFeeds()
+        sleepData = coreDataManager.fetchSleeps()
+        nappyData = coreDataManager.fetchChanges()
     }
 }

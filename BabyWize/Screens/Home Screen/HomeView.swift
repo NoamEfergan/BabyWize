@@ -32,16 +32,18 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                QuickInfoSection()
-                    .shadow(radius: 0)
-                    .padding()
+                VStack {
+                    QuickInfoSection()
+                        .shadow(radius: 0)
+                        .padding()
 
-                    .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
-                        .shadow(radius: 6)
-                        .padding(6)
-                        .foregroundColor(.white))
+                        .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .shadow(radius: 6)
+                            .padding(6)
+                            .foregroundColor(.white))
 
-                HomeScreenSections()
+                    HomeScreenSections()
+                }
             }
             .background(.background)
             .toolbar {
