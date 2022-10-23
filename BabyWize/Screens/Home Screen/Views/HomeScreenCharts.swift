@@ -1,5 +1,5 @@
 //
-//  HomeScreenSections.swift
+//  HomeScreenCharts.swift
 //  BabyWize
 //
 //  Created by Noam Efergan on 18/07/2022.
@@ -8,8 +8,8 @@
 import Charts
 import SwiftUI
 
-// MARK: - HomeScreenSections
-struct HomeScreenSections: View {
+// MARK: - HomeScreenCharts
+struct HomeScreenCharts: View {
     @InjectedObject private var dataManager: BabyDataManager
     private let nothingYetTitle = "Nothing to show yet!"
 
@@ -33,8 +33,13 @@ struct HomeScreenSections: View {
             Chart(sleepData) { sleep in
                 let dateValue = sleep.date.formatted(date: .omitted, time: .shortened)
                 let amountValue = sleep.duration.convertToTimeInterval().displayableString
-                BarMark(x: .value("Time", "\(dateValue)\n \(amountValue)"),
+                BarMark(x: .value("Time", "\(dateValue)"),
                         y: .value("Amount", sleep.duration.convertToTimeInterval()))
+                    .annotation(position: .overlay, alignment: .center) {
+                        Text("\(amountValue)")
+                            .foregroundColor(.white)
+                    }
+
                     .foregroundStyle(Color.red.gradient)
             }
             .chartYAxis(.hidden)
@@ -64,11 +69,13 @@ struct HomeScreenSections: View {
     }
 }
 
-// MARK: - HomeScreenSections_Previews
-struct HomeScreenSections_Previews: PreviewProvider {
+// MARK: - HomeScreenCharts_Previews
+struct HomeScreenCharts_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollView {
-            HomeScreenSections()
+        NavigationStack {
+            ScrollView {
+                HomeScreenCharts()
+            }
         }
     }
 }

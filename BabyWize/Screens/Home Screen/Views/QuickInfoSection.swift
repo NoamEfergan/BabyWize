@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - QuickInfoSection
-
 struct QuickInfoSection: View {
     @InjectedObject private var dataManager: BabyDataManager
     let columns = [
@@ -28,14 +27,14 @@ struct QuickInfoSection: View {
                               value: dataManager.nappyData.last?.dateTime.formatted() ?? "None recorded")
                 QuickInfoView(color: .cyan.opacity(0.8),
                               title: "Last Sleep",
-                              value: dataManager.sleepData.last?.duration ?? "None recorded")
+                              value: dataManager.sleepData.last?.duration.convertToTimeInterval()
+                                  .displayableString ?? "None recorded")
             }
         }
     }
 }
 
 // MARK: - QuickInfoSection_Previews
-
 struct QuickInfoSection_Previews: PreviewProvider {
     static var previews: some View {
         QuickInfoSection()

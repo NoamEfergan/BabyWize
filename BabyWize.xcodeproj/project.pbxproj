@@ -51,7 +51,7 @@
 		05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
 		05B8AF69288633A100BBC41B /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+Extension.swift */; };
 		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
-		05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */; };
+		05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */; };
 		05DD68B92885B7600066BFEC /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B82885B7600066BFEC /* DummyData.swift */; };
 		05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05DD68BE2885B7E40066BFEC /* Swinject */; };
 		05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C12885B8460066BFEC /* SwinjectManager.swift */; };
@@ -158,7 +158,7 @@
 		05B8AF6628862C7C00BBC41B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		05B8AF68288633A100BBC41B /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		05B8AF6D2886989C00BBC41B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenSections.swift; sourceTree = "<group>"; };
+		05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCharts.swift; sourceTree = "<group>"; };
 		05DD68B82885B7600066BFEC /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		05DD68C12885B8460066BFEC /* SwinjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectManager.swift; sourceTree = "<group>"; };
 		05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManager.swift; sourceTree = "<group>"; };
@@ -373,7 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				05FE380B2902895F002D3D34 /* QuickInfoView.swift */,
-				05DD68AE2885B68B0066BFEC /* HomeScreenSections.swift */,
+				05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */,
 				05FE380D29028B13002D3D34 /* QuickInfoSection.swift */,
 			);
 			path = Views;
@@ -704,7 +704,7 @@
 				05A42A48290545DD0040A543 /* BabyCoreDataManager.swift in Sources */,
 				05FE380C2902895F002D3D34 /* QuickInfoView.swift in Sources */,
 				05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */,
-				05DD68AF2885B68B0066BFEC /* HomeScreenSections.swift in Sources */,
+				05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */,
 				3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */,
 				059C68E82886B66B00C90710 /* DataItem.swift in Sources */,
 				05DD68D52886144E0066BFEC /* EntryType.swift in Sources */,

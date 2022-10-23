@@ -39,7 +39,7 @@ struct HomeView: View {
                             .padding(6)
                             .foregroundColor(.white))
 
-                    HomeScreenSections()
+                    HomeScreenCharts()
                 }
             }
             .background(.background)
