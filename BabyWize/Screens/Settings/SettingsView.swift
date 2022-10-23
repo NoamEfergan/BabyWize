@@ -35,8 +35,8 @@ struct SettingsView: View {
                     loginIconView
                 }
                 .confirmationDialog("Log in or register", isPresented: $isShowingAlert) {
-                    Button("Login") {
-                        isLoginViewShowing.toggle()
+                    NavigationLink("Login") {
+                        LoginView()
                     }
                     NavigationLink("Register") {
                         RegisterView()

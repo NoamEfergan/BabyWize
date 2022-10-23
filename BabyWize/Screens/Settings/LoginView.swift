@@ -1,19 +1,16 @@
 //
-//  RegisterView.swift
+//  LoginView.swift
 //  BabyWize
 //
-//  Created by Noam Efergan on 17/09/2022.
+//  Created by Noam Efergan on 23/10/2022.
 //
 
 import SwiftUI
 
-// MARK: - RegisterView
-
-struct RegisterView: View {
+struct LoginView: View {
     private enum Textfields: Hashable {
         case email
         case password
-        case rePassword
     }
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -21,11 +18,9 @@ struct RegisterView: View {
     @StateObject private var vm = AuthViewModel()
     @State private var email = ""
     @State private var password = ""
-    @State private var rePassword = ""
 
     @State private var hasEmailError = false
     @State private var hasPasswordError = false
-    @State private var hasRePasswordError = false
 
     @State private var isShowingRegistrationError = false
 
@@ -64,32 +59,16 @@ struct RegisterView: View {
                         .submitLabel(.next)
                         .onSubmit {
                             hasPasswordError = !vm.validatePassword(password)
-                            focusedField = .rePassword
+                            focusedField = nil
                         }
 
-                    GrayTextField(text: $rePassword,
-                                  title: "Re-Enter Password",
-                                  hint: "Please re-enter the same password",
-                                  isSecure: true,
-                                  contentType: .newPassword,
-                                  isFocused: focusedField == .rePassword,
-                                  hasError: hasRePasswordError,
-                                  errorText: "Both passwords must match")
-                        .tag(Textfields.rePassword)
-                        .focused($focusedField, equals: .rePassword)
-                        .submitLabel(.done)
-                        .onSubmit {
-                            hasRePasswordError = password != rePassword
-                            focusedField = .none
-                        }
 
-                    Button("Create account") {
+                    Button("Login") {
                         hasPasswordError = !vm.validatePassword(password)
                         hasEmailError = !vm.validateEmail(email)
-                        hasRePasswordError = password != rePassword
-                        if !hasPasswordError, !hasEmailError, !hasRePasswordError {
+                        if !hasPasswordError, !hasEmailError {
                             Task {
-                                if await vm.createAccount(email: email, password: password) {
+                                if await vm.login(email: email, password: password) {
                                     self.presentationMode.wrappedValue.dismiss()
                                 }
                             }
@@ -117,10 +96,7 @@ struct RegisterView: View {
                         Button("Next") {
                             focusedField = .password
                         }
-                    case .password:
-                        Button("Next") {
-                            focusedField = .rePassword
-                        }
+
                     default:
                         Button("Done") {
                             focusedField = nil
@@ -132,10 +108,8 @@ struct RegisterView: View {
     }
 }
 
-// MARK: - LoginView_Previews
-
-struct RegisterView_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        LoginView()
     }
 }

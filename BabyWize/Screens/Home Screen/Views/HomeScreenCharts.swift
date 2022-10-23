@@ -30,6 +30,7 @@ struct HomeScreenCharts: View {
             }
         }
         VStack {
+            Text(sleepInfoTitle)
             Chart(sleepData) { sleep in
                 let dateValue = sleep.date.formatted(date: .omitted, time: .shortened)
                 let amountValue = sleep.duration.convertToTimeInterval().displayableString
@@ -55,7 +56,7 @@ struct HomeScreenCharts: View {
             return nothingYetTitle
         } else {
             let feedCount = dataManager.feedData.count >= 6 ? 6 : dataManager.feedData.count
-            return "Feed info (last \(feedCount)"
+            return "Feed info (last \(feedCount))"
         }
     }
 
@@ -64,7 +65,7 @@ struct HomeScreenCharts: View {
             return nothingYetTitle
         } else {
             let feedCount = dataManager.sleepData.count >= 3 ? 3 : dataManager.sleepData.count
-            return "Sleep info (last \(feedCount)"
+            return "Sleep info (last \(feedCount))"
         }
     }
 }
