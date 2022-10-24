@@ -7,22 +7,22 @@
 
 import Foundation
 
-//extension Feed {
+// extension Feed {
 //    func mapToDictionary() -> [String: [String]]{
 //        [self.id: [
 //            self.]]
 //    }
 //
-//}
+// }
 //
-//extension Sleep {
+// extension Sleep {
 //    func mapToDictionary() {
 //
 //    }
-//}
+// }
 //
-//extension NappyChange {
+// extension NappyChange {
 //    func mapToDictionary() {
 //
 //    }
-//}
+// }

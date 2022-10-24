@@ -9,6 +9,7 @@ import Charts
 import SwiftUI
 
 // MARK: - HomeScreenCharts
+
 struct HomeScreenCharts: View {
     @InjectedObject private var dataManager: BabyDataManager
     private let nothingYetTitle = "Nothing to show yet!"
@@ -76,6 +77,7 @@ struct HomeScreenCharts: View {
 }
 
 // MARK: - HomeScreenCharts_Previews
+
 struct HomeScreenCharts_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {

@@ -8,9 +8,8 @@
 import Foundation
 
 struct KeychainManager {
-    
     static let server = "Babywize"
-    
+
     struct Credentials {
         var email: String
         var password: String
@@ -21,7 +20,7 @@ struct KeychainManager {
         case unexpectedPasswordData
         case unhandledError(status: OSStatus)
     }
-    
+
     static func setCredentials(_ credentials: Credentials) throws {
         let account = credentials.email
         let password = credentials.password.data(using: String.Encoding.utf8)!
@@ -29,12 +28,12 @@ struct KeychainManager {
                                     kSecAttrAccount as String: account,
                                     kSecAttrServer as String: server,
                                     kSecValueData as String: password]
-        
+
         let status = SecItemAdd(query as CFDictionary, nil)
         guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
     }
-    
-    static func fetchCredentials() throws -> Credentials{
+
+    static func fetchCredentials() throws -> Credentials {
         // Construct query
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrServer as String: server,
@@ -46,15 +45,15 @@ struct KeychainManager {
         let status = SecItemCopyMatching(query as CFDictionary, &item)
         guard status != errSecItemNotFound else { throw KeychainError.noPassword }
         guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
-        
+
         // Convert to Credentials
-        guard let existingItem = item as? [String : Any],
-            let passwordData = existingItem[kSecValueData as String] as? Data,
-            let password = String(data: passwordData, encoding: String.Encoding.utf8),
-            let account = existingItem[kSecAttrAccount as String] as? String
+        guard let existingItem = item as? [String: Any],
+              let passwordData = existingItem[kSecValueData as String] as? Data,
+              let password = String(data: passwordData, encoding: String.Encoding.utf8),
+              let account = existingItem[kSecAttrAccount as String] as? String
         else {
             throw KeychainError.unexpectedPasswordData
         }
-        return  Credentials(email: account, password: password)
+        return Credentials(email: account, password: password)
     }
 }

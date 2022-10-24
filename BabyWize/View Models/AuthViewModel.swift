@@ -47,16 +47,17 @@ final class AuthViewModel: ObservableObject {
     }
 
     @MainActor
+    @discardableResult
     func login(email: String, password: String) async -> Bool {
         isLoading = true
         defer {
             isLoading = false
         }
         do {
-            
             let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
             try KeychainManager.setCredentials(.init(email: email, password: password))
             let user = authDataResult.user
+            UserDefaults.standard.set(true, forKey: UserConstants.isLoggedIn)
             print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
             hasError = false
             return true
@@ -67,7 +68,7 @@ final class AuthViewModel: ObservableObject {
         }
     }
 
-    func logOut(){
+    func logOut() {
         isLoading = true
         defer {
             isLoading = false

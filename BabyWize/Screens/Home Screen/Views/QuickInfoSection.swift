@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - QuickInfoSection
+
 struct QuickInfoSection: View {
     @InjectedObject private var dataManager: BabyDataManager
     let columns = [
@@ -35,6 +36,7 @@ struct QuickInfoSection: View {
 }
 
 // MARK: - QuickInfoSection_Previews
+
 struct QuickInfoSection_Previews: PreviewProvider {
     static var previews: some View {
         QuickInfoSection()

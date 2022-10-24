@@ -47,7 +47,7 @@ struct SettingsView: View {
                 }
                 .confirmationDialog("Logout", isPresented: $isShowingLogoutAlert) {
                     Button(role: .destructive) {
-                            authVM.logOut()
+                        authVM.logOut()
                     } label: {
                         Text("Yes")
                     }

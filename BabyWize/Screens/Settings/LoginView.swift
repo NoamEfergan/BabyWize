@@ -27,7 +27,7 @@ struct LoginView: View {
     @FocusState private var focusedField: Textfields?
 
     var body: some View {
-        LoadingView(isShowing: $vm.isLoading, text: "Please wait while we create your account") {
+        LoadingView(isShowing: $vm.isLoading, text: "Logging in") {
             VStack(spacing: 30) {
                 VStack {
                     GrayTextField(text: $email,
@@ -62,7 +62,6 @@ struct LoginView: View {
                             focusedField = nil
                         }
 
-
                     Button("Login") {
                         hasPasswordError = !vm.validatePassword(password)
                         hasEmailError = !vm.validateEmail(email)
@@ -86,8 +85,15 @@ struct LoginView: View {
                     focusedField = .email
                 }
             }
-            .alert("Whoops!\nsomething went wrong, please try again later", isPresented: $vm.hasError, actions: {
-                Text("Please try again later")
+            .alert("Whoops!\nsomething went wrong",
+                   isPresented: $vm.hasError,
+                   actions: {
+                Button {
+                    vm.hasError = false
+                } label: {
+                    Text("Please try again later")
+                }
+
             })
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
