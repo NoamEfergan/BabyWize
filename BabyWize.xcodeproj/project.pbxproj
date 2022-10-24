@@ -31,6 +31,7 @@
 		0560839C2884147900728F1F /* BabyWizeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */; };
 		056083A9288417F700728F1F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
 		056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D7C7B28F32FB500E3514D /* LoadingView.swift */; };
+		05711B282906E5470023EA34 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05711B272906E5470023EA34 /* KeychainManager.swift */; };
 		05817C5B28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5928C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld */; };
 		05817C5C28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5928C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld */; };
 		05817C5F28C788580040A4B0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5E28C788580040A4B0 /* DataController.swift */; };
@@ -58,6 +59,13 @@
 		05A42A5D290599E60040A543 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A5B290599E60040A543 /* Colors.swift */; };
 		05A42A5E290599E60040A543 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A5B290599E60040A543 /* Colors.swift */; };
 		05A42A5F290599E60040A543 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A5B290599E60040A543 /* Colors.swift */; };
+		05A42A612905A5790040A543 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A602905A5790040A543 /* FirebaseManager.swift */; };
+		05A42A622905A5790040A543 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A602905A5790040A543 /* FirebaseManager.swift */; };
+		05A42A632905A5790040A543 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A602905A5790040A543 /* FirebaseManager.swift */; };
+		05A42A672905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
+		05A42A682905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
+		05A42A692905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
+		05A42A6A2905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
 		05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
 		05B8AF69288633A100BBC41B /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+extension.swift */; };
 		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
@@ -157,6 +165,7 @@
 		0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		056083A8288417F700728F1F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		056D7C7B28F32FB500E3514D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		05711B272906E5470023EA34 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		05817C5A28C7806F0040A4B0 /* UserEntriesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserEntriesModel.xcdatamodel; sourceTree = "<group>"; };
 		05817C5E28C788580040A4B0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		059C68E42886AF0500C90710 /* Info View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info View.swift"; sourceTree = "<group>"; };
@@ -168,6 +177,8 @@
 		05A42A51290596540040A543 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		05A42A56290598860040A543 /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
 		05A42A5B290599E60040A543 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		05A42A602905A5790040A543 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataExtensions.swift; sourceTree = "<group>"; };
 		05B8AF6628862C7C00BBC41B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		05B8AF68288633A100BBC41B /* Array+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extension.swift"; sourceTree = "<group>"; };
 		05B8AF6D2886989C00BBC41B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -353,6 +364,15 @@
 			path = InputDetailView;
 			sourceTree = "<group>";
 		};
+		05A42A652905A96B0040A543 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				05A42A602905A5790040A543 /* FirebaseManager.swift */,
+				05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		05B8AF6A2886985800BBC41B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,10 +470,12 @@
 		05DD68C02885B8110066BFEC /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				05711B272906E5470023EA34 /* KeychainManager.swift */,
 				05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */,
 				05DD68C12885B8460066BFEC /* SwinjectManager.swift */,
 				050AEEA6288C6B170052A2D1 /* WidgetManager.swift */,
 				05A42A47290545DD0040A543 /* BabyCoreDataManager.swift */,
+				05A42A652905A96B0040A543 /* Firebase */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -709,6 +731,7 @@
 				054B1F6328CA33610021C5BF /* DataItem.swift in Sources */,
 				05A42A4B290545DD0040A543 /* BabyCoreDataManager.swift in Sources */,
 				05817C5C28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */,
+				05A42A6A2905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
 				05A42A4C2905479B0040A543 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -731,6 +754,7 @@
 				054B1F6128CA31E00021C5BF /* CoreDataExtensions.swift in Sources */,
 				05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */,
 				050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */,
+				05A42A612905A5790040A543 /* FirebaseManager.swift in Sources */,
 				05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */,
 				05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */,
 				059C68F02886D8CD00C90710 /* EditEntryView.swift in Sources */,
@@ -739,6 +763,7 @@
 				05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */,
 				05DD68CA2885FC720066BFEC /* DependencyInjectionProtocols.swift in Sources */,
 				056083A9288417F700728F1F /* Date+extension.swift in Sources */,
+				05A42A672905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
 				05B8AF69288633A100BBC41B /* Array+extension.swift in Sources */,
 				05DD68C42885FB2C0066BFEC /* BabyDataManager.swift in Sources */,
 				05A42A5C290599E60040A543 /* Colors.swift in Sources */,
@@ -754,6 +779,7 @@
 				05DD68CE288603820066BFEC /* Double+extension.swift in Sources */,
 				0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */,
 				059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */,
+				05711B282906E5470023EA34 /* KeychainManager.swift in Sources */,
 				3BE30FFC28D5DCF100E75D22 /* RegisterView.swift in Sources */,
 				05A42A52290596540040A543 /* LoginView.swift in Sources */,
 				056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */,
@@ -769,10 +795,12 @@
 				05A42A5D290599E60040A543 /* Colors.swift in Sources */,
 				05A42A53290596540040A543 /* LoginView.swift in Sources */,
 				3B64002928D665AA00241D65 /* SignInTests.swift in Sources */,
+				05A42A622905A5790040A543 /* FirebaseManager.swift in Sources */,
 				05A42A49290545DD0040A543 /* BabyCoreDataManager.swift in Sources */,
 				054B1F6528CA33620021C5BF /* DataItem.swift in Sources */,
 				056083902884147900728F1F /* BabyWizeTests.swift in Sources */,
 				05A42A4E2905479C0040A543 /* Constants.swift in Sources */,
+				05A42A682905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
 				05A42A58290598860040A543 /* Color+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -785,6 +813,8 @@
 				05A42A59290598860040A543 /* Color+extension.swift in Sources */,
 				05A42A4A290545DD0040A543 /* BabyCoreDataManager.swift in Sources */,
 				05A42A5E290599E60040A543 /* Colors.swift in Sources */,
+				05A42A692905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
+				05A42A632905A5790040A543 /* FirebaseManager.swift in Sources */,
 				0560839A2884147900728F1F /* BabyWizeUITests.swift in Sources */,
 				054B1F6428CA33620021C5BF /* DataItem.swift in Sources */,
 				0560839C2884147900728F1F /* BabyWizeUITestsLaunchTests.swift in Sources */,
@@ -996,6 +1026,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BabyWize/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1028,6 +1059,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BabyWize/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

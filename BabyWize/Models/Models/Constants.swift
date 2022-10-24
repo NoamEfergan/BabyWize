@@ -18,6 +18,7 @@ enum Constants: String {
 enum UserConstants {
     static let isLoggedIn = "IsLoggedIn"
     static let userName = "UserName"
+    static let email = "Email"
 }
 
 enum GenericNetworkResponse {

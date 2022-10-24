@@ -6,5 +6,9 @@
 	<array>
 		<string>group.babyData</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)NoamEfergan.BabyWize</string>
+	</array>
 </dict>
 </plist>

@@ -64,6 +64,7 @@ final class BabyDataManager: ObservableObject {
 
     func addFeed(_ item: Feed) {
         feedData.append(item)
+        FirebaseManager().addFeed(item)
         coreDataManager.addFeed(item)
     }
 

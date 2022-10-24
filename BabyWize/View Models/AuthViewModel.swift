@@ -37,6 +37,7 @@ final class AuthViewModel: ObservableObject {
             print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
             hasError = false
             UserDefaults.standard.set(true, forKey: UserConstants.isLoggedIn)
+            UserDefaults.standard.set(email, forKey: UserConstants.email)
             return true
         } catch {
             print("There was an issue when trying to sign in: \(error)")
@@ -52,7 +53,9 @@ final class AuthViewModel: ObservableObject {
             isLoading = false
         }
         do {
+            
             let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
+            try KeychainManager.setCredentials(.init(email: email, password: password))
             let user = authDataResult.user
             print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
             hasError = false
@@ -61,6 +64,25 @@ final class AuthViewModel: ObservableObject {
             print("There was an issue when trying to sign in: \(error)")
             hasError = true
             return false
+        }
+    }
+
+    func logOut(){
+        isLoading = true
+        defer {
+            isLoading = false
+        }
+        do {
+            try Auth.auth().signOut()
+            print("Signed out")
+            hasError = false
+            UserDefaults.standard.set(false, forKey: UserConstants.isLoggedIn)
+            UserDefaults.standard.set(nil, forKey: UserConstants.email)
+            return
+        } catch {
+            print("There was an issue when trying to sign in: \(error)")
+            hasError = true
+            return
         }
     }
 }

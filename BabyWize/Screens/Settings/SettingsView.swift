@@ -15,7 +15,7 @@ struct SettingsView: View {
 
     @AppStorage(Constants.preferredUnit.rawValue) private var savedUnit = ""
     @AppStorage(UserConstants.isLoggedIn) private var savedIsUserLoggedIn: Bool?
-    @AppStorage(UserConstants.userName) private var userNAme: String?
+    @StateObject private var authVM = AuthViewModel()
 
     private var isLoggedIn: Bool {
         guard let savedIsUserLoggedIn else { return false }
@@ -36,7 +36,7 @@ struct SettingsView: View {
                 }
                 .confirmationDialog("Log in or register", isPresented: $isShowingAlert) {
                     NavigationLink("Login") {
-                        LoginView()
+                        LoginView(vm: authVM)
                     }
                     NavigationLink("Register") {
                         RegisterView()
@@ -47,7 +47,7 @@ struct SettingsView: View {
                 }
                 .confirmationDialog("Logout", isPresented: $isShowingLogoutAlert) {
                     Button(role: .destructive) {
-                        print("Logout")
+                            authVM.logOut()
                     } label: {
                         Text("Yes")
                     }

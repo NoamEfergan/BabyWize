@@ -15,7 +15,7 @@ struct LoginView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    @StateObject private var vm = AuthViewModel()
+    @ObservedObject var vm: AuthViewModel
     @State private var email = ""
     @State private var password = ""
 
@@ -50,7 +50,7 @@ struct LoginView: View {
                                   title: "Password",
                                   hint: "Please enter a password",
                                   isSecure: true,
-                                  contentType: .newPassword,
+                                  contentType: .password,
                                   isFocused: focusedField == .password,
                                   hasError: hasPasswordError,
                                   errorText: "Password must be at least 8 characters long,\n and contain at least 1 capital letter and 1 number ")
@@ -110,6 +110,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(vm: AuthViewModel())
     }
 }
