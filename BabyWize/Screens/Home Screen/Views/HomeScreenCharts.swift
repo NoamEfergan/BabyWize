@@ -6,8 +6,8 @@
 //
 
 import Charts
-import SwiftUI
 import Snappable
+import SwiftUI
 
 // MARK: - HomeScreenCharts
 
@@ -38,7 +38,7 @@ struct HomeScreenCharts: View {
             Text(sleepInfoTitle)
                 .font(.system(.title, design: .rounded))
             Chart(sleepData) { sleep in
-                let dateValue = sleep.date.formatted(date: .omitted, time: .shortened)
+                let dateValue = sleep.date.formatted(date: .abbreviated, time: .shortened)
                 let amountValue = sleep.duration.convertToTimeInterval().displayableString
                 BarMark(x: .value("Time", dateValue),
                         y: .value("Amount", sleep.duration.convertToTimeInterval()))
@@ -52,17 +52,16 @@ struct HomeScreenCharts: View {
             .chartYAxis(.hidden)
             .frame(height: 200)
             .frame(width: UIScreen.main.bounds.width)
-
         }
     }
 
     var body: some View {
-        
-        ScrollView(.horizontal){
+        ScrollView(.horizontal) {
             HStack(spacing: 20) {
                 feedView
                     .snapID(feedInfoTitle)
                 sleepView
+                    .padding(.horizontal)
                     .snapID(sleepInfoTitle)
             }
         }
@@ -93,8 +92,7 @@ struct HomeScreenCharts: View {
 struct HomeScreenCharts_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-                HomeScreenCharts()
-
+            HomeScreenCharts()
         }
     }
 }

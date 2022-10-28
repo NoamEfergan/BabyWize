@@ -22,7 +22,7 @@ struct FirebaseManager {
             .document(email)
             .collection("feeds")
             .addDocument(data: [item.id: ["amount": item.amount, "date": item.date]]) { err in
-                if let err = err {
+                if let err {
                     print("Error adding document: \(err)")
                 } else {
                     print("Document added with ID: \(ref!.documentID)")
