@@ -88,13 +88,13 @@ struct LoginView: View {
             .alert("Whoops!\nsomething went wrong",
                    isPresented: $vm.hasError,
                    actions: {
-                Button {
-                    vm.hasError = false
-                } label: {
-                    Text("Please try again later")
-                }
+                       Button {
+                           vm.hasError = false
+                       } label: {
+                           Text("Please try again later")
+                       }
 
-            })
+                   })
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
                     switch focusedField {

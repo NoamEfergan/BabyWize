@@ -11,26 +11,29 @@ import SwiftUI
 
 struct QuickInfoSection: View {
     @InjectedObject private var dataManager: BabyDataManager
-    let columns = [
-        GridItem(.adaptive(minimum: 160)),
-        GridItem(.adaptive(minimum: 160)),
-    ]
+    let notAvailable = "N/A"
 
     var body: some View {
-        Section {
-            LazyVGrid(columns: columns, spacing: 10) {
-                QuickInfoView(color: .init(hex: "#A68AFA"),
+        VStack {
+            HStack {
+                QuickInfoView(color: .init(hex: "#F05052"),
                               title: "Last Feed",
                               value: dataManager.feedData.last?.amount.roundDecimalPoint().feedDisplayableAmount()
-                                  ?? "None recorded")
-                QuickInfoView(color: .init(hex: "#E98F32"),
+                                  ?? notAvailable,
+                              shouldShowInfo: !dataManager.feedData.isEmpty,
+                              leadingTo: .feed)
+                QuickInfoView(color: .init(hex: "#EAA251"),
                               title: "Last Nappy change",
-                              value: dataManager.nappyData.last?.dateTime.formatted() ?? "None recorded")
-                QuickInfoView(color: .init(hex: "#1DB8D2"),
-                              title: "Last Sleep",
-                              value: dataManager.sleepData.last?.duration.convertToTimeInterval()
-                                  .displayableString ?? "None recorded")
+                              value: dataManager.nappyData.last?.dateTime.formatted() ?? notAvailable,
+                              shouldShowInfo: false,
+                              leadingTo: .none)
             }
+            QuickInfoView(color: .init(hex: "#5354EC"),
+                          title: "Last Sleep",
+                          value: dataManager.sleepData.last?.duration.convertToTimeInterval()
+                              .displayableString ?? notAvailable,
+                          shouldShowInfo: !dataManager.sleepData.isEmpty,
+                          leadingTo: .sleep)
         }
     }
 }

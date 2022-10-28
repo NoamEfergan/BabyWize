@@ -7,6 +7,7 @@
 
 import Charts
 import SwiftUI
+import Snappable
 
 // MARK: - HomeScreenCharts
 
@@ -14,47 +15,58 @@ struct HomeScreenCharts: View {
     @InjectedObject private var dataManager: BabyDataManager
     private let nothingYetTitle = "Nothing to show yet!"
 
-    var body: some View {
+    @ViewBuilder
+    private var feedView: some View {
         let feedData = dataManager.feedData.getUpTo(limit: 6)
-        let sleepData = dataManager.sleepData.getUpTo(limit: 3)
-        VStack(spacing: 20) {
-            VStack {
-                Text(feedInfoTitle)
-                Chart(feedData) { feed in
-                    LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                             y: .value("Amount", feed.amount))
-                        .foregroundStyle(Color.blue.gradient)
-                }
-                .frame(height: 200)
-                if !dataManager.feedData.isEmpty {
-                    NavigationLink("More Info", value: InfoScreens.feed)
-                        .buttonStyle(.bordered)
-                }
+        VStack {
+            Text(feedInfoTitle)
+                .font(.system(.title, design: .rounded))
+            Chart(feedData) { feed in
+                LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
+                         y: .value("Amount", feed.amount))
+                    .foregroundStyle(Color.blue.gradient)
             }
-            Divider()
+            .frame(height: 200)
+            .frame(width: UIScreen.main.bounds.width)
+        }
+    }
 
-            VStack {
-                Text(sleepInfoTitle)
-                Chart(sleepData) { sleep in
-                    let dateValue = sleep.date.formatted(date: .omitted, time: .shortened)
-                    let amountValue = sleep.duration.convertToTimeInterval().displayableString
-                    BarMark(x: .value("Time", "\(dateValue)"),
-                            y: .value("Amount", sleep.duration.convertToTimeInterval()))
-                        .annotation(position: .overlay, alignment: .center) {
-                            Text("\(amountValue)")
-                                .foregroundColor(.white)
-                        }
+    @ViewBuilder
+    private var sleepView: some View {
+        let sleepData = dataManager.sleepData.getUpTo(limit: 3)
+        VStack {
+            Text(sleepInfoTitle)
+                .font(.system(.title, design: .rounded))
+            Chart(sleepData) { sleep in
+                let dateValue = sleep.date.formatted(date: .omitted, time: .shortened)
+                let amountValue = sleep.duration.convertToTimeInterval().displayableString
+                BarMark(x: .value("Time", dateValue),
+                        y: .value("Amount", sleep.duration.convertToTimeInterval()))
+                    .annotation(position: .overlay, alignment: .center) {
+                        Text("\(amountValue)")
+                            .foregroundColor(.white)
+                    }
 
-                        .foregroundStyle(Color.red.gradient)
-                }
-                .chartYAxis(.hidden)
-                .frame(height: 200)
-                if !dataManager.sleepData.isEmpty {
-                    NavigationLink("More Info", value: InfoScreens.sleep)
-                        .buttonStyle(.bordered)
-                }
+                    .foregroundStyle(Color.red.gradient)
+            }
+            .chartYAxis(.hidden)
+            .frame(height: 200)
+            .frame(width: UIScreen.main.bounds.width)
+
+        }
+    }
+
+    var body: some View {
+        
+        ScrollView(.horizontal){
+            HStack(spacing: 20) {
+                feedView
+                    .snapID(feedInfoTitle)
+                sleepView
+                    .snapID(sleepInfoTitle)
             }
         }
+        .snappable()
     }
 
     private var feedInfoTitle: String {
@@ -81,9 +93,8 @@ struct HomeScreenCharts: View {
 struct HomeScreenCharts_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ScrollView {
                 HomeScreenCharts()
-            }
+
         }
     }
 }

@@ -19,7 +19,7 @@ final class InfoScreenVM: ObservableObject {
 
     var type: EntryType {
         switch inputScreen {
-        case .feed, .detailInputFeed:
+        case .feed, .detailInputFeed, .none:
             return .feed
         case .sleep, .detailInputSleep:
             return .sleep

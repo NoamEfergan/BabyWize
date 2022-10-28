@@ -46,7 +46,8 @@ struct BabyWizeApp: App {
             .task {
                 if let savedIsUserLoggedIn,
                    savedIsUserLoggedIn,
-                   let credentials = try? KeychainManager.fetchCredentials() {
+                   let credentials = try? KeychainManager.fetchCredentials()
+                {
                     await authVM.login(email: credentials.email, password: credentials.password)
                 } else {
                     authVM.isLoading = false

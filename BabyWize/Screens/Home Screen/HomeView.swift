@@ -17,7 +17,7 @@ enum Screens: String {
 // MARK: - InfoScreens
 
 enum InfoScreens: String {
-    case feed, sleep, detailInputFeed, detailInputSleep
+    case feed, sleep, detailInputFeed, detailInputSleep, none
 }
 
 // MARK: - HomeView
@@ -43,12 +43,13 @@ struct HomeView: View {
                             .foregroundColor(Theme.backgroundColor))
                 }
             }
-            .background(Theme.primaryPurple)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     NavigationLink(value: Screens.settings) {
                         Image(systemName: "person.circle")
-                            .foregroundColor(.white)
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .foregroundColor(.secondary)
                     }
                 }
 
@@ -56,17 +57,14 @@ struct HomeView: View {
                     Button {
                         isShowingNewEntrySheet.toggle()
                     } label: {
-                        Image(systemName: "plus.circle")
-                            .foregroundColor(.white)
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
             .navigationTitle("Baby Wize")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(Theme.primaryPurple,
-                               for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
             .sheet(isPresented: $isShowingNewEntrySheet) {
                 AddEntryView()
                     .environmentObject(entryVM)
@@ -99,6 +97,8 @@ struct HomeView: View {
             InputDetailView(type: .feed)
                 .navigationTitle("All feeds")
                 .environmentObject(entryVM)
+        case .none:
+            EmptyView()
         }
     }
 

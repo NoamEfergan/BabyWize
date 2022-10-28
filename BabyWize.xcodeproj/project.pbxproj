@@ -69,6 +69,7 @@
 		05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
 		05B8AF69288633A100BBC41B /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+extension.swift */; };
 		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
+		05C1B207290BD35600039F8E /* Snappable in Frameworks */ = {isa = PBXBuildFile; productRef = 05C1B206290BD35600039F8E /* Snappable */; };
 		05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */; };
 		05DD68B92885B7600066BFEC /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B82885B7600066BFEC /* DummyData.swift */; };
 		05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05DD68BE2885B7E40066BFEC /* Swinject */; };
@@ -229,6 +230,7 @@
 				3BE30FF828D5D59000E75D22 /* FirebaseStorage in Frameworks */,
 				05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */,
 				3BE30FF428D5D59000E75D22 /* FirebaseFirestore in Frameworks */,
+				05C1B207290BD35600039F8E /* Snappable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +568,7 @@
 				3BE30FF328D5D59000E75D22 /* FirebaseFirestore */,
 				3BE30FF528D5D59000E75D22 /* FirebaseFirestoreSwift */,
 				3BE30FF728D5D59000E75D22 /* FirebaseStorage */,
+				05C1B206290BD35600039F8E /* Snappable */,
 			);
 			productName = BabyTracker;
 			productReference = 0560837B2884147800728F1F /* BabyWize.app */;
@@ -646,6 +649,7 @@
 				05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */,
 				05580E7528CB2B7300E4ECDE /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				3BE30FEC28D5D59000E75D22 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				05C1B205290BD35600039F8E /* XCRemoteSwiftPackageReference "Snappable" */,
 			);
 			productRefGroup = 0560837C2884147800728F1F /* Products */;
 			projectDirPath = "";
@@ -1213,6 +1217,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		05C1B205290BD35600039F8E /* XCRemoteSwiftPackageReference "Snappable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hugehoge/Snappable.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 		05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject.git";
@@ -1241,6 +1253,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 05580E7528CB2B7300E4ECDE /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
+		};
+		05C1B206290BD35600039F8E /* Snappable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05C1B205290BD35600039F8E /* XCRemoteSwiftPackageReference "Snappable" */;
+			productName = Snappable;
 		};
 		05DD68BE2885B7E40066BFEC /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
