@@ -9,7 +9,7 @@ import Foundation
 
 extension Double {
     static func getRandomFeedAmount() -> Double {
-        Self.random(in: 100.0 ..< 180.0)
+        Self.random(in: 100.0 ..< 250.0)
     }
 
     func roundDecimalPoint(to places: Int = 2) -> Double {
@@ -64,22 +64,5 @@ extension TimeInterval {
 
     var millisecond: Int {
         Int((self * 1000).truncatingRemainder(dividingBy: 1000))
-    }
-}
-
-extension String {
-    func convertToTimeInterval() -> TimeInterval {
-        guard self != "" else {
-            return 0
-        }
-
-        var interval: Double = 0
-
-        let parts = components(separatedBy: ":")
-        for (index, part) in parts.reversed().enumerated() {
-            interval += (Double(part) ?? 0) * pow(Double(60), Double(index))
-        }
-
-        return interval
     }
 }

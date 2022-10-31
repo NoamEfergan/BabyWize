@@ -39,7 +39,7 @@ struct QuickInfoView: View {
         .foregroundColor(color)
         .frame(height: 100)
         .frame(maxWidth: .infinity)
-        .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(color.opacity(0.3)))
+        .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(color.opacity(0.2)))
     }
 }
 

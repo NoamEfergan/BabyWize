@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Constants
 enum Constants: String {
     case preferredUnit
 
@@ -15,12 +16,14 @@ enum Constants: String {
     case savedChange = "SavedNappyChange"
 }
 
+// MARK: - UserConstants
 enum UserConstants {
     static let isLoggedIn = "IsLoggedIn"
     static let userName = "UserName"
     static let email = "Email"
 }
 
+// MARK: - GenericNetworkResponse
 enum GenericNetworkResponse {
     case succsess
     case fail(msg: String)
