@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum EntryType: String, CaseIterable {
+enum EntryType: String, CaseIterable, Hashable {
     case feed, sleep, nappy
 }

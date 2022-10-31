@@ -67,10 +67,10 @@
 		05A42A692905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
 		05A42A6A2905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
 		05ABD6FD290ECBFA00E1C755 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ABD6FC290ECBFA00E1C755 /* String+extension.swift */; };
+		05ABD7052910217C00E1C755 /* PlaceholderChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ABD7042910217C00E1C755 /* PlaceholderChart.swift */; };
 		05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
 		05B8AF69288633A100BBC41B /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+extension.swift */; };
 		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
-		05C1B207290BD35600039F8E /* Snappable in Frameworks */ = {isa = PBXBuildFile; productRef = 05C1B206290BD35600039F8E /* Snappable */; };
 		05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */; };
 		05DD68B92885B7600066BFEC /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68B82885B7600066BFEC /* DummyData.swift */; };
 		05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05DD68BE2885B7E40066BFEC /* Swinject */; };
@@ -182,6 +182,7 @@
 		05A42A602905A5790040A543 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataExtensions.swift; sourceTree = "<group>"; };
 		05ABD6FC290ECBFA00E1C755 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
+		05ABD7042910217C00E1C755 /* PlaceholderChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaceholderChart.swift; path = ../../../../PlaceholderChart.swift; sourceTree = "<group>"; };
 		05B8AF6628862C7C00BBC41B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		05B8AF68288633A100BBC41B /* Array+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extension.swift"; sourceTree = "<group>"; };
 		05B8AF6D2886989C00BBC41B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -232,7 +233,6 @@
 				3BE30FF828D5D59000E75D22 /* FirebaseStorage in Frameworks */,
 				05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */,
 				3BE30FF428D5D59000E75D22 /* FirebaseFirestore in Frameworks */,
-				05C1B207290BD35600039F8E /* Snappable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +410,7 @@
 		05DD68AD2885B6710066BFEC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				05ABD7042910217C00E1C755 /* PlaceholderChart.swift */,
 				05FE380B2902895F002D3D34 /* QuickInfoView.swift */,
 				05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */,
 				05FE380D29028B13002D3D34 /* QuickInfoSection.swift */,
@@ -571,7 +572,6 @@
 				3BE30FF328D5D59000E75D22 /* FirebaseFirestore */,
 				3BE30FF528D5D59000E75D22 /* FirebaseFirestoreSwift */,
 				3BE30FF728D5D59000E75D22 /* FirebaseStorage */,
-				05C1B206290BD35600039F8E /* Snappable */,
 			);
 			productName = BabyTracker;
 			productReference = 0560837B2884147800728F1F /* BabyWize.app */;
@@ -653,6 +653,7 @@
 				05580E7528CB2B7300E4ECDE /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				3BE30FEC28D5D59000E75D22 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				05C1B205290BD35600039F8E /* XCRemoteSwiftPackageReference "Snappable" */,
+				05ABD7062910269700E1C755 /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */,
 			);
 			productRefGroup = 0560837C2884147800728F1F /* Products */;
 			projectDirPath = "";
@@ -765,6 +766,7 @@
 				05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */,
 				05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */,
 				059C68F02886D8CD00C90710 /* EditEntryView.swift in Sources */,
+				05ABD7052910217C00E1C755 /* PlaceholderChart.swift in Sources */,
 				05FE380E29028B13002D3D34 /* QuickInfoSection.swift in Sources */,
 				059C68E52886AF0500C90710 /* Info View.swift in Sources */,
 				05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */,
@@ -1221,6 +1223,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		05ABD7062910269700E1C755 /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftui-library/hstack-snap-to-scroll";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		05C1B205290BD35600039F8E /* XCRemoteSwiftPackageReference "Snappable" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hugehoge/Snappable.git";
@@ -1257,11 +1267,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 05580E7528CB2B7300E4ECDE /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
-		};
-		05C1B206290BD35600039F8E /* Snappable */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 05C1B205290BD35600039F8E /* XCRemoteSwiftPackageReference "Snappable" */;
-			productName = Snappable;
 		};
 		05DD68BE2885B7E40066BFEC /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

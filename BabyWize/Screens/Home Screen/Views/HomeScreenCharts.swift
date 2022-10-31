@@ -6,14 +6,24 @@
 //
 
 import Charts
-import Snappable
 import SwiftUI
 
 // MARK: - HomeScreenCharts
-
 struct HomeScreenCharts: View {
     @InjectedObject private var dataManager: BabyDataManager
     private let nothingYetTitle = "Nothing to show yet!"
+    @State private var selectedChart: EntryType = .feed
+
+    var body: some View {
+        TabView {
+            feedView
+            sleepView
+        }
+        .tabViewStyle(.page)
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
+    }
+
+    // MARK: - Views
 
     @ViewBuilder
     private var feedView: some View {
@@ -21,15 +31,20 @@ struct HomeScreenCharts: View {
         VStack {
             Text(feedInfoTitle)
                 .font(.system(.title, design: .rounded))
-            Chart(feedData) { feed in
-                LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                         y: .value("Amount", feed.amount))
-                    .foregroundStyle(Color.blue.gradient)
+            if feedData.isEmpty {
+                PlaceholderChart(type: .feed)
+            } else {
+                Chart(feedData) { feed in
+                    LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
+                             y: .value("Amount", feed.amount))
+                        .foregroundStyle(Color.blue.gradient)
+                }
+                .frame(height: 200)
+                .frame(width: UIScreen.main.bounds.width)
             }
-            .frame(height: 200)
-            .frame(width: UIScreen.main.bounds.width)
         }
     }
+
 
     @ViewBuilder
     private var sleepView: some View {
@@ -37,36 +52,29 @@ struct HomeScreenCharts: View {
         VStack {
             Text(sleepInfoTitle)
                 .font(.system(.title, design: .rounded))
-            Chart(sleepData) { sleep in
-                let dateValue = sleep.date.formatted(date: .abbreviated, time: .shortened)
-                let amountValue = sleep.duration.convertToTimeInterval().displayableString
-                BarMark(x: .value("Time", dateValue),
-                        y: .value("Amount", sleep.duration.convertToTimeInterval()))
-                    .annotation(position: .overlay, alignment: .center) {
-                        Text("\(amountValue)")
-                            .foregroundColor(.white)
-                    }
+            if sleepData.isEmpty {
+                PlaceholderChart(type: .sleep)
+            } else {
+                Chart(sleepData) { sleep in
+                    let dateValue = sleep.date.formatted(date: .abbreviated, time: .shortened)
+                    let amountValue = sleep.duration.convertToTimeInterval().displayableString
+                    BarMark(x: .value("Time", dateValue),
+                            y: .value("Amount", sleep.duration.convertToTimeInterval()))
+                        .annotation(position: .overlay, alignment: .center) {
+                            Text("\(amountValue)")
+                                .foregroundColor(.white)
+                        }
 
-                    .foregroundStyle(Color.red.gradient)
+                        .foregroundStyle(Color.red.gradient)
+                }
+                .chartYAxis(.hidden)
+                .frame(height: 200)
+                .frame(width: UIScreen.main.bounds.width)
             }
-            .chartYAxis(.hidden)
-            .frame(height: 200)
-            .frame(width: UIScreen.main.bounds.width)
         }
     }
 
-    var body: some View {
-        ScrollView(.horizontal) {
-            HStack(spacing: 20) {
-                feedView
-                    .snapID(feedInfoTitle)
-                sleepView
-                    .padding(.horizontal)
-                    .snapID(sleepInfoTitle)
-            }
-        }
-        .snappable()
-    }
+    // MARK: - Computed properties
 
     private var feedInfoTitle: String {
         if dataManager.feedData.isEmpty {
@@ -88,7 +96,6 @@ struct HomeScreenCharts: View {
 }
 
 // MARK: - HomeScreenCharts_Previews
-
 struct HomeScreenCharts_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {

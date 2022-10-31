@@ -37,10 +37,8 @@ struct HomeView: View {
                         .shadow(radius: 0)
                         .padding()
                     HomeScreenCharts()
+                        .frame(height: 350)
                         .padding()
-                        .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
-                            .shadow(radius: 6)
-                            .foregroundColor(Theme.backgroundColor))
                 }
             }
             .toolbar {

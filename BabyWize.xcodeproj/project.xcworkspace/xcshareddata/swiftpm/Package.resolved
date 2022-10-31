@@ -73,6 +73,15 @@
       }
     },
     {
+      "identity" : "hstack-snap-to-scroll",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftui-library/hstack-snap-to-scroll",
+      "state" : {
+        "branch" : "main",
+        "revision" : "767112f5def036ca3c745c989f1e90e5ec592a00"
+      }
+    },
+    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
