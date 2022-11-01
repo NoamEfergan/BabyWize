@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - FeedEntryView
 struct FeedEntryView: View {
     @EnvironmentObject private var vm: EntryViewModel
 
@@ -23,12 +24,12 @@ struct FeedEntryView: View {
                 TextField("Milk, porridge, fruit etc... ", text: $vm.feedNote)
                     .textFieldStyle(.roundedBorder)
             }
-
         }
         .padding()
     }
 }
 
+// MARK: - FeedEntryView_Previews
 struct FeedEntryView_Previews: PreviewProvider {
     static var previews: some View {
         FeedEntryView()

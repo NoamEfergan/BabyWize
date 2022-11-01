@@ -5,8 +5,8 @@
 //  Created by Noam Efergan on 30/10/2022.
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 // MARK: - PlaceholderChart
 struct PlaceholderChart: View {
@@ -76,6 +76,7 @@ struct PlaceholderChart_Previews: PreviewProvider {
 // MARK: - PlaceholderChart.MockData
 extension PlaceholderChart {
     // MARK: - MockData
+
     enum MockData {
         static let mockFeed: [Feed] = [
             Feed(id: UUID().uuidString,
@@ -97,7 +98,7 @@ extension PlaceholderChart {
             Feed(id: UUID().uuidString,
                  date: Date.getRandomMockDate(),
                  amount: .getRandomFeedAmount(),
-                 note: nil)
+                 note: nil),
         ]
         .sorted(by: { $0.date < $1.date })
 
@@ -116,7 +117,7 @@ extension PlaceholderChart {
                   date: Date.getRandomMockDate(),
                   duration: abs(Date.getRandomMockDate()
                       .timeIntervalSince(Date.getRandomMockDate()))
-                      .hourMinuteSecondMS)
+                      .hourMinuteSecondMS),
         ]
         .sorted(by: { $0.date < $1.date })
     }

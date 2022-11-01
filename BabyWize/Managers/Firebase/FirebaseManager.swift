@@ -13,7 +13,9 @@ struct FirebaseManager {
     let db = Firestore.firestore()
 
     func addFeed(_ item: Feed) {
-        guard let email = UserDefaults.standard.string(forKey: UserConstants.email) else { return }
+        guard let email = UserDefaults.standard.string(forKey: UserConstants.email) else {
+            return
+        }
         // Add a new document with a generated ID
         var ref: DocumentReference?
         ref = db

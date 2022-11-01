@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - SettingsView
 struct SettingsView: View {
     @State private var selectedUnitOfFood: FeedUnits = .ml
     @State private var isShowingAlert = false
@@ -18,7 +19,9 @@ struct SettingsView: View {
     @StateObject private var authVM = AuthViewModel()
 
     private var isLoggedIn: Bool {
-        guard let savedIsUserLoggedIn else { return false }
+        guard let savedIsUserLoggedIn else {
+            return false
+        }
         return savedIsUserLoggedIn
     }
 
@@ -92,6 +95,7 @@ struct SettingsView: View {
     }
 }
 
+// MARK: - SettingsView_Previews
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {

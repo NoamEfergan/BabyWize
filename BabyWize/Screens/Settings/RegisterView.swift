@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - RegisterView
-
 struct RegisterView: View {
     private enum Textfields: Hashable {
         case email
@@ -132,8 +131,7 @@ struct RegisterView: View {
     }
 }
 
-// MARK: - LoginView_Previews
-
+// MARK: - RegisterView_Previews
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterView()

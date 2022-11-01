@@ -17,7 +17,9 @@ struct WidgetManager {
         let lastSleep = dataManager.sleepData.last
         let lastNappy = dataManager.nappyData.last
 
-        guard let container = UserDefaults(suiteName: Self.suiteName) else { return }
+        guard let container = UserDefaults(suiteName: Self.suiteName) else {
+            return
+        }
         if let lastFeed {
             container.set(lastFeed.amount.roundDecimalPoint().feedDisplayableAmount(), forKey: "lastFeed")
         }

@@ -7,12 +7,13 @@
 
 import SwiftUI
 
+// MARK: - AddEntryView
 struct AddEntryView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var vm: EntryViewModel
     @State private var startDate: Date = .init()
     @State private var endDate: Date = .init()
-    @State private var errorText: String = ""
+    @State private var errorText = ""
     @State private var entryType: EntryType = .feed
 
     var body: some View {
@@ -57,6 +58,7 @@ struct AddEntryView: View {
     }
 }
 
+// MARK: - AddEntryView_Previews
 struct AddEntryView_Previews: PreviewProvider {
     static var previews: some View {
         AddEntryView()

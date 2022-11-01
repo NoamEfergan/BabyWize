@@ -32,6 +32,8 @@
 		056083A9288417F700728F1F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
 		056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D7C7B28F32FB500E3514D /* LoadingView.swift */; };
 		05711B282906E5470023EA34 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05711B272906E5470023EA34 /* KeychainManager.swift */; };
+		057440BF2911C7690022D18E /* FeedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440BE2911C7690022D18E /* FeedChart.swift */; };
+		057440C12911C80C0022D18E /* SleepChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440C02911C80C0022D18E /* SleepChart.swift */; };
 		05817C5B28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5928C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld */; };
 		05817C5C28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5928C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld */; };
 		05817C5F28C788580040A4B0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5E28C788580040A4B0 /* DataController.swift */; };
@@ -167,6 +169,8 @@
 		056083A8288417F700728F1F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		056D7C7B28F32FB500E3514D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		05711B272906E5470023EA34 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		057440BE2911C7690022D18E /* FeedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedChart.swift; sourceTree = "<group>"; };
+		057440C02911C80C0022D18E /* SleepChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepChart.swift; sourceTree = "<group>"; };
 		05817C5A28C7806F0040A4B0 /* UserEntriesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserEntriesModel.xcdatamodel; sourceTree = "<group>"; };
 		05817C5E28C788580040A4B0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		059C68E42886AF0500C90710 /* Info View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info View.swift"; sourceTree = "<group>"; };
@@ -412,6 +416,8 @@
 				05FE380B2902895F002D3D34 /* QuickInfoView.swift */,
 				05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */,
 				05FE380D29028B13002D3D34 /* QuickInfoSection.swift */,
+				057440BE2911C7690022D18E /* FeedChart.swift */,
+				057440C02911C80C0022D18E /* SleepChart.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -775,10 +781,12 @@
 				05817C5F28C788580040A4B0 /* DataController.swift in Sources */,
 				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
 				05DD68CE288603820066BFEC /* Double+extension.swift in Sources */,
+				057440BF2911C7690022D18E /* FeedChart.swift in Sources */,
 				0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */,
 				059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */,
 				05711B282906E5470023EA34 /* KeychainManager.swift in Sources */,
 				3BE30FFC28D5DCF100E75D22 /* RegisterView.swift in Sources */,
+				057440C12911C80C0022D18E /* SleepChart.swift in Sources */,
 				05A42A52290596540040A543 /* LoginView.swift in Sources */,
 				056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */,
 				05817C5B28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */,

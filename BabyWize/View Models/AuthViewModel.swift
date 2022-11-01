@@ -9,8 +9,8 @@ import FirebaseAuth
 import Foundation
 
 final class AuthViewModel: ObservableObject {
-    @Published var isLoading: Bool = false
-    @Published var hasError: Bool = false
+    @Published var isLoading = false
+    @Published var hasError = false
 
     func validateEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"

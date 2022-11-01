@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - QuickInfoView
-
 struct QuickInfoView: View {
     let color: Color
     let backgroundColor: Color?
@@ -16,15 +15,13 @@ struct QuickInfoView: View {
     let value: String
     let shouldShowInfo: Bool
     let leadingTo: InfoScreens
-    
-    init(
-        color: Color,
-        backgroundColor: Color? = nil,
-        title: String,
-        value: String,
-        shouldShowInfo: Bool,
-        leadingTo: InfoScreens
-    ) {
+
+    init(color: Color,
+         backgroundColor: Color? = nil,
+         title: String,
+         value: String,
+         shouldShowInfo: Bool,
+         leadingTo: InfoScreens) {
         self.color = color
         self.backgroundColor = backgroundColor
         self.title = title
@@ -32,7 +29,7 @@ struct QuickInfoView: View {
         self.shouldShowInfo = shouldShowInfo
         self.leadingTo = leadingTo
     }
-    
+
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 10) {
@@ -57,15 +54,16 @@ struct QuickInfoView: View {
         .foregroundColor(color)
         .frame(height: 100)
         .frame(maxWidth: .infinity)
-        .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(backgroundColor ?? color.opacity(0.2)))
+        .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
+            .foregroundColor(backgroundColor ?? color.opacity(0.2)))
     }
 }
 
 // MARK: - QuickInfoView_Previews
-
 struct QuickInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        QuickInfoView(color: .init(hex: "#F05052"), title: "Last Feed", value: "170ml", shouldShowInfo: true, leadingTo: .feed)
+        QuickInfoView(color: .init(hex: "#F05052"), title: "Last Feed", value: "170ml", shouldShowInfo: true,
+                      leadingTo: .feed)
             .frame(width: 200)
     }
 }

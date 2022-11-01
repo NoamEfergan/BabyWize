@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - InputDetailView
 struct InputDetailView: View {
     let type: EntryType
     @InjectedObject private var dataManager: BabyDataManager
@@ -22,7 +23,9 @@ struct InputDetailView: View {
                     Section("Swipe right to edit, left to remove") {
                         ForEach(dataManager.feedData) { feed in
                             VStack {
-                                LabeledContent("Amount", value: feed.amount.roundDecimalPoint().feedDisplayableAmount().description)
+                                LabeledContent("Amount",
+                                               value: feed.amount.roundDecimalPoint().feedDisplayableAmount()
+                                                   .description)
                                 LabeledContent("Date", value: feed.date.formatted())
                                 if let note = feed.note, !note.isEmpty {
                                     LabeledContent("Notes", value: feed.note ?? "n/a")
@@ -111,6 +114,7 @@ struct InputDetailView: View {
     }
 }
 
+// MARK: - InputDetailView_Previews
 struct InputDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {

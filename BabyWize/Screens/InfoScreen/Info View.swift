@@ -8,6 +8,7 @@
 import Charts
 import SwiftUI
 
+// MARK: - InfoView
 struct InfoView: View {
     @InjectedObject private var dataManager: BabyDataManager
     @ObservedObject var vm: InfoScreenVM
@@ -21,21 +22,23 @@ struct InfoView: View {
             }
 
             Section("total history") {
-                Chart(dataManager.feedData) { feed in
-                    LineMark(
-                        x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                        y: .value("Amount", feed.amount)
-                    )
-                    .foregroundStyle(Color.blue.gradient)
-                    .interpolationMethod(.cardinal)
+                switch vm.type {
+                case .feed:
+                    FeedChart(feedData: dataManager.feedData, showTitle: false)
+                        .frame(height: 200)
+                case .sleep:
+                    SleepChart(sleepData: dataManager.sleepData, showTitle: false)
+                        .frame(height: 200)
+                case .nappy:
+                    EmptyView()
                 }
-                .frame(height: 200)
             }
         }
         .navigationTitle(vm.navigationTitle)
     }
 }
 
+// MARK: - InfoView_Previews
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {

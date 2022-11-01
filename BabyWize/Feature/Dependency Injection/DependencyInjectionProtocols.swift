@@ -7,10 +7,13 @@
 
 import Foundation
 import Swinject
+
+// MARK: - ResolverProtocol
 protocol ResolverProtocol {
     func resolve<T>(_ type: T.Type) -> T
 }
 
+// MARK: - Resolver
 final class Resolver: ResolverProtocol {
     static let shared = Resolver()
     private var container: Container = .init()

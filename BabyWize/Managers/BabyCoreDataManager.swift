@@ -33,8 +33,7 @@ struct BabyCoreDataManager {
     private func save() {
         do {
             try moc.save()
-        }
-        catch {
+        } catch {
             print("Failed to save item!")
             print(error.localizedDescription)
         }

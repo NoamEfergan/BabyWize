@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Swinject
 
+// MARK: - Inject
 @propertyWrapper
 struct Inject<Component> {
     let wrappedValue: Component
@@ -18,6 +19,7 @@ struct Inject<Component> {
     }
 }
 
+// MARK: - InjectedObject
 @propertyWrapper public struct InjectedObject<Service>: DynamicProperty where Service: ObservableObject {
     @ObservedObject private var service: Service
     public init() {

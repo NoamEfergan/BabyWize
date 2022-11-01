@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - GrayTextField
-
 struct GrayTextField: View {
     @Binding var text: String
     var title: String
@@ -74,7 +73,6 @@ struct GrayTextField: View {
 }
 
 // MARK: - GrayTextField_Previews
-
 struct GrayTextField_Previews: PreviewProvider {
     static var previews: some View {
         VStack {

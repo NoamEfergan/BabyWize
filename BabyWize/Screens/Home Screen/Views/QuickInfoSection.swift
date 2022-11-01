@@ -24,7 +24,7 @@ struct QuickInfoSection: View {
         guard let lastNappy = dataManager.nappyData.last else {
             return notAvailable
         }
-        return "\(lastNappy.dateTime.formatted(date:.omitted, time: .shortened)), \(lastNappy.wetOrSoiled.rawValue) "
+        return "\(lastNappy.dateTime.formatted(date: .omitted, time: .shortened)), \(lastNappy.wetOrSoiled.rawValue) "
     }
 
     var body: some View {

@@ -9,19 +9,16 @@ import Charts
 import SwiftUI
 
 // MARK: - Screens
-
 enum Screens: String {
     case home, settings, newEntry
 }
 
 // MARK: - InfoScreens
-
 enum InfoScreens: String {
     case feed, sleep, detailInputFeed, detailInputSleep, none
 }
 
 // MARK: - HomeView
-
 struct HomeView: View {
     @InjectedObject private var dataManager: BabyDataManager
     @State private var path: [Screens] = []
@@ -111,7 +108,6 @@ struct HomeView: View {
 }
 
 // MARK: - HomeView_Previews
-
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()

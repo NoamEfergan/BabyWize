@@ -11,19 +11,16 @@ import SwiftUI
 import Swinject
 
 // MARK: - AppDelegate
-
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_: UIApplication,
                      didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil)
-        -> Bool
-    {
+        -> Bool {
         FirebaseApp.configure()
         return true
     }
 }
 
 // MARK: - BabyWizeApp
-
 @main
 struct BabyWizeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -46,8 +43,7 @@ struct BabyWizeApp: App {
             .task {
                 if let savedIsUserLoggedIn,
                    savedIsUserLoggedIn,
-                   let credentials = try? KeychainManager.fetchCredentials()
-                {
+                   let credentials = try? KeychainManager.fetchCredentials() {
                     await authVM.login(email: credentials.email, password: credentials.password)
                 } else {
                     authVM.isLoading = false

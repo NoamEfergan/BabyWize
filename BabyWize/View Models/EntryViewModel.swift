@@ -9,29 +9,35 @@ import Foundation
 
 final class EntryViewModel: ObservableObject {
     @InjectedObject private var dataManager: BabyDataManager
-    @Published var amount: String = ""
+    @Published var amount = ""
     @Published var feedDate: Date = .init()
     @Published var sleepDate: Date = .init()
     @Published var startDate: Date = .init()
     @Published var endDate: Date = .init()
     @Published var changeDate: Date = .init()
     @Published var wetOrSoiled: NappyChange.WetOrSoiled = .wet
-    @Published var feedNote: String = ""
+    @Published var feedNote = ""
 
-    private var itemID: String = ""
+    private var itemID = ""
 
     func addEntry(type: EntryType) throws {
         switch type {
         case .feed:
-            guard !amount.isEmpty, let amountDouble = Double(amount) else { throw EntryError.invalidAmount }
+            guard !amount.isEmpty, let amountDouble = Double(amount) else {
+                throw EntryError.invalidAmount
+            }
             let note = feedNote.isEmpty ? nil : feedNote
             let feed: Feed = .init(id: UUID().uuidString, date: feedDate, amount: amountDouble, note: note)
             dataManager.addFeed(feed)
 
         case .sleep:
-            guard startDate != endDate else { throw EntryError.sameSleepDate }
+            guard startDate != endDate else {
+                throw EntryError.sameSleepDate
+            }
             guard startDate.timeIntervalSince1970 < endDate.timeIntervalSince1970
-            else { throw EntryError.invalidSleepDate }
+            else {
+                throw EntryError.invalidSleepDate
+            }
             let duration = endDate.timeIntervalSince(startDate)
             let sleep: Sleep = .init(id: UUID().uuidString, date: sleepDate, duration: duration.hourMinuteSecondMS)
             dataManager.addSleep(sleep)
@@ -43,32 +49,46 @@ final class EntryViewModel: ObservableObject {
     }
 
     func editEntry(type: EntryType) throws {
-        guard !itemID.isEmpty else { throw EntryError.general }
+        guard !itemID.isEmpty else {
+            throw EntryError.general
+        }
         switch type {
         case .feed:
             guard !amount.isEmpty, let amountDouble = Double(amount)
-            else { throw EntryError.invalidAmount }
+            else {
+                throw EntryError.invalidAmount
+            }
 
             guard let index = dataManager.feedData.firstIndex(where: { $0.id.description == itemID })
-            else { throw EntryError.general }
+            else {
+                throw EntryError.general
+            }
             let note = feedNote.isEmpty ? nil : feedNote
             let newFeed: Feed = .init(id: itemID, date: feedDate, amount: amountDouble, note: note)
             dataManager.updateFeed(newFeed, index: index)
         case .sleep:
-            guard startDate != endDate else { throw EntryError.sameSleepDate }
+            guard startDate != endDate else {
+                throw EntryError.sameSleepDate
+            }
 
             guard startDate.timeIntervalSince1970 < endDate.timeIntervalSince1970
-            else { throw EntryError.invalidSleepDate }
+            else {
+                throw EntryError.invalidSleepDate
+            }
 
             guard let index = dataManager.sleepData.firstIndex(where: { $0.id.description == itemID })
-            else { throw EntryError.general }
+            else {
+                throw EntryError.general
+            }
 
             let duration = endDate.timeIntervalSince(startDate)
             let newSleep: Sleep = .init(id: itemID, date: sleepDate, duration: duration.hourMinuteSecondMS)
             dataManager.sleepData[index] = newSleep
         case .nappy:
             guard let index = dataManager.nappyData.firstIndex(where: { $0.id.description == itemID })
-            else { throw EntryError.general }
+            else {
+                throw EntryError.general
+            }
             let newNappy: NappyChange = .init(id: itemID, dateTime: changeDate, wetOrSoiled: wetOrSoiled)
             dataManager.nappyData[index] = newNappy
         }
@@ -79,7 +99,9 @@ final class EntryViewModel: ObservableObject {
         itemID = id
         switch type {
         case .feed:
-            guard let item = dataManager.feedData.first(where: { $0.id.description == id }) else { return }
+            guard let item = dataManager.feedData.first(where: { $0.id.description == id }) else {
+                return
+            }
             amount = item.amount.roundDecimalPoint().description
             feedDate = item.date
             if let note = item.note {
@@ -91,7 +113,9 @@ final class EntryViewModel: ObservableObject {
 
         case .nappy:
             guard let item = dataManager.nappyData.first(where: { $0.id.description == id })
-            else { return }
+            else {
+                return
+            }
             changeDate = item.dateTime
             wetOrSoiled = item.wetOrSoiled
         }

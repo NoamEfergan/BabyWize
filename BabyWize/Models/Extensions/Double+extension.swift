@@ -18,9 +18,8 @@ extension Double {
     }
 
     func feedDisplayableAmount() -> String {
-        let userPreferredUnit: FeedUnits = .init(
-            rawValue: UserDefaults.standard.string(forKey: Constants.preferredUnit.rawValue) ?? ""
-        ) ?? .ml
+        let userPreferredUnit: FeedUnits = .init(rawValue: UserDefaults.standard
+            .string(forKey: Constants.preferredUnit.rawValue) ?? "") ?? .ml
         switch userPreferredUnit {
         case .ml:
             return description + userPreferredUnit.rawValue

@@ -7,10 +7,11 @@
 
 import SwiftUI
 
+// MARK: - EditEntryView
 struct EditEntryView<Item: DataItem>: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var vm: EntryViewModel
-    @State private var errorText: String = ""
+    @State private var errorText = ""
     let type: EntryType
     var item: Item
 
@@ -50,6 +51,7 @@ struct EditEntryView<Item: DataItem>: View {
     }
 }
 
+// MARK: - EditEntryView_Previews
 struct EditEntryView_Previews: PreviewProvider {
     static var previews: some View {
         EditEntryView(type: .feed, item: Feed(id: "1", date: .now, amount: 180, note: "test"))

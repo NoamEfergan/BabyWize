@@ -1,0 +1,61 @@
+# options
+--swiftversion 5.7
+--indent 4 #indent
+--ifdef no-indent #indent
+--indentstrings true #indent
+--wraparguments after-first # wrapArguments
+--wrapparameters after-first # wrapArguments
+--wrapcollections before-first # wrapArguments
+--wrapconditions after-first # wrapArguments
+--wrapreturntype if-multiline #wrapArguments
+--closingparen balanced # wrapArguments
+--wraptypealiases before-first # wrapArguments
+--wrapternary before-operators # wrap
+--redundanttype inferred # redundantType
+--maxwidth 120 # wrap
+--selfrequired EventDetailView # redundantSelf
+--stripunusedargs closure-only # unusedArguments
+--lineaftermarks false # blankLinesAroundMark
+
+# rules
+--rules anyObjectProtocol
+--rules blankLinesBetweenScopes
+--rules consecutiveSpaces
+--rules duplicateImports
+--rules extensionAccessControl
+--rules indent
+--rules markTypes
+--rules blankLinesAroundMark
+--rules redundantParens
+--rules redundantReturn
+--rules redundantSelf
+--rules redundantType
+--rules redundantPattern
+--rules redundantGet
+--rules redundantFileprivate
+--rules strongifiedSelf
+--rules trailingSpace
+--rules typeSugar
+--rules wrapConditionalBodies
+--rules wrap
+--rules wrapArguments
+--rules wrapAttributes
+--rules braces
+--rules redundantInit
+--rules redundantVoidReturnType
+--rules unusedArguments
+--rules spaceInsideBrackets
+--rules spaceInsideBraces
+--rules spaceAroundBraces
+--rules spaceInsideParens
+--rules spaceAroundParens
+--rules enumNamespaces
+--rules blockComments
+--rules spaceAroundComments
+--rules spaceInsideComments
+--rules blankLinesAtStartOfScope
+--rules blankLinesAtEndOfScope
+--rules blankLinesBetweenImports
+--rules emptyBraces
+--rules genericExtensions
+--rules redundantOptionalBinding

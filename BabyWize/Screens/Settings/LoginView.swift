@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - LoginView
 struct LoginView: View {
     private enum Textfields: Hashable {
         case email
@@ -114,6 +115,7 @@ struct LoginView: View {
     }
 }
 
+// MARK: - LoginView_Previews
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView(vm: AuthViewModel())

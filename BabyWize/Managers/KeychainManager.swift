@@ -24,27 +24,37 @@ struct KeychainManager {
     static func setCredentials(_ credentials: Credentials) throws {
         let account = credentials.email
         let password = credentials.password.data(using: String.Encoding.utf8)!
-        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrAccount as String: account,
-                                    kSecAttrServer as String: server,
-                                    kSecValueData as String: password]
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassInternetPassword,
+            kSecAttrAccount as String: account,
+            kSecAttrServer as String: server,
+            kSecValueData as String: password
+        ]
 
         let status = SecItemAdd(query as CFDictionary, nil)
-        guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
+        guard status == errSecSuccess else {
+            throw KeychainError.unhandledError(status: status)
+        }
     }
 
     static func fetchCredentials() throws -> Credentials {
         // Construct query
-        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrServer as String: server,
-                                    kSecMatchLimit as String: kSecMatchLimitOne,
-                                    kSecReturnAttributes as String: true,
-                                    kSecReturnData as String: true]
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassInternetPassword,
+            kSecAttrServer as String: server,
+            kSecMatchLimit as String: kSecMatchLimitOne,
+            kSecReturnAttributes as String: true,
+            kSecReturnData as String: true
+        ]
         // Fetch
         var item: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
-        guard status != errSecItemNotFound else { throw KeychainError.noPassword }
-        guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
+        guard status != errSecItemNotFound else {
+            throw KeychainError.noPassword
+        }
+        guard status == errSecSuccess else {
+            throw KeychainError.unhandledError(status: status)
+        }
 
         // Convert to Credentials
         guard let existingItem = item as? [String: Any],

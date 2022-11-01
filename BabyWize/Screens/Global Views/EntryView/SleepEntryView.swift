@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - SleepEntryView
 struct SleepEntryView: View {
     @EnvironmentObject private var vm: EntryViewModel
     var body: some View {
@@ -22,6 +23,7 @@ struct SleepEntryView: View {
     }
 }
 
+// MARK: - SleepEntryView_Previews
 struct SleepEntryView_Previews: PreviewProvider {
     static var previews: some View {
         SleepEntryView()

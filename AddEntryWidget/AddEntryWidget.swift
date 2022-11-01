@@ -9,35 +9,34 @@ import Intents
 import SwiftUI
 import WidgetKit
 
+// MARK: - Provider
 struct Provider: IntentTimelineProvider {
     private func getEntry(configuration: ConfigurationIntent, date: Date) -> SimpleEntry {
         guard let container = UserDefaults(suiteName: "group.babyData") else {
-            return SimpleEntry(
-                date: date,
-                configuration: configuration,
-                lastFeed: nil,
-                lastSleep: nil,
-                lastNappy: nil
-            )
+            return SimpleEntry(date: date,
+                               configuration: configuration,
+                               lastFeed: nil,
+                               lastSleep: nil,
+                               lastNappy: nil)
         }
-        return SimpleEntry(
-            date: date,
-            configuration: configuration,
-            lastFeed: container.string(forKey: "lastFeed"),
-            lastSleep: container.string(forKey: "lastSleep"),
-            lastNappy: container.object(forKey: "lastNappy") as? Date
-        )
+        return SimpleEntry(date: date,
+                           configuration: configuration,
+                           lastFeed: container.string(forKey: "lastFeed"),
+                           lastSleep: container.string(forKey: "lastSleep"),
+                           lastNappy: container.object(forKey: "lastNappy") as? Date)
     }
 
     func placeholder(in _: Context) -> SimpleEntry {
         getEntry(configuration: ConfigurationIntent(), date: Date())
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in _: Context, completion: @escaping (SimpleEntry) -> Void) {
+    func getSnapshot(for configuration: ConfigurationIntent, in _: Context,
+                     completion: @escaping (SimpleEntry) -> Void) {
         completion(getEntry(configuration: configuration, date: Date()))
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in _: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+    func getTimeline(for configuration: ConfigurationIntent, in _: Context,
+                     completion: @escaping (Timeline<Entry>) -> Void) {
         var entries: [SimpleEntry] = []
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
@@ -52,6 +51,7 @@ struct Provider: IntentTimelineProvider {
     }
 }
 
+// MARK: - SimpleEntry
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
@@ -60,11 +60,10 @@ struct SimpleEntry: TimelineEntry {
     let lastNappy: Date?
 }
 
-// MARK: - Main
-
+// MARK: - AddEntryWidget
 @main
 struct AddEntryWidget: Widget {
-    let kind: String = "AddEntryWidget"
+    let kind = "AddEntryWidget"
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             WidgetView(entry: entry)
@@ -75,6 +74,7 @@ struct AddEntryWidget: Widget {
     }
 }
 
+// MARK: - WidgetView
 struct WidgetView: View {
     @Environment(\.widgetFamily) private var widgetFamily
     var entry: Provider.Entry
@@ -124,29 +124,22 @@ struct WidgetView: View {
     }
 }
 
-// MARK: - Preview
-
+// MARK: - AddEntryWidget_Previews
 struct AddEntryWidget_Previews: PreviewProvider {
     static var previews: some View {
         WidgetView(entry:
-            SimpleEntry(
-                date: Date(),
-                configuration: ConfigurationIntent(),
-                lastFeed: "120 ml",
-                lastSleep: "1 hr 20 min",
-                lastNappy: Date()
-            )
-        )
-        .previewContext(WidgetPreviewContext(family: .systemMedium))
+            SimpleEntry(date: Date(),
+                        configuration: ConfigurationIntent(),
+                        lastFeed: "120 ml",
+                        lastSleep: "1 hr 20 min",
+                        lastNappy: Date()))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
         WidgetView(entry:
-            SimpleEntry(
-                date: Date(),
-                configuration: ConfigurationIntent(),
-                lastFeed: "120 ml",
-                lastSleep: "1 hr 20 min",
-                lastNappy: Date()
-            )
-        )
-        .previewContext(WidgetPreviewContext(family: .systemSmall))
+            SimpleEntry(date: Date(),
+                        configuration: ConfigurationIntent(),
+                        lastFeed: "120 ml",
+                        lastSleep: "1 hr 20 min",
+                        lastNappy: Date()))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

@@ -8,10 +8,12 @@
 import Foundation
 import SwiftUI
 
+// MARK: - DataItem
 protocol DataItem: Codable, Hashable, Identifiable {
     var id: String { get }
 }
 
+// MARK: - NappyChange
 struct NappyChange: DataItem {
     let id: String
     let dateTime: Date
@@ -22,12 +24,14 @@ struct NappyChange: DataItem {
     }
 }
 
+// MARK: - Sleep
 struct Sleep: DataItem {
     let id: String
     let date: Date
     let duration: String
 }
 
+// MARK: - Feed
 struct Feed: DataItem {
     let id: String
     let date: Date
