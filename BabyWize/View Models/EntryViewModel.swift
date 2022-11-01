@@ -15,6 +15,7 @@ final class EntryViewModel: ObservableObject {
     @Published var startDate: Date = .init()
     @Published var endDate: Date = .init()
     @Published var changeDate: Date = .init()
+    @Published var wetOrSoiled: NappyChange.WetOrSoiled = .wet
 
     private var itemID: String = ""
 
@@ -33,7 +34,7 @@ final class EntryViewModel: ObservableObject {
             let sleep: Sleep = .init(id: UUID().uuidString, date: sleepDate, duration: duration.hourMinuteSecondMS)
             dataManager.addSleep(sleep)
         case .nappy:
-            let nappyChange: NappyChange = .init(id: UUID().uuidString, dateTime: changeDate)
+            let nappyChange: NappyChange = .init(id: UUID().uuidString, dateTime: changeDate, wetOrSoiled: wetOrSoiled)
             dataManager.addNappyChange(nappyChange)
         }
         reset()
@@ -50,7 +51,6 @@ final class EntryViewModel: ObservableObject {
             else { throw EntryError.general }
             let newFeed: Feed = .init(id: itemID, date: feedDate, amount: amountDouble)
             dataManager.updateFeed(newFeed, index: index)
-//            realm.update(id: newFeed.id, type: .feed, item: newFeed)
         case .sleep:
             guard startDate != endDate else { throw EntryError.sameSleepDate }
 
@@ -63,13 +63,11 @@ final class EntryViewModel: ObservableObject {
             let duration = endDate.timeIntervalSince(startDate)
             let newSleep: Sleep = .init(id: itemID, date: sleepDate, duration: duration.hourMinuteSecondMS)
             dataManager.sleepData[index] = newSleep
-//            realm.update(id: newSleep.id, type: .sleep, item: newSleep)
         case .nappy:
             guard let index = dataManager.nappyData.firstIndex(where: { $0.id.description == itemID })
             else { throw EntryError.general }
-            let newNappy: NappyChange = .init(id: itemID, dateTime: changeDate)
+            let newNappy: NappyChange = .init(id: itemID, dateTime: changeDate, wetOrSoiled: wetOrSoiled)
             dataManager.nappyData[index] = newNappy
-//            realm.update(id: newNappy.id, type: .nappy, item: newNappy)
         }
         reset()
     }
@@ -100,6 +98,7 @@ final class EntryViewModel: ObservableObject {
         endDate = .init()
         changeDate = .init()
         sleepDate = .init()
+        wetOrSoiled = .wet
     }
 
     enum EntryError: Error {

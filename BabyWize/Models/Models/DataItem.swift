@@ -15,6 +15,11 @@ protocol DataItem: Codable, Hashable, Identifiable {
 struct NappyChange: DataItem {
     let id: String
     let dateTime: Date
+    let wetOrSoiled: WetOrSoiled
+
+    enum WetOrSoiled: String, Codable, CaseIterable {
+        case wet, soiled
+    }
 }
 
 struct Sleep: DataItem {

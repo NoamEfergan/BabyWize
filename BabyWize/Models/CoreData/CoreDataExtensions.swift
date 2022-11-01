@@ -21,7 +21,7 @@ extension SavedSleep {
 
 extension SavedNappyChange {
     func mapToNappyChange() -> NappyChange {
-        .init(id: id ?? "", dateTime: dateTime ?? Date())
+        .init(id: id ?? "", dateTime: dateTime ?? Date(), wetOrSoiled: .init(rawValue: wetOrSoiled ?? "") ?? .wet)
     }
 }
 
