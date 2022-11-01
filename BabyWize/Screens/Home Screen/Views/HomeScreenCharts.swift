@@ -11,7 +11,6 @@ import SwiftUI
 // MARK: - HomeScreenCharts
 struct HomeScreenCharts: View {
     @InjectedObject private var dataManager: BabyDataManager
-    private let nothingYetTitle = "Nothing to show yet!"
     @State private var selectedChart: EntryType = .feed
 
     var body: some View {
@@ -78,7 +77,7 @@ struct HomeScreenCharts: View {
 
     private var feedInfoTitle: String {
         if dataManager.feedData.isEmpty {
-            return nothingYetTitle
+            return "Feed info"
         } else {
             let feedCount = dataManager.feedData.count >= 6 ? 6 : dataManager.feedData.count
             return "Feed info (last \(feedCount))"
@@ -87,7 +86,7 @@ struct HomeScreenCharts: View {
 
     private var sleepInfoTitle: String {
         if dataManager.sleepData.isEmpty {
-            return nothingYetTitle
+            return "Sleep info"
         } else {
             let feedCount = dataManager.sleepData.count >= 3 ? 3 : dataManager.sleepData.count
             return "Sleep info (last \(feedCount))"
