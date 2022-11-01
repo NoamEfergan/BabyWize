@@ -17,6 +17,7 @@ final class BabyDataManager: ObservableObject {
     @Published var sleepData: [Sleep] = []
     @Published var feedData: [Feed] = []
     @Published var nappyData: [NappyChange] = []
+    private let preferredUnit: String = UserDefaults.standard.string(forKey: Constants.preferredUnit.rawValue) ?? "ml"
 
     init() {
         fetchSavedValues()
@@ -27,7 +28,7 @@ final class BabyDataManager: ObservableObject {
     func getAverage(for type: EntryType) -> String {
         switch type {
         case .feed:
-            return getAverageFeed()
+            return getAverageFeed() + preferredUnit
         case .sleep:
             return getAverageSleepDuration()
         case .nappy:
@@ -39,7 +40,11 @@ final class BabyDataManager: ObservableObject {
     func getBiggest(for type: EntryType) -> String {
         switch type {
         case .feed:
-            return feedData.max(by: { $0.amount < $1.amount })?.amount.roundDecimalPoint().description ?? "None found"
+            if let max = feedData.max(by: { $0.amount < $1.amount })?.amount.roundDecimalPoint().description {
+                return max + preferredUnit
+            } else {
+                return "None found"
+            }
         case .sleep:
             return sleepData.max(by: { $0.duration < $1.duration })?.duration ?? "None found"
         case .nappy:
@@ -50,7 +55,12 @@ final class BabyDataManager: ObservableObject {
     func getSmallest(for type: EntryType) -> String {
         switch type {
         case .feed:
-            return feedData.min(by: { $0.amount < $1.amount })?.amount.roundDecimalPoint().description ?? "None found"
+
+            if let min = feedData.min(by: { $0.amount < $1.amount })?.amount.roundDecimalPoint().description {
+                return min + preferredUnit
+            } else {
+                return "None found"
+            }
         case .sleep:
             return sleepData.min(by: { $0.duration < $1.duration })?.duration ?? "None found"
         case .nappy:

@@ -35,6 +35,18 @@ struct HomeScreenCharts: View {
                 PlaceholderChart(type: .feed)
             } else {
                 Chart(feedData) { feed in
+                    // This is a workaround because annotations don't work on line marks
+                    BarMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
+                            y: .value("Amount", feed.amount))
+                        .foregroundStyle(Color.clear)
+                        .annotation(position: .top, alignment: .center) {
+                            Text(feed.note ?? "")
+                                .foregroundColor(.secondary)
+                                .font(.footnote)
+                        }
+                    PointMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
+                             y: .value("Amount", feed.amount))
+                        .foregroundStyle(Color.blue.gradient)
                     LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
                              y: .value("Amount", feed.amount))
                         .foregroundStyle(Color.blue.gradient)

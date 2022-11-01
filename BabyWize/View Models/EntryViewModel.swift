@@ -16,6 +16,7 @@ final class EntryViewModel: ObservableObject {
     @Published var endDate: Date = .init()
     @Published var changeDate: Date = .init()
     @Published var wetOrSoiled: NappyChange.WetOrSoiled = .wet
+    @Published var feedNote: String = ""
 
     private var itemID: String = ""
 
@@ -23,7 +24,8 @@ final class EntryViewModel: ObservableObject {
         switch type {
         case .feed:
             guard !amount.isEmpty, let amountDouble = Double(amount) else { throw EntryError.invalidAmount }
-            let feed: Feed = .init(id: UUID().uuidString, date: feedDate, amount: amountDouble)
+            let note = feedNote.isEmpty ? nil : feedNote
+            let feed: Feed = .init(id: UUID().uuidString, date: feedDate, amount: amountDouble, note: note)
             dataManager.addFeed(feed)
 
         case .sleep:
@@ -49,7 +51,8 @@ final class EntryViewModel: ObservableObject {
 
             guard let index = dataManager.feedData.firstIndex(where: { $0.id.description == itemID })
             else { throw EntryError.general }
-            let newFeed: Feed = .init(id: itemID, date: feedDate, amount: amountDouble)
+            let note = feedNote.isEmpty ? nil : feedNote
+            let newFeed: Feed = .init(id: itemID, date: feedDate, amount: amountDouble, note: note)
             dataManager.updateFeed(newFeed, index: index)
         case .sleep:
             guard startDate != endDate else { throw EntryError.sameSleepDate }
@@ -79,6 +82,9 @@ final class EntryViewModel: ObservableObject {
             guard let item = dataManager.feedData.first(where: { $0.id.description == id }) else { return }
             amount = item.amount.roundDecimalPoint().description
             feedDate = item.date
+            if let note = item.note {
+                feedNote = note
+            }
         case .sleep:
             // TODO: Find a way to get this
             return
@@ -87,10 +93,11 @@ final class EntryViewModel: ObservableObject {
             guard let item = dataManager.nappyData.first(where: { $0.id.description == id })
             else { return }
             changeDate = item.dateTime
+            wetOrSoiled = item.wetOrSoiled
         }
     }
 
-    private func reset() {
+    func reset() {
         // Reset all values after setting
         amount = ""
         feedDate = .init()
@@ -99,6 +106,7 @@ final class EntryViewModel: ObservableObject {
         changeDate = .init()
         sleepDate = .init()
         wetOrSoiled = .wet
+        feedNote = ""
     }
 
     enum EntryError: Error {

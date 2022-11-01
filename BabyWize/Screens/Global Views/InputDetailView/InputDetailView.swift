@@ -24,6 +24,9 @@ struct InputDetailView: View {
                             VStack {
                                 LabeledContent("Amount", value: feed.amount.roundDecimalPoint().feedDisplayableAmount().description)
                                 LabeledContent("Date", value: feed.date.formatted())
+                                if let note = feed.note, !note.isEmpty {
+                                    LabeledContent("Notes", value: feed.note ?? "n/a")
+                                }
                             }
                             .swipeActions(edge: .leading) {
                                 Button {
@@ -78,6 +81,7 @@ struct InputDetailView: View {
                         ForEach(dataManager.nappyData, id: \.id) { change in
                             VStack {
                                 LabeledContent("Date", value: change.dateTime.formatted())
+                                LabeledContent("Wet or soiled", value: change.wetOrSoiled.rawValue)
                             }
                             .sheet(isPresented: $isShowingEntryView) {
                                 EditEntryView(type: .nappy, item: change)
@@ -101,6 +105,9 @@ struct InputDetailView: View {
             }
         }
         .environment(\.editMode, $editMode)
+        .onDisappear {
+            entryVM.reset()
+        }
     }
 }
 
@@ -112,6 +119,10 @@ struct InputDetailView_Previews: PreviewProvider {
         }
         NavigationStack {
             InputDetailView(type: .sleep)
+                .environmentObject(EntryViewModel())
+        }
+        NavigationStack {
+            InputDetailView(type: .nappy)
                 .environmentObject(EntryViewModel())
         }
     }

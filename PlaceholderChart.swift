@@ -35,7 +35,7 @@ struct PlaceholderChart: View {
                 .font(.system(.title2, design: .rounded))
         }
     }
-    
+
     private var dummyFeedChart: some View {
         Chart(MockData.mockFeed) { feed in
             LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
@@ -45,7 +45,7 @@ struct PlaceholderChart: View {
         .frame(height: 200)
         .frame(width: UIScreen.main.bounds.width)
     }
-    
+
     private var dummySleepChart: some View {
         Chart(MockData.mockSleep) { sleep in
             let dateValue = sleep.date.formatted(date: .abbreviated, time: .shortened)
@@ -62,7 +62,6 @@ struct PlaceholderChart: View {
         .chartYAxis(.hidden)
         .frame(height: 200)
         .frame(width: UIScreen.main.bounds.width)
-
     }
 }
 
@@ -74,26 +73,31 @@ struct PlaceholderChart_Previews: PreviewProvider {
     }
 }
 
-
+// MARK: - PlaceholderChart.MockData
 extension PlaceholderChart {
     // MARK: - MockData
     enum MockData {
         static let mockFeed: [Feed] = [
             Feed(id: UUID().uuidString,
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount()),
+                 amount: .getRandomFeedAmount(),
+                 note: nil),
             Feed(id: UUID().uuidString,
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount()),
+                 amount: .getRandomFeedAmount(),
+                 note: nil),
             Feed(id: UUID().uuidString,
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount()),
+                 amount: .getRandomFeedAmount(),
+                 note: nil),
             Feed(id: UUID().uuidString,
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount()),
+                 amount: .getRandomFeedAmount(),
+                 note: nil),
             Feed(id: UUID().uuidString,
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount())
+                 amount: .getRandomFeedAmount(),
+                 note: nil)
         ]
         .sorted(by: { $0.date < $1.date })
 

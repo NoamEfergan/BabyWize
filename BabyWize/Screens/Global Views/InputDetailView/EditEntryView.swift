@@ -52,7 +52,7 @@ struct EditEntryView<Item: DataItem>: View {
 
 struct EditEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        EditEntryView(type: .feed, item: Feed(id: "1", date: .now, amount: 180))
+        EditEntryView(type: .feed, item: Feed(id: "1", date: .now, amount: 180, note: "test"))
             .environmentObject(EntryViewModel())
     }
 }

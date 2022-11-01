@@ -32,4 +32,5 @@ struct Feed: DataItem {
     let id: String
     let date: Date
     let amount: Double
+    let note: String?
 }

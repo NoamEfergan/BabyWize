@@ -17,17 +17,27 @@ struct BabyCoreDataManager {
 
     func addFeed(_ item: Feed) {
         item.mapToSavedFeed(context: moc)
-        try? moc.save()
+        save()
     }
 
     func addSleep(_ item: Sleep) {
         item.mapToSavedSleep(context: moc)
-        try? moc.save()
+        save()
     }
 
     func addNappyChange(_ item: NappyChange) {
         item.mapToSavedChange(context: moc)
-        try? moc.save()
+        save()
+    }
+
+    private func save() {
+        do {
+            try moc.save()
+        }
+        catch {
+            print("Failed to save item!")
+            print(error.localizedDescription)
+        }
     }
 
     // Update
@@ -37,6 +47,7 @@ struct BabyCoreDataManager {
         let relevantFeed = savedFeeds?.first(where: { $0.id == item.id })
         relevantFeed?.date = item.date
         relevantFeed?.amount = item.amount
+        relevantFeed?.note = item.note
         try? moc.save()
     }
 
@@ -52,6 +63,7 @@ struct BabyCoreDataManager {
         let savedChanges = try? moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
         let relevantChange = savedChanges?.first(where: { $0.id == item.id })
         relevantChange?.dateTime = item.dateTime
+        relevantChange?.wetOrSoiled = item.wetOrSoiled.rawValue
         try? moc.save()
     }
 

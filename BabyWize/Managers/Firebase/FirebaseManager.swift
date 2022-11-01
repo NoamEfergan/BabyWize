@@ -10,7 +10,6 @@ import FirebaseFirestore
 import Foundation
 
 struct FirebaseManager {
-//    @Inject private var dataManager: BabyDataManager
     let db = Firestore.firestore()
 
     func addFeed(_ item: Feed) {

@@ -19,6 +19,11 @@ struct FeedEntryView: View {
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.decimalPad)
             }
+            LabeledContent("Notes") {
+                TextField("Milk, porridge, fruit etc... ", text: $vm.feedNote)
+                    .textFieldStyle(.roundedBorder)
+            }
+
         }
         .padding()
     }
