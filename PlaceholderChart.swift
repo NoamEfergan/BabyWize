@@ -24,9 +24,9 @@ struct PlaceholderChart: View {
             }
         }
         .disabled(true)
-        .opacity(0.2)
+        .blur(radius: 2)
         .overlay {
-            RoundedRectangle(cornerRadius: 32, style: .continuous)
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .padding()
                 .foregroundColor(.secondary)
             Text("Nothing to show just yet,\n add a \(type.rawValue)!")
