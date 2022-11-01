@@ -38,7 +38,6 @@ struct HomeView: View {
                         .padding()
                     HomeScreenCharts()
                         .frame(height: 350)
-                        .padding()
                 }
             }
             .toolbar {

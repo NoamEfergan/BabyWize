@@ -27,9 +27,10 @@ struct HomeScreenCharts: View {
     @ViewBuilder
     private var feedView: some View {
         let feedData = dataManager.feedData.getUpTo(limit: 6)
-        VStack {
+        VStack(alignment: .leading) {
             Text(feedInfoTitle)
                 .font(.system(.title, design: .rounded))
+                .padding(.leading)
             if feedData.isEmpty {
                 PlaceholderChart(type: .feed)
             } else {
@@ -48,9 +49,10 @@ struct HomeScreenCharts: View {
     @ViewBuilder
     private var sleepView: some View {
         let sleepData = dataManager.sleepData.getUpTo(limit: 3)
-        VStack {
+        VStack(alignment: .leading) {
             Text(sleepInfoTitle)
                 .font(.system(.title, design: .rounded))
+                .padding(.leading)
             if sleepData.isEmpty {
                 PlaceholderChart(type: .sleep)
             } else {
