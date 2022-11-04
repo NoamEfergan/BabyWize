@@ -10,8 +10,10 @@ import SwiftUI
 
 // MARK: - SleepChart
 struct SleepChart: View {
-    let sleepData: [Sleep]
-    var showTitle: Bool = true
+    var sleepData: [Sleep] { willSet {
+        self.sleepData = newValue.sorted(by: { $0.date < $1.date})
+    }}
+    var showTitle = true
     var body: some View {
         VStack(alignment: .leading) {
             if showTitle {
@@ -22,21 +24,26 @@ struct SleepChart: View {
             if sleepData.isEmpty {
                 PlaceholderChart(type: .sleep)
             } else {
-                Chart(sleepData) { sleep in
-                    let dateValue = sleep.date.formatted(date: .abbreviated, time: .shortened)
-                    let amountValue = sleep.duration.convertToTimeInterval().displayableString
-                    BarMark(x: .value("Time", dateValue),
-                            y: .value("Amount", sleep.duration.convertToTimeInterval()))
-                        .annotation(position: .overlay, alignment: .center) {
-                            Text("\(amountValue)")
-                                .foregroundColor(.white)
-                        }
+                ScrollView(.horizontal){
+                    Chart(sleepData) { sleep in
+                        let dateValue = sleep.date.formatted(date: .abbreviated, time: .shortened)
+                        let amountValue = sleep.duration.convertToTimeInterval().displayableString
+                        BarMark(x: .value("Time", dateValue),
+                                y: .value("Amount", sleep.duration.convertToTimeInterval()))
+                            .annotation(position: .overlay, alignment: .center) {
+                                Text("\(amountValue)")
+                                    .foregroundColor(.white)
+                            }
 
-                        .foregroundStyle(Color.red.gradient)
+                            .foregroundStyle(Color.red.gradient)
+                    }
+                .chartPlotStyle(content: { plotArea in
+                    plotArea.frame(width: CGFloat(sleepData.count) * 140)
+                })
+                    .chartYAxis(.hidden)
+                    .frame(height: 200)
+                    .frame(width: UIScreen.main.bounds.width)
                 }
-                .chartYAxis(.hidden)
-                .frame(height: 200)
-                .frame(width: UIScreen.main.bounds.width)
             }
         }
     }

@@ -10,8 +10,10 @@ import SwiftUI
 
 // MARK: - FeedChart
 struct FeedChart: View {
-    let feedData: [Feed]
-    var showTitle: Bool = true
+    var feedData: [Feed] { willSet {
+        self.feedData = newValue.sorted(by: { $0.date < $1.date } )
+    }}
+    var showTitle = true
     var body: some View {
         VStack(alignment: .leading) {
             if showTitle {
@@ -22,25 +24,30 @@ struct FeedChart: View {
             if feedData.isEmpty {
                 PlaceholderChart(type: .feed)
             } else {
-                Chart(feedData) { feed in
-                    // This is a workaround because annotations don't work on line marks
-                    BarMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                            y: .value("Amount", feed.amount))
-                        .foregroundStyle(Color.clear)
-                        .annotation(position: .top, alignment: .center) {
-                            Text(feed.note ?? "")
-                                .foregroundColor(.secondary)
-                                .font(.footnote)
-                        }
-                    PointMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                              y: .value("Amount", feed.amount))
-                        .foregroundStyle(Color.blue.gradient)
-                    LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                             y: .value("Amount", feed.amount))
-                        .foregroundStyle(Color.blue.gradient)
+                ScrollView(.horizontal) {
+                    Chart(feedData) { feed in
+                        // This is a workaround because annotations don't work on line marks
+                        BarMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
+                                y: .value("Amount", feed.amount))
+                            .foregroundStyle(Color.clear)
+                            .annotation(position: .top, alignment: .center) {
+                                Text(feed.note ?? "")
+                                    .foregroundColor(.secondary)
+                                    .font(.footnote)
+                            }
+                        PointMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
+                                  y: .value("Amount", feed.amount))
+                            .foregroundStyle(Color.blue.gradient)
+                        LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
+                                 y: .value("Amount", feed.amount))
+                            .foregroundStyle(Color.blue.gradient)
+                    }
+                    .chartPlotStyle(content: { plotArea in
+                        plotArea.frame(width: CGFloat(feedData.count) * 80)
+                    })
+                    .frame(maxHeight: .greatestFiniteMagnitude)
+                    .frame(width: UIScreen.main.bounds.width)
                 }
-                .frame(height: 200)
-                .frame(width: UIScreen.main.bounds.width)
             }
         }
     }
