@@ -11,19 +11,15 @@ import SwiftUI
 struct AddEntryView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var vm: EntryViewModel
+    @Environment(\.dynamicTypeSize) var typeSize
     @State private var startDate: Date = .init()
     @State private var endDate: Date = .init()
     @State private var errorText = ""
     @State private var entryType: EntryType = .feed
 
     var body: some View {
-        VStack(spacing: 15) {
-            Picker("Entry Type", selection: $entryType) {
-                ForEach(EntryType.allCases, id: \.self) {
-                    Text($0.rawValue.capitalized)
-                }
-            }
-            .pickerStyle(.segmented)
+        ScrollView {
+            entryPicker
             switch entryType {
             case .feed:
                 FeedEntryView()
@@ -54,7 +50,36 @@ struct AddEntryView: View {
             errorText = ""
         })
         .animation(.easeIn, value: errorText)
-        .animation(.easeIn, value: entryType)
+        .animation(.easeInOut, value: entryType)
+    }
+
+    private var pickerTitle: some View {
+        Text("Entry Type")
+    }
+
+    private var picker: some View {
+        Picker("Entry Type?", selection:$entryType) {
+            ForEach(EntryType.allCases, id: \.self) {
+                Text($0.rawValue.capitalized)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var entryPicker: some View {
+            switch typeSize {
+            case .xSmall, .small, .medium, .large, .xLarge , .xxLarge:
+                HStack {
+                    picker
+                        .pickerStyle(.segmented)
+                }
+            default:
+                VStack {
+                    pickerTitle
+                    picker
+                        .pickerStyle(.automatic)
+                }
+            }
     }
 }
 

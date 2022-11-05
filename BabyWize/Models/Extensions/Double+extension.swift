@@ -34,11 +34,11 @@ extension Double {
 extension TimeInterval {
     var displayableString: String {
         let hoursString = hour > 1 ? " hrs" : " hour"
-        let minuteString = minute > 1 ? " mins" : " min"
-        let separator = minute > 0 ? "," : ""
+        let minuteString = minute > 1 ? "mins" : "min"
+        let separator = minute > 0 ? ",\n" : ""
         let hourDisplayable = hour > 0 ? hour.description + hoursString : ""
         let minutesDisplayable = minute > 0 ? minute.description + minuteString : ""
-        return "\(hourDisplayable)\(separator) \(minutesDisplayable)"
+        return "\(hourDisplayable)\(separator)\(minutesDisplayable)"
     }
 
     var hourMinuteSecondMS: String {

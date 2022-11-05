@@ -12,18 +12,11 @@ struct FeedEntryView: View {
     @EnvironmentObject private var vm: EntryViewModel
 
     var body: some View {
-        VStack {
-            DatePicker("When", selection: $vm.feedDate)
-                .datePickerStyle(.compact)
-            LabeledContent("Amount") {
-                TextField("Please enter an amount", text: $vm.amount)
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.decimalPad)
-            }
-            LabeledContent("Notes") {
-                TextField("Milk, porridge, fruit etc... ", text: $vm.feedNote)
-                    .textFieldStyle(.roundedBorder)
-            }
+        VStack(alignment: .leading) {
+            AccessibleDatePicker(label: "When", value: $vm.feedDate)
+            AccessibleLabeledTextField(label: "Amount", hint: "Please enter an amount", value: $vm.amount)
+                .keyboardType(.decimalPad)
+            AccessibleLabeledTextField(label: "Notes", hint: "Milk, porridge, fruit etc...", value: $vm.feedNote)
         }
         .padding()
     }

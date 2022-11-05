@@ -15,9 +15,9 @@ struct InfoView: View {
     var body: some View {
         List {
             Section("general") {
-                LabeledContent(vm.averageTitle, value: dataManager.getAverage(for: vm.type))
-                LabeledContent(vm.largestTitle, value: dataManager.getBiggest(for: vm.type))
-                LabeledContent(vm.smallestTitle, value: dataManager.getSmallest(for: vm.type))
+                AccessibleLabeledContent(label:vm.averageTitle, value: dataManager.getAverage(for: vm.type))
+                AccessibleLabeledContent(label:vm.largestTitle, value: dataManager.getBiggest(for: vm.type))
+                AccessibleLabeledContent(label: vm.smallestTitle, value: dataManager.getSmallest(for: vm.type))
                 NavigationLink("All inputs", value: vm.inputScreen)
             }
 
@@ -34,6 +34,7 @@ struct InfoView: View {
                 }
             }
         }
+        .font(.system(.body, design: .rounded))
         .navigationTitle(vm.navigationTitle)
     }
 }

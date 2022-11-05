@@ -10,6 +10,7 @@ import SwiftUI
 // MARK: - QuickInfoSection
 struct QuickInfoSection: View {
     @InjectedObject private var dataManager: BabyDataManager
+    @Environment(\.dynamicTypeSize) var typeSize
     let notAvailable = "N/A"
 
     private var feedValue: String { dataManager.feedData.last?.amount.roundDecimalPoint().feedDisplayableAmount()
@@ -28,8 +29,30 @@ struct QuickInfoSection: View {
     }
 
     var body: some View {
-        VStack {
-            HStack {
+        switch typeSize {
+        case .xSmall, .small, .medium, .large:
+            VStack {
+                HStack {
+                    QuickInfoView(color: .init(hex: "#F05052"),
+                                  title: "Last Feed",
+                                  value: feedValue,
+                                  shouldShowInfo: !dataManager.feedData.isEmpty,
+                                  leadingTo: .feed)
+                    QuickInfoView(color: .init(hex: "#5354EC"),
+                                  title: "Last Sleep",
+                                  value: sleepValue,
+                                  shouldShowInfo: !dataManager.sleepData.isEmpty,
+                                  leadingTo: .sleep)
+                }
+                QuickInfoView(color: .init(hex: "#F0A24E"),
+                              backgroundColor: .init(hex: "#F6DDC5"),
+                              title: "Last Nappy change",
+                              value: nappyValue,
+                              shouldShowInfo: false,
+                              leadingTo: .none)
+            }
+        default:
+            VStack {
                 QuickInfoView(color: .init(hex: "#F05052"),
                               title: "Last Feed",
                               value: feedValue,
@@ -40,13 +63,13 @@ struct QuickInfoSection: View {
                               value: sleepValue,
                               shouldShowInfo: !dataManager.sleepData.isEmpty,
                               leadingTo: .sleep)
+                QuickInfoView(color: .init(hex: "#F0A24E"),
+                              backgroundColor: .init(hex: "#F6DDC5"),
+                              title: "Last Nappy change",
+                              value: nappyValue,
+                              shouldShowInfo: false,
+                              leadingTo: .none)
             }
-            QuickInfoView(color: .init(hex: "#F0A24E"),
-                          backgroundColor: .init(hex: "#F6DDC5"),
-                          title: "Last Nappy change",
-                          value: nappyValue,
-                          shouldShowInfo: false,
-                          leadingTo: .none)
         }
     }
 }

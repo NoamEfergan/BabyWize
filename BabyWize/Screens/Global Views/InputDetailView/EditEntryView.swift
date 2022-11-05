@@ -16,7 +16,7 @@ struct EditEntryView<Item: DataItem>: View {
     var item: Item
 
     var body: some View {
-        VStack(spacing: 15) {
+        ScrollView {
             switch type {
             case .feed:
                 FeedEntryView()

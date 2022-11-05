@@ -16,19 +16,19 @@ struct InputDetailView: View {
     @State private var isShowingEntryView = false
 
     var body: some View {
-        VStack {
+        Group {
             switch type {
             case .feed:
                 List {
                     Section("Swipe right to edit, left to remove") {
                         ForEach(dataManager.feedData) { feed in
-                            VStack {
-                                LabeledContent("Amount",
-                                               value: feed.amount.roundDecimalPoint().feedDisplayableAmount()
-                                                   .description)
-                                LabeledContent("Date", value: feed.date.formatted())
+                            VStack(alignment: .leading) {
+                                AccessibleLabeledContent(label:"Amount",
+                                                         value: feed.amount.roundDecimalPoint().feedDisplayableAmount()
+                                                             .description)
+                                AccessibleLabeledContent(label:"Date", value: feed.date.formatted())
                                 if let note = feed.note, !note.isEmpty {
-                                    LabeledContent("Notes", value: feed.note ?? "n/a")
+                                    AccessibleLabeledContent(label:"Notes", value: feed.note ?? "n/a")
                                 }
                             }
                             .swipeActions(edge: .leading) {
@@ -55,9 +55,9 @@ struct InputDetailView: View {
                 List {
                     Section("Swipe right to edit, left to remove") {
                         ForEach(dataManager.sleepData, id: \.id) { sleep in
-                            VStack {
-                                LabeledContent("Duration", value: sleep.duration)
-                                LabeledContent("Date", value: sleep.date.formatted())
+                            VStack(alignment: .leading) {
+                                AccessibleLabeledContent(label:"Duration", value: sleep.duration)
+                                AccessibleLabeledContent(label:"Date", value: sleep.date.formatted())
                             }
                             .sheet(isPresented: $isShowingEntryView) {
                                 EditEntryView(type: .sleep, item: sleep)
@@ -82,9 +82,9 @@ struct InputDetailView: View {
                 List {
                     Section("Swipe right to edit, left to remove") {
                         ForEach(dataManager.nappyData, id: \.id) { change in
-                            VStack {
-                                LabeledContent("Date", value: change.dateTime.formatted())
-                                LabeledContent("Wet or soiled", value: change.wetOrSoiled.rawValue)
+                            VStack(alignment: .leading) {
+                                AccessibleLabeledContent(label:"Date", value: change.dateTime.formatted())
+                                AccessibleLabeledContent(label:"Wet or soiled", value: change.wetOrSoiled.rawValue)
                             }
                             .sheet(isPresented: $isShowingEntryView) {
                                 EditEntryView(type: .nappy, item: change)

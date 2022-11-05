@@ -21,20 +21,31 @@ enum InfoScreens: String {
 // MARK: - HomeView
 struct HomeView: View {
     @InjectedObject private var dataManager: BabyDataManager
+    @Environment(\.dynamicTypeSize) var typeSize
     @State private var path: [Screens] = []
     @State private var isShowingNewEntrySheet = false
+    @State private var wantsToAddEntry = false
     @State private var isShowingSettings = false
     @StateObject private var entryVM = EntryViewModel()
 
+    private var shouldShowSheet: Bool {
+        switch typeSize {
+        case .xSmall, .small, .medium, .large, .xLarge , .xxLarge:
+            return true
+        default:
+            return false
+        }
+    }
+
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ScrollView {
                 VStack {
                     QuickInfoSection()
                         .shadow(radius: 0)
                         .padding()
                     HomeScreenCharts()
-                        .frame(height: 350)
+                        .frame(minHeight: 350)
                 }
             }
             .toolbar {
@@ -49,7 +60,7 @@ struct HomeView: View {
 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
-                        isShowingNewEntrySheet.toggle()
+                        wantsToAddEntry.toggle()
                     } label: {
                         Image(systemName: "plus.circle.fill")
                             .resizable()
@@ -63,7 +74,17 @@ struct HomeView: View {
                 AddEntryView()
                     .environmentObject(entryVM)
                     .presentationDetents([.height(270)])
+                    .onDisappear {
+                        wantsToAddEntry = false
+                    }
             }
+            .onChange(of: wantsToAddEntry, perform: { newValue in
+                if shouldShowSheet {
+                    isShowingNewEntrySheet = newValue
+                } else {
+                    newValue ? path.append(.newEntry) : path.removeAll()
+                }
+            })
             .navigationDestination(for: Screens.self, destination: handleScreensNavigation)
             .navigationDestination(for: InfoScreens.self, destination: handleInfoNavigation)
             .task {
@@ -71,7 +92,7 @@ struct HomeView: View {
             }
             .onOpenURL { _ in
                 // TODO: Handle more deep links!
-                isShowingNewEntrySheet = true
+                wantsToAddEntry = true
             }
         }
     }
@@ -101,6 +122,12 @@ struct HomeView: View {
         switch screen {
         case .settings:
             SettingsView()
+        case .newEntry:
+            AddEntryView()
+                .environmentObject(entryVM)
+                .onDisappear {
+                    wantsToAddEntry = false
+                }
         default:
             EmptyView()
         }

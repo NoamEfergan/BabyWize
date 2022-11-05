@@ -10,9 +10,30 @@ import SwiftUI
 
 // MARK: - SleepChart
 struct SleepChart: View {
-    var sleepData: [Sleep] { willSet {
-        self.sleepData = newValue.sorted(by: { $0.date < $1.date})
-    }}
+    @Environment(\.dynamicTypeSize) var typeSize
+    // Adding additional sizing according to the typesize
+    var sizeModifier: Double {
+        switch typeSize {
+        case .xSmall, .small, .medium , .large, .xLarge, .xxLarge:
+            return 0
+        case .xxxLarge:
+            return 55
+        case .accessibility1:
+            return 80
+        case .accessibility2:
+            return 120
+        case .accessibility3:
+            return 175
+        case .accessibility4:
+            return 220
+        case .accessibility5:
+            return 300
+        default:
+            return 1
+        }
+    }
+
+    var sleepData: [Sleep]
     var showTitle = true
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,25 +45,25 @@ struct SleepChart: View {
             if sleepData.isEmpty {
                 PlaceholderChart(type: .sleep)
             } else {
-                ScrollView(.horizontal){
-                    Chart(sleepData) { sleep in
-                        let dateValue = sleep.date.formatted(date: .abbreviated, time: .shortened)
+                ScrollView(.horizontal) {
+                    Chart(sleepData.sorted(by: { $0.date < $1.date })) { sleep in
                         let amountValue = sleep.duration.convertToTimeInterval().displayableString
-                        BarMark(x: .value("Time", dateValue),
+                        BarMark(x: .value("Time", sleep.date.getTwoLinedString()),
                                 y: .value("Amount", sleep.duration.convertToTimeInterval()))
-                            .annotation(position: .overlay, alignment: .center) {
+                            .annotation(position: .top, alignment: .center) {
                                 Text("\(amountValue)")
-                                    .foregroundColor(.white)
+                                    .font(.system(.body, design: .rounded))
                             }
 
                             .foregroundStyle(Color.red.gradient)
                     }
-                .chartPlotStyle(content: { plotArea in
-                    plotArea.frame(width: CGFloat(sleepData.count) * 140)
-                })
+                    .chartPlotStyle(content: { plotArea in
+                        plotArea.frame(width: CGFloat(sleepData.count) * (120 + sizeModifier))
+                    })
                     .chartYAxis(.hidden)
-                    .frame(height: 200)
-                    .frame(width: UIScreen.main.bounds.width)
+                    .frame(minHeight: 200)
+                    .frame(maxWidth: .greatestFiniteMagnitude)
+                    .padding()
                 }
             }
         }

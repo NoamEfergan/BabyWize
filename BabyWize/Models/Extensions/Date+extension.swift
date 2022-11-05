@@ -8,6 +8,12 @@
 import Foundation
 
 extension Date {
+    func getTwoLinedString() -> String {
+        let date = formatted(date: .abbreviated, time: .omitted)
+        let time = formatted(date: .omitted, time: .shortened)
+        return "\(date),\n\(time)"
+    }
+
     static func getRandomMockDate() -> Date {
         let date1 = Date.parse("2022-07-15")
         let date2 = Date.parse("2022-07-17")

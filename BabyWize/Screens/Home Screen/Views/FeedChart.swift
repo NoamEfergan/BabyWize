@@ -10,10 +10,31 @@ import SwiftUI
 
 // MARK: - FeedChart
 struct FeedChart: View {
-    var feedData: [Feed] { willSet {
-        self.feedData = newValue.sorted(by: { $0.date < $1.date } )
-    }}
+    var feedData: [Feed]
     var showTitle = true
+    @Environment(\.dynamicTypeSize) var typeSize
+    var sizeModifier: Double {
+        switch typeSize {
+        case .xSmall, .small, .medium , .large, .xLarge, .xxLarge:
+            return 0
+        case .xxxLarge:
+            return 55
+        case .accessibility1:
+            return 80
+        case .accessibility2:
+            return 120
+        case .accessibility3:
+            return 175
+        case .accessibility4:
+            return 220
+        case .accessibility5:
+            return 300
+        default:
+            return 1
+        }
+    }
+
+
     var body: some View {
         VStack(alignment: .leading) {
             if showTitle {
@@ -25,7 +46,7 @@ struct FeedChart: View {
                 PlaceholderChart(type: .feed)
             } else {
                 ScrollView(.horizontal) {
-                    Chart(feedData) { feed in
+                    Chart(feedData.sorted(by: { $0.date < $1.date })) { feed in
                         // This is a workaround because annotations don't work on line marks
                         BarMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
                                 y: .value("Amount", feed.amount))
@@ -43,10 +64,12 @@ struct FeedChart: View {
                             .foregroundStyle(Color.blue.gradient)
                     }
                     .chartPlotStyle(content: { plotArea in
-                        plotArea.frame(width: CGFloat(feedData.count) * 80)
+                        plotArea.frame(width: CGFloat(feedData.count) * (80 + sizeModifier))
                     })
                     .frame(maxHeight: .greatestFiniteMagnitude)
-                    .frame(width: UIScreen.main.bounds.width)
+                    .frame(minWidth: UIScreen().bounds.width)
+                    .frame(maxWidth: .greatestFiniteMagnitude)
+                    .padding()
                 }
             }
         }

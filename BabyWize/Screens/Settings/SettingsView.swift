@@ -68,11 +68,7 @@ struct SettingsView: View {
             }
 
             Section("general") {
-                Picker("Preferred unit of measurement ", selection: $selectedUnitOfFood) {
-                    ForEach(FeedUnits.allCases, id: \.self) {
-                        Text($0.rawValue)
-                    }
-                }
+                picker
             }
         }
         .listStyle(.insetGrouped)
@@ -82,15 +78,53 @@ struct SettingsView: View {
         }
     }
 
+    @ViewBuilder
+    private var picker: some View {
+        let title = "Preferred unit of measurement"
+        ViewThatFits {
+            Picker(title, selection: $selectedUnitOfFood) {
+                ForEach(FeedUnits.allCases, id: \.self) {
+                    Text($0.rawValue)
+                }
+            }
+            VStack {
+                Text(title)
+                Picker(title, selection: $selectedUnitOfFood) {
+                    ForEach(FeedUnits.allCases, id: \.self) {
+                        Text($0.rawValue)
+                    }
+                }
+                .pickerStyle(.automatic)
+                .labelsHidden()
+            }
+        }
+    }
+
+    @ViewBuilder
     private var loginIconView: some View {
-        HStack {
-            Image(systemName: "person.crop.circle")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 25)
-                .foregroundStyle(isLoggedIn ? Color.red.gradient : Color.blue.gradient)
-            Text(isLoggedIn ? "Log out" : "Log in or register!")
-                .foregroundColor(isLoggedIn ? .red : nil)
+        ViewThatFits {
+            HStack {
+                Image(systemName: "person.crop.circle")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 25)
+                    .foregroundStyle(isLoggedIn ? Color.red.gradient : Color.blue.gradient)
+                Text(isLoggedIn ? "Log out" : "Log in or register!")
+                    .foregroundColor(isLoggedIn ? .red : nil)
+            }
+            VStack(alignment: .center) {
+                Image(systemName: "person.crop.circle")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(minWidth: 25)
+                    .frame(maxWidth: 100)
+                    .foregroundStyle(isLoggedIn ? Color.red.gradient : Color.blue.gradient)
+                Text(isLoggedIn ? "Log out" : "Log in or register!")
+                    .foregroundColor(isLoggedIn ? .red : nil)
+                    .multilineTextAlignment(.center)
+                    .frame(maxHeight: .infinity)
+            }
+            
         }
     }
 }

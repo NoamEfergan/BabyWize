@@ -30,10 +30,14 @@ struct QuickInfoView: View {
         self.leadingTo = leadingTo
     }
 
+    var spacing: Double {
+        value.contains("\n") ? 0 : 10
+    }
+
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 10) {
-                HStack {
+            VStack(alignment: .leading, spacing: spacing) {
+                HStack(alignment: .top) {
                     Text(title)
                         .font(.system(.body, design: .rounded))
                     Spacer()
@@ -43,16 +47,17 @@ struct QuickInfoView: View {
                         }
                     }
                 }
+                .padding(.top)
                 Text(value)
                     .font(.system(.title, design: .rounded))
                     .bold()
+                Spacer()
             }
-            Spacer()
         }
         .multilineTextAlignment(.leading)
         .padding(.horizontal)
         .foregroundColor(color)
-        .frame(height: 100)
+        .frame(minHeight: 100)
         .frame(maxWidth: .infinity)
         .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
             .foregroundColor(backgroundColor ?? color.opacity(0.2)))
@@ -62,8 +67,16 @@ struct QuickInfoView: View {
 // MARK: - QuickInfoView_Previews
 struct QuickInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        QuickInfoView(color: .init(hex: "#F05052"), title: "Last Feed", value: "170ml", shouldShowInfo: true,
-                      leadingTo: .feed)
-            .frame(width: 200)
+        HStack {
+            QuickInfoView(color: .init(hex: "#F05052"), title: "Last sleep", value: "5 Hours,\n40 mins",
+                          shouldShowInfo: true,
+                          leadingTo: .feed)
+                .frame(width: 200)
+
+            QuickInfoView(color: .init(hex: "#F05052"), title: "Last Feed", value: "170ml", shouldShowInfo: true,
+                          leadingTo: .feed)
+                .frame(width: 200)
+        }
+        .frame(height: 200)
     }
 }
