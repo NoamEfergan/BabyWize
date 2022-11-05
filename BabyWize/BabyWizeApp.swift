@@ -39,6 +39,7 @@ struct BabyWizeApp: App {
             LoadingView(isShowing: $authVM.isLoading, text: "Logging you back in...") {
                 HomeView()
                     .environment(\.managedObjectContext, dataController.container.viewContext)
+                    .environment(\.colorScheme, .light)
             }
             .task {
                 if let savedIsUserLoggedIn,
