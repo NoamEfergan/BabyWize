@@ -15,10 +15,12 @@ struct InfoView: View {
     var body: some View {
         List {
             Section("general") {
-                AccessibleLabeledContent(label:vm.averageTitle, value: dataManager.getAverage(for: vm.type))
-                AccessibleLabeledContent(label:vm.largestTitle, value: dataManager.getBiggest(for: vm.type))
-                AccessibleLabeledContent(label: vm.smallestTitle, value: dataManager.getSmallest(for: vm.type))
-                NavigationLink("All inputs", value: vm.inputScreen)
+                if let type = vm.type {
+                    AccessibleLabeledContent(label:vm.averageTitle, value: dataManager.getAverage(for: type))
+                    AccessibleLabeledContent(label:vm.largestTitle, value: dataManager.getBiggest(for: type))
+                    AccessibleLabeledContent(label: vm.smallestTitle, value: dataManager.getSmallest(for: type))
+                    NavigationLink("All inputs", value: vm.inputScreen)
+                }
             }
 
             Section("total history") {
@@ -29,7 +31,7 @@ struct InfoView: View {
                 case .sleep:
                     SleepChart(sleepData: dataManager.sleepData, showTitle: false)
                         .frame(height: 200)
-                case .nappy:
+                default:
                     EmptyView()
                 }
             }

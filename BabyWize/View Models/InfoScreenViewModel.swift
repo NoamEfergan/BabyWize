@@ -14,19 +14,21 @@ final class InfoScreenVM: ObservableObject {
     @Published var smallestTitle = ""
     @Published var largestTitle = ""
     @Published var navigationTitle = ""
-    @Published var screen: InfoScreens = .sleep
-    @Published var inputScreen: InfoScreens = .detailInputSleep
+    @Published var screen: Screens = .sleep
+    @Published var inputScreen: Screens = .detailInputSleep
 
-    var type: EntryType {
+    var type: EntryType? {
         switch inputScreen {
-        case .feed, .detailInputFeed, .none:
+        case .feed, .detailInputFeed:
             return .feed
         case .sleep, .detailInputSleep:
             return .sleep
+        default:
+            return nil
         }
     }
 
-    init(screen: InfoScreens) {
+    init(screen: Screens) {
         self.screen = screen
         inputScreen = screen == .feed ? .detailInputFeed : .detailInputSleep
         setTitles()
@@ -42,7 +44,7 @@ final class InfoScreenVM: ObservableObject {
         case .sleep:
             largestTitle = "Longest sleep"
             smallestTitle = "Shortest sleep"
-        case .nappy:
+        default:
             return
         }
     }

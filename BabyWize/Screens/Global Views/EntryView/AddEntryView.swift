@@ -10,7 +10,9 @@ import SwiftUI
 // MARK: - AddEntryView
 struct AddEntryView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject private var vm: EntryViewModel
+    @StateObject var feedVM: FeedEntryViewModel = .init()
+    @StateObject var sleepVM: SleepEntryViewModel = .init()
+    @StateObject var nappyVM: NappyEntryViewModel = .init()
     @Environment(\.dynamicTypeSize) var typeSize
     @State private var startDate: Date = .init()
     @State private var endDate: Date = .init()
@@ -22,11 +24,11 @@ struct AddEntryView: View {
             entryPicker
             switch entryType {
             case .feed:
-                FeedEntryView()
+                FeedEntryView(vm: feedVM)
             case .sleep:
-                SleepEntryView()
+                SleepEntryView(vm: sleepVM)
             case .nappy:
-                NappyEntryView()
+                NappyEntryView(vm: nappyVM)
             }
             if !errorText.isEmpty {
                 Text(errorText)
@@ -34,10 +36,17 @@ struct AddEntryView: View {
             }
             Button("Add") {
                 do {
-                    try vm.addEntry(type: entryType)
+                    switch entryType {
+                    case .feed:
+                        try feedVM.addEntry()
+                    case .sleep:
+                        try sleepVM.addEntry()
+                    case .nappy:
+                        try nappyVM.addEntry()
+                    }
                     dismiss()
                 } catch {
-                    guard let entryError = error as? EntryViewModel.EntryError else {
+                    guard let entryError = error as? EntryError else {
                         errorText = "Whoops! something went wrong!"
                         return
                     }
@@ -67,19 +76,19 @@ struct AddEntryView: View {
 
     @ViewBuilder
     private var entryPicker: some View {
-            switch typeSize {
-            case .xSmall, .small, .medium, .large, .xLarge , .xxLarge:
-                HStack {
-                    picker
-                        .pickerStyle(.segmented)
-                }
-            default:
-                VStack {
-                    pickerTitle
-                    picker
-                        .pickerStyle(.automatic)
-                }
+        switch typeSize {
+        case .xSmall, .small, .medium, .large, .xLarge , .xxLarge:
+            HStack {
+                picker
+                    .pickerStyle(.segmented)
             }
+        default:
+            VStack {
+                pickerTitle
+                picker
+                    .pickerStyle(.automatic)
+            }
+        }
     }
 }
 
@@ -87,6 +96,5 @@ struct AddEntryView: View {
 struct AddEntryView_Previews: PreviewProvider {
     static var previews: some View {
         AddEntryView()
-            .environmentObject(EntryViewModel())
     }
 }

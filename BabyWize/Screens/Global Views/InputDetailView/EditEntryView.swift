@@ -8,10 +8,10 @@
 import SwiftUI
 
 // MARK: - EditEntryView
-struct EditEntryView<Item: DataItem>: View {
+struct EditEntryView<Item: DataItem, ViewModel: EntryViewModel>: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject private var vm: EntryViewModel
     @State private var errorText = ""
+    @ObservedObject var viewModel: ViewModel
     let type: EntryType
     var item: Item
 
@@ -19,11 +19,11 @@ struct EditEntryView<Item: DataItem>: View {
         ScrollView {
             switch type {
             case .feed:
-                FeedEntryView()
+                FeedEntryView(vm: viewModel as! FeedEntryViewModel)
             case .sleep:
-                SleepEntryView()
+                SleepEntryView(vm: viewModel as! SleepEntryViewModel)
             case .nappy:
-                NappyEntryView()
+                NappyEntryView(vm: viewModel as! NappyEntryViewModel)
             }
             if !errorText.isEmpty {
                 Text(errorText)
@@ -31,10 +31,10 @@ struct EditEntryView<Item: DataItem>: View {
             }
             Button("Edit") {
                 do {
-                    try vm.editEntry(type: type)
+                    try viewModel.editEntry()
                     dismiss()
                 } catch {
-                    guard let entryError = error as? EntryViewModel.EntryError else {
+                    guard let entryError = error as? EntryError else {
                         errorText = "Whoops! something went wrong!"
                         return
                     }
@@ -54,7 +54,12 @@ struct EditEntryView<Item: DataItem>: View {
 // MARK: - EditEntryView_Previews
 struct EditEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        EditEntryView(type: .feed, item: Feed(id: "1", date: .now, amount: 180, note: "test"))
-            .environmentObject(EntryViewModel())
+        EditEntryView(viewModel: FeedEntryViewModel(),
+                      type: .feed,
+                      item: Feed(id: "1",
+                                 date: .now,
+                                 amount: 180,
+                                 note: "test",
+                                 solidOrLiquid: .liquid))
     }
 }

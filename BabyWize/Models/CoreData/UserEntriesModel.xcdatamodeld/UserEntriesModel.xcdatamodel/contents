@@ -5,6 +5,7 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="solidOrLiquid" optional="YES" attributeType="String"/>
     </entity>
     <entity name="SavedNappyChange" representedClassName="SavedNappyChange" syncable="YES" codeGenerationType="class">
         <attribute name="dateTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

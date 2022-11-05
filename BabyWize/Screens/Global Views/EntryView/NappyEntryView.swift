@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - NappyEntryView
 struct NappyEntryView: View {
-    @EnvironmentObject private var vm: EntryViewModel
+    @ObservedObject var vm: NappyEntryViewModel
     @Environment(\.dynamicTypeSize) var typeSize
     var body: some View {
         VStack {
@@ -49,7 +49,6 @@ struct NappyEntryView: View {
 // MARK: - NappyEntryView_Previews
 struct NappyEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        NappyEntryView()
-            .environmentObject(EntryViewModel())
+        NappyEntryView(vm: .init())
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - SleepEntryView
 struct SleepEntryView: View {
-    @EnvironmentObject private var vm: EntryViewModel
+    @ObservedObject var vm: SleepEntryViewModel
     var body: some View {
         VStack(alignment: .leading) {
             AccessibleDatePicker(label: "When", value: $vm.sleepDate)
@@ -23,7 +23,6 @@ struct SleepEntryView: View {
 // MARK: - SleepEntryView_Previews
 struct SleepEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        SleepEntryView()
-            .environmentObject(EntryViewModel())
+        SleepEntryView(vm: .init())
     }
 }

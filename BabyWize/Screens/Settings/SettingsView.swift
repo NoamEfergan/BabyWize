@@ -124,7 +124,6 @@ struct SettingsView: View {
                     .multilineTextAlignment(.center)
                     .frame(maxHeight: .infinity)
             }
-            
         }
     }
 }

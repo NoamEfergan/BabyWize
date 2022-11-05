@@ -9,7 +9,11 @@ import Foundation
 
 extension SavedFeed {
     func mapToFeed() -> Feed {
-        .init(id: id ?? "", date: date ?? Date(), amount: amount, note: note)
+        .init(id: id ?? "",
+              date: date ?? Date(),
+              amount: amount,
+              note: note,
+              solidOrLiquid: .init(rawValue: solidOrLiquid ?? "") ?? .liquid)
     }
 }
 
@@ -32,6 +36,7 @@ extension Feed {
         savedFeed.date = date
         savedFeed.amount = amount
         savedFeed.note = note
+        savedFeed.solidOrLiquid = solidOrLiquid.rawValue
     }
 }
 

@@ -37,4 +37,9 @@ struct Feed: DataItem {
     let date: Date
     let amount: Double
     let note: String?
+    let solidOrLiquid: SolidOrLiquid
+
+    enum SolidOrLiquid: String, Codable, CaseIterable {
+        case solid, liquid
+    }
 }

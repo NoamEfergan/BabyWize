@@ -14,14 +14,14 @@ struct QuickInfoView: View {
     let title: String
     let value: String
     let shouldShowInfo: Bool
-    let leadingTo: InfoScreens
+    let leadingTo: Screens
 
     init(color: Color,
          backgroundColor: Color? = nil,
          title: String,
          value: String,
          shouldShowInfo: Bool,
-         leadingTo: InfoScreens) {
+         leadingTo: Screens) {
         self.color = color
         self.backgroundColor = backgroundColor
         self.title = title
