@@ -101,6 +101,8 @@
 		05DD68DC28861C930066BFEC /* FeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DB28861C930066BFEC /* FeedEntryView.swift */; };
 		05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DD28861CD70066BFEC /* SleepEntryView.swift */; };
 		05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */; };
+		05DF6CF22917BB9D00EACE7C /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DF6CF12917BB9D00EACE7C /* SplashScreen.swift */; };
+		05DF6CF82917CBBC00EACE7C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */; };
 		05FE380C2902895F002D3D34 /* QuickInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE380B2902895F002D3D34 /* QuickInfoView.swift */; };
 		05FE380E29028B13002D3D34 /* QuickInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE380D29028B13002D3D34 /* QuickInfoSection.swift */; };
 		3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002428D65B0700241D65 /* GrayTextField.swift */; };
@@ -225,6 +227,8 @@
 		05DD68DB28861C930066BFEC /* FeedEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEntryView.swift; sourceTree = "<group>"; };
 		05DD68DD28861CD70066BFEC /* SleepEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntryView.swift; sourceTree = "<group>"; };
 		05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyEntryView.swift; sourceTree = "<group>"; };
+		05DF6CF12917BB9D00EACE7C /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		05FE380B2902895F002D3D34 /* QuickInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickInfoView.swift; sourceTree = "<group>"; };
 		05FE380D29028B13002D3D34 /* QuickInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickInfoSection.swift; sourceTree = "<group>"; };
 		3B64002428D65B0700241D65 /* GrayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayTextField.swift; sourceTree = "<group>"; };
@@ -302,6 +306,7 @@
 		056083722884147800728F1F = {
 			isa = PBXGroup;
 			children = (
+				05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */,
 				050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */,
 				0560837D2884147800728F1F /* BabyWize */,
 				0560838E2884147900728F1F /* BabyWizeTests */,
@@ -550,6 +555,7 @@
 				059C68EA2886BD5C00C90710 /* InputDetailView */,
 				05DD68DA28861C820066BFEC /* EntryView */,
 				3B64002428D65B0700241D65 /* GrayTextField.swift */,
+				05DF6CF12917BB9D00EACE7C /* SplashScreen.swift */,
 				056D7C7B28F32FB500E3514D /* LoadingView.swift */,
 				056DC4882916AA8100B30720 /* AccessibleViews */,
 			);
@@ -727,6 +733,7 @@
 			files = (
 				056083862884147900728F1F /* Preview Assets.xcassets in Resources */,
 				056083832884147900728F1F /* Assets.xcassets in Resources */,
+				05DF6CF82917CBBC00EACE7C /* Launch Screen.storyboard in Resources */,
 				3BE30FEA28D5D40900E75D22 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,6 +814,7 @@
 				05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */,
 				050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */,
 				05A42A612905A5790040A543 /* FirebaseManager.swift in Sources */,
+				05DF6CF22917BB9D00EACE7C /* SplashScreen.swift in Sources */,
 				05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */,
 				05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */,
 				056DC4872916AA7900B30720 /* AccessibleLabeledTextField.swift in Sources */,
@@ -1090,6 +1098,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = BabyWize/BabyWize.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1102,7 +1111,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1127,6 +1136,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = BabyWize/BabyWize.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1139,7 +1149,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (

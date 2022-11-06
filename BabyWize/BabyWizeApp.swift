@@ -34,12 +34,25 @@ struct BabyWizeApp: App {
 
     @Environment(\.scenePhase) var scenePhase
     @StateObject private var dataController = DataController()
+    @State private var isShowingSplash = true
     var body: some Scene {
         WindowGroup {
-            LoadingView(isShowing: $authVM.isLoading, text: "Logging you back in...") {
-                HomeView()
-                    .environment(\.managedObjectContext, dataController.container.viewContext)
-                    .environment(\.colorScheme, .light)
+            ZStack {
+                SplashScreen()
+                    .scaleEffect(isShowingSplash ? 1 : 40)
+                    .opacity(isShowingSplash ? 1 : 0)
+                LoadingView(isShowing: $authVM.isLoading, text: "Logging you back in...") {
+                    HomeView()
+                        .environment(\.managedObjectContext, dataController.container.viewContext)
+                        .environment(\.colorScheme, .light)
+                }
+                .opacity(isShowingSplash ? 0 : 1)
+            }
+            .animation(.easeInOut(duration: 0.5), value: isShowingSplash)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    isShowingSplash.toggle()
+                }
             }
             .task {
                 if let savedIsUserLoggedIn,
