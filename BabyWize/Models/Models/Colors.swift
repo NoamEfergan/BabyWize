@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct Theme {
-    static let backgroundColor: Color = .init(hex: "#F5F9FC")
-    static let primaryPurple: Color = .init(hex: "#422B91")
+    static let mainGradient: LinearGradient = .init(colors: [
+        Color("gradientYellow"),
+        Color("gradientPink")
+    ],
+    startPoint: .bottom,
+    endPoint: .top)
 }

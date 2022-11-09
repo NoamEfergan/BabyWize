@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Baby Wize-01.png",
+      "filename" : "Baby Wize-02.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Baby Wize-01 1.png",
+      "filename" : "Baby Wize-02 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Baby Wize-01 2.png",
+      "filename" : "Baby Wize-02 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -21,7 +21,6 @@
     "version" : 1
   },
   "properties" : {
-    "preserves-vector-representation" : true,
-    "template-rendering-intent" : "original"
+    "preserves-vector-representation" : true
   }
 }

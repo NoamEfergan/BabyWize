@@ -37,7 +37,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NoBGLogo" width="213.33332824707031" height="213.33332824707031"/>
+        <image name="NoBGLogo" width="142.33332824707031" height="142.33332824707031"/>
         <image name="gradientBG" width="1600" height="1116"/>
     </resources>
 </document>

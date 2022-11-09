@@ -38,7 +38,15 @@ struct BabyWizeApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                SplashScreen()
+                ZStack {
+                    Theme.mainGradient
+                        .ignoresSafeArea()
+                    Image("NoBGLogo")
+                        .resizable()
+                        .aspectRatio(1*1, contentMode: .fit)
+                        .frame(width: 185)
+                        .rotationEffect(Angle(degrees: self.isShowingSplash ? 360 : 0.0))
+                }
                     .scaleEffect(isShowingSplash ? 1 : 40)
                     .opacity(isShowingSplash ? 1 : 0)
                 LoadingView(isShowing: $authVM.isLoading, text: "Logging you back in...") {
@@ -48,7 +56,7 @@ struct BabyWizeApp: App {
                 }
                 .opacity(isShowingSplash ? 0 : 1)
             }
-            .animation(.easeInOut(duration: 0.5), value: isShowingSplash)
+            .animation(.easeInOut(duration: 1), value: isShowingSplash)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                     isShowingSplash.toggle()
