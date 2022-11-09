@@ -34,7 +34,7 @@ extension Feed {
         let savedFeed = SavedFeed(context: context)
         savedFeed.id = id
         savedFeed.date = date
-        savedFeed.amount = amount
+        savedFeed.amount = amount.convertToML()
         savedFeed.note = note
         savedFeed.solidOrLiquid = solidOrLiquid.rawValue
     }

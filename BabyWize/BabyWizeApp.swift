@@ -47,8 +47,8 @@ struct BabyWizeApp: App {
                         .frame(width: 185)
                         .rotationEffect(Angle(degrees: self.isShowingSplash ? 360 : 0.0))
                 }
-                    .scaleEffect(isShowingSplash ? 1 : 40)
-                    .opacity(isShowingSplash ? 1 : 0)
+                .scaleEffect(isShowingSplash ? 1 : 40)
+                .opacity(isShowingSplash ? 1 : 0)
                 LoadingView(isShowing: $authVM.isLoading, text: "Logging you back in...") {
                     HomeView()
                         .environment(\.managedObjectContext, dataController.container.viewContext)

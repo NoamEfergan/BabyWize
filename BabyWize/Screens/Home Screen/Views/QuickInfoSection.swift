@@ -10,23 +10,8 @@ import SwiftUI
 // MARK: - QuickInfoSection
 struct QuickInfoSection: View {
     @InjectedObject private var dataManager: BabyDataManager
+    @InjectedObject private var unitManager: UnitsManager
     @Environment(\.dynamicTypeSize) var typeSize
-    let notAvailable = "N/A"
-
-    private var feedValue: String { dataManager.feedData.last?.amount.roundDecimalPoint().feedDisplayableAmount()
-        ?? notAvailable
-    }
-
-    private var sleepValue: String { dataManager.sleepData.last?.duration.convertToTimeInterval()
-        .displayableString ?? notAvailable
-    }
-
-    private var nappyValue: String {
-        guard let lastNappy = dataManager.nappyData.last else {
-            return notAvailable
-        }
-        return "\(lastNappy.dateTime.formatted(date: .omitted, time: .shortened)), \(lastNappy.wetOrSoiled.rawValue) "
-    }
 
     var body: some View {
         switch typeSize {
@@ -35,19 +20,19 @@ struct QuickInfoSection: View {
                 HStack {
                     QuickInfoView(color: .init(hex: "#F05052"),
                                   title: "Last Feed",
-                                  value: feedValue,
+                                  value: dataManager.getLast(for: .feed),
                                   shouldShowInfo: !dataManager.feedData.isEmpty,
                                   leadingTo: .feed)
                     QuickInfoView(color: .init(hex: "#5354EC"),
                                   title: "Last Sleep",
-                                  value: sleepValue,
+                                  value: dataManager.getLast(for: .sleep),
                                   shouldShowInfo: !dataManager.sleepData.isEmpty,
                                   leadingTo: .sleep)
                 }
                 QuickInfoView(color: .init(hex: "#F0A24E"),
                               backgroundColor: .init(hex: "#F6DDC5"),
                               title: "Last Nappy change",
-                              value: nappyValue,
+                              value: dataManager.getLast(for: .nappy),
                               shouldShowInfo: false,
                               leadingTo: .none)
             }
@@ -55,18 +40,18 @@ struct QuickInfoSection: View {
             VStack {
                 QuickInfoView(color: .init(hex: "#F05052"),
                               title: "Last Feed",
-                              value: feedValue,
+                              value: dataManager.getLast(for: .feed),
                               shouldShowInfo: !dataManager.feedData.isEmpty,
                               leadingTo: .feed)
                 QuickInfoView(color: .init(hex: "#5354EC"),
                               title: "Last Sleep",
-                              value: sleepValue,
+                              value: dataManager.getLast(for: .sleep),
                               shouldShowInfo: !dataManager.sleepData.isEmpty,
                               leadingTo: .sleep)
                 QuickInfoView(color: .init(hex: "#F0A24E"),
                               backgroundColor: .init(hex: "#F6DDC5"),
                               title: "Last Nappy change",
-                              value: nappyValue,
+                              value: dataManager.getLast(for: .nappy),
                               shouldShowInfo: false,
                               leadingTo: .none)
             }

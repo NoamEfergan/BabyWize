@@ -9,12 +9,11 @@ import SwiftUI
 
 // MARK: - SettingsView
 struct SettingsView: View {
-    @State private var selectedUnitOfFood: FeedUnits = .ml
+    @InjectedObject private var unitsManager: UnitsManager
     @State private var isShowingAlert = false
     @State private var isShowingLogoutAlert = false
     @State private var isLoginViewShowing = false
 
-    @AppStorage(Constants.preferredUnit.rawValue) private var savedUnit = ""
     @AppStorage(UserConstants.isLoggedIn) private var savedIsUserLoggedIn: Bool?
     @StateObject private var authVM = AuthViewModel()
 
@@ -73,24 +72,21 @@ struct SettingsView: View {
         }
         .listStyle(.insetGrouped)
         .navigationTitle("Settings")
-        .onChange(of: selectedUnitOfFood) { newValue in
-            savedUnit = newValue.rawValue
-        }
     }
 
     @ViewBuilder
     private var picker: some View {
-        let title = "Preferred unit of measurement"
+        let title = "Unit of measurement"
         ViewThatFits {
-            Picker(title, selection: $selectedUnitOfFood) {
-                ForEach(FeedUnits.allCases, id: \.self) {
+            Picker(title, selection: $unitsManager.liquidUnits) {
+                ForEach(LiquidFeedUnits.allCases, id: \.self) {
                     Text($0.rawValue)
                 }
             }
             VStack {
                 Text(title)
-                Picker(title, selection: $selectedUnitOfFood) {
-                    ForEach(FeedUnits.allCases, id: \.self) {
+                Picker(title, selection: $unitsManager.liquidUnits) {
+                    ForEach(LiquidFeedUnits.allCases, id: \.self) {
                         Text($0.rawValue)
                     }
                 }

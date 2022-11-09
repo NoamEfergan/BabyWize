@@ -22,5 +22,8 @@ enum ContainerBuilder {
         container.register(WidgetManager.self) { _ in
             WidgetManager()
         }.inObjectScope(.container)
+        container.register(UnitsManager.self) { _ in
+            UnitsManager()
+        }.inObjectScope(.container)
     }
 }

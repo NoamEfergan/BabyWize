@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Swinject
 
 extension Double {
     static func getRandomFeedAmount() -> Double {
@@ -17,16 +18,41 @@ extension Double {
         return (self * divisor).rounded() / divisor
     }
 
-    func feedDisplayableAmount() -> String {
-        let userPreferredUnit: FeedUnits = .init(rawValue: UserDefaults.standard
-            .string(forKey: Constants.preferredUnit.rawValue) ?? "") ?? .ml
-        switch userPreferredUnit {
+    func convertFromML() -> Self {
+        @InjectedObject var unitsManager: UnitsManager
+        switch unitsManager.liquidUnits {
         case .ml:
-            return description + userPreferredUnit.rawValue
+            return self
         case .ozUS:
-            return (self / 29.574).description + userPreferredUnit.rawValue
+            return (self / 29.574).roundDecimalPoint()
         case .oz:
-            return (self / 28.413).description + userPreferredUnit.rawValue
+            return (self / 28.413).roundDecimalPoint()
+        }
+    }
+
+
+    // Convert whatever the amount is to ML since we store things in ML
+    func convertToML() -> Self {
+        @InjectedObject var unitsManager: UnitsManager
+        switch unitsManager.liquidUnits {
+        case .ml:
+            return self
+        case .ozUS:
+            return (self * 29.574).roundDecimalPoint()
+        case .oz:
+            return (self * 28.413).roundDecimalPoint()
+        }
+    }
+
+    func liquidFeedDisplayableAmount() -> String {
+        @InjectedObject var unitsManager: UnitsManager
+        switch unitsManager.liquidUnits {
+        case .ml:
+            return description + unitsManager.liquidUnits.rawValue
+        case .ozUS:
+            return (self / 29.574).roundDecimalPoint().description + unitsManager.liquidUnits.title
+        case .oz:
+            return (self / 28.413).roundDecimalPoint().description + unitsManager.liquidUnits.title
         }
     }
 }

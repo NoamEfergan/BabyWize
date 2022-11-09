@@ -20,7 +20,7 @@ struct FeedInputDetailView: View {
                 ForEach(dataManager.feedData) { feed in
                     VStack(alignment: .leading) {
                         AccessibleLabeledContent(label:"Amount",
-                                                 value: feed.amount.roundDecimalPoint().feedDisplayableAmount()
+                                                 value: feed.amount.roundDecimalPoint().liquidFeedDisplayableAmount()
                                                      .description)
                         AccessibleLabeledContent(label:"Date", value: feed.date.formatted())
                         if let note = feed.note, !note.isEmpty {

@@ -66,8 +66,9 @@ struct FeedChart: View {
 
                         } else {
                             // This is a workaround because annotations don't work on line marks
+                            let unit = feed.amount.convertFromML()
                             BarMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                                    y: .value("Amount", feed.amount))
+                                    y: .value("Amount", unit))
                                 .foregroundStyle(Color.clear)
                                 .annotation(position: .top, alignment: .center) {
                                     Text(feed.note ?? "")
@@ -75,10 +76,10 @@ struct FeedChart: View {
                                         .font(.footnote)
                                 }
                             PointMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                                      y: .value("Amount", feed.amount))
+                                      y: .value("Amount", unit))
                                 .foregroundStyle(Color.blue.gradient)
                             LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                                     y: .value("Amount", feed.amount),
+                                     y: .value("Amount", unit),
                                      series: .value("Liquids", "Liquids"))
                                 .foregroundStyle(Color.blue.gradient)
                         }

@@ -21,7 +21,7 @@ struct WidgetManager {
             return
         }
         if let lastFeed {
-            container.set(lastFeed.amount.roundDecimalPoint().feedDisplayableAmount(), forKey: "lastFeed")
+            container.set(lastFeed.amount.liquidFeedDisplayableAmount(), forKey: "lastFeed")
         }
         if let lastSleep {
             container.set(lastSleep.duration, forKey: "lastSleep")

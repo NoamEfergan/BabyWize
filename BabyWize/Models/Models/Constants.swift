@@ -10,6 +10,7 @@ import Foundation
 // MARK: - Constants
 enum Constants: String {
     case preferredUnit
+    case preferredUnitSolids
 
     case savedFeed = "SavedFeed"
     case savedSleep = "SavedSleep"
