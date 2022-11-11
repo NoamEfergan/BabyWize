@@ -31,7 +31,11 @@ final class BabyDataManager: ObservableObject {
         let notAvailable = "N/A"
         switch type {
         case .feed:
-            return feedData.last?.amount.liquidFeedDisplayableAmount() ?? notAvailable
+            guard let lastItem = feedData.last else { return notAvailable }
+            return lastItem.solidOrLiquid == .liquid
+            ? lastItem.amount.liquidFeedDisplayableAmount()
+            : lastItem.amount.description
+            
         case .sleep:
             return sleepData.last?.duration.convertToTimeInterval().displayableString ?? notAvailable
         case .nappy:
@@ -95,7 +99,7 @@ final class BabyDataManager: ObservableObject {
         // Make sure we store feeds as ML, and do the conversion later
         let itemWithML = Feed(id: item.id,
                               date: item.date,
-                              amount: item.amount.convertToML(),
+                              amount: item.solidOrLiquid == .liquid ? item.amount.convertToML() : item.amount,
                               note: item.note,
                               solidOrLiquid: item.solidOrLiquid)
         feedData.append(itemWithML)

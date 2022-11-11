@@ -12,7 +12,7 @@ enum LiquidFeedUnits: String, CaseIterable {
     case ml
     case ozUS = "oz (us)"
     case oz
-    
+
     var title: String {
         switch self {
         case .ml:

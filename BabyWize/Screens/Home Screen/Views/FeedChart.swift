@@ -12,6 +12,9 @@ import SwiftUI
 struct FeedChart: View {
     var feedData: [Feed]
     var showTitle = true
+    
+    private let timeTitle = "Time"
+    private let amountTitle = "Amount"
     @Environment(\.dynamicTypeSize) var typeSize
     var sizeModifier: Double {
         switch typeSize {
@@ -48,40 +51,9 @@ struct FeedChart: View {
                 ScrollView(.horizontal) {
                     Chart(feedData.sorted(by: { $0.date < $1.date })) { feed in
                         if feed.solidOrLiquid == .solid {
-                            BarMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                                    y: .value("Amount", feed.amount))
-                                .foregroundStyle(Color.clear)
-                                .annotation(position: .top, alignment: .center) {
-                                    Text(feed.note ?? "")
-                                        .foregroundColor(.secondary)
-                                        .font(.footnote)
-                                }
-                            PointMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                                      y: .value("Amount", feed.amount))
-                                .foregroundStyle(Color.orange.gradient)
-                            LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                                     y: .value("Amount", feed.amount),
-                                     series: .value("Solids", "Solids"))
-                                .foregroundStyle(Color.orange.gradient)
-
+                            getSolidsChart(for: feed)
                         } else {
-                            // This is a workaround because annotations don't work on line marks
-                            let unit = feed.amount.convertFromML()
-                            BarMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                                    y: .value("Amount", unit))
-                                .foregroundStyle(Color.clear)
-                                .annotation(position: .top, alignment: .center) {
-                                    Text(feed.note ?? "")
-                                        .foregroundColor(.secondary)
-                                        .font(.footnote)
-                                }
-                            PointMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                                      y: .value("Amount", unit))
-                                .foregroundStyle(Color.blue.gradient)
-                            LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
-                                     y: .value("Amount", unit),
-                                     series: .value("Liquids", "Liquids"))
-                                .foregroundStyle(Color.blue.gradient)
+                            getLiquidsChart(for: feed)
                         }
                     }
                     .chartPlotStyle(content: { plotArea in
@@ -94,6 +66,70 @@ struct FeedChart: View {
                 }
             }
         }
+    }
+
+    @ChartContentBuilder
+    private func getLiquidsChart(for feed: Feed) -> some ChartContent {
+        let unit = feed.amount.convertFromML()
+        getBarMark(for: feed, amount: unit)
+            .foregroundStyle(Color.clear)
+            .annotation(position: .top, alignment: .center) {
+                Text(feed.note ?? "")
+                    .foregroundColor(.secondary)
+                    .font(.footnote)
+            }
+
+
+        getPointMark(for: feed, amount: unit)
+            .foregroundStyle(Color.blue.gradient)
+            .annotation(position: .bottom, alignment: .center) {
+                Text(feed.amount.roundDecimalPoint().description)
+                    .foregroundColor(.secondary)
+                    .font(.footnote)
+            }
+        getLineMark(for: feed, amount: unit, series: "Liquids")
+            .foregroundStyle(Color.blue.gradient)
+    }
+
+    @ChartContentBuilder
+    private func getSolidsChart(for feed: Feed) -> some ChartContent {
+        let amount = feed.amount
+        getBarMark(for: feed, amount: amount)
+            .foregroundStyle(Color.clear)
+            .annotation(position: .top, alignment: .center) {
+                Text(feed.note ?? "")
+                    .foregroundColor(.secondary)
+                    .font(.footnote)
+            }
+
+        getPointMark(for: feed, amount: amount)
+            .foregroundStyle(Color.orange.gradient)
+            .annotation(position: .bottom, alignment: .center) {
+                Text(amount.description)
+                    .foregroundColor(.secondary)
+                    .font(.footnote)
+            }
+        getLineMark(for: feed, amount: amount, series: "Solids")
+            .foregroundStyle(Color.orange.gradient)
+    }
+
+    private func getBarMark(for feed: Feed, amount: Double) -> some ChartContent {
+        let date = feed.date.formatted(date: .omitted, time: .shortened)
+        return BarMark(x: .value(timeTitle, date),
+                       y: .value(amountTitle, amount))
+    }
+
+    private func getPointMark(for feed: Feed, amount: Double) -> some ChartContent {
+        let date = feed.date.formatted(date: .omitted, time: .shortened)
+        return PointMark(x: .value(timeTitle, date),
+                         y: .value(amountTitle, amount))
+    }
+
+    private func getLineMark(for feed: Feed, amount: Double, series: String) -> some ChartContent {
+        let date = feed.date.formatted(date: .omitted, time: .shortened)
+        return LineMark(x: .value(timeTitle, date),
+                        y: .value(amountTitle, amount),
+                        series: .value(series, series))
     }
 
     private var feedInfoTitle: String {
