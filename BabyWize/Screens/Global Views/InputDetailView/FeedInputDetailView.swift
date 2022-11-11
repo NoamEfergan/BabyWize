@@ -20,9 +20,9 @@ struct FeedInputDetailView: View {
                 ForEach(dataManager.feedData) { feed in
                     VStack(alignment: .leading) {
                         AccessibleLabeledContent(label:"Amount",
-                                                 value: feed.amount.roundDecimalPoint().liquidFeedDisplayableAmount()
-                                                     .description)
+                                                 value: feed.amount.displayableAmount(isSolid: feed.isSolids))
                         AccessibleLabeledContent(label:"Date", value: feed.date.formatted())
+                        AccessibleLabeledContent(label:"Type", value: feed.solidOrLiquid.rawValue.capitalized)
                         if let note = feed.note, !note.isEmpty {
                             AccessibleLabeledContent(label:"Notes", value: feed.note ?? "n/a")
                         }
@@ -37,7 +37,7 @@ struct FeedInputDetailView: View {
                     }
                     .tint(.blue)
                     .sheet(isPresented: $isShowingEntryView) {
-                        EditEntryView(viewModel: entryVM,type: .feed, item: feed)
+                        EditEntryView(viewModel: entryVM,type: .liquidFeed, item: feed)
                             .presentationDetents([.height(200)])
                     }
                 }

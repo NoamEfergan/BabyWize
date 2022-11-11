@@ -8,5 +8,5 @@
 import Foundation
 
 enum EntryType: String, CaseIterable, Hashable {
-    case feed, sleep, nappy
+    case liquidFeed, sleep, nappy, solidFeed
 }

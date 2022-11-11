@@ -15,7 +15,7 @@ struct PlaceholderChart: View {
     var body: some View {
         Group {
             switch type {
-            case .feed:
+            case .liquidFeed, .solidFeed:
                 dummyFeedChart
             case .sleep:
                 dummySleepChart
@@ -68,7 +68,7 @@ struct PlaceholderChart: View {
 // MARK: - PlaceholderChart_Previews
 struct PlaceholderChart_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceholderChart(type: .feed)
+        PlaceholderChart(type: .liquidFeed)
         PlaceholderChart(type: .sleep)
     }
 }

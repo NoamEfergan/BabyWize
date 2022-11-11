@@ -107,7 +107,7 @@ struct HomeView: View {
             InputDetailView(type: .sleep)
                 .navigationTitle("All sleeps")
         case .detailInputFeed:
-            InputDetailView(type: .feed)
+            InputDetailView(type: .liquidFeed)
                 .navigationTitle("All feeds")
         default:
             EmptyView()

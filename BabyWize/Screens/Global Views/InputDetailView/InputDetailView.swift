@@ -17,7 +17,7 @@ struct InputDetailView: View {
     var body: some View {
         Group {
             switch type {
-            case .feed:
+            case .liquidFeed, .solidFeed:
                 FeedInputDetailView()
             case .sleep:
                 SleepInputDetailView()
@@ -33,7 +33,7 @@ struct InputDetailView: View {
 struct InputDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            InputDetailView(type: .feed)
+            InputDetailView(type: .liquidFeed)
         }
         NavigationStack {
             InputDetailView(type: .sleep)

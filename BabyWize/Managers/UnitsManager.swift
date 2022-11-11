@@ -14,11 +14,24 @@ final class UnitsManager: ObservableObject {
         }
     }
 
+    @Published var solidUnits: SolidFeedUnits {
+        didSet {
+            UserDefaults.standard.set(solidUnits.rawValue, forKey: Constants.preferredUnitSolids.rawValue)
+        }
+    }
+
     init() {
-        if let savedString = UserDefaults.standard.string(forKey: Constants.preferredUnit.rawValue) {
-            liquidUnits = .init(rawValue: savedString) ?? .ml
+        if let savedLiquid = UserDefaults.standard.string(forKey: Constants.preferredUnit.rawValue) {
+            liquidUnits = .init(rawValue: savedLiquid) ?? .ml
         } else {
             liquidUnits = .ml
+        }
+
+
+        if let savedSolid = UserDefaults.standard.string(forKey: Constants.preferredUnitSolids.rawValue) {
+            solidUnits = .init(rawValue: savedSolid) ?? .grams
+        } else {
+            solidUnits = .grams
         }
     }
 }

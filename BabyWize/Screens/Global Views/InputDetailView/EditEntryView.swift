@@ -18,7 +18,7 @@ struct EditEntryView<Item: DataItem, ViewModel: EntryViewModel>: View {
     var body: some View {
         ScrollView {
             switch type {
-            case .feed:
+            case .liquidFeed, .solidFeed:
                 FeedEntryView(vm: viewModel as! FeedEntryViewModel)
             case .sleep:
                 SleepEntryView(vm: viewModel as! SleepEntryViewModel)
@@ -55,7 +55,7 @@ struct EditEntryView<Item: DataItem, ViewModel: EntryViewModel>: View {
 struct EditEntryView_Previews: PreviewProvider {
     static var previews: some View {
         EditEntryView(viewModel: FeedEntryViewModel(),
-                      type: .feed,
+                      type: .liquidFeed,
                       item: Feed(id: "1",
                                  date: .now,
                                  amount: 180,

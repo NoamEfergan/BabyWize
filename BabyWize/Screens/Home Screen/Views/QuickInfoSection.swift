@@ -20,7 +20,7 @@ struct QuickInfoSection: View {
                 HStack {
                     QuickInfoView(color: .init(hex: "#F05052"),
                                   title: "Last Feed",
-                                  value: dataManager.getLast(for: .feed),
+                                  value: dataManager.getLast(for: .liquidFeed),
                                   shouldShowInfo: !dataManager.feedData.isEmpty,
                                   leadingTo: .feed)
                     QuickInfoView(color: .init(hex: "#5354EC"),
@@ -40,7 +40,7 @@ struct QuickInfoSection: View {
             VStack {
                 QuickInfoView(color: .init(hex: "#F05052"),
                               title: "Last Feed",
-                              value: dataManager.getLast(for: .feed),
+                              value: dataManager.getLast(for: .liquidFeed),
                               shouldShowInfo: !dataManager.feedData.isEmpty,
                               leadingTo: .feed)
                 QuickInfoView(color: .init(hex: "#5354EC"),

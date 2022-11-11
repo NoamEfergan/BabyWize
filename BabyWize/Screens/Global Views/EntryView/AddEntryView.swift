@@ -17,13 +17,13 @@ struct AddEntryView: View {
     @State private var startDate: Date = .init()
     @State private var endDate: Date = .init()
     @State private var errorText = ""
-    @State private var entryType: EntryType = .feed
+    @State private var entryType: EntryType = .liquidFeed
 
     var body: some View {
         ScrollView {
             entryPicker
             switch entryType {
-            case .feed:
+            case .liquidFeed, .solidFeed:
                 FeedEntryView(vm: feedVM)
             case .sleep:
                 SleepEntryView(vm: sleepVM)
@@ -37,7 +37,7 @@ struct AddEntryView: View {
             Button("Add") {
                 do {
                     switch entryType {
-                    case .feed:
+                    case .liquidFeed, .solidFeed:
                         try feedVM.addEntry()
                     case .sleep:
                         try sleepVM.addEntry()

@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - HomeScreenCharts
 struct HomeScreenCharts: View {
     @InjectedObject private var dataManager: BabyDataManager
-    @State private var selectedChart: EntryType = .feed
+    @State private var selectedChart: EntryType = .liquidFeed
 
     var body: some View {
         TabView {

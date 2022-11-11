@@ -12,7 +12,7 @@ import SwiftUI
 struct FeedChart: View {
     var feedData: [Feed]
     var showTitle = true
-    
+
     private let timeTitle = "Time"
     private let amountTitle = "Amount"
     @Environment(\.dynamicTypeSize) var typeSize
@@ -46,15 +46,28 @@ struct FeedChart: View {
                     .padding(.leading)
             }
             if feedData.isEmpty {
-                PlaceholderChart(type: .feed)
+                PlaceholderChart(type: .liquidFeed)
             } else {
+                if showTitle {
+                    jointChart
+                } else {
+                    separateCharts
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var separateCharts: some View {
+        if !feedData.filter(\.isSolids).isEmpty {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Solids")
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundColor(.secondary)
+                    .padding(.leading)
                 ScrollView(.horizontal) {
-                    Chart(feedData.sorted(by: { $0.date < $1.date })) { feed in
-                        if feed.solidOrLiquid == .solid {
-                            getSolidsChart(for: feed)
-                        } else {
-                            getLiquidsChart(for: feed)
-                        }
+                    Chart(feedData.filter(\.isSolids).sorted(by: { $0.date < $1.date })) { feed in
+                        getSolidsChart(for: feed)
                     }
                     .chartPlotStyle(content: { plotArea in
                         plotArea.frame(width: CGFloat(feedData.count) * (80 + sizeModifier))
@@ -65,6 +78,48 @@ struct FeedChart: View {
                     .padding()
                 }
             }
+            .frame(height: 200)
+        }
+        if !feedData.filter(\.isLiquids).isEmpty {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Liquids")
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundColor(.secondary)
+                    .padding(.leading)
+                ScrollView(.horizontal) {
+                    Chart(feedData.filter(\.isLiquids).sorted(by: { $0.date < $1.date })) { feed in
+                        getLiquidsChart(for: feed)
+                    }
+                    .chartPlotStyle(content: { plotArea in
+                        plotArea.frame(width: CGFloat(feedData.count) * (80 + sizeModifier))
+                    })
+                    .frame(maxHeight: .greatestFiniteMagnitude)
+                    .frame(minWidth: UIScreen().bounds.width)
+                    .frame(maxWidth: .greatestFiniteMagnitude)
+                    .padding()
+                }
+            }
+            .frame(height: 200)
+        }
+    }
+
+    @ViewBuilder
+    private var jointChart: some View {
+        ScrollView(.horizontal) {
+            Chart(feedData.sorted(by: { $0.date < $1.date })) { feed in
+                if feed.solidOrLiquid == .solid {
+                    getSolidsChart(for: feed)
+                } else {
+                    getLiquidsChart(for: feed)
+                }
+            }
+            .chartPlotStyle(content: { plotArea in
+                plotArea.frame(width: CGFloat(feedData.count) * (80 + sizeModifier))
+            })
+            .frame(maxHeight: .greatestFiniteMagnitude)
+            .frame(minWidth: UIScreen().bounds.width)
+            .frame(maxWidth: .greatestFiniteMagnitude)
+            .padding()
         }
     }
 
@@ -83,7 +138,7 @@ struct FeedChart: View {
         getPointMark(for: feed, amount: unit)
             .foregroundStyle(Color.blue.gradient)
             .annotation(position: .bottom, alignment: .center) {
-                Text(feed.amount.roundDecimalPoint().description)
+                Text(feed.amount.liquidFeedDisplayableAmount())
                     .foregroundColor(.secondary)
                     .font(.footnote)
             }
@@ -105,7 +160,7 @@ struct FeedChart: View {
         getPointMark(for: feed, amount: amount)
             .foregroundStyle(Color.orange.gradient)
             .annotation(position: .bottom, alignment: .center) {
-                Text(amount.description)
+                Text(amount.solidFeedDisplayableAmount())
                     .foregroundColor(.secondary)
                     .font(.footnote)
             }
@@ -146,5 +201,6 @@ struct FeedChart: View {
 struct FeedChart_Previews: PreviewProvider {
     static var previews: some View {
         FeedChart(feedData: PlaceholderChart.MockData.mockFeed)
+        FeedChart(feedData: PlaceholderChart.MockData.mockFeed, showTitle: false)
     }
 }

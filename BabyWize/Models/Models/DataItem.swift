@@ -42,4 +42,12 @@ struct Feed: DataItem {
     enum SolidOrLiquid: String, Codable, CaseIterable {
         case solid, liquid
     }
+
+    var isLiquids: Bool {
+        solidOrLiquid == .liquid
+    }
+
+    var isSolids: Bool {
+        solidOrLiquid == .solid
+    }
 }

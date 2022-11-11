@@ -6,6 +6,8 @@
 //
 import Foundation
 extension String {
+    static var nonAvailable = "N/A"
+
     func convertToTimeInterval() -> TimeInterval {
         guard self != "" else {
             return 0

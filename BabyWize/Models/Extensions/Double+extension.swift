@@ -44,11 +44,23 @@ extension Double {
         }
     }
 
+    func displayableAmount(isSolid: Bool) -> String {
+        isSolid ? solidFeedDisplayableAmount() : liquidFeedDisplayableAmount()
+    }
+
+    func solidFeedDisplayableAmount() -> String {
+        @InjectedObject var unitsManager: UnitsManager
+        switch unitsManager.solidUnits {
+        case .grams:
+            return "\(roundDecimalPoint().description) \(unitsManager.solidUnits.title)"
+        }
+    }
+
     func liquidFeedDisplayableAmount() -> String {
         @InjectedObject var unitsManager: UnitsManager
         switch unitsManager.liquidUnits {
         case .ml:
-            return description + unitsManager.liquidUnits.rawValue
+            return roundDecimalPoint().description + unitsManager.liquidUnits.rawValue
         case .ozUS:
             return (self / 29.574).roundDecimalPoint().description + unitsManager.liquidUnits.title
         case .oz:

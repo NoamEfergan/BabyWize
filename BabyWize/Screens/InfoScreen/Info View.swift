@@ -14,23 +14,35 @@ struct InfoView: View {
     @ObservedObject var vm: InfoScreenVM
     var body: some View {
         List {
-            Section("general") {
-                if let type = vm.type {
+            if let type = vm.type {
+                Section(vm.sectionTitle) {
                     AccessibleLabeledContent(label:vm.averageTitle, value: dataManager.getAverage(for: type))
                     AccessibleLabeledContent(label:vm.largestTitle, value: dataManager.getBiggest(for: type))
                     AccessibleLabeledContent(label: vm.smallestTitle, value: dataManager.getSmallest(for: type))
-                    NavigationLink("All inputs", value: vm.inputScreen)
+                    if type != .liquidFeed {
+                        NavigationLink("All inputs", value: vm.inputScreen)
+                    }
+                }
+                if type == .liquidFeed {
+                    Section(vm.solidSectionTitle) {
+                        AccessibleLabeledContent(label:vm.solidFeedAverageTitle,
+                                                 value: dataManager.getAverage(for: .solidFeed))
+                        AccessibleLabeledContent(label:vm.solidFeedLargestTitle,
+                                                 value: dataManager.getBiggest(for: .solidFeed))
+                        AccessibleLabeledContent(label: vm.solidFeedSmallestTitle,
+                                                 value: dataManager.getSmallest(for: .solidFeed))
+                        NavigationLink("All inputs", value: vm.inputScreen)
+                    }
                 }
             }
-
             Section("total history") {
                 switch vm.type {
-                case .feed:
+                case .liquidFeed:
                     FeedChart(feedData: dataManager.feedData, showTitle: false)
-                        .frame(height: 200)
+                        .frame(minHeight: 200)
                 case .sleep:
                     SleepChart(sleepData: dataManager.sleepData, showTitle: false)
-                        .frame(height: 200)
+                        .frame(minHeight: 200)
                 default:
                     EmptyView()
                 }
