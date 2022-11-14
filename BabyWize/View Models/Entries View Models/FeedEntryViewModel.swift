@@ -19,7 +19,7 @@ final class FeedEntryViewModel: EntryViewModel {
     init() {}
 
     func addEntry() throws {
-        guard !amount.isEmpty, let amountDouble = Double(amount) else {
+        guard !amount.isEmpty, let amountDouble = Double(amount), !amountDouble.isNaN else {
             throw EntryError.invalidAmount
         }
         let note = feedNote.isEmpty ? nil : feedNote
@@ -33,7 +33,7 @@ final class FeedEntryViewModel: EntryViewModel {
     }
 
     func editEntry() throws {
-        guard !amount.isEmpty, let amountDouble = Double(amount)
+        guard !amount.isEmpty, let amountDouble = Double(amount), !amountDouble.isNaN
         else {
             throw EntryError.invalidAmount
         }

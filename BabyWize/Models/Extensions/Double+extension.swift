@@ -18,29 +18,50 @@ extension Double {
         return (self * divisor).rounded() / divisor
     }
 
-    func convertFromML() -> Self {
-        @InjectedObject var unitsManager: UnitsManager
-        switch unitsManager.liquidUnits {
-        case .ml:
+    func convertLiquids(from: LiquidFeedUnits, to unit: LiquidFeedUnits) -> Self{
+        guard from != unit else {
             return self
+        }
+        switch from {
+        case .ml:
+            return  convertML(to: unit)
         case .ozUS:
-            return (self / 29.574).roundDecimalPoint()
+            return  convertUSOz(to: unit)
         case .oz:
-            return (self / 28.413).roundDecimalPoint()
+            return  convertOZ(to: unit)
         }
     }
 
-
-    // Convert whatever the amount is to ML since we store things in ML
-    func convertToML() -> Self {
-        @InjectedObject var unitsManager: UnitsManager
-        switch unitsManager.liquidUnits {
+    private func convertML(to unit: LiquidFeedUnits) -> Self {
+        switch unit {
         case .ml:
-            return self
+            return roundDecimalPoint()
         case .ozUS:
-            return (self * 29.574).roundDecimalPoint()
+            return (self * 0.033814).roundDecimalPoint()
         case .oz:
-            return (self * 28.413).roundDecimalPoint()
+            return (self * 0.0351951).roundDecimalPoint()
+        }
+    }
+
+    private func convertOZ(to unit: LiquidFeedUnits) -> Self {
+        switch unit {
+        case .ml:
+            return (self / 0.0351951).roundDecimalPoint()
+        case .ozUS:
+            return (self * 0.96).roundDecimalPoint()
+        case .oz:
+            return roundDecimalPoint()
+        }
+    }
+
+    private func convertUSOz(to unit: LiquidFeedUnits) -> Self {
+        switch unit {
+        case .ml:
+            return (self * 29.5735).roundDecimalPoint()
+        case .ozUS:
+            return roundDecimalPoint()
+        case .oz:
+            return (self / 0.96).roundDecimalPoint()
         }
     }
 
@@ -58,14 +79,7 @@ extension Double {
 
     func liquidFeedDisplayableAmount() -> String {
         @InjectedObject var unitsManager: UnitsManager
-        switch unitsManager.liquidUnits {
-        case .ml:
-            return roundDecimalPoint().description + unitsManager.liquidUnits.rawValue
-        case .ozUS:
-            return (self / 29.574).roundDecimalPoint().description + unitsManager.liquidUnits.title
-        case .oz:
-            return (self / 28.413).roundDecimalPoint().description + unitsManager.liquidUnits.title
-        }
+        return roundDecimalPoint().description + unitsManager.liquidUnits.title
     }
 }
 

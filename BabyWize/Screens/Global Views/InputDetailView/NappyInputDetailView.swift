@@ -10,6 +10,7 @@ import SwiftUI
 // MARK: - NappyInputDetailView
 struct NappyInputDetailView: View {
     @InjectedObject private var dataManager: BabyDataManager
+    @EnvironmentObject private var navigationVM: NavigationViewModel
     @StateObject var entryVM: NappyEntryViewModel = .init()
     @State private var editMode = EditMode.inactive
     @State private var isShowingEntryView = false
@@ -23,7 +24,7 @@ struct NappyInputDetailView: View {
                     }
                     .sheet(isPresented: $isShowingEntryView) {
                         EditEntryView(viewModel: entryVM, type: .nappy, item: change)
-                            .presentationDetents([.height(200)])
+                            .presentationDetents([.fraction(0.4), .medium])
                     }
                     .swipeActions(edge: .leading) {
                         Button {
@@ -42,6 +43,11 @@ struct NappyInputDetailView: View {
         }
         .onDisappear {
             entryVM.reset()
+        }
+        .onChange(of: dataManager.nappyData) { newValue in
+            if newValue.isEmpty {
+                    navigationVM.path.removeAll()
+            }
         }
     }
 }

@@ -19,11 +19,9 @@ struct InfoView: View {
                     AccessibleLabeledContent(label:vm.averageTitle, value: dataManager.getAverage(for: type))
                     AccessibleLabeledContent(label:vm.largestTitle, value: dataManager.getBiggest(for: type))
                     AccessibleLabeledContent(label: vm.smallestTitle, value: dataManager.getSmallest(for: type))
-                    if type != .liquidFeed {
-                        NavigationLink("All inputs", value: vm.inputScreen)
-                    }
+                    NavigationLink("All inputs", value: vm.inputScreen)
                 }
-                if type == .liquidFeed {
+                if type == .liquidFeed, !dataManager.feedData.filter(\.isSolids).isEmpty {
                     Section(vm.solidSectionTitle) {
                         AccessibleLabeledContent(label:vm.solidFeedAverageTitle,
                                                  value: dataManager.getAverage(for: .solidFeed))
@@ -31,7 +29,7 @@ struct InfoView: View {
                                                  value: dataManager.getBiggest(for: .solidFeed))
                         AccessibleLabeledContent(label: vm.solidFeedSmallestTitle,
                                                  value: dataManager.getSmallest(for: .solidFeed))
-                        NavigationLink("All inputs", value: vm.inputScreen)
+                        NavigationLink("All inputs", value: Screens.detailInputSolidFeed)
                     }
                 }
             }

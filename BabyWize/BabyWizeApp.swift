@@ -20,11 +20,17 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 }
 
+final class NavigationViewModel: ObservableObject {
+    @Published var path: [Screens] = []
+}
+
 // MARK: - BabyWizeApp
 @main
 struct BabyWizeApp: App {
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @ObservedObject private var authVM = AuthViewModel()
+    @StateObject private var navigationVM = NavigationViewModel()
+    @StateObject private var authVM = AuthViewModel()
     @AppStorage(UserConstants.isLoggedIn) private var savedIsUserLoggedIn: Bool?
 
     init() {
@@ -51,6 +57,7 @@ struct BabyWizeApp: App {
                 .opacity(isShowingSplash ? 1 : 0)
                 LoadingView(isShowing: $authVM.isLoading, text: "Logging you back in...") {
                     HomeView()
+                        .environmentObject(navigationVM)
                         .environment(\.managedObjectContext, dataController.container.viewContext)
                         .environment(\.colorScheme, .light)
                 }

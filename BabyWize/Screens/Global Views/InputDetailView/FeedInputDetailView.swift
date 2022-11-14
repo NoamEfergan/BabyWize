@@ -10,14 +10,19 @@ import SwiftUI
 // MARK: - FeedInputDetailView
 struct FeedInputDetailView: View {
     @InjectedObject private var dataManager: BabyDataManager
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var navigationVM: NavigationViewModel
     @StateObject var entryVM: FeedEntryViewModel = .init()
     @State private var editMode = EditMode.inactive
     @State private var isShowingEntryView = false
+    @State private var presentableData: [Feed] = []
+    var solidOrLiquid: Feed.SolidOrLiquid
+
 
     var body: some View {
         List {
             Section("Swipe right to edit, left to remove") {
-                ForEach(dataManager.feedData) { feed in
+                ForEach(presentableData) { feed in
                     VStack(alignment: .leading) {
                         AccessibleLabeledContent(label:"Amount",
                                                  value: feed.amount.displayableAmount(isSolid: feed.isSolids))
@@ -38,23 +43,42 @@ struct FeedInputDetailView: View {
                     .tint(.blue)
                     .sheet(isPresented: $isShowingEntryView) {
                         EditEntryView(viewModel: entryVM,type: .liquidFeed, item: feed)
-                            .presentationDetents([.height(200)])
+                            .presentationDetents([.fraction(0.4), .medium])
                     }
                 }
                 .onDelete { offsets in
                     dataManager.removeFeed(at: offsets)
+                    setPresentableData()
+                }
+                .onChange(of: presentableData) { newValue in
+                    if newValue.isEmpty {
+                        if dataManager.feedData.isEmpty {
+                            navigationVM.path.removeAll()
+                        } else {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
                 }
             }
         }
+        .onAppear {
+            setPresentableData()
+        }
+
         .onDisappear {
             entryVM.reset()
         }
+    }
+
+    private func setPresentableData() {
+        presentableData = dataManager.feedData.filter({ $0.solidOrLiquid == solidOrLiquid })
     }
 }
 
 // MARK: - FeedInputDetailView_Previews
 struct FeedInputDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedInputDetailView()
+        FeedInputDetailView(solidOrLiquid: .solid)
+        FeedInputDetailView(solidOrLiquid: .liquid)
     }
 }

@@ -31,7 +31,7 @@ struct QuickInfoSection: View {
                 }
                 QuickInfoView(color: .init(hex: "#F0A24E"),
                               backgroundColor: .init(hex: "#F6DDC5"),
-                              title: "Last Nappy change",
+                              title: "Last Nappy Change",
                               value: dataManager.getLast(for: .nappy),
                               shouldShowInfo: false,
                               leadingTo: .none)
@@ -50,7 +50,7 @@ struct QuickInfoSection: View {
                               leadingTo: .sleep)
                 QuickInfoView(color: .init(hex: "#F0A24E"),
                               backgroundColor: .init(hex: "#F6DDC5"),
-                              title: "Last Nappy change",
+                              title: "Last Nappy Change",
                               value: dataManager.getLast(for: .nappy),
                               shouldShowInfo: false,
                               leadingTo: .none)

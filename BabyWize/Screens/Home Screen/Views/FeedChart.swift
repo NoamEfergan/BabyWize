@@ -125,7 +125,7 @@ struct FeedChart: View {
 
     @ChartContentBuilder
     private func getLiquidsChart(for feed: Feed) -> some ChartContent {
-        let unit = feed.amount.convertFromML()
+        let unit = feed.amount.roundDecimalPoint()
         getBarMark(for: feed, amount: unit)
             .foregroundStyle(Color.clear)
             .annotation(position: .top, alignment: .center) {

@@ -24,7 +24,7 @@ final class InfoScreenVM: ObservableObject {
 
     var type: EntryType? {
         switch inputScreen {
-        case .feed, .detailInputFeed:
+        case .feed, .detailInputLiquidFeed:
             return .liquidFeed
         case .sleep, .detailInputSleep:
             return .sleep
@@ -35,7 +35,7 @@ final class InfoScreenVM: ObservableObject {
 
     init(screen: Screens) {
         self.screen = screen
-        inputScreen = screen == .feed ? .detailInputFeed : .detailInputSleep
+        inputScreen = screen == .feed ? .detailInputLiquidFeed : .detailInputSleep
         setTitles()
     }
 

@@ -10,17 +10,16 @@ import SwiftUI
 
 // MARK: - Screens
 enum Screens: String {
-    case home, settings, newEntry, feed, sleep, detailInputFeed, detailInputSleep, none
+    case home, settings, newEntry, feed, sleep, detailInputLiquidFeed,detailInputSolidFeed, detailInputSleep, none
 }
 
 // MARK: - HomeView
 struct HomeView: View {
     @InjectedObject private var dataManager: BabyDataManager
     @Environment(\.dynamicTypeSize) var typeSize
-    @State private var path: [Screens] = []
+    @EnvironmentObject private var navigationVM: NavigationViewModel
     @State private var isShowingNewEntrySheet = false
     @State private var wantsToAddEntry = false
-    @State private var isShowingSettings = false
 
     private var shouldShowSheet: Bool {
         switch typeSize {
@@ -32,7 +31,7 @@ struct HomeView: View {
     }
 
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $navigationVM.path) {
             ScrollView {
                 VStack {
                     QuickInfoSection()
@@ -66,7 +65,7 @@ struct HomeView: View {
             .navigationTitle("Baby Wize")
             .sheet(isPresented: $isShowingNewEntrySheet) {
                 AddEntryView()
-                    .presentationDetents([.height(270)])
+                    .presentationDetents([.fraction(0.4), .medium])
                     .onDisappear {
                         wantsToAddEntry = false
                     }
@@ -75,7 +74,7 @@ struct HomeView: View {
                 if shouldShowSheet {
                     isShowingNewEntrySheet = newValue
                 } else {
-                    newValue ? path.append(.newEntry) : path.removeAll()
+                    newValue ? navigationVM.path.append(.newEntry) : navigationVM.path.removeAll()
                 }
             })
             .navigationDestination(for: Screens.self, destination: handleScreensNavigation)
@@ -106,9 +105,13 @@ struct HomeView: View {
         case .detailInputSleep:
             InputDetailView(type: .sleep)
                 .navigationTitle("All sleeps")
-        case .detailInputFeed:
+        case .detailInputLiquidFeed:
             InputDetailView(type: .liquidFeed)
-                .navigationTitle("All feeds")
+                .navigationTitle("All liquid feeds")
+        case .detailInputSolidFeed:
+            InputDetailView(type: .solidFeed)
+                .navigationTitle("All solid feeds")
+
         default:
             EmptyView()
         }

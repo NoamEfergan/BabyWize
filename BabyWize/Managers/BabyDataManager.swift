@@ -6,27 +6,45 @@
 //
 import CoreData
 import SwiftUI
+import Combine
+import Algorithms
 
 final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
 
     private let coreDataManager = BabyCoreDataManager()
+    @InjectedObject var unitsManager: UnitsManager
 
     // MARK: - Exposed variables
 
     @Published var sleepData: [Sleep] = []
     @Published var feedData: [Feed] = []
     @Published var nappyData: [NappyChange] = []
+    private var bag = Set<AnyCancellable>()
 
     init() {
         fetchSavedValues()
+        listenToUnitChanges()
     }
 
     // MARK: - Public methods
 
+    func getIsEmpty(for type: EntryType) -> Bool {
+        switch type {
+        case .liquidFeed:
+            return feedData.filter(\.isLiquids).isEmpty
+        case .sleep:
+            return sleepData.isEmpty
+        case .nappy:
+            return nappyData.isEmpty
+        case .solidFeed:
+            return feedData.filter(\.isSolids).isEmpty
+        }
+    }
+
     func getLast(for type: EntryType) -> String {
         defer {
-            self.objectWillChange
+            _ = self.objectWillChange
         }
         switch type {
         case .liquidFeed, .solidFeed:
@@ -64,8 +82,9 @@ final class BabyDataManager: ObservableObject {
             if let max = feedData
                 .filter(\.isLiquids)
                 .max(by: { $0.amount < $1.amount })?
-                .amount.liquidFeedDisplayableAmount() {
-                return max
+                .amount,
+                !max.isNaN {
+                return max.liquidFeedDisplayableAmount()
             } else {
                 return .nonAvailable
             }
@@ -74,8 +93,8 @@ final class BabyDataManager: ObservableObject {
             if let max = feedData
                 .filter(\.isSolids)
                 .max(by: { $0.amount < $1.amount })?
-                .amount.solidFeedDisplayableAmount() {
-                return max
+                .amount, !max.isNaN {
+                return max.solidFeedDisplayableAmount()
             } else {
                 return .nonAvailable
             }
@@ -92,9 +111,8 @@ final class BabyDataManager: ObservableObject {
             if let min = feedData
                 .filter(\.isLiquids)
                 .min(by: { $0.amount < $1.amount })?
-                .amount
-                .liquidFeedDisplayableAmount() {
-                return min
+                .amount, !min.isNaN {
+                return min.liquidFeedDisplayableAmount()
             } else {
                 return .nonAvailable
             }
@@ -103,9 +121,8 @@ final class BabyDataManager: ObservableObject {
             if let min = feedData
                 .filter(\.isSolids)
                 .min(by: { $0.amount < $1.amount })?
-                .amount
-                .solidFeedDisplayableAmount() {
-                return min
+                .amount, !min.isNaN {
+                return min.solidFeedDisplayableAmount()
             } else {
                 return .nonAvailable
             }
@@ -120,15 +137,9 @@ final class BabyDataManager: ObservableObject {
 
     // ADD
     func addFeed(_ item: Feed) {
-        // Make sure we store feeds as ML, and do the conversion later
-        let itemWithML = Feed(id: item.id,
-                              date: item.date,
-                              amount: item.solidOrLiquid == .liquid ? item.amount.convertToML() : item.amount,
-                              note: item.note,
-                              solidOrLiquid: item.solidOrLiquid)
-        feedData.append(itemWithML)
-        FirebaseManager().addFeed(itemWithML)
-        coreDataManager.addFeed(itemWithML)
+        feedData.append(item)
+        FirebaseManager().addFeed(item)
+        coreDataManager.addFeed(item)
     }
 
     func addSleep(_ item: Sleep) {
@@ -183,17 +194,56 @@ final class BabyDataManager: ObservableObject {
     private func getAverageFeed(isSolid: Bool) -> String {
         let data = isSolid ? feedData.filter(\.isSolids) : feedData.filter(\.isLiquids)
         let totalAmount = data.reduce(0) { $0 + $1.amount }
-        return (totalAmount / Double(data.count)).displayableAmount(isSolid: isSolid)
+        let returnableAmount = (totalAmount / Double(data.count))
+        if returnableAmount.isNaN {
+            return .nonAvailable
+        }
+        return returnableAmount.displayableAmount(isSolid: isSolid)
     }
 
     private func getAverageSleepDuration() -> String {
         let totalAmount = sleepData.reduce(0) { $0 + $1.duration.convertToTimeInterval() }
-        return (totalAmount / Double(sleepData.count)).hourMinuteSecondMS
+        let amount = (totalAmount / Double(sleepData.count))
+        if amount.isNaN {
+            return .nonAvailable
+        }
+        return amount.hourMinuteSecondMS
     }
 
     private func fetchSavedValues() {
         feedData = coreDataManager.fetchFeeds()
         sleepData = coreDataManager.fetchSleeps()
         nappyData = coreDataManager.fetchChanges()
+    }
+
+    private func listenToUnitChanges() {
+        unitsManager
+            .$liquidUnits
+            .scan((nil, nil) as (LiquidFeedUnits?,
+                                 LiquidFeedUnits?)) { output, selectedUnit -> (LiquidFeedUnits?, LiquidFeedUnits?) in
+                if let to = output.1 {
+                    return (to, selectedUnit)
+                }
+
+                return (nil, selectedUnit)
+            }
+            .sink(receiveValue: { pair in
+                guard let from = pair.0,
+                      let to = pair.1 else {
+                    return
+                }
+                self.feedData.indices.forEach { index in
+                    let feed = self.feedData[index]
+                    let newFeed = Feed(
+                        id: feed.id,
+                        date: feed.date,
+                        amount: feed.amount.convertLiquids(from: from, to: to),
+                        note: feed.note,
+                        solidOrLiquid: feed.solidOrLiquid
+                    )
+                    self.updateFeed(newFeed, index: index)
+                }
+            })
+            .store(in: &bag)
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 // MARK: - SleepInputDetailView
 struct SleepInputDetailView: View {
     @InjectedObject private var dataManager: BabyDataManager
+    @EnvironmentObject private var navigationVM: NavigationViewModel
     @StateObject var entryVM: SleepEntryViewModel = .init()
     @State private var editMode = EditMode.inactive
     @State private var isShowingEntryView = false
@@ -24,7 +25,7 @@ struct SleepInputDetailView: View {
                     }
                     .sheet(isPresented: $isShowingEntryView) {
                         EditEntryView(viewModel: entryVM,type: .sleep, item: sleep)
-                            .presentationDetents([.height(200)])
+                            .presentationDetents([.fraction(0.4), .medium])
                     }
                     .swipeActions(edge: .leading) {
                         Button {
@@ -43,6 +44,11 @@ struct SleepInputDetailView: View {
         }
         .onDisappear {
             entryVM.reset()
+        }
+        .onChange(of: dataManager.sleepData) { newValue in
+            if newValue.isEmpty {
+                    navigationVM.path.removeAll()
+            }
         }
     }
 }

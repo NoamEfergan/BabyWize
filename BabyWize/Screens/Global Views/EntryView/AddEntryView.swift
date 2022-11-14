@@ -68,8 +68,8 @@ struct AddEntryView: View {
 
     private var picker: some View {
         Picker("Entry Type?", selection:$entryType) {
-            ForEach(EntryType.allCases, id: \.self) {
-                Text($0.rawValue.capitalized)
+            ForEach(EntryType.allCases.filter({ $0 != .solidFeed }), id: \.self) {
+                Text($0.title)
             }
         }
     }

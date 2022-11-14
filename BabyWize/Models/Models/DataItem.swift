@@ -35,7 +35,7 @@ struct Sleep: DataItem {
 struct Feed: DataItem {
     let id: String
     let date: Date
-    let amount: Double
+    var amount: Double
     let note: String?
     let solidOrLiquid: SolidOrLiquid
 

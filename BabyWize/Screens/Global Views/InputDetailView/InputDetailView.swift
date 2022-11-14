@@ -17,8 +17,10 @@ struct InputDetailView: View {
     var body: some View {
         Group {
             switch type {
-            case .liquidFeed, .solidFeed:
-                FeedInputDetailView()
+            case .liquidFeed:
+                FeedInputDetailView(solidOrLiquid: .liquid)
+            case .solidFeed:
+                FeedInputDetailView(solidOrLiquid: .solid)
             case .sleep:
                 SleepInputDetailView()
             case .nappy:
