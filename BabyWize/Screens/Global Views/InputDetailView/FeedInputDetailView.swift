@@ -74,7 +74,7 @@ struct FeedInputDetailView: View {
             }
             .confirmationDialog("Remove All", isPresented: $isShowingAlert) {
                 Button(role: .destructive) {
-                    self.removeAll()
+                    dataManager.removeAll(for: solidOrLiquid == .liquid ? .liquidFeed : .solidFeed)
                 } label: {
                     Text("Yes")
                 }
@@ -92,17 +92,6 @@ struct FeedInputDetailView: View {
         .onDisappear {
             entryVM.reset()
         }
-    }
-
-    private func removeAll() {
-        dataManager
-            .feedData
-            .filter { $0.solidOrLiquid == solidOrLiquid }
-            .indices
-            .forEach { index in
-                let set: IndexSet = .init(integer: index)
-                dataManager.removeFeed(at: set)
-            }
     }
 
     private func setPresentableData() {

@@ -14,10 +14,11 @@ struct SleepInputDetailView: View {
     @StateObject var entryVM: SleepEntryViewModel = .init()
     @State private var editMode = EditMode.inactive
     @State private var isShowingEntryView = false
+    @State private var isShowingAlert = false
 
     var body: some View {
         List {
-            Section("Swipe right to edit, left to remove") {
+            Section {
                 ForEach(dataManager.sleepData, id: \.id) { sleep in
                     VStack(alignment: .leading) {
                         AccessibleLabeledContent(label:"Duration", value: sleep.duration)
@@ -40,6 +41,26 @@ struct SleepInputDetailView: View {
                 .onDelete { offsets in
                     dataManager.removeSleep(at: offsets)
                 }
+            } header: {
+                Text("Swipe right to edit, left to remove")
+            } footer: {
+                Button("Remove All") {
+                    isShowingAlert.toggle()
+                }
+                .foregroundColor(.red)
+            }
+            .confirmationDialog("Remove All", isPresented: $isShowingAlert) {
+                Button(role: .destructive) {
+                    dataManager.removeAll(for: .sleep)
+                } label: {
+                    Text("Yes")
+                }
+
+                Button("No") {
+                    isShowingAlert.toggle()
+                }
+            } message: {
+                Text("Are you sure you want to remove all? this CANNOT be undone! ")
             }
         }
         .onDisappear {

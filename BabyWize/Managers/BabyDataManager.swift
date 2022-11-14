@@ -189,6 +189,41 @@ final class BabyDataManager: ObservableObject {
         nappyData.remove(atOffsets: offsets)
     }
 
+    func removeAll(for entry: EntryType) {
+        switch entry {
+        case .liquidFeed:
+            feedData
+                .filter(\.isLiquids)
+                .indices
+                .forEach { index in
+                    let set: IndexSet = .init(integer: index)
+                    self.removeFeed(at: set)
+                }
+        case .sleep:
+            sleepData
+                .indices
+                .forEach { index in
+                    let set: IndexSet = .init(integer: index)
+                    self.removeSleep(at: set)
+                }
+        case .nappy:
+            nappyData
+                .indices
+                .forEach { index in
+                    let set: IndexSet = .init(integer: index)
+                    self.removeChange(at: set)
+                }
+        case .solidFeed:
+            feedData
+                .filter(\.isSolids)
+                .indices
+                .forEach { index in
+                    let set: IndexSet = .init(integer: index)
+                    self.removeFeed(at: set)
+                }
+        }
+    }
+
     // MARK: - Private methods
 
     private func getAverageFeed(isSolid: Bool) -> String {
