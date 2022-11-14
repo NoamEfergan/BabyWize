@@ -10,6 +10,8 @@ import SwiftUI
 
 // MARK: - PlaceholderChart
 struct PlaceholderChart: View {
+    @State private var feedData: [Feed] = []
+    @State private var sleepData: [Sleep] = []
     let type: EntryType
 
     var body: some View {
@@ -29,25 +31,32 @@ struct PlaceholderChart: View {
             RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .padding()
                 .foregroundColor(.secondary)
-            Text("Nothing to show just yet,\n add a \(type.rawValue)!")
+            Text("Nothing to show just yet,\n add a \(type == .liquidFeed ? "feed" : "sleep")!")
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
                 .font(.system(.title2, design: .rounded))
         }
     }
-
+    @ViewBuilder
     private var dummyFeedChart: some View {
-        Chart(MockData.mockFeed) { feed in
+        Chart(feedData) { feed in
             LineMark(x: .value("Time", feed.date.formatted(date: .omitted, time: .shortened)),
                      y: .value("Amount", feed.amount))
                 .foregroundStyle(Color.blue.gradient)
         }
         .frame(height: 200)
         .frame(width: UIScreen.main.bounds.width)
+        .onAppear {
+            for (index, item ) in  MockData.mockFeed.enumerated() {
+                withAnimation(.easeIn(duration: 0.2).delay(Double(index) * 0.1)) {
+                    feedData.append(item)
+                }
+            }
+        }
     }
-
+    @ViewBuilder
     private var dummySleepChart: some View {
-        Chart(MockData.mockSleep) { sleep in
+        Chart(sleepData) { sleep in
             let dateValue = sleep.date.formatted(date: .abbreviated, time: .shortened)
             let amountValue = sleep.duration.convertToTimeInterval().displayableString
             BarMark(x: .value("Time", dateValue),
@@ -62,6 +71,13 @@ struct PlaceholderChart: View {
         .chartYAxis(.hidden)
         .frame(height: 200)
         .frame(width: UIScreen.main.bounds.width)
+        .onAppear {
+            for (index, item ) in  MockData.mockSleep.enumerated() {
+                withAnimation(.easeIn(duration: 0.2).delay(Double(index) * 0.2)) {
+                    sleepData.append(item)
+                }
+            }
+        }
     }
 }
 
@@ -103,106 +119,8 @@ extension PlaceholderChart {
                  date: Date.getRandomMockDate(),
                  amount: .getRandomFeedAmount(),
                  note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
 
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
 
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
-                 date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
         ]
         .sorted(by: { $0.date < $1.date })
 
