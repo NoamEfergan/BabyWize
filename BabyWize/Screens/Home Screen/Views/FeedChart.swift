@@ -12,6 +12,8 @@ import SwiftUI
 struct FeedChart: View {
     var feedData: [Feed]
     var showTitle = true
+    @State private var isShowingJoint = true
+    @State private var selectedConfig: ChartConfiguration = .joint
 
     private let timeTitle = "Time"
     private let amountTitle = "Amount"
@@ -37,24 +39,46 @@ struct FeedChart: View {
         }
     }
 
-
     var body: some View {
         VStack(alignment: .leading) {
             if showTitle {
-                Text(feedInfoTitle)
-                    .font(.system(.title, design: .rounded))
-                    .padding(.leading)
+                HStack {
+                    Text(feedInfoTitle)
+                        .font(.system(.title, design: .rounded))
+                        .padding(.leading)
+                    Spacer()
+                    Menu(selectedConfig.rawValue.capitalized) {
+                        ForEach(ChartConfiguration.allCases, id: \.self ) { config in
+                            Button(config.rawValue.capitalized) {
+                                withAnimation(.easeInOut) {
+                                    selectedConfig = config
+                                }
+                            }
+                        }
+                    }
+                    .foregroundColor(.secondary)
+                    .font(.system(.subheadline, design: .rounded))
+                    .padding(.trailing)
+                }
             }
             if feedData.isEmpty {
                 PlaceholderChart(type: .liquidFeed)
             } else {
                 if showTitle {
-                    jointChart
+                    if isShowingJoint {
+                        jointChart
+                    } else {
+                        separateCharts
+                    }
                 } else {
                     separateCharts
                 }
             }
         }
+        .onChange(of: selectedConfig, perform: { newValue in
+            isShowingJoint = newValue == .joint
+        })
+        .animation(.easeInOut, value: isShowingJoint)
     }
 
     @ViewBuilder
@@ -194,6 +218,12 @@ struct FeedChart: View {
             let feedCount = feedData.count >= 6 ? 6 : feedData.count
             return "Feed info (last \(feedCount))"
         }
+    }
+}
+
+extension FeedChart {
+    enum ChartConfiguration: String, CaseIterable {
+        case joint, separate
     }
 }
 
