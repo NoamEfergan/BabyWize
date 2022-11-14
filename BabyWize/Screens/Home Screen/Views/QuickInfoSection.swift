@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - QuickInfoSection
 struct QuickInfoSection: View {
     @InjectedObject private var dataManager: BabyDataManager
-    @InjectedObject private var unitManager: UnitsManager
+    @InjectedObject private var unitManager: UserDefaultManager
     @Environment(\.dynamicTypeSize) var typeSize
 
     var body: some View {

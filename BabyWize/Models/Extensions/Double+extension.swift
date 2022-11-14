@@ -70,7 +70,7 @@ extension Double {
     }
 
     func solidFeedDisplayableAmount() -> String {
-        @InjectedObject var unitsManager: UnitsManager
+        @InjectedObject var unitsManager: UserDefaultManager
         switch unitsManager.solidUnits {
         case .grams:
             return "\(roundDecimalPoint().description) \(unitsManager.solidUnits.title)"
@@ -78,7 +78,7 @@ extension Double {
     }
 
     func liquidFeedDisplayableAmount() -> String {
-        @InjectedObject var unitsManager: UnitsManager
+        @InjectedObject var unitsManager: UserDefaultManager
         return roundDecimalPoint().description + unitsManager.liquidUnits.title
     }
 }

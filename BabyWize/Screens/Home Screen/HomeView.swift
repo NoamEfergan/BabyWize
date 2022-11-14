@@ -21,6 +21,11 @@ struct HomeView: View {
     @State private var isShowingNewEntrySheet = false
     @State private var wantsToAddEntry = false
     @State private var iconRotation: Double = 0
+    @InjectedObject private var defaultsManager: UserDefaultManager
+    
+    var minChartHeight: Double {
+        defaultsManager.chartConfiguration == .joint ? 350 : 550
+    }
 
     private var shouldShowSheet: Bool {
         switch typeSize {
@@ -39,7 +44,7 @@ struct HomeView: View {
                         .shadow(radius: 0)
                         .padding()
                     HomeScreenCharts()
-                        .frame(minHeight: 350)
+                        .frame(minHeight: minChartHeight)
                 }
             }
             .toolbar {

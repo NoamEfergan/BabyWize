@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - SettingsView
 struct SettingsView: View {
-    @InjectedObject private var unitsManager: UnitsManager
+    @InjectedObject private var unitsManager: UserDefaultManager
     @State private var isShowingAlert = false
     @State private var isShowingLogoutAlert = false
     @State private var isLoginViewShowing = false

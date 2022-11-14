@@ -1,5 +1,5 @@
 //
-//  UnitsManager.swift
+//  UserDefaultManager.swift
 //  BabyWize
 //
 //  Created by Noam Efergan on 09/11/2022.
@@ -7,7 +7,13 @@
 
 import SwiftUI
 
-final class UnitsManager: ObservableObject {
+final class UserDefaultManager: ObservableObject {
+    @Published var chartConfiguration: ChartConfiguration {
+        didSet {
+            UserDefaults.standard.set(chartConfiguration.rawValue, forKey: Constants.chartConfiguration.rawValue)
+        }
+    }
+
     @Published var liquidUnits: LiquidFeedUnits {
         didSet {
             UserDefaults.standard.set(liquidUnits.rawValue, forKey: Constants.preferredUnit.rawValue)
@@ -32,6 +38,13 @@ final class UnitsManager: ObservableObject {
             solidUnits = .init(rawValue: savedSolid) ?? .grams
         } else {
             solidUnits = .grams
+        }
+
+
+        if let savedConfig = UserDefaults.standard.string(forKey: Constants.chartConfiguration.rawValue) {
+            chartConfiguration = .init(rawValue: savedConfig) ?? .joint
+        } else {
+            chartConfiguration = .joint
         }
     }
 }

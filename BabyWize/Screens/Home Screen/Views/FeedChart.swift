@@ -13,7 +13,7 @@ struct FeedChart: View {
     var feedData: [Feed]
     var showTitle = true
     @State private var isShowingJoint = true
-    @State private var selectedConfig: ChartConfiguration = .joint
+    @InjectedObject private var defaultManager: UserDefaultManager
 
     private let timeTitle = "Time"
     private let amountTitle = "Amount"
@@ -47,11 +47,11 @@ struct FeedChart: View {
                         .font(.system(.title, design: .rounded))
                         .padding(.leading)
                     Spacer()
-                    Menu(selectedConfig.rawValue.capitalized) {
+                    Menu(defaultManager.chartConfiguration.rawValue.capitalized) {
                         ForEach(ChartConfiguration.allCases, id: \.self ) { config in
                             Button(config.rawValue.capitalized) {
                                 withAnimation(.easeInOut) {
-                                    selectedConfig = config
+                                    defaultManager.chartConfiguration = config
                                 }
                             }
                         }
@@ -75,7 +75,10 @@ struct FeedChart: View {
                 }
             }
         }
-        .onChange(of: selectedConfig, perform: { newValue in
+        .onAppear {
+            isShowingJoint = defaultManager.chartConfiguration == .joint
+        }
+        .onChange(of: defaultManager.chartConfiguration, perform: { newValue in
             isShowingJoint = newValue == .joint
         })
         .animation(.easeInOut, value: isShowingJoint)
@@ -218,12 +221,6 @@ struct FeedChart: View {
             let feedCount = feedData.count >= 6 ? 6 : feedData.count
             return "Feed info (last \(feedCount))"
         }
-    }
-}
-
-extension FeedChart {
-    enum ChartConfiguration: String, CaseIterable {
-        case joint, separate
     }
 }
 

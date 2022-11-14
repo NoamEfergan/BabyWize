@@ -13,7 +13,7 @@ final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
 
     private let coreDataManager = BabyCoreDataManager()
-    @InjectedObject var unitsManager: UnitsManager
+    @InjectedObject var unitsManager: UserDefaultManager
 
     // MARK: - Exposed variables
 
