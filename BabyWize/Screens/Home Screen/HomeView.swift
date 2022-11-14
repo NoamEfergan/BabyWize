@@ -20,6 +20,7 @@ struct HomeView: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @State private var isShowingNewEntrySheet = false
     @State private var wantsToAddEntry = false
+    @State private var iconRotation: Double = 0
 
     private var shouldShowSheet: Bool {
         switch typeSize {
@@ -59,6 +60,7 @@ struct HomeView: View {
                             .resizable()
                             .frame(width: 32, height: 32)
                             .foregroundColor(.secondary)
+                            .rotationEffect(.degrees(iconRotation))
                     }
                 }
             }
@@ -71,6 +73,7 @@ struct HomeView: View {
                     }
             }
             .onChange(of: wantsToAddEntry, perform: { newValue in
+                iconRotation = newValue ? 45 : 0
                 if shouldShowSheet {
                     isShowingNewEntrySheet = newValue
                 } else {
@@ -81,6 +84,7 @@ struct HomeView: View {
             .task {
                 WidgetManager().setLatest()
             }
+            .animation(.easeOut, value: iconRotation)
             .onOpenURL { _ in
                 // TODO: Handle more deep links!
                 wantsToAddEntry = true
@@ -122,5 +126,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(NavigationViewModel())
     }
 }

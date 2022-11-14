@@ -12,6 +12,8 @@ import SwiftUI
 struct PlaceholderChart: View {
     @State private var feedData: [Feed] = []
     @State private var sleepData: [Sleep] = []
+    @State private var didAnimateFeedAlready = false
+    @State private var didAnimateSleepAlready = false
     let type: EntryType
 
     var body: some View {
@@ -47,10 +49,14 @@ struct PlaceholderChart: View {
         .frame(height: 200)
         .frame(width: UIScreen.main.bounds.width)
         .onAppear {
-            for (index, item ) in  MockData.mockFeed.enumerated() {
-                withAnimation(.easeIn(duration: 0.2).delay(Double(index) * 0.1)) {
-                    feedData.append(item)
+            if !didAnimateFeedAlready {
+                feedData.removeAll()
+                for (index, item ) in  MockData.mockFeed.enumerated() {
+                    withAnimation(.easeIn(duration: 0.2).delay(Double(index) * 0.1)) {
+                        feedData.append(item)
+                    }
                 }
+                didAnimateFeedAlready = true
             }
         }
     }
@@ -72,9 +78,13 @@ struct PlaceholderChart: View {
         .frame(height: 200)
         .frame(width: UIScreen.main.bounds.width)
         .onAppear {
-            for (index, item ) in  MockData.mockSleep.enumerated() {
-                withAnimation(.easeIn(duration: 0.2).delay(Double(index) * 0.2)) {
-                    sleepData.append(item)
+            if !didAnimateSleepAlready {
+                sleepData.removeAll()
+                for (index, item ) in  MockData.mockSleep.enumerated() {
+                    withAnimation(.easeIn(duration: 0.2).delay(Double(index) * 0.2)) {
+                        sleepData.append(item)
+                    }
+                    didAnimateSleepAlready = true
                 }
             }
         }
