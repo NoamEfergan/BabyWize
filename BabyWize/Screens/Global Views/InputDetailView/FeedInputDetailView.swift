@@ -16,11 +16,12 @@ struct FeedInputDetailView: View {
     @State private var editMode = EditMode.inactive
     @State private var isShowingEntryView = false
     @State private var presentableData: [Feed] = []
+    @State private var isShowingAlert = false
     var solidOrLiquid: Feed.SolidOrLiquid
 
     var body: some View {
         List {
-            Section("Swipe right to edit, left to remove") {
+            Section {
                 ForEach(presentableData) { feed in
                     VStack(alignment: .leading) {
                         AccessibleLabeledContent(label:"Amount",
@@ -62,15 +63,46 @@ struct FeedInputDetailView: View {
                         }
                     }
                 }
+            } header: {
+                Text("Swipe right to edit, left to remove")
+            }
+        footer: {
+                Button("Remove All") {
+                    isShowingAlert.toggle()
+                }
+                .foregroundColor(.red)
+            }
+            .confirmationDialog("Remove All", isPresented: $isShowingAlert) {
+                Button(role: .destructive) {
+                    self.removeAll()
+                } label: {
+                    Text("Yes")
+                }
+
+                Button("No") {
+                    isShowingAlert.toggle()
+                }
+            } message: {
+                Text("Are you sure you want to remove all? this CANNOT be undone! ")
             }
         }
         .onAppear {
             setPresentableData()
         }
-
         .onDisappear {
             entryVM.reset()
         }
+    }
+
+    private func removeAll() {
+        dataManager
+            .feedData
+            .filter { $0.solidOrLiquid == solidOrLiquid }
+            .indices
+            .forEach { index in
+                let set: IndexSet = .init(integer: index)
+                dataManager.removeFeed(at: set)
+            }
     }
 
     private func setPresentableData() {
