@@ -9,7 +9,7 @@ import Foundation
 
 enum EntryType: String, CaseIterable, Hashable {
     case liquidFeed, sleep, nappy, solidFeed
-    
+
     var title: String {
         switch self {
         case .liquidFeed, .solidFeed:

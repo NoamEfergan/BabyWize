@@ -234,13 +234,11 @@ final class BabyDataManager: ObservableObject {
                 }
                 self.feedData.indices.forEach { index in
                     let feed = self.feedData[index]
-                    let newFeed = Feed(
-                        id: feed.id,
-                        date: feed.date,
-                        amount: feed.amount.convertLiquids(from: from, to: to),
-                        note: feed.note,
-                        solidOrLiquid: feed.solidOrLiquid
-                    )
+                    let newFeed = Feed(id: feed.id,
+                                       date: feed.date,
+                                       amount: feed.amount.convertLiquids(from: from, to: to),
+                                       note: feed.note,
+                                       solidOrLiquid: feed.solidOrLiquid)
                     self.updateFeed(newFeed, index: index)
                 }
             })

@@ -20,6 +20,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 }
 
+// MARK: - NavigationViewModel
 final class NavigationViewModel: ObservableObject {
     @Published var path: [Screens] = []
 }
@@ -27,7 +28,6 @@ final class NavigationViewModel: ObservableObject {
 // MARK: - BabyWizeApp
 @main
 struct BabyWizeApp: App {
-    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var navigationVM = NavigationViewModel()
     @StateObject private var authVM = AuthViewModel()

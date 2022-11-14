@@ -18,7 +18,6 @@ struct FeedInputDetailView: View {
     @State private var presentableData: [Feed] = []
     var solidOrLiquid: Feed.SolidOrLiquid
 
-
     var body: some View {
         List {
             Section("Swipe right to edit, left to remove") {
@@ -46,10 +45,14 @@ struct FeedInputDetailView: View {
                             .presentationDetents([.fraction(0.4), .medium])
                     }
                 }
+
                 .onDelete { offsets in
                     dataManager.removeFeed(at: offsets)
                     setPresentableData()
                 }
+                .onChange(of: dataManager.feedData, perform: { _ in
+                    setPresentableData()
+                })
                 .onChange(of: presentableData) { newValue in
                     if newValue.isEmpty {
                         if dataManager.feedData.isEmpty {

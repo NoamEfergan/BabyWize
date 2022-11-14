@@ -46,7 +46,7 @@ struct NappyInputDetailView: View {
         }
         .onChange(of: dataManager.nappyData) { newValue in
             if newValue.isEmpty {
-                    navigationVM.path.removeAll()
+                navigationVM.path.removeAll()
             }
         }
     }

@@ -47,7 +47,7 @@ struct SleepInputDetailView: View {
         }
         .onChange(of: dataManager.sleepData) { newValue in
             if newValue.isEmpty {
-                    navigationVM.path.removeAll()
+                navigationVM.path.removeAll()
             }
         }
     }

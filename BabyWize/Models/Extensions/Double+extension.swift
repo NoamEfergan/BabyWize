@@ -18,17 +18,17 @@ extension Double {
         return (self * divisor).rounded() / divisor
     }
 
-    func convertLiquids(from: LiquidFeedUnits, to unit: LiquidFeedUnits) -> Self{
+    func convertLiquids(from: LiquidFeedUnits, to unit: LiquidFeedUnits) -> Self {
         guard from != unit else {
             return self
         }
         switch from {
         case .ml:
-            return  convertML(to: unit)
+            return convertML(to: unit)
         case .ozUS:
-            return  convertUSOz(to: unit)
+            return convertUSOz(to: unit)
         case .oz:
-            return  convertOZ(to: unit)
+            return convertOZ(to: unit)
         }
     }
 
