@@ -13,6 +13,7 @@ final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
 
     private let coreDataManager = BabyCoreDataManager()
+    private let firebaseManager = FirebaseManager()
     @InjectedObject var unitsManager: UserDefaultManager
 
     // MARK: - Exposed variables
@@ -138,7 +139,7 @@ final class BabyDataManager: ObservableObject {
     // ADD
     func addFeed(_ item: Feed) {
         feedData.append(item)
-        FirebaseManager().addFeed(item)
+        firebaseManager.addFeed(item)
         coreDataManager.addFeed(item)
     }
 
@@ -192,13 +193,8 @@ final class BabyDataManager: ObservableObject {
     func removeAll(for entry: EntryType) {
         switch entry {
         case .liquidFeed:
-            feedData
-                .filter(\.isLiquids)
-                .indices
-                .forEach { index in
-                    let set: IndexSet = .init(integer: index)
-                    self.removeFeed(at: set)
-                }
+            feedData.removeAll(where: { $0.isLiquids })
+
         case .sleep:
             sleepData
                 .indices
@@ -214,13 +210,7 @@ final class BabyDataManager: ObservableObject {
                     self.removeChange(at: set)
                 }
         case .solidFeed:
-            feedData
-                .filter(\.isSolids)
-                .indices
-                .forEach { index in
-                    let set: IndexSet = .init(integer: index)
-                    self.removeFeed(at: set)
-                }
+            feedData.removeAll(where: { $0.isSolids })
         }
     }
 
@@ -267,7 +257,7 @@ final class BabyDataManager: ObservableObject {
                       let to = pair.1 else {
                     return
                 }
-                self.feedData.indices.forEach { index in
+                self.feedData.filter(\.isLiquids).indices.forEach { index in
                     let feed = self.feedData[index]
                     let newFeed = Feed(id: feed.id,
                                        date: feed.date,

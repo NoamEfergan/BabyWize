@@ -22,7 +22,7 @@ struct HomeView: View {
     @State private var wantsToAddEntry = false
     @State private var iconRotation: Double = 0
     @InjectedObject private var defaultsManager: UserDefaultManager
-    
+
     var minChartHeight: Double {
         defaultsManager.chartConfiguration == .joint ? 350 : 550
     }

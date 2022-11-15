@@ -69,7 +69,7 @@ struct FeedChart: View {
         })
         .animation(.easeInOut, value: isShowingJoint)
     }
-    
+
     @ViewBuilder
     private var headerView: some View {
         ViewThatFits {
@@ -79,7 +79,7 @@ struct FeedChart: View {
                     .padding(.leading)
                 Spacer()
                 VStack(alignment: .leading) {
-                Text("Displaying:")
+                    Text("Displaying:")
                     Menu(defaultManager.chartConfiguration.rawValue.capitalized) {
                         ForEach(ChartConfiguration.allCases, id: \.self) { config in
                             Button(config.rawValue.capitalized) {
@@ -95,13 +95,13 @@ struct FeedChart: View {
                 .font(.system(.subheadline, design: .rounded))
                 .padding(.trailing)
             }
-            VStack{
+            VStack {
                 Text(feedInfoTitle)
                     .font(.system(.title, design: .rounded))
                     .padding(.leading)
                 Spacer()
                 VStack(alignment: .leading) {
-                Text("Displaying:")
+                    Text("Displaying:")
                     Menu(defaultManager.chartConfiguration.rawValue.capitalized) {
                         ForEach(ChartConfiguration.allCases, id: \.self) { config in
                             Button(config.rawValue.capitalized) {

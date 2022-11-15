@@ -26,6 +26,33 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
+    var hasAccount: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: UserConstants.hasAccount)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserConstants.hasAccount)
+        }
+    }
+
+    var isLoggedIn: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: UserConstants.isLoggedIn)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserConstants.isLoggedIn)
+        }
+    }
+
+    var userID: String? {
+        get {
+            UserDefaults.standard.string(forKey: UserConstants.userID)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserConstants.userID)
+        }
+    }
+
     init() {
         if let savedLiquid = UserDefaults.standard.string(forKey: Constants.preferredUnit.rawValue) {
             liquidUnits = .init(rawValue: savedLiquid) ?? .ml

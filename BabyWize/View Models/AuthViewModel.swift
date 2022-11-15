@@ -9,6 +9,7 @@ import FirebaseAuth
 import Foundation
 
 final class AuthViewModel: ObservableObject {
+    @InjectedObject private var defaultsManager: UserDefaultManager
     @Published var isLoading = false
     @Published var hasError = false
 
@@ -36,8 +37,8 @@ final class AuthViewModel: ObservableObject {
             let user = authDataResult.user
             print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
             hasError = false
-            UserDefaults.standard.set(true, forKey: UserConstants.isLoggedIn)
-            UserDefaults.standard.set(email, forKey: UserConstants.email)
+            defaultsManager.isLoggedIn = true
+            try KeychainManager.setCredentials(.init(email: email, password: password))
             return true
         } catch {
             print("There was an issue when trying to sign in: \(error)")
@@ -48,7 +49,7 @@ final class AuthViewModel: ObservableObject {
 
     @MainActor
     @discardableResult
-    func login(email: String, password: String) async -> Bool {
+    func login(email: String, password: String) async -> String? {
         isLoading = true
         defer {
             isLoading = false
@@ -57,14 +58,14 @@ final class AuthViewModel: ObservableObject {
             let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
             try KeychainManager.setCredentials(.init(email: email, password: password))
             let user = authDataResult.user
-            UserDefaults.standard.set(true, forKey: UserConstants.isLoggedIn)
+            defaultsManager.isLoggedIn = true
             print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
             hasError = false
-            return true
+            return user.uid
         } catch {
             print("There was an issue when trying to sign in: \(error)")
             hasError = true
-            return false
+            return nil
         }
     }
 
@@ -77,13 +78,23 @@ final class AuthViewModel: ObservableObject {
             try Auth.auth().signOut()
             print("Signed out")
             hasError = false
-            UserDefaults.standard.set(false, forKey: UserConstants.isLoggedIn)
-            UserDefaults.standard.set(nil, forKey: UserConstants.email)
+            defaultsManager.isLoggedIn = false
             return
         } catch {
             print("There was an issue when trying to sign in: \(error)")
             hasError = true
             return
+        }
+    }
+
+    @MainActor
+    func anonymousLogin() async -> String? {
+        do {
+            let authResult = try await Auth.auth().signInAnonymously()
+            return authResult.user.uid
+        } catch {
+            print(error.localizedDescription)
+            return nil
         }
     }
 }

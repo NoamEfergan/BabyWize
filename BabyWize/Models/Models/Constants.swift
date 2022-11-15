@@ -21,8 +21,8 @@ enum Constants: String {
 // MARK: - UserConstants
 enum UserConstants {
     static let isLoggedIn = "IsLoggedIn"
-    static let userName = "UserName"
-    static let email = "Email"
+    static let hasAccount = "HasAccount"
+    static let userID = "UserID"
 }
 
 // MARK: - GenericNetworkResponse

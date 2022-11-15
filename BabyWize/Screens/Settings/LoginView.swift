@@ -68,7 +68,7 @@ struct LoginView: View {
                         hasEmailError = !vm.validateEmail(email)
                         if !hasPasswordError, !hasEmailError {
                             Task {
-                                if await vm.login(email: email, password: password) {
+                                if let _ = await vm.login(email: email, password: password) {
                                     self.presentationMode.wrappedValue.dismiss()
                                 }
                             }
