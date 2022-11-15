@@ -45,6 +45,7 @@ struct HomeView: View {
                         .padding()
                     HomeScreenCharts()
                         .frame(minHeight: minChartHeight)
+                        .contentTransition(.interpolate)
                 }
             }
             .toolbar {

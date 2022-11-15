@@ -42,24 +42,7 @@ struct FeedChart: View {
     var body: some View {
         VStack(alignment: .leading) {
             if showTitle {
-                HStack {
-                    Text(feedInfoTitle)
-                        .font(.system(.title, design: .rounded))
-                        .padding(.leading)
-                    Spacer()
-                    Menu(defaultManager.chartConfiguration.rawValue.capitalized) {
-                        ForEach(ChartConfiguration.allCases, id: \.self ) { config in
-                            Button(config.rawValue.capitalized) {
-                                withAnimation(.easeInOut) {
-                                    defaultManager.chartConfiguration = config
-                                }
-                            }
-                        }
-                    }
-                    .foregroundColor(.secondary)
-                    .font(.system(.subheadline, design: .rounded))
-                    .padding(.trailing)
-                }
+                headerView
             }
             if feedData.isEmpty {
                 PlaceholderChart(type: .liquidFeed)
@@ -67,11 +50,14 @@ struct FeedChart: View {
                 if showTitle {
                     if isShowingJoint {
                         jointChart
+                            .contentTransition(.interpolate)
                     } else {
                         separateCharts
+                            .contentTransition(.interpolate)
                     }
                 } else {
                     separateCharts
+                        .contentTransition(.interpolate)
                 }
             }
         }
@@ -83,30 +69,59 @@ struct FeedChart: View {
         })
         .animation(.easeInOut, value: isShowingJoint)
     }
+    
+    @ViewBuilder
+    private var headerView: some View {
+        ViewThatFits {
+            HStack {
+                Text(feedInfoTitle)
+                    .font(.system(.title, design: .rounded))
+                    .padding(.leading)
+                Spacer()
+                VStack(alignment: .leading) {
+                Text("Displaying:")
+                    Menu(defaultManager.chartConfiguration.rawValue.capitalized) {
+                        ForEach(ChartConfiguration.allCases, id: \.self) { config in
+                            Button(config.rawValue.capitalized) {
+                                withAnimation(.easeInOut) {
+                                    defaultManager.chartConfiguration = config
+                                }
+                            }
+                            .fontWeight(.bold)
+                        }
+                    }
+                }
+                .foregroundColor(.secondary)
+                .font(.system(.subheadline, design: .rounded))
+                .padding(.trailing)
+            }
+            VStack{
+                Text(feedInfoTitle)
+                    .font(.system(.title, design: .rounded))
+                    .padding(.leading)
+                Spacer()
+                VStack(alignment: .leading) {
+                Text("Displaying:")
+                    Menu(defaultManager.chartConfiguration.rawValue.capitalized) {
+                        ForEach(ChartConfiguration.allCases, id: \.self) { config in
+                            Button(config.rawValue.capitalized) {
+                                withAnimation(.easeInOut) {
+                                    defaultManager.chartConfiguration = config
+                                }
+                            }
+                            .fontWeight(.bold)
+                        }
+                    }
+                }
+                .foregroundColor(.secondary)
+                .font(.system(.subheadline, design: .rounded))
+                .padding(.trailing)
+            }
+        }
+    }
 
     @ViewBuilder
     private var separateCharts: some View {
-        if !feedData.filter(\.isSolids).isEmpty {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Solids")
-                    .font(.system(.subheadline, design: .rounded))
-                    .foregroundColor(.secondary)
-                    .padding(.leading)
-                ScrollView(.horizontal) {
-                    Chart(feedData.filter(\.isSolids).sorted(by: { $0.date < $1.date })) { feed in
-                        getSolidsChart(for: feed)
-                    }
-                    .chartPlotStyle(content: { plotArea in
-                        plotArea.frame(width: CGFloat(feedData.count) * (80 + sizeModifier))
-                    })
-                    .frame(maxHeight: .greatestFiniteMagnitude)
-                    .frame(minWidth: UIScreen().bounds.width)
-                    .frame(maxWidth: .greatestFiniteMagnitude)
-                    .padding()
-                }
-            }
-            .frame(height: 200)
-        }
         if !feedData.filter(\.isLiquids).isEmpty {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Liquids")
@@ -126,7 +141,30 @@ struct FeedChart: View {
                     .padding()
                 }
             }
-            .frame(height: 200)
+            .transition(.push(from: .bottom))
+            .frame(minHeight: 200)
+        }
+        if !feedData.filter(\.isSolids).isEmpty {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Solids")
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundColor(.secondary)
+                    .padding(.leading)
+                ScrollView(.horizontal) {
+                    Chart(feedData.filter(\.isSolids).sorted(by: { $0.date < $1.date })) { feed in
+                        getSolidsChart(for: feed)
+                    }
+                    .chartPlotStyle(content: { plotArea in
+                        plotArea.frame(width: CGFloat(feedData.count) * (80 + sizeModifier))
+                    })
+                    .frame(maxHeight: .greatestFiniteMagnitude)
+                    .frame(minWidth: UIScreen().bounds.width)
+                    .frame(maxWidth: .greatestFiniteMagnitude)
+                    .padding()
+                }
+            }
+            .transition(.push(from: .top))
+            .frame(minHeight: 200)
         }
     }
 
@@ -227,7 +265,11 @@ struct FeedChart: View {
 // MARK: - FeedChart_Previews
 struct FeedChart_Previews: PreviewProvider {
     static var previews: some View {
-        FeedChart(feedData: PlaceholderChart.MockData.mockFeed)
-        FeedChart(feedData: PlaceholderChart.MockData.mockFeed, showTitle: false)
+        ScrollView {
+            FeedChart(feedData: PlaceholderChart.MockData.mockFeed)
+        }
+        ScrollView {
+            FeedChart(feedData: PlaceholderChart.MockData.mockFeed, showTitle: false)
+        }
     }
 }

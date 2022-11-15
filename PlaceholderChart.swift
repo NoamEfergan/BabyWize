@@ -21,8 +21,10 @@ struct PlaceholderChart: View {
             switch type {
             case .liquidFeed, .solidFeed:
                 dummyFeedChart
+                    .redacted(reason: .placeholder)
             case .sleep:
                 dummySleepChart
+                    .redacted(reason: .placeholder)
             case .nappy:
                 EmptyView()
             }
