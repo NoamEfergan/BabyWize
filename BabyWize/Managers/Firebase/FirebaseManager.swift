@@ -22,9 +22,11 @@ struct FirebaseManager {
         guard let id = defaultsManager.userID else {
             return
         }
-        let feedDTO: [String: Any ] = [
-            "amount": item.amount,
+        let feedDTO: [String: Any] = [
             "date": item.date,
+            "amount": item.amount,
+            "note": item.note ?? "",
+            "solidOrLiquid": item.solidOrLiquid.rawValue
         ]
         // Add a new document with a generated ID
         var ref: DocumentReference?
@@ -32,7 +34,7 @@ struct FirebaseManager {
             .collection("users")
             .document(id)
             .collection("feeds")
-            .addDocument(data: [item.id: ["amount": item.amount, "date": item.date]]) { err in
+            .addDocument(data: [item.id: feedDTO]) { err in
                 if let err {
                     print("Error adding document: \(err)")
                 } else {
