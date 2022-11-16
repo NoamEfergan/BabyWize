@@ -22,6 +22,7 @@
 		054B1F6528CA33620021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		05580E7728CB2B7300E4ECDE /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 05580E7628CB2B7300E4ECDE /* Algorithms */; };
 		055CE1302922DDCA00870066 /* ChartConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE12F2922DDCA00870066 /* ChartConfiguration.swift */; };
+		055CE1322925350200870066 /* FBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE1312925350200870066 /* FBKeys.swift */; };
 		0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyWizeApp.swift */; };
 		056083812884147800728F1F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083802884147800728F1F /* HomeView.swift */; };
 		056083832884147900728F1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
@@ -171,6 +172,7 @@
 		050AEEB9288DB3870052A2D1 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		055CE12F2922DDCA00870066 /* ChartConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartConfiguration.swift; sourceTree = "<group>"; };
+		055CE1312925350200870066 /* FBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBKeys.swift; sourceTree = "<group>"; };
 		0560837B2884147800728F1F /* BabyWize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyWize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0560837E2884147800728F1F /* BabyWizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeApp.swift; sourceTree = "<group>"; };
 		056083802884147800728F1F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 				05B8AF6628862C7C00BBC41B /* Constants.swift */,
 				05A42A5B290599E60040A543 /* Colors.swift */,
 				055CE12F2922DDCA00870066 /* ChartConfiguration.swift */,
+				055CE1312925350200870066 /* FBKeys.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -840,6 +843,7 @@
 				05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */,
 				050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
 				05817C5F28C788580040A4B0 /* DataController.swift in Sources */,
+				055CE1322925350200870066 /* FBKeys.swift in Sources */,
 				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
 				056DC48F2916F36B00B30720 /* FeedEntryViewModel.swift in Sources */,
 				056DC4832916A0EC00B30720 /* AccessibleLabeledContent.swift in Sources */,

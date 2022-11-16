@@ -7,33 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AAFE5BE5-64A4-430A-80F1-4F4431EE966E"
+            uuid = "FACDEEAF-0FD0-4833-B64A-D25433D83797"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BabyWize/Models/CoreData/CoreDataExtensions.swift"
+            filePath = "BabyWize/Managers/Firebase/FirebaseManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "mapToFeed()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F67FB991-0F9F-4DD1-962A-294973F86F19"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BabyWize/Screens/Home Screen/Views/HomeScreenCharts.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "body"
-            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "FACDEEAF-0FD0-4833-B64A-D25433D83797 - 881570d892f42966"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__C.FIRQueryDocumentSnapshot.mapToFeed() -&gt; Swift.Optional&lt;BabyWize.Feed&gt;"
+                  moduleName = "BabyWize"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noam.efergan/Work/BabyTracker/BabyWize/Managers/Firebase/FirebaseManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "548">
+               </Location>
+               <Location
+                  uuid = "FACDEEAF-0FD0-4833-B64A-D25433D83797 - 881570d892f42966"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__C.FIRQueryDocumentSnapshot.mapToFeed() -&gt; Swift.Optional&lt;BabyWize.Feed&gt;"
+                  moduleName = "BabyWize"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noam.efergan/Work/BabyTracker/BabyWize/Managers/Firebase/FirebaseManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "780">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
