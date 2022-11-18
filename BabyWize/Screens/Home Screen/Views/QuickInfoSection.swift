@@ -33,8 +33,8 @@ struct QuickInfoSection: View {
                               backgroundColor: .init(hex: "#F6DDC5"),
                               title: "Last Nappy Change",
                               value: dataManager.getLast(for: .nappy),
-                              shouldShowInfo: false,
-                              leadingTo: .none)
+                              shouldShowInfo: true,
+                              leadingTo: .detailInputNappy)
             }
         default:
             VStack {

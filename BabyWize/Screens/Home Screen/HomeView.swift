@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: - Screens
 enum Screens: String {
-    case home, settings, newEntry, feed, sleep, detailInputLiquidFeed,detailInputSolidFeed, detailInputSleep, none
+    case home, settings, newEntry, feed, sleep, detailInputLiquidFeed,detailInputSolidFeed, detailInputNappy, detailInputSleep, none
 }
 
 // MARK: - HomeView
@@ -121,6 +121,9 @@ struct HomeView: View {
         case .detailInputSolidFeed:
             InputDetailView(type: .solidFeed)
                 .navigationTitle("All solid feeds")
+        case .detailInputNappy:
+            InputDetailView(type: .nappy)
+                .navigationTitle("All nappy changes")
 
         default:
             EmptyView()

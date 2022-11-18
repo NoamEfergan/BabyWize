@@ -14,9 +14,11 @@ struct NappyInputDetailView: View {
     @StateObject var entryVM: NappyEntryViewModel = .init()
     @State private var editMode = EditMode.inactive
     @State private var isShowingEntryView = false
+    @State private var isShowingAlert = false
+
     var body: some View {
         List {
-            Section("Swipe right to edit, left to remove") {
+            Section {
                 ForEach(dataManager.nappyData, id: \.id) { change in
                     VStack(alignment: .leading) {
                         AccessibleLabeledContent(label:"Date", value: change.dateTime.formatted())
@@ -29,7 +31,7 @@ struct NappyInputDetailView: View {
                     .swipeActions(edge: .leading) {
                         Button {
                             isShowingEntryView.toggle()
-                            entryVM.setInitialValues(with: change.id.description)
+                            entryVM.setInitialValues(with: change.id)
                         } label: {
                             Text("Edit")
                         }
@@ -39,6 +41,27 @@ struct NappyInputDetailView: View {
                 .onDelete { offsets in
                     dataManager.removeChange(at: offsets)
                 }
+            } header: {
+                Text("Swipe right to edit, left to remove")
+            }
+        footer: {
+                Button("Remove All") {
+                    isShowingAlert.toggle()
+                }
+                .foregroundColor(.red)
+            }
+            .confirmationDialog("Remove All", isPresented: $isShowingAlert) {
+                Button(role: .destructive) {
+                    dataManager.removeAll(for: .nappy)
+                } label: {
+                    Text("Yes")
+                }
+
+                Button("No") {
+                    isShowingAlert.toggle()
+                }
+            } message: {
+                Text("Are you sure you want to remove all? this CANNOT be undone! ")
             }
         }
         .onDisappear {

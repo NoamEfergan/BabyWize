@@ -23,7 +23,7 @@ final class NappyEntryViewModel: EntryViewModel {
     }
 
     func editEntry() throws {
-        guard let index = dataManager.nappyData.firstIndex(where: { $0.id.description == itemID })
+        guard let index = dataManager.nappyData.firstIndex(where: { $0.id == itemID })
         else {
             throw EntryError.general
         }
@@ -33,17 +33,17 @@ final class NappyEntryViewModel: EntryViewModel {
     }
 
     func setInitialValues(with id: String) {
-        guard let item = dataManager.nappyData.first(where: { $0.id.description == id })
+        guard let item = dataManager.nappyData.first(where: { $0.id == id })
         else {
             return
         }
+        itemID = id
         changeDate = item.dateTime
         wetOrSoiled = item.wetOrSoiled
     }
 
     func reset() {
         changeDate = .init()
-
         wetOrSoiled = .wet
     }
 }
