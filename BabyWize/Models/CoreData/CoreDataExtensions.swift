@@ -20,7 +20,7 @@ extension SavedFeed {
 
 extension SavedSleep {
     func mapToSleep() -> Sleep {
-        .init(id: id ?? "", date: date ?? Date(), duration: duration ?? "")
+        .init(id: id ?? "", date: date ?? Date(), start: start ?? Date(), end: end ?? Date())
     }
 }
 
@@ -46,7 +46,8 @@ extension Sleep {
         let savedSleep = SavedSleep(context: context)
         savedSleep.id = id
         savedSleep.date = date
-        savedSleep.duration = duration
+        savedSleep.start = start
+        savedSleep.end = end
     }
 }
 

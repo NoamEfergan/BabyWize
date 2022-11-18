@@ -25,8 +25,8 @@ final class SleepEntryViewModel: EntryViewModel {
         else {
             throw EntryError.invalidSleepDate
         }
-        let duration = endDate.timeIntervalSince(startDate)
-        let sleep: Sleep = .init(id: UUID().uuidString, date: sleepDate, duration: duration.hourMinuteSecondMS)
+
+        let sleep: Sleep = .init(id: UUID().uuidString, date: sleepDate, start: startDate, end: endDate)
         dataManager.addSleep(sleep)
         reset()
     }
@@ -41,18 +41,24 @@ final class SleepEntryViewModel: EntryViewModel {
             throw EntryError.invalidSleepDate
         }
 
-        guard let index = dataManager.sleepData.firstIndex(where: { $0.id.description == itemID })
+        guard let index = dataManager.sleepData.firstIndex(where: { $0.id == itemID })
         else {
             throw EntryError.general
         }
-
-        let duration = endDate.timeIntervalSince(startDate)
-        let newSleep: Sleep = .init(id: itemID, date: sleepDate, duration: duration.hourMinuteSecondMS)
+        let newSleep: Sleep = .init(id: itemID, date: sleepDate, start: startDate, end: endDate)
         dataManager.sleepData[index] = newSleep
         reset()
     }
 
-    func setInitialValues(with id: String) {}
+    func setInitialValues(with id: String) {
+        guard let item = dataManager.sleepData.first(where: { $0.id == id }) else {
+            return
+        }
+        itemID = id
+        sleepDate = item.date
+        startDate = item.start
+        endDate = item.end
+    }
 
     func reset() {
         startDate = .init()

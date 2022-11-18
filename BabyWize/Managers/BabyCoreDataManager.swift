@@ -54,7 +54,9 @@ struct BabyCoreDataManager {
         let savedSleeps = try? moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
         let relevantSleep = savedSleeps?.first(where: { $0.id == item.id })
         relevantSleep?.date = item.date
-        relevantSleep?.duration = item.duration
+        relevantSleep?.start = item.start
+        relevantSleep?.end = item.end
+
         try? moc.save()
     }
 

@@ -56,7 +56,7 @@ final class BabyDataManager: ObservableObject {
             }
             return lastItem.amount.displayableAmount(isSolid: lastItem.isSolids)
         case .sleep:
-            return sleepData.last?.duration.convertToTimeInterval().displayableString ?? .nonAvailable
+            return sleepData.last?.getDisplayableString() ?? .nonAvailable
         case .nappy:
             guard let lastNappy = nappyData.last else {
                 return .nonAvailable
@@ -102,7 +102,7 @@ final class BabyDataManager: ObservableObject {
                 return .nonAvailable
             }
         case .sleep:
-            return sleepData.max(by: { $0.duration < $1.duration })?.duration ?? .nonAvailable
+            return sleepData.max(by: { $0.getDuration() < $1.getDuration() })?.getDuration() ?? .nonAvailable
         case .nappy:
             return ""
         }
@@ -130,7 +130,7 @@ final class BabyDataManager: ObservableObject {
                 return .nonAvailable
             }
         case .sleep:
-            return sleepData.min(by: { $0.duration < $1.duration })?.duration ?? .nonAvailable
+            return sleepData.min(by: { $0.getDuration() < $1.getDuration() })?.getDuration() ?? .nonAvailable
         case .nappy:
             return ""
         }
@@ -141,7 +141,18 @@ final class BabyDataManager: ObservableObject {
             if localFeed.id == remoteFeed.id {
                 if localFeed != remoteFeed,
                    let index = feedData.firstIndex(where: { $0.id == localFeed.id }) {
-                    updateFeed(localFeed, index: index, updateRemote: false)
+                    updateFeed(remoteFeed, index: index, updateRemote: false)
+                }
+            }
+        }
+    }
+
+    func mergeSleepsWithRemote(_ remoteSleeps: [Sleep]) {
+        for (localSleep, remoteSleep) in product(remoteSleeps, sleepData) {
+            if localSleep.id == remoteSleep.id {
+                if localSleep != remoteSleep,
+                   let index = feedData.firstIndex(where: { $0.id == localSleep.id }) {
+                    updateSleep(remoteSleep, index: index, updateRemote: false)
                 }
             }
         }
@@ -152,13 +163,14 @@ final class BabyDataManager: ObservableObject {
     // ADD
     func addFeed(_ item: Feed) {
         feedData.append(item)
-        firebaseManager.addFeed(item)
         coreDataManager.addFeed(item)
+        firebaseManager.addFeed(item)
     }
 
     func addSleep(_ item: Sleep) {
         sleepData.append(item)
         coreDataManager.addSleep(item)
+        firebaseManager.addSleep(item)
     }
 
     func addNappyChange(_ item: NappyChange) {
@@ -176,9 +188,12 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func updateSleep(_ item: Sleep, index: Array<Sleep>.Index) {
+    func updateSleep(_ item: Sleep, index: Array<Sleep>.Index, updateRemote: Bool = true) {
         sleepData[index] = item
         coreDataManager.addSleep(item)
+        if updateRemote {
+            firebaseManager.addSleep(item)
+        }
     }
 
     func updateChange(_ item: NappyChange, index: Array<NappyChange>.Index) {
@@ -253,7 +268,7 @@ final class BabyDataManager: ObservableObject {
 
     private func getAverageSleepDuration() -> String {
         let totalAmount = sleepData.reduce(0) {
-            $0 + $1.duration.convertToTimeInterval()
+            $0 + $1.getTimeInterval()
         }
         let amount = (totalAmount / Double(sleepData.count))
         if amount.isNaN {

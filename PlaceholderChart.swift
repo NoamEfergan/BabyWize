@@ -68,9 +68,9 @@ struct PlaceholderChart: View {
     private var dummySleepChart: some View {
         Chart(sleepData) { sleep in
             let dateValue = sleep.date.formatted(date: .abbreviated, time: .shortened)
-            let amountValue = sleep.duration.convertToTimeInterval().displayableString
+            let amountValue = sleep.getDisplayableString()
             BarMark(x: .value("Time", dateValue),
-                    y: .value("Amount", sleep.duration.convertToTimeInterval()))
+                    y: .value("Amount", sleep.getTimeInterval()))
                 .annotation(position: .overlay, alignment: .center) {
                     Text("\(amountValue)")
                         .foregroundColor(.white)
@@ -84,7 +84,7 @@ struct PlaceholderChart: View {
         .onAppear {
             if !didAnimateSleepAlready {
                 sleepData.removeAll()
-                for (index, item) in MockData.mockSleep.enumerated() {
+                for (index, item) in MockData.getMockSleep().enumerated() {
                     withAnimation(.easeIn(duration: 0.2).delay(Double(index) * 0.2)) {
                         sleepData.append(item)
                     }
@@ -136,23 +136,29 @@ extension PlaceholderChart {
         ]
         .sorted(by: { $0.date < $1.date })
 
-        static let mockSleep: [Sleep] = [
-            Sleep(id: UUID().uuidString,
-                  date: Date.getRandomMockDate(),
-                  duration: abs(Date.getRandomMockDate()
-                      .timeIntervalSince(Date.getRandomMockDate()))
-                      .hourMinuteSecondMS),
-            Sleep(id: UUID().uuidString,
-                  date: Date.getRandomMockDate(),
-                  duration: abs(Date.getRandomMockDate()
-                      .timeIntervalSince(Date.getRandomMockDate()))
-                      .hourMinuteSecondMS),
-            Sleep(id: UUID().uuidString,
-                  date: Date.getRandomMockDate(),
-                  duration: abs(Date.getRandomMockDate()
-                      .timeIntervalSince(Date.getRandomMockDate()))
-                      .hourMinuteSecondMS),
-        ]
-        .sorted(by: { $0.date < $1.date })
+        static func getMockSleep() -> [Sleep] {
+            let firstStart = Date.getRandomMockDate()
+            let secondStart = Date.getRandomMockDate()
+            let thirdStart = Date.getRandomMockDate()
+
+            let firstEnd = Date.getRandomEndData(from: firstStart)
+            let secondEnd = Date.getRandomEndData(from: secondStart)
+            let thirdEnd = Date.getRandomEndData(from: thirdStart)
+
+            return [
+                Sleep(id: UUID().uuidString,
+                      date: Date.getRandomMockDate(),
+                      start: firstStart,
+                      end:firstEnd),
+                Sleep(id: UUID().uuidString,
+                      date: Date.getRandomMockDate(),
+                      start: secondStart,
+                      end:secondEnd),
+                Sleep(id: UUID().uuidString,
+                      date: Date.getRandomMockDate(),
+                      start: thirdStart,
+                      end:thirdEnd),
+            ].sorted(by: { $0.date < $1.date })
+        }
     }
 }

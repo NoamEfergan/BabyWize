@@ -47,9 +47,9 @@ struct SleepChart: View {
             } else {
                 ScrollView(.horizontal) {
                     Chart(sleepData.sorted(by: { $0.date < $1.date })) { sleep in
-                        let amountValue = sleep.duration.convertToTimeInterval().displayableString
+                        let amountValue = sleep.getDisplayableString()
                         BarMark(x: .value("Time", sleep.date.getTwoLinedString()),
-                                y: .value("Amount", sleep.duration.convertToTimeInterval()))
+                                y: .value("Amount", sleep.getTimeInterval()))
                             .annotation(position: .top, alignment: .center) {
                                 Text("\(amountValue)")
                                     .font(.system(.body, design: .rounded))
@@ -82,6 +82,6 @@ struct SleepChart: View {
 // MARK: - SleepChart_Previews
 struct SleepChart_Previews: PreviewProvider {
     static var previews: some View {
-        SleepChart(sleepData: PlaceholderChart.MockData.mockSleep)
+        SleepChart(sleepData: PlaceholderChart.MockData.getMockSleep())
     }
 }

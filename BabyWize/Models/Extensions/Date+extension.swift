@@ -20,6 +20,11 @@ extension Date {
         return Date.randomBetween(start: date1, end: date2)
     }
 
+    static func getRandomEndData(from start: Date) -> Date {
+        Calendar.current.date(byAdding: .minute, value: .random(in: 5...300), to: start) ?? start
+            .addingTimeInterval(6_000_000)
+    }
+
     static func randomBetween(start: String, end: String, format: String = "yyyy-MM-dd") -> String {
         let date1 = Date.parse(start, format: format)
         let date2 = Date.parse(end, format: format)

@@ -18,4 +18,7 @@ struct FBKeys {
     static let kNote = "note"
     static let kSolidLiquid = "solidOrLiquid"
     static let kID = "id"
+
+    static let kStart = "start"
+    static let kEnd = "end"
 }

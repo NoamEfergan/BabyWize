@@ -11,5 +11,4 @@ extension Array {
     func getUpTo(limit: Int) -> Self {
         count < limit ? self : suffix(limit)
     }
-
 }

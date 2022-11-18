@@ -60,7 +60,45 @@ final class FirebaseManager {
             }
     }
 
+    func addSleep(_ item: Sleep) {
+        guard let userID else {
+            return
+        }
+        let sleepDTO: [String: Any] = [
+            FBKeys.kID: item.id,
+            FBKeys.kDate: item.date,
+            FBKeys.kStart: item.start,
+            FBKeys.kEnd: item.end
+        ]
+        db
+            .collection(FBKeys.kUsers)
+            .document(userID)
+            .collection(FBKeys.kSleeps)
+            .document(item.id)
+            .setData(sleepDTO) { err in
+                if let err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added")
+                }
+            }
+    }
+
     // MARK: - Get/ edit
+
+    func getAllSleeps() async {
+        guard let userID,
+              let remoteFeedSnapshot = try? await db
+              .collection(FBKeys.kUsers)
+              .document(userID)
+              .collection(FBKeys.kSleeps)
+              .getDocuments()
+        else {
+            return
+        }
+        let sleeps = remoteFeedSnapshot.mapToDomainSleep()
+        dataManager?.mergeSleepsWithRemote(sleeps)
+    }
 
     func getAllFeeds() async {
         guard let userID,
@@ -130,11 +168,30 @@ extension QueryDocumentSnapshot {
                      note: note.isEmpty ? nil : note,
                      solidOrLiquid: .init(rawValue: solidOrLiquid) ?? .liquid)
     }
+
+    func mapToSleep() -> Sleep? {
+        let mappedData = data()
+        guard let id = mappedData[FBKeys.kID] as? String,
+              let timeStamp = mappedData[FBKeys.kDate] as? Timestamp,
+              let start = mappedData[FBKeys.kStart] as? Timestamp,
+              let end = mappedData[FBKeys.kEnd] as? Timestamp
+        else {
+            return nil
+        }
+        return .init(id: id,
+                     date: .init(timeIntervalSince1970: Double(timeStamp.seconds)),
+                     start: .init(timeIntervalSince1970: Double(start.seconds)),
+                     end: .init(timeIntervalSince1970: Double(end.seconds)))
+    }
 }
 
 extension QuerySnapshot {
     func mapToDomainFeed() -> [Feed] {
         documents.compactMap { $0.mapToFeed() }
+    }
+
+    func mapToDomainSleep() -> [Sleep] {
+        documents.compactMap { $0.mapToSleep() }
     }
 }
 

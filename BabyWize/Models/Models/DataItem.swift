@@ -28,7 +28,20 @@ struct NappyChange: DataItem {
 struct Sleep: DataItem {
     let id: String
     let date: Date
-    let duration: String
+    let start: Date
+    let end: Date
+
+    func getTimeInterval() -> TimeInterval {
+        end.timeIntervalSince(start)
+    }
+
+    func getDuration() -> String {
+        getTimeInterval().hourMinuteSecondMS
+    }
+
+    func getDisplayableString() -> String {
+        getTimeInterval().displayableString
+    }
 }
 
 // MARK: - Feed

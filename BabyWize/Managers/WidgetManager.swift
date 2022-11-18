@@ -24,7 +24,7 @@ struct WidgetManager {
             container.set(lastFeed.amount.displayableAmount(isSolid: lastFeed.isSolids), forKey: "lastFeed")
         }
         if let lastSleep {
-            container.set(lastSleep.duration, forKey: "lastSleep")
+            container.set(lastSleep.getDisplayableString(), forKey: "lastSleep")
         }
         if let lastNappy {
             container.set(lastNappy.dateTime, forKey: "lastNappy")

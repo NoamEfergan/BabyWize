@@ -21,7 +21,7 @@ struct SleepInputDetailView: View {
             Section {
                 ForEach(dataManager.sleepData, id: \.id) { sleep in
                     VStack(alignment: .leading) {
-                        AccessibleLabeledContent(label:"Duration", value: sleep.duration)
+                        AccessibleLabeledContent(label:"Duration", value: sleep.getDisplayableString())
                         AccessibleLabeledContent(label:"Date", value: sleep.date.formatted())
                     }
                     .sheet(isPresented: $isShowingEntryView) {
