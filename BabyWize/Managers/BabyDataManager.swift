@@ -141,7 +141,7 @@ final class BabyDataManager: ObservableObject {
             if localFeed.id == remoteFeed.id {
                 if localFeed != remoteFeed,
                    let index = feedData.firstIndex(where: { $0.id == localFeed.id }) {
-                    updateFeed(localFeed, index: index)
+                    updateFeed(localFeed, index: index, updateRemote: false)
                 }
             }
         }
@@ -168,9 +168,12 @@ final class BabyDataManager: ObservableObject {
 
     // Update
 
-    func updateFeed(_ item: Feed, index: Array<Feed>.Index) {
+    func updateFeed(_ item: Feed, index: Array<Feed>.Index, updateRemote: Bool = true) {
         feedData[index] = item
         coreDataManager.updateFeed(item)
+        if updateRemote {
+            firebaseManager.addFeed(item)
+        }
     }
 
     func updateSleep(_ item: Sleep, index: Array<Sleep>.Index) {

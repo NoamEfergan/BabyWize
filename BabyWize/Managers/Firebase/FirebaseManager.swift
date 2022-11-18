@@ -31,6 +31,10 @@ final class FirebaseManager {
         }
     }
 
+    // MARK: - CRUD methods
+
+    // MARK: - Add
+
     func addFeed(_ item: Feed) {
         guard let userID else {
             return
@@ -42,20 +46,22 @@ final class FirebaseManager {
             FBKeys.kID: item.id,
             FBKeys.kSolidLiquid: item.solidOrLiquid.rawValue
         ]
-        // Add a new document with a generated ID
-        var ref: DocumentReference?
-        ref = db
+        db
             .collection(FBKeys.kUsers)
             .document(userID)
             .collection(FBKeys.kFeeds)
-            .addDocument(data: [item.id: feedDTO]) { err in
+            .document(item.id)
+            .setData(feedDTO) { err in
                 if let err {
                     print("Error adding document: \(err)")
                 } else {
-                    print("Document added with ID: \(ref!.documentID)")
+                    print("Document added")
                 }
             }
     }
+
+
+    // MARK: - Get
 
     func getAllFeeds() async {
         guard let userID,
@@ -70,6 +76,8 @@ final class FirebaseManager {
         let feeds = remoteFeedSnapshot.mapToDomainFeed()
         dataManager?.mergeFeedsWithRemote(feeds)
     }
+
+    // MARK: - Private methods
 
     private func loginIfPossible() async {
         if defaultsManager.hasAccount {
@@ -88,12 +96,13 @@ final class FirebaseManager {
 
 extension QueryDocumentSnapshot {
     func mapToFeed() -> Feed? {
-        guard let data = data().values.first as? [String: Any],
-              let amount = data[FBKeys.kAmount] as? Double,
-              let note = data[FBKeys.kNote] as? String,
-              let solidOrLiquid = data[FBKeys.kSolidLiquid] as? String,
-              let timeStamp = data[FBKeys.kDate] as? Timestamp,
-              let id = data[FBKeys.kID] as? String
+        let mappedData = data()
+        guard
+              let amount = mappedData[FBKeys.kAmount] as? Double,
+              let note = mappedData[FBKeys.kNote] as? String,
+              let solidOrLiquid = mappedData[FBKeys.kSolidLiquid] as? String,
+              let timeStamp = mappedData[FBKeys.kDate] as? Timestamp,
+              let id = mappedData[FBKeys.kID] as? String
         else {
             return nil
         }
