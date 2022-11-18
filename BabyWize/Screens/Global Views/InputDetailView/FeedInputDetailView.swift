@@ -49,7 +49,7 @@ struct FeedInputDetailView: View {
 
                 .onDelete { offsets in
                     dataManager.removeFeed(at: offsets)
-                    setPresentableData()
+                    presentableData.remove(atOffsets: offsets)
                 }
                 .onChange(of: dataManager.feedData, perform: { _ in
                     setPresentableData()

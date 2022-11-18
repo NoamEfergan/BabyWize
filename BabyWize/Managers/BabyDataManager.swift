@@ -194,6 +194,7 @@ final class BabyDataManager: ObservableObject {
         }
         coreDataManager.removeFeed(localFeeds)
         feedData.remove(atOffsets: offsets)
+        firebaseManager.removeFeeds(items: localFeeds)
     }
 
     func removeSleep(at offsets: IndexSet) {
@@ -215,37 +216,24 @@ final class BabyDataManager: ObservableObject {
     func removeAll(for entry: EntryType) {
         switch entry {
         case .liquidFeed:
-            feedData
-                .filter(\.isLiquids)
-                .indices
-                .forEach { index in
-                    let set: IndexSet = .init(integer: index)
-                    removeFeed(at: set)
-                }
-
+            let indices = feedData.filter(\.isLiquids).indices.compactMap { Int($0) }
+            let indexSet = IndexSet(indices)
+            removeFeed(at: indexSet)
 
         case .sleep:
-            sleepData
-                .indices
-                .forEach { index in
-                    let set: IndexSet = .init(integer: index)
-                    self.removeSleep(at: set)
-                }
+            let indices = sleepData.indices.compactMap { Int($0) }
+            let indexSet = IndexSet(indices)
+            removeSleep(at: indexSet)
+
         case .nappy:
-            nappyData
-                .indices
-                .forEach { index in
-                    let set: IndexSet = .init(integer: index)
-                    self.removeChange(at: set)
-                }
+            let indices = nappyData.indices.compactMap { Int($0) }
+            let indexSet = IndexSet(indices)
+            removeChange(at: indexSet)
+
         case .solidFeed:
-            feedData
-                .filter(\.isSolids)
-                .indices
-                .forEach { index in
-                    let set: IndexSet = .init(integer: index)
-                    self.removeFeed(at: set)
-                }
+            let indices = feedData.filter(\.isSolids).indices.compactMap { Int($0) }
+            let indexSet = IndexSet(indices)
+            removeFeed(at: indexSet)
         }
     }
 

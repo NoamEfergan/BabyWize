@@ -60,8 +60,7 @@ final class FirebaseManager {
             }
     }
 
-
-    // MARK: - Get
+    // MARK: - Get/ edit
 
     func getAllFeeds() async {
         guard let userID,
@@ -75,6 +74,26 @@ final class FirebaseManager {
         }
         let feeds = remoteFeedSnapshot.mapToDomainFeed()
         dataManager?.mergeFeedsWithRemote(feeds)
+    }
+
+    // MARK: - Delete
+
+    func removeFeeds(items: [Feed]) {
+        guard let userID else {
+            return
+        }
+        let batch = db.batch()
+        for item in items {
+            let ref = db.collection(FBKeys.kUsers).document(userID).collection(FBKeys.kFeeds).document(item.id)
+            batch.deleteDocument(ref)
+        }
+        batch.commit { error in
+            if let error {
+                print("Failed to delete item with: \(error)")
+            } else {
+                print("Remove successfully ")
+            }
+        }
     }
 
     // MARK: - Private methods
@@ -97,8 +116,7 @@ final class FirebaseManager {
 extension QueryDocumentSnapshot {
     func mapToFeed() -> Feed? {
         let mappedData = data()
-        guard
-              let amount = mappedData[FBKeys.kAmount] as? Double,
+        guard let amount = mappedData[FBKeys.kAmount] as? Double,
               let note = mappedData[FBKeys.kNote] as? String,
               let solidOrLiquid = mappedData[FBKeys.kSolidLiquid] as? String,
               let timeStamp = mappedData[FBKeys.kDate] as? Timestamp,
