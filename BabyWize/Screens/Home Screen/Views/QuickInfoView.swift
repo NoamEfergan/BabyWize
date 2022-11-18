@@ -54,6 +54,7 @@ struct QuickInfoView: View {
                 Spacer()
             }
         }
+        .animation(.easeInOut, value: value)
         .multilineTextAlignment(.leading)
         .padding(.horizontal)
         .foregroundColor(color)

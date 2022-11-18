@@ -4,6 +4,7 @@
 //
 //  Created by Noam Efergan on 18/07/2022.
 //
+
 import CoreData
 import SwiftUI
 import Combine
@@ -26,6 +27,7 @@ final class BabyDataManager: ObservableObject {
     init() {
         fetchSavedValues()
         listenToUnitChanges()
+        firebaseManager.setup(with: self)
     }
 
     // MARK: - Public methods
@@ -134,6 +136,17 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
+    func mergeFeedsWithRemote(_ remoteFeeds: [Feed]) {
+        for (localFeed, remoteFeed) in product(remoteFeeds, feedData) {
+            if localFeed.id == remoteFeed.id {
+                if localFeed != remoteFeed,
+                   let index = feedData.firstIndex(where: { $0.id == localFeed.id }) {
+                    updateFeed(localFeed, index: index)
+                }
+            }
+        }
+    }
+
     // MARK: - CRUD methods
 
     // ADD
@@ -173,19 +186,25 @@ final class BabyDataManager: ObservableObject {
     // Remove
 
     func removeFeed(at offsets: IndexSet) {
-        let localFeeds = offsets.compactMap { feedData[$0] }
+        let localFeeds = offsets.compactMap {
+            feedData[$0]
+        }
         coreDataManager.removeFeed(localFeeds)
         feedData.remove(atOffsets: offsets)
     }
 
     func removeSleep(at offsets: IndexSet) {
-        let localSleeps = offsets.compactMap { sleepData[$0] }
+        let localSleeps = offsets.compactMap {
+            sleepData[$0]
+        }
         coreDataManager.removeSleep(localSleeps)
         sleepData.remove(atOffsets: offsets)
     }
 
     func removeChange(at offsets: IndexSet) {
-        let localChanges = offsets.compactMap { nappyData[$0] }
+        let localChanges = offsets.compactMap {
+            nappyData[$0]
+        }
         coreDataManager.removeChange(localChanges)
         nappyData.remove(atOffsets: offsets)
     }
@@ -193,7 +212,14 @@ final class BabyDataManager: ObservableObject {
     func removeAll(for entry: EntryType) {
         switch entry {
         case .liquidFeed:
-            feedData.removeAll(where: { $0.isLiquids })
+            feedData
+                .filter(\.isLiquids)
+                .indices
+                .forEach { index in
+                    let set: IndexSet = .init(integer: index)
+                    removeFeed(at: set)
+                }
+
 
         case .sleep:
             sleepData
@@ -210,7 +236,13 @@ final class BabyDataManager: ObservableObject {
                     self.removeChange(at: set)
                 }
         case .solidFeed:
-            feedData.removeAll(where: { $0.isSolids })
+            feedData
+                .filter(\.isSolids)
+                .indices
+                .forEach { index in
+                    let set: IndexSet = .init(integer: index)
+                    self.removeFeed(at: set)
+                }
         }
     }
 
@@ -218,7 +250,9 @@ final class BabyDataManager: ObservableObject {
 
     private func getAverageFeed(isSolid: Bool) -> String {
         let data = isSolid ? feedData.filter(\.isSolids) : feedData.filter(\.isLiquids)
-        let totalAmount = data.reduce(0) { $0 + $1.amount }
+        let totalAmount = data.reduce(0) {
+            $0 + $1.amount
+        }
         let returnableAmount = (totalAmount / Double(data.count))
         if returnableAmount.isNaN {
             return .nonAvailable
@@ -227,7 +261,9 @@ final class BabyDataManager: ObservableObject {
     }
 
     private func getAverageSleepDuration() -> String {
-        let totalAmount = sleepData.reduce(0) { $0 + $1.duration.convertToTimeInterval() }
+        let totalAmount = sleepData.reduce(0) {
+            $0 + $1.duration.convertToTimeInterval()
+        }
         let amount = (totalAmount / Double(sleepData.count))
         if amount.isNaN {
             return .nonAvailable
@@ -254,7 +290,8 @@ final class BabyDataManager: ObservableObject {
             }
             .sink(receiveValue: { pair in
                 guard let from = pair.0,
-                      let to = pair.1 else {
+                      let to = pair.1
+                else {
                     return
                 }
                 self.feedData.filter(\.isLiquids).indices.forEach { index in

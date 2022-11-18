@@ -46,6 +46,9 @@ struct FeedChart: View {
             }
             if feedData.isEmpty {
                 PlaceholderChart(type: .liquidFeed)
+                    .onAppear {
+                        isShowingJoint = true
+                    }
             } else {
                 if showTitle {
                     if isShowingJoint {
@@ -93,7 +96,7 @@ struct FeedChart: View {
                 }
                 .foregroundColor(.secondary)
                 .font(.system(.subheadline, design: .rounded))
-                .padding(.trailing)
+                .padding(.trailing, 5)
             }
             VStack {
                 Text(feedInfoTitle)
@@ -115,7 +118,7 @@ struct FeedChart: View {
                 }
                 .foregroundColor(.secondary)
                 .font(.system(.subheadline, design: .rounded))
-                .padding(.trailing)
+                .padding(.trailing, 5)
             }
         }
     }

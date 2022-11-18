@@ -15,11 +15,18 @@ final class FirebaseManager {
     private let db = Firestore.firestore()
     private let authVM = AuthViewModel()
     private var userID: String?
+    private var dataManager: BabyDataManager?
 
-    init() {
-        userID = defaultsManager.userID
-        loginIfPossible()
-        Task {
+    init() {}
+
+    func setup(with dataManager: BabyDataManager) {
+        Task { [weak self] in
+            guard let self else {
+                return
+            }
+            userID = defaultsManager.userID
+            self.dataManager = dataManager
+            await self.loginIfPossible()
             await getAllFeeds()
         }
     }
@@ -32,6 +39,7 @@ final class FirebaseManager {
             FBKeys.kDate: item.date,
             FBKeys.kAmount: item.amount,
             FBKeys.kNote: item.note ?? "",
+            FBKeys.kID: item.id,
             FBKeys.kSolidLiquid: item.solidOrLiquid.rawValue
         ]
         // Add a new document with a generated ID
@@ -55,26 +63,25 @@ final class FirebaseManager {
               .collection(FBKeys.kUsers)
               .document(userID)
               .collection(FBKeys.kFeeds)
-              .getDocuments() else {
+              .getDocuments()
+        else {
             return
         }
         let feeds = remoteFeedSnapshot.mapToDomainFeed()
-        print(feeds)
+        dataManager?.mergeFeedsWithRemote(feeds)
     }
 
-    private func loginIfPossible() {
-        Task {
-            if defaultsManager.hasAccount {
-                let credentials = try? KeychainManager.fetchCredentials()
-                let id = await authVM.login(email: credentials?.email ?? "",
-                                            password: credentials?.password ?? "")
-                defaultsManager.userID = id
-                self.userID = id
-            } else {
-                let id = await authVM.anonymousLogin()
-                defaultsManager.userID = id
-                self.userID = id
-            }
+    private func loginIfPossible() async {
+        if defaultsManager.hasAccount {
+            let credentials = try? KeychainManager.fetchCredentials()
+            let id = await authVM.login(email: credentials?.email ?? "",
+                                        password: credentials?.password ?? "")
+            defaultsManager.userID = id
+            userID = id
+        } else {
+            let id = await authVM.anonymousLogin()
+            defaultsManager.userID = id
+            userID = id
         }
     }
 }
@@ -85,11 +92,12 @@ extension QueryDocumentSnapshot {
               let amount = data[FBKeys.kAmount] as? Double,
               let note = data[FBKeys.kNote] as? String,
               let solidOrLiquid = data[FBKeys.kSolidLiquid] as? String,
-              let timeStamp = data[FBKeys.kDate] as? Timestamp
+              let timeStamp = data[FBKeys.kDate] as? Timestamp,
+              let id = data[FBKeys.kID] as? String
         else {
             return nil
         }
-        return .init(id: documentID,
+        return .init(id: id,
                      date: Date(timeIntervalSince1970: Double(timeStamp.seconds)),
                      amount: amount,
                      note: note.isEmpty ? nil : note,
@@ -99,7 +107,7 @@ extension QueryDocumentSnapshot {
 
 extension QuerySnapshot {
     func mapToDomainFeed() -> [Feed] {
-        documents.compactMap({ $0.mapToFeed() })
+        documents.compactMap { $0.mapToFeed() }
     }
 }
 
