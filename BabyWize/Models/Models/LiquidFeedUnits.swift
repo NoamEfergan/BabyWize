@@ -27,11 +27,14 @@ enum LiquidFeedUnits: String,Hashable, CaseIterable {
 // MARK: - SolidFeedUnits
 enum SolidFeedUnits: String, CaseIterable {
     case grams
+    case oz
 
     var title: String {
         switch self {
         case .grams:
             return "g"
+        case .oz:
+            return "oz"
         }
     }
 }

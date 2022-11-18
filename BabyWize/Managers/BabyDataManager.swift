@@ -329,5 +329,34 @@ final class BabyDataManager: ObservableObject {
                 }
             })
             .store(in: &bag)
+        
+        
+        unitsManager
+            .$solidUnits
+            .scan((nil, nil) as (SolidFeedUnits?,
+                                 SolidFeedUnits?)) { output, selectedUnit -> (SolidFeedUnits?, SolidFeedUnits?) in
+                if let to = output.1 {
+                    return (to, selectedUnit)
+                }
+
+                return (nil, selectedUnit)
+            }
+            .sink(receiveValue: { pair in
+                guard let from = pair.0,
+                      let to = pair.1
+                else {
+                    return
+                }
+                self.feedData.filter(\.isSolids).indices.forEach { index in
+                    let feed = self.feedData[index]
+                    let newFeed = Feed(id: feed.id,
+                                       date: feed.date,
+                                       amount: feed.amount.convertSolids(from: from, to: to),
+                                       note: feed.note,
+                                       solidOrLiquid: feed.solidOrLiquid)
+                    self.updateFeed(newFeed, index: index)
+                }
+            })
+            .store(in: &bag)
     }
 }

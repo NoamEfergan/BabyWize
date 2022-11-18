@@ -28,7 +28,17 @@ extension Double {
         case .ozUS:
             return convertUSOz(to: unit)
         case .oz:
-            return convertOZ(to: unit)
+            return convertLiquidOZ(to: unit)
+        }
+    }
+    
+    func convertSolids(from: SolidFeedUnits, to unit: SolidFeedUnits) -> Self {
+        guard from != unit else { return self }
+        switch from {
+        case .grams:
+            return convertGrams(to: unit)
+        case .oz:
+            return convertMassOz(to: unit)
         }
     }
 
@@ -43,7 +53,7 @@ extension Double {
         }
     }
 
-    private func convertOZ(to unit: LiquidFeedUnits) -> Self {
+    private func convertLiquidOZ(to unit: LiquidFeedUnits) -> Self {
         switch unit {
         case .ml:
             return (self / 0.0351951).roundDecimalPoint()
@@ -51,6 +61,24 @@ extension Double {
             return (self * 0.96).roundDecimalPoint()
         case .oz:
             return roundDecimalPoint()
+        }
+    }
+
+    private func convertMassOz(to unit: SolidFeedUnits) -> Self {
+        switch unit {
+        case .grams:
+            return (self * 28.35).roundDecimalPoint()
+        case .oz:
+            return roundDecimalPoint()
+        }
+    }
+
+    private func convertGrams(to unit: SolidFeedUnits) -> Self {
+        switch unit {
+        case .grams:
+            return roundDecimalPoint()
+        case .oz:
+            return (self / 28.35).roundDecimalPoint()
         }
     }
 
@@ -71,10 +99,7 @@ extension Double {
 
     func solidFeedDisplayableAmount() -> String {
         @InjectedObject var unitsManager: UserDefaultManager
-        switch unitsManager.solidUnits {
-        case .grams:
-            return "\(roundDecimalPoint().description) \(unitsManager.solidUnits.title)"
-        }
+        return "\(roundDecimalPoint().description) \(unitsManager.solidUnits.title)"
     }
 
     func liquidFeedDisplayableAmount() -> String {

@@ -66,8 +66,11 @@ struct SettingsView: View {
                 }
             }
 
-            Section("general") {
-                picker
+            Section("Units of messuremants") {
+                VStack {
+                    liquidsPicker
+                    solidsPicker
+                }
             }
         }
         .listStyle(.insetGrouped)
@@ -75,12 +78,14 @@ struct SettingsView: View {
     }
 
     @ViewBuilder
-    private var picker: some View {
-        let title = "Unit of measurement"
+    private var liquidsPicker: some View {
+        let title = "Liquids"
         ViewThatFits {
-            Picker(title, selection: $unitsManager.liquidUnits) {
-                ForEach(LiquidFeedUnits.allCases, id: \.self) {
-                    Text($0.rawValue)
+            VStack(alignment: .leading) {
+                Picker(title, selection: $unitsManager.liquidUnits) {
+                    ForEach(LiquidFeedUnits.allCases, id: \.self) {
+                        Text($0.rawValue)
+                    }
                 }
             }
             VStack {
@@ -94,6 +99,31 @@ struct SettingsView: View {
                 .labelsHidden()
             }
         }
+        .font(.system(.body, design: .rounded))
+    }
+
+    @ViewBuilder
+    private var solidsPicker: some View {
+        let title = "Solids"
+        ViewThatFits {
+            Picker(title, selection: $unitsManager.solidUnits) {
+                ForEach(SolidFeedUnits.allCases, id: \.self) {
+                    Text($0.rawValue)
+                }
+                .pickerStyle(.segmented)
+            }
+            VStack {
+                Text(title)
+                Picker(title, selection: $unitsManager.solidUnits) {
+                    ForEach(SolidFeedUnits.allCases, id: \.self) {
+                        Text($0.rawValue)
+                    }
+                }
+                .pickerStyle(.automatic)
+                .labelsHidden()
+            }
+        }
+        .font(.system(.body, design: .rounded))
     }
 
     @ViewBuilder
