@@ -28,6 +28,7 @@ final class FirebaseManager {
             self.dataManager = dataManager
             await self.loginIfPossible()
             await getAllFeeds()
+            await getAllSleeps()
         }
     }
 

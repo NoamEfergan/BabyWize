@@ -137,7 +137,7 @@ final class BabyDataManager: ObservableObject {
     }
 
     func mergeFeedsWithRemote(_ remoteFeeds: [Feed]) {
-        for (localFeed, remoteFeed) in product(remoteFeeds, feedData) {
+        for (remoteFeed, localFeed) in product(remoteFeeds, feedData) {
             if localFeed.id == remoteFeed.id {
                 if localFeed != remoteFeed,
                    let index = feedData.firstIndex(where: { $0.id == localFeed.id }) {
@@ -148,10 +148,10 @@ final class BabyDataManager: ObservableObject {
     }
 
     func mergeSleepsWithRemote(_ remoteSleeps: [Sleep]) {
-        for (localSleep, remoteSleep) in product(remoteSleeps, sleepData) {
+        for (remoteSleep, localSleep) in product(remoteSleeps, sleepData) {
             if localSleep.id == remoteSleep.id {
                 if localSleep != remoteSleep,
-                   let index = feedData.firstIndex(where: { $0.id == localSleep.id }) {
+                   let index = sleepData.firstIndex(where: { $0.id == localSleep.id }) {
                     updateSleep(remoteSleep, index: index, updateRemote: false)
                 }
             }
@@ -190,7 +190,7 @@ final class BabyDataManager: ObservableObject {
 
     func updateSleep(_ item: Sleep, index: Array<Sleep>.Index, updateRemote: Bool = true) {
         sleepData[index] = item
-        coreDataManager.addSleep(item)
+        coreDataManager.updateSleep(item)
         if updateRemote {
             firebaseManager.addSleep(item)
         }
