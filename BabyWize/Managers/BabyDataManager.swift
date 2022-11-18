@@ -209,7 +209,7 @@ final class BabyDataManager: ObservableObject {
         }
         coreDataManager.removeFeed(localFeeds)
         feedData.remove(atOffsets: offsets)
-        firebaseManager.removeFeeds(items: localFeeds)
+        firebaseManager.removeItems(items: localFeeds, key: FBKeys.kFeeds)
     }
 
     func removeSleep(at offsets: IndexSet) {
@@ -218,6 +218,7 @@ final class BabyDataManager: ObservableObject {
         }
         coreDataManager.removeSleep(localSleeps)
         sleepData.remove(atOffsets: offsets)
+        firebaseManager.removeItems(items: localSleeps, key: FBKeys.kSleeps)
     }
 
     func removeChange(at offsets: IndexSet) {
@@ -226,6 +227,7 @@ final class BabyDataManager: ObservableObject {
         }
         coreDataManager.removeChange(localChanges)
         nappyData.remove(atOffsets: offsets)
+        firebaseManager.removeItems(items: localChanges, key: FBKeys.kChanges)
     }
 
     func removeAll(for entry: EntryType) {

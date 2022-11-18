@@ -116,13 +116,13 @@ final class FirebaseManager {
 
     // MARK: - Delete
 
-    func removeFeeds(items: [Feed]) {
+    func removeItems(items: [any DataItem], key: String) {
         guard let userID else {
             return
         }
         let batch = db.batch()
         for item in items {
-            let ref = db.collection(FBKeys.kUsers).document(userID).collection(FBKeys.kFeeds).document(item.id)
+            let ref = db.collection(FBKeys.kUsers).document(userID).collection(key).document(item.id)
             batch.deleteDocument(ref)
         }
         batch.commit { error in
