@@ -21,4 +21,6 @@ struct FBKeys {
 
     static let kStart = "start"
     static let kEnd = "end"
+    
+    static let kWetOrSoiled = "wetOrSoild"
 }

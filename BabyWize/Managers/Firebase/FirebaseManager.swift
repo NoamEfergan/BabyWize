@@ -29,6 +29,7 @@ final class FirebaseManager {
             await self.loginIfPossible()
             await getAllFeeds()
             await getAllSleeps()
+            await getAllChanges()
         }
     }
 
@@ -85,6 +86,29 @@ final class FirebaseManager {
             }
     }
 
+    func addNappyChange(_ item: NappyChange) {
+        guard let userID else {
+            return
+        }
+        let changeDTO: [String: Any] = [
+            FBKeys.kID: item.id,
+            FBKeys.kDate: item.dateTime,
+            FBKeys.kWetOrSoiled: item.wetOrSoiled.rawValue,
+        ]
+        db
+            .collection(FBKeys.kUsers)
+            .document(userID)
+            .collection(FBKeys.kChanges)
+            .document(item.id)
+            .setData(changeDTO) { err in
+                if let err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added")
+                }
+            }
+    }
+
     // MARK: - Get/ edit
 
     func getAllSleeps() async {
@@ -99,6 +123,20 @@ final class FirebaseManager {
         }
         let sleeps = remoteFeedSnapshot.mapToDomainSleep()
         dataManager?.mergeSleepsWithRemote(sleeps)
+    }
+
+    func getAllChanges() async {
+        guard let userID,
+              let remoteFeedSnapshot = try? await db
+              .collection(FBKeys.kUsers)
+              .document(userID)
+              .collection(FBKeys.kChanges)
+              .getDocuments()
+        else {
+            return
+        }
+        let changes = remoteFeedSnapshot.mapToDomainChange()
+        dataManager?.mergeChangesWithRemote(changes)
     }
 
     func getAllFeeds() async {
@@ -184,6 +222,19 @@ extension QueryDocumentSnapshot {
                      start: .init(timeIntervalSince1970: Double(start.seconds)),
                      end: .init(timeIntervalSince1970: Double(end.seconds)))
     }
+
+    func mapToChange() -> NappyChange? {
+        let mappedData = data()
+        guard let id = mappedData[FBKeys.kID] as? String,
+              let timeStamp = mappedData[FBKeys.kDate] as? Timestamp,
+              let wetOrSoiledKey = mappedData[FBKeys.kWetOrSoiled] as? String,
+              let wetOrSoiled = NappyChange.WetOrSoiled(rawValue: wetOrSoiledKey) else {
+            return nil
+        }
+        return .init(id: id,
+                     dateTime: .init(timeIntervalSince1970: Double(timeStamp.seconds)),
+                     wetOrSoiled: wetOrSoiled)
+    }
 }
 
 extension QuerySnapshot {
@@ -193,6 +244,10 @@ extension QuerySnapshot {
 
     func mapToDomainSleep() -> [Sleep] {
         documents.compactMap { $0.mapToSleep() }
+    }
+
+    func mapToDomainChange() -> [NappyChange] {
+        documents.compactMap { $0.mapToChange() }
     }
 }
 

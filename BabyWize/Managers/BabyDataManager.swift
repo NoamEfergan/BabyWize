@@ -157,6 +157,18 @@ final class BabyDataManager: ObservableObject {
             }
         }
     }
+    
+    func mergeChangesWithRemote(_ remoteChanges: [NappyChange]) {
+        for (remoteChange, localChange) in product(remoteChanges, nappyData) {
+            if localChange.id == remoteChange.id {
+                if localChange != remoteChange,
+                   let index = nappyData.firstIndex(where: { $0.id == localChange.id }) {
+                    updateChange(remoteChange, index: index, updateRemote: false)
+                }
+            }
+        }
+        
+    }
 
     // MARK: - CRUD methods
 
@@ -176,6 +188,7 @@ final class BabyDataManager: ObservableObject {
     func addNappyChange(_ item: NappyChange) {
         nappyData.append(item)
         coreDataManager.addNappyChange(item)
+        firebaseManager.addNappyChange(item)
     }
 
     // Update
@@ -196,9 +209,12 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func updateChange(_ item: NappyChange, index: Array<NappyChange>.Index) {
+    func updateChange(_ item: NappyChange, index: Array<NappyChange>.Index, updateRemote: Bool = true) {
         nappyData[index] = item
         coreDataManager.updateChange(item)
+        if updateRemote {
+            firebaseManager.addNappyChange(item)
+        }
     }
 
     // Remove
