@@ -69,6 +69,7 @@ struct SettingsView: View {
             Section("Units of messuremants") {
                 VStack {
                     liquidsPicker
+                    LabelledDivider()
                     solidsPicker
                 }
             }

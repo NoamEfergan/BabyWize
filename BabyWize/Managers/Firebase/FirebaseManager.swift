@@ -33,8 +33,6 @@ final class FirebaseManager {
         }
     }
 
-    // MARK: - CRUD methods
-
     // MARK: - Add
 
     func addFeed(_ item: Feed) {
