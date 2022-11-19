@@ -28,6 +28,12 @@ final class BabyDataManager: ObservableObject {
         fetchSavedValues()
         listenToUnitChanges()
         firebaseManager.setup(with: self)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.logOutAndRemoveAll),
+            name: .didLogOut,
+            object: .none
+        )
     }
 
     // MARK: - Public methods
@@ -271,6 +277,10 @@ final class BabyDataManager: ObservableObject {
     }
 
     // MARK: - Private methods
+    
+    @objc private func logOutAndRemoveAll() {
+        print("Logout")
+    }
 
     private func getAverageFeed(isSolid: Bool) -> String {
         let data = isSolid ? feedData.filter(\.isSolids) : feedData.filter(\.isLiquids)

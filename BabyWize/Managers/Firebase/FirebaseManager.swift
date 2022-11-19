@@ -177,7 +177,8 @@ final class FirebaseManager {
         if defaultsManager.hasAccount {
             let credentials = try? KeychainManager.fetchCredentials()
             let id = await authVM.login(email: credentials?.email ?? "",
-                                        password: credentials?.password ?? "")
+                                        password: credentials?.password ?? "",
+                                        shouldSaveToKeychain: false)
             defaultsManager.userID = id
             userID = id
         } else {

@@ -15,7 +15,7 @@ struct SettingsView: View {
     @State private var isLoginViewShowing = false
 
     @AppStorage(UserConstants.isLoggedIn) private var savedIsUserLoggedIn: Bool?
-    @StateObject private var authVM = AuthViewModel()
+    @EnvironmentObject private var authVM: AuthViewModel
 
     private var isLoggedIn: Bool {
         guard let savedIsUserLoggedIn else {
@@ -38,7 +38,7 @@ struct SettingsView: View {
                 }
                 .confirmationDialog("Log in or register", isPresented: $isShowingAlert) {
                     NavigationLink("Login") {
-                        LoginView(vm: authVM)
+                        LoginView()
                     }
                     NavigationLink("Register") {
                         RegisterView()

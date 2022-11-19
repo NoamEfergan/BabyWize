@@ -60,6 +60,7 @@
 		0587BB5329281F2C00F39B25 /* TimeInterval+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */; };
 		0587BB5429281F2C00F39B25 /* TimeInterval+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */; };
 		0587BB562928306B00F39B25 /* LabelledDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB552928306B00F39B25 /* LabelledDivider.swift */; };
+		0587BB582928EA8C00F39B25 /* NSNotification+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB572928EA8C00F39B25 /* NSNotification+extension.swift */; };
 		059C68E52886AF0500C90710 /* Info View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E42886AF0500C90710 /* Info View.swift */; };
 		059C68E82886B66B00C90710 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EB2886BD6E00C90710 /* InputDetailView.swift */; };
@@ -207,6 +208,7 @@
 		05817C5E28C788580040A4B0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+extension.swift"; sourceTree = "<group>"; };
 		0587BB552928306B00F39B25 /* LabelledDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledDivider.swift; sourceTree = "<group>"; };
+		0587BB572928EA8C00F39B25 /* NSNotification+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+extension.swift"; sourceTree = "<group>"; };
 		059C68E42886AF0500C90710 /* Info View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info View.swift"; sourceTree = "<group>"; };
 		059C68E72886B66B00C90710 /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
 		059C68EB2886BD6E00C90710 /* InputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDetailView.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				05A42A56290598860040A543 /* Color+extension.swift */,
 				05ABD6FC290ECBFA00E1C755 /* String+extension.swift */,
 				0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */,
+				0587BB572928EA8C00F39B25 /* NSNotification+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
 				05817C5F28C788580040A4B0 /* DataController.swift in Sources */,
 				055CE1322925350200870066 /* FBKeys.swift in Sources */,
+				0587BB582928EA8C00F39B25 /* NSNotification+extension.swift in Sources */,
 				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
 				056DC48F2916F36B00B30720 /* FeedEntryViewModel.swift in Sources */,
 				056DC4832916A0EC00B30720 /* AccessibleLabeledContent.swift in Sources */,

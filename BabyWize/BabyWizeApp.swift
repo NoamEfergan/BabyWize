@@ -58,6 +58,7 @@ struct BabyWizeApp: App {
                 LoadingView(isShowing: $authVM.isLoading, text: "Logging you back in...") {
                     HomeView()
                         .environmentObject(navigationVM)
+                        .environmentObject(authVM)
                         .environment(\.managedObjectContext, dataController.container.viewContext)
                         .environment(\.colorScheme, .light)
                 }
@@ -67,15 +68,6 @@ struct BabyWizeApp: App {
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                     isShowingSplash.toggle()
-                }
-            }
-            .task {
-                if let savedIsUserLoggedIn,
-                   savedIsUserLoggedIn,
-                   let credentials = try? KeychainManager.fetchCredentials() {
-                    await authVM.login(email: credentials.email, password: credentials.password)
-                } else {
-                    authVM.isLoading = false
                 }
             }
         }

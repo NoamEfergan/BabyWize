@@ -17,7 +17,7 @@ struct RegisterView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    @StateObject private var vm = AuthViewModel()
+    @EnvironmentObject private var vm: AuthViewModel
     @State private var email = ""
     @State private var password = ""
     @State private var rePassword = ""
@@ -31,7 +31,7 @@ struct RegisterView: View {
     @FocusState private var focusedField: Textfields?
 
     var body: some View {
-        LoadingView(isShowing: $vm.isLoading, text: "Please wait while we create your account") {
+        LoadingView(isShowing: $vm.isRegistering, text: "Please wait while we create your account") {
             VStack(spacing: 30) {
                 VStack {
                     GrayTextField(text: $email,
@@ -106,7 +106,7 @@ struct RegisterView: View {
                     focusedField = .email
                 }
             }
-            .alert("Whoops!\nsomething went wrong, please try again later", isPresented: $vm.hasError, actions: {
+            .alert(vm.errorMsg, isPresented: $vm.hasError, actions: {
                 Text("Please try again later")
             })
             .toolbar {
