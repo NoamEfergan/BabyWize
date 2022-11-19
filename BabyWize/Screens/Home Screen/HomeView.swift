@@ -21,10 +21,11 @@ struct HomeView: View {
     @InjectedObject private var authVM: AuthViewModel
     @Environment(\.dynamicTypeSize) var typeSize
     @EnvironmentObject private var navigationVM: NavigationViewModel
+    @StateObject private var sharingVC = SharingViewModel()
+
     @State private var isShowingNewEntrySheet = false
     @State private var wantsToAddEntry = false
     @State private var iconRotation: Double = 0
-    
 
     var minChartHeight: Double {
         defaultsManager.chartConfiguration == .joint ? 350 : 550
@@ -41,7 +42,7 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack(path: $navigationVM.path) {
-            LoadingView(isShowing: $authVM.isLoading, text: "Signing you back in "){
+            LoadingView(isShowing: $authVM.isLoading, text: "Signing you back in ") {
                 ScrollView {
                     VStack {
                         QuickInfoSection()
@@ -75,6 +76,23 @@ struct HomeView: View {
                     }
                 }
                 .navigationTitle("Baby Wize")
+                .alert(sharingVC.acceptAlertTitle,
+                       isPresented: $sharingVC.isShowingAcceptAlert) {
+                    Button("Accept") {
+                        sharingVC.didAcceptSharing()
+                    }
+                    Button(role: .cancel) {
+                        sharingVC.isShowingAcceptAlert = false
+                    } label: {
+                        Text("No thanks")
+                    }
+                }
+                .alert("Whoops!\nsomething went wrong there, please try again!", isPresented: $sharingVC.hasError,
+                       actions: {
+                           Button("Try again later") {
+                               sharingVC.hasError = false
+                           }
+                       })
                 .sheet(isPresented: $isShowingNewEntrySheet) {
                     AddEntryView()
                         .presentationDetents([.fraction(0.4), .medium])
@@ -95,13 +113,19 @@ struct HomeView: View {
                     WidgetManager().setLatest()
                 }
                 .animation(.easeOut, value: iconRotation)
-                .onOpenURL { _ in
-                    // TODO: Handle more deep links!
-                    wantsToAddEntry = true
+                .onOpenURL { url in
+                    if url.absoluteString.starts(with: "widget") {
+                        wantsToAddEntry = true
+                    }
+                    if url.absoluteString.starts(with: "app.babywize") {
+                        sharingVC.extractInfo(from: url)
+                    }
                 }
             }
         }
     }
+
+    // app.babywize://MZhOgd8Hc8f8Japf7gmfzxHWzK63-1@3.com
 
     // MARK: - Navigation
 

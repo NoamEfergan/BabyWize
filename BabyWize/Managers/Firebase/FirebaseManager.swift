@@ -117,6 +117,20 @@ final class FirebaseManager {
             }
     }
 
+    func getSharedData(for id: String) async {
+        let collection = try? await db
+            .collection(FBKeys.kUsers)
+            .getDocuments()
+        if let documentRef = collection?.documents.first(where: { $0.documentID == id })?.reference,
+           let changes = try? await documentRef.collection(FBKeys.kChanges).getDocuments(),
+           let feeds = try? await documentRef.collection(FBKeys.kFeeds).getDocuments(),
+           let sleeps = try? await documentRef.collection(FBKeys.kSleeps).getDocuments() {
+            dataManager?.mergeChangesWithRemote(changes.mapToDomainChange())
+            dataManager?.mergeFeedsWithRemote(feeds.mapToDomainFeed())
+            dataManager?.mergeSleepsWithRemote(sleeps.mapToDomainSleep())
+        }
+    }
+
     // MARK: - Get/ edit
 
     private func getAllSleeps() async {
@@ -197,7 +211,7 @@ final class FirebaseManager {
             userID = id
         }
     }
-    
+
     private func listenToLogin() {
         authVM
             .$didLogIn
@@ -205,10 +219,11 @@ final class FirebaseManager {
             .sink { didLogIn in
                 print(didLogIn)
                 if didLogIn {
-                    Task { [ weak self] in
-                        guard let self else { return }
+                    Task { [weak self] in
+                        guard let self else {
+                            return
+                        }
                         await self.fetchAllFromRemote()
-                        
                     }
                 }
             }

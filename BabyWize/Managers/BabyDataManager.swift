@@ -14,7 +14,7 @@ final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
 
     private let coreDataManager = BabyCoreDataManager()
-    private let firebaseManager = FirebaseManager()
+    let firebaseManager = FirebaseManager()
     @InjectedObject var unitsManager: UserDefaultManager
 
     // MARK: - Exposed variables

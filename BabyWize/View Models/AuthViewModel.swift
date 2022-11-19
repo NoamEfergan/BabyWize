@@ -77,7 +77,7 @@ final class AuthViewModel: ObservableObject {
             print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
             return user.uid
         } catch {
-            print("There was an issue when trying to sign in: \(error.localizedDescription)")
+            print("There was an issue when twrying to sign in: \(error.localizedDescription)")
             hasError = true
             errorMsg = error.localizedDescription
             return nil
@@ -91,13 +91,13 @@ final class AuthViewModel: ObservableObject {
         }
         do {
             try Auth.auth().signOut()
-            print("Signed out")
             hasError = false
             defaultsManager.isLoggedIn = false
             defaultsManager.userID = nil
             defaultsManager.hasAccount = false
             NotificationCenter.default.post(name: .didLogOut, object: nil)
             removeCredentialsFromKeychain()
+            print("Signed out")
             return
         } catch {
             print("There was an issue when trying to sign in: \(error)")
