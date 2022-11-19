@@ -7,6 +7,9 @@
 
 import Foundation
 import Swinject
+import Firebase
+import FirebaseCore
+import FirebaseFirestore
 
 enum ContainerBuilder {
     static func buildMainContainer() -> Container {
@@ -16,6 +19,7 @@ enum ContainerBuilder {
     }
 
     private static func registerManagers(to container: Container) {
+        FirebaseApp.configure()
         container.register(BabyDataManager.self) { _ in
             BabyDataManager()
         }.inObjectScope(.container)
@@ -24,6 +28,9 @@ enum ContainerBuilder {
         }.inObjectScope(.container)
         container.register(UserDefaultManager.self) { _ in
             UserDefaultManager()
+        }.inObjectScope(.container)
+        container.register(AuthViewModel.self) { _ in
+            AuthViewModel()
         }.inObjectScope(.container)
     }
 }

@@ -5,8 +5,7 @@
 //  Created by Noam Efergan on 17/07/2022.
 //
 
-import FirebaseCore
-import FirebaseFirestore
+
 import SwiftUI
 import Swinject
 
@@ -15,7 +14,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_: UIApplication,
                      didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil)
         -> Bool {
-        FirebaseApp.configure()
+        
         return true
     }
 }
@@ -30,7 +29,6 @@ final class NavigationViewModel: ObservableObject {
 struct BabyWizeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var navigationVM = NavigationViewModel()
-    @StateObject private var authVM = AuthViewModel()
     @AppStorage(UserConstants.isLoggedIn) private var savedIsUserLoggedIn: Bool?
 
     init() {
@@ -55,14 +53,11 @@ struct BabyWizeApp: App {
                 }
                 .scaleEffect(isShowingSplash ? 1 : 40)
                 .opacity(isShowingSplash ? 1 : 0)
-                LoadingView(isShowing: $authVM.isLoading, text: "Logging you back in...") {
-                    HomeView()
-                        .environmentObject(navigationVM)
-                        .environmentObject(authVM)
-                        .environment(\.managedObjectContext, dataController.container.viewContext)
-                        .environment(\.colorScheme, .light)
-                }
-                .opacity(isShowingSplash ? 0 : 1)
+                HomeView()
+                    .environmentObject(navigationVM)
+                    .environment(\.managedObjectContext, dataController.container.viewContext)
+                    .environment(\.colorScheme, .light)
+                    .opacity(isShowingSplash ? 0 : 1)
             }
             .animation(.easeInOut(duration: 1), value: isShowingSplash)
             .onAppear {

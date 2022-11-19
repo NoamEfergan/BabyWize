@@ -8,12 +8,15 @@
 import FirebaseCore
 import FirebaseFirestore
 import Foundation
+import Combine
 
 // MARK: - FirebaseManager
 final class FirebaseManager {
     @InjectedObject private var defaultsManager: UserDefaultManager
+    @InjectedObject private var authVM: AuthViewModel
     private let db = Firestore.firestore()
-    private let authVM = AuthViewModel()
+    private var bag = Set<AnyCancellable>()
+
     private var userID: String?
     private var dataManager: BabyDataManager?
 
@@ -27,10 +30,17 @@ final class FirebaseManager {
             userID = defaultsManager.userID
             self.dataManager = dataManager
             await self.loginIfPossible()
-            await getAllFeeds()
-            await getAllSleeps()
-            await getAllChanges()
+            await fetchAllFromRemote()
+            listenToLogin()
         }
+    }
+
+    // MARK: - Public methods
+
+    func fetchAllFromRemote() async {
+        await getAllFeeds()
+        await getAllSleeps()
+        await getAllChanges()
     }
 
     // MARK: - Add
@@ -109,7 +119,7 @@ final class FirebaseManager {
 
     // MARK: - Get/ edit
 
-    func getAllSleeps() async {
+    private func getAllSleeps() async {
         guard let userID,
               let remoteFeedSnapshot = try? await db
               .collection(FBKeys.kUsers)
@@ -123,7 +133,7 @@ final class FirebaseManager {
         dataManager?.mergeSleepsWithRemote(sleeps)
     }
 
-    func getAllChanges() async {
+    private func getAllChanges() async {
         guard let userID,
               let remoteFeedSnapshot = try? await db
               .collection(FBKeys.kUsers)
@@ -137,7 +147,7 @@ final class FirebaseManager {
         dataManager?.mergeChangesWithRemote(changes)
     }
 
-    func getAllFeeds() async {
+    private func getAllFeeds() async {
         guard let userID,
               let remoteFeedSnapshot = try? await db
               .collection(FBKeys.kUsers)
@@ -187,7 +197,26 @@ final class FirebaseManager {
             userID = id
         }
     }
+    
+    private func listenToLogin() {
+        authVM
+            .$didLogIn
+            .receive(on: DispatchQueue.main)
+            .sink { didLogIn in
+                print(didLogIn)
+                if didLogIn {
+                    Task { [ weak self] in
+                        guard let self else { return }
+                        await self.fetchAllFromRemote()
+                        
+                    }
+                }
+            }
+            .store(in: &bag)
+    }
 }
+
+// MARK: - Firebase extensions
 
 extension QueryDocumentSnapshot {
     func mapToFeed() -> Feed? {

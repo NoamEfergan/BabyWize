@@ -21,6 +21,22 @@ struct KeychainManager {
         case unhandledError(status: OSStatus)
     }
 
+    static func removeCredentials(_ credentials: Credentials) throws {
+        let account = credentials.email
+        let password = credentials.password.data(using: String.Encoding.utf8)!
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassInternetPassword,
+            kSecAttrAccount as String: account,
+            kSecAttrServer as String: server,
+            kSecValueData as String: password
+        ]
+
+        let status = SecItemDelete(query as CFDictionary)
+        guard status == errSecSuccess else {
+            throw KeychainError.unhandledError(status: status)
+        }
+    }
+
     static func setCredentials(_ credentials: Credentials) throws {
         let account = credentials.email
         let password = credentials.password.data(using: String.Encoding.utf8)!

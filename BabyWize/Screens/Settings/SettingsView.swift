@@ -15,7 +15,7 @@ struct SettingsView: View {
     @State private var isLoginViewShowing = false
 
     @AppStorage(UserConstants.isLoggedIn) private var savedIsUserLoggedIn: Bool?
-    @EnvironmentObject private var authVM: AuthViewModel
+    @InjectedObject private var authVM: AuthViewModel
 
     private var isLoggedIn: Bool {
         guard let savedIsUserLoggedIn else {

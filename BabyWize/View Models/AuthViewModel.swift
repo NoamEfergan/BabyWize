@@ -13,7 +13,9 @@ final class AuthViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var isRegistering = false
     @Published var hasError = false
-    @Published var errorMsg: String = ""
+    @Published var errorMsg = ""
+    
+    @Published var didLogIn: Bool = false
 
     func validateEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -44,6 +46,7 @@ final class AuthViewModel: ObservableObject {
             defaultsManager.hasAccount = true
             defaultsManager.userID = authResult.user.uid
             try KeychainManager.setCredentials(.init(email: email, password: password))
+            didLogIn = true
             return true
         } catch {
             print("There was an issue when trying to sign in: \(error)")
@@ -69,8 +72,9 @@ final class AuthViewModel: ObservableObject {
             defaultsManager.isLoggedIn = true
             defaultsManager.userID = user.uid
             defaultsManager.hasAccount = true
-            print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
             hasError = false
+            didLogIn = true
+            print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
             return user.uid
         } catch {
             print("There was an issue when trying to sign in: \(error.localizedDescription)")
@@ -92,11 +96,19 @@ final class AuthViewModel: ObservableObject {
             defaultsManager.isLoggedIn = false
             defaultsManager.userID = nil
             defaultsManager.hasAccount = false
+            NotificationCenter.default.post(name: .didLogOut, object: nil)
+            removeCredentialsFromKeychain()
             return
         } catch {
             print("There was an issue when trying to sign in: \(error)")
             hasError = true
             return
+        }
+    }
+
+    private func removeCredentialsFromKeychain() {
+        if let credentials = try? KeychainManager.fetchCredentials() {
+            try? KeychainManager.removeCredentials(credentials)
         }
     }
 

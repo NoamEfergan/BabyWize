@@ -10,18 +10,21 @@ import SwiftUI
 
 // MARK: - Screens
 enum Screens: String {
-    case home, settings, newEntry, feed, sleep, detailInputLiquidFeed,detailInputSolidFeed, detailInputNappy, detailInputSleep, none
+    case home, settings, newEntry, feed, sleep, detailInputLiquidFeed,detailInputSolidFeed, detailInputNappy,
+         detailInputSleep, none
 }
 
 // MARK: - HomeView
 struct HomeView: View {
     @InjectedObject private var dataManager: BabyDataManager
+    @InjectedObject private var defaultsManager: UserDefaultManager
+    @InjectedObject private var authVM: AuthViewModel
     @Environment(\.dynamicTypeSize) var typeSize
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @State private var isShowingNewEntrySheet = false
     @State private var wantsToAddEntry = false
     @State private var iconRotation: Double = 0
-    @InjectedObject private var defaultsManager: UserDefaultManager
+    
 
     var minChartHeight: Double {
         defaultsManager.chartConfiguration == .joint ? 350 : 550
@@ -38,62 +41,64 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack(path: $navigationVM.path) {
-            ScrollView {
-                VStack {
-                    QuickInfoSection()
-                        .shadow(radius: 0)
-                        .padding()
-                    HomeScreenCharts()
-                        .frame(minHeight: minChartHeight)
-                        .contentTransition(.interpolate)
-                }
-            }
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    NavigationLink(value: Screens.settings) {
-                        Image(systemName: "person.circle")
-                            .resizable()
-                            .frame(width: 32, height: 32)
-                            .foregroundColor(.secondary)
+            LoadingView(isShowing: $authVM.isLoading, text: "Signing you back in "){
+                ScrollView {
+                    VStack {
+                        QuickInfoSection()
+                            .shadow(radius: 0)
+                            .padding()
+                        HomeScreenCharts()
+                            .frame(minHeight: minChartHeight)
+                            .contentTransition(.interpolate)
                     }
                 }
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        NavigationLink(value: Screens.settings) {
+                            Image(systemName: "person.circle")
+                                .resizable()
+                                .frame(width: 32, height: 32)
+                                .foregroundColor(.secondary)
+                        }
+                    }
 
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        wantsToAddEntry.toggle()
-                    } label: {
-                        Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .frame(width: 32, height: 32)
-                            .foregroundColor(.secondary)
-                            .rotationEffect(.degrees(iconRotation))
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button {
+                            wantsToAddEntry.toggle()
+                        } label: {
+                            Image(systemName: "plus.circle.fill")
+                                .resizable()
+                                .frame(width: 32, height: 32)
+                                .foregroundColor(.secondary)
+                                .rotationEffect(.degrees(iconRotation))
+                        }
                     }
                 }
-            }
-            .navigationTitle("Baby Wize")
-            .sheet(isPresented: $isShowingNewEntrySheet) {
-                AddEntryView()
-                    .presentationDetents([.fraction(0.4), .medium])
-                    .onDisappear {
-                        wantsToAddEntry = false
-                    }
-            }
-            .onChange(of: wantsToAddEntry, perform: { newValue in
-                iconRotation = newValue ? 45 : 0
-                if shouldShowSheet {
-                    isShowingNewEntrySheet = newValue
-                } else {
-                    newValue ? navigationVM.path.append(.newEntry) : navigationVM.path.removeAll()
+                .navigationTitle("Baby Wize")
+                .sheet(isPresented: $isShowingNewEntrySheet) {
+                    AddEntryView()
+                        .presentationDetents([.fraction(0.4), .medium])
+                        .onDisappear {
+                            wantsToAddEntry = false
+                        }
                 }
-            })
-            .navigationDestination(for: Screens.self, destination: handleScreensNavigation)
-            .task {
-                WidgetManager().setLatest()
-            }
-            .animation(.easeOut, value: iconRotation)
-            .onOpenURL { _ in
-                // TODO: Handle more deep links!
-                wantsToAddEntry = true
+                .onChange(of: wantsToAddEntry, perform: { newValue in
+                    iconRotation = newValue ? 45 : 0
+                    if shouldShowSheet {
+                        isShowingNewEntrySheet = newValue
+                    } else {
+                        newValue ? navigationVM.path.append(.newEntry) : navigationVM.path.removeAll()
+                    }
+                })
+                .navigationDestination(for: Screens.self, destination: handleScreensNavigation)
+                .task {
+                    WidgetManager().setLatest()
+                }
+                .animation(.easeOut, value: iconRotation)
+                .onOpenURL { _ in
+                    // TODO: Handle more deep links!
+                    wantsToAddEntry = true
+                }
             }
         }
     }

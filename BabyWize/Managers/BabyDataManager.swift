@@ -28,12 +28,10 @@ final class BabyDataManager: ObservableObject {
         fetchSavedValues()
         listenToUnitChanges()
         firebaseManager.setup(with: self)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.logOutAndRemoveAll),
-            name: .didLogOut,
-            object: .none
-        )
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(logOutAndRemoveAll),
+                                               name: .didLogOut,
+                                               object: .none)
     }
 
     // MARK: - Public methods
@@ -143,37 +141,60 @@ final class BabyDataManager: ObservableObject {
     }
 
     func mergeFeedsWithRemote(_ remoteFeeds: [Feed]) {
-        for (remoteFeed, localFeed) in product(remoteFeeds, feedData) {
-            if localFeed.id == remoteFeed.id {
-                if localFeed != remoteFeed,
-                   let index = feedData.firstIndex(where: { $0.id == localFeed.id }) {
-                    updateFeed(remoteFeed, index: index, updateRemote: false)
+        if feedData.isEmpty {
+            feedData = remoteFeeds
+        }
+         else {
+            for (remoteFeed, localFeed) in product(remoteFeeds, feedData) {
+                if !feedData.contains(where: { $0.id == remoteFeed.id }) {
+                    addFeed(remoteFeed)
+                }
+                else if localFeed.id == remoteFeed.id {
+                    if localFeed != remoteFeed,
+                       let index = feedData.firstIndex(where: { $0.id == localFeed.id }) {
+                        updateFeed(remoteFeed, index: index, updateRemote: false)
+                    }
                 }
             }
         }
     }
 
     func mergeSleepsWithRemote(_ remoteSleeps: [Sleep]) {
-        for (remoteSleep, localSleep) in product(remoteSleeps, sleepData) {
-            if localSleep.id == remoteSleep.id {
-                if localSleep != remoteSleep,
-                   let index = sleepData.firstIndex(where: { $0.id == localSleep.id }) {
-                    updateSleep(remoteSleep, index: index, updateRemote: false)
+        if sleepData.isEmpty {
+            sleepData = remoteSleeps
+        }
+        else {
+            for (remoteSleep, localSleep) in product(remoteSleeps, sleepData) {
+                if !sleepData.contains(where: { $0.id == remoteSleep.id }) {
+                    addSleep(remoteSleep)
+                }
+                else if localSleep.id == remoteSleep.id {
+                    if localSleep != remoteSleep,
+                       let index = sleepData.firstIndex(where: { $0.id == localSleep.id }) {
+                        updateSleep(remoteSleep, index: index, updateRemote: false)
+                    }
                 }
             }
         }
     }
-    
+
     func mergeChangesWithRemote(_ remoteChanges: [NappyChange]) {
-        for (remoteChange, localChange) in product(remoteChanges, nappyData) {
-            if localChange.id == remoteChange.id {
-                if localChange != remoteChange,
-                   let index = nappyData.firstIndex(where: { $0.id == localChange.id }) {
-                    updateChange(remoteChange, index: index, updateRemote: false)
+        if nappyData.isEmpty {
+            nappyData = remoteChanges
+        }
+        else {
+            for (remoteChange, localChange) in product(remoteChanges, nappyData) {
+                if !nappyData.contains(where: { $0.id == remoteChange.id }) {
+                    addNappyChange(remoteChange)
+                }
+                else if localChange.id == remoteChange.id {
+                    if localChange != remoteChange,
+                       let index = nappyData.firstIndex(where: { $0.id == localChange.id }) {
+                        updateChange(remoteChange, index: index, updateRemote: false)
+                    }
                 }
             }
         }
-        
     }
 
     // MARK: - CRUD methods
@@ -225,61 +246,67 @@ final class BabyDataManager: ObservableObject {
 
     // Remove
 
-    func removeFeed(at offsets: IndexSet) {
+    func removeFeed(at offsets: IndexSet, includingRemote: Bool = true) {
         let localFeeds = offsets.compactMap {
             feedData[$0]
         }
         coreDataManager.removeFeed(localFeeds)
         feedData.remove(atOffsets: offsets)
-        firebaseManager.removeItems(items: localFeeds, key: FBKeys.kFeeds)
+        if includingRemote {
+            firebaseManager.removeItems(items: localFeeds, key: FBKeys.kFeeds)
+        }
     }
 
-    func removeSleep(at offsets: IndexSet) {
+    func removeSleep(at offsets: IndexSet, includingRemote: Bool = true) {
         let localSleeps = offsets.compactMap {
             sleepData[$0]
         }
         coreDataManager.removeSleep(localSleeps)
         sleepData.remove(atOffsets: offsets)
-        firebaseManager.removeItems(items: localSleeps, key: FBKeys.kSleeps)
+        if includingRemote {
+            firebaseManager.removeItems(items: localSleeps, key: FBKeys.kSleeps)
+        }
     }
 
-    func removeChange(at offsets: IndexSet) {
+    func removeChange(at offsets: IndexSet, includingRemote: Bool = true) {
         let localChanges = offsets.compactMap {
             nappyData[$0]
         }
         coreDataManager.removeChange(localChanges)
         nappyData.remove(atOffsets: offsets)
-        firebaseManager.removeItems(items: localChanges, key: FBKeys.kChanges)
+        if includingRemote {
+            firebaseManager.removeItems(items: localChanges, key: FBKeys.kChanges)
+        }
     }
 
-    func removeAll(for entry: EntryType) {
+    func removeAll(for entry: EntryType, includingRemote: Bool = true) {
         switch entry {
         case .liquidFeed:
             let indices = feedData.filter(\.isLiquids).indices.compactMap { Int($0) }
             let indexSet = IndexSet(indices)
-            removeFeed(at: indexSet)
+            removeFeed(at: indexSet, includingRemote: includingRemote)
 
         case .sleep:
             let indices = sleepData.indices.compactMap { Int($0) }
             let indexSet = IndexSet(indices)
-            removeSleep(at: indexSet)
+            removeSleep(at: indexSet, includingRemote: includingRemote)
 
         case .nappy:
             let indices = nappyData.indices.compactMap { Int($0) }
             let indexSet = IndexSet(indices)
-            removeChange(at: indexSet)
+            removeChange(at: indexSet, includingRemote: includingRemote)
 
         case .solidFeed:
             let indices = feedData.filter(\.isSolids).indices.compactMap { Int($0) }
             let indexSet = IndexSet(indices)
-            removeFeed(at: indexSet)
+            removeFeed(at: indexSet, includingRemote: includingRemote)
         }
     }
 
     // MARK: - Private methods
-    
+
     @objc private func logOutAndRemoveAll() {
-        print("Logout")
+        EntryType.allCases.forEach { removeAll(for: $0, includingRemote: false) }
     }
 
     private func getAverageFeed(isSolid: Bool) -> String {
@@ -339,8 +366,8 @@ final class BabyDataManager: ObservableObject {
                 }
             })
             .store(in: &bag)
-        
-        
+
+
         unitsManager
             .$solidUnits
             .scan((nil, nil) as (SolidFeedUnits?,

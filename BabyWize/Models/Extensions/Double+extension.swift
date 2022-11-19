@@ -31,9 +31,11 @@ extension Double {
             return convertLiquidOZ(to: unit)
         }
     }
-    
+
     func convertSolids(from: SolidFeedUnits, to unit: SolidFeedUnits) -> Self {
-        guard from != unit else { return self }
+        guard from != unit else {
+            return self
+        }
         switch from {
         case .grams:
             return convertGrams(to: unit)

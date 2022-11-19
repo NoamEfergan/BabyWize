@@ -17,7 +17,7 @@ struct RegisterView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    @EnvironmentObject private var vm: AuthViewModel
+    @InjectedObject private var vm: AuthViewModel
     @State private var email = ""
     @State private var password = ""
     @State private var rePassword = ""

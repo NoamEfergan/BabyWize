@@ -33,7 +33,7 @@ struct QuickInfoSection: View {
                               backgroundColor: .init(hex: "#F6DDC5"),
                               title: "Last Nappy Change",
                               value: dataManager.getLast(for: .nappy),
-                              shouldShowInfo: true,
+                              shouldShowInfo: !dataManager.nappyData.isEmpty,
                               leadingTo: .detailInputNappy)
             }
         default:
