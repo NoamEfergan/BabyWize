@@ -5,163 +5,48 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            uuid = "9A1BF246-2C1E-482D-9B96-34A7E00D5B0A"
-            shouldBeEnabled = "No"
+            uuid = "2733F64C-6446-4CC9-A347-BF521E2E005E"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BabyWize/View Models/Entries View Models/SleepEntryViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "editEntry()"
-            landmarkType = "7">
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
          <BreakpointContent
-            uuid = "1F8D15B3-4AA9-4E19-BB02-0AC82E3FD6F6"
-            shouldBeEnabled = "No"
+            uuid = "0232EC2F-4F9E-4CD6-9B15-45BC2962AB08"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BabyWize/View Models/Entries View Models/SleepEntryViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "editEntry()"
-            landmarkType = "7">
+            continueAfterRunningActions = "No">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "8A4C16D1-C42B-4D29-8AEA-66C5F8593410"
-            shouldBeEnabled = "No"
+            uuid = "313637F1-4C67-4C57-842A-1297C59A9E78"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BabyWize/View Models/Entries View Models/SleepEntryViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "editEntry()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "693EA92A-B41B-47E7-B030-3FF68A77A27E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BabyWize/View Models/Entries View Models/NappyEntryViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "editEntry()"
-            landmarkType = "7">
+            symbolName = ""
+            moduleName = "">
             <Locations>
-               <Location
-                  uuid = "693EA92A-B41B-47E7-B030-3FF68A77A27E - d50aac5f152a12ff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BabyWize.NappyEntryViewModel.editEntry() throws -&gt; ()"
-                  moduleName = "BabyWize"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/noam.efergan/Work/BabyTracker/BabyWize/View%20Models/Entries%20View%20Models/NappyEntryViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "1076">
-               </Location>
-               <Location
-                  uuid = "693EA92A-B41B-47E7-B030-3FF68A77A27E - d50aac5f152a12ff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BabyWize.NappyEntryViewModel.editEntry() throws -&gt; ()"
-                  moduleName = "BabyWize"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/noam.efergan/Work/BabyTracker/BabyWize/View%20Models/Entries%20View%20Models/NappyEntryViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "1140">
-               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.RuntimeIssueBreakpoint">
          <BreakpointContent
-            uuid = "DDE1651C-559F-4BD8-884F-04A36A44439A"
-            shouldBeEnabled = "No"
+            uuid = "DC023696-5AC1-471C-8E24-F02FEF2A868B"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BabyWize/View Models/Entries View Models/NappyEntryViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "editEntry()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DDE1651C-559F-4BD8-884F-04A36A44439A - d50aac5f152a12bd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BabyWize.NappyEntryViewModel.editEntry() throws -&gt; ()"
-                  moduleName = "BabyWize"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/noam.efergan/Work/BabyTracker/BabyWize/View%20Models/Entries%20View%20Models/NappyEntryViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "192">
-               </Location>
-               <Location
-                  uuid = "DDE1651C-559F-4BD8-884F-04A36A44439A - 1fa21a267078d364"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (BabyWize.NappyChange) -&gt; Swift.Bool in BabyWize.NappyEntryViewModel.editEntry() throws -&gt; ()"
-                  moduleName = "BabyWize"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/noam.efergan/Work/BabyTracker/BabyWize/View%20Models/Entries%20View%20Models/NappyEntryViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "55FADEA9-917F-488B-AA4C-B8B548248978"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BabyWize/Managers/BabyDataManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "BabyDataManager"
-            landmarkType = "3">
+            breakpointStackSelectionBehavior = "1"
+            type = "65535">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

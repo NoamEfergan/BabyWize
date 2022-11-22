@@ -117,17 +117,28 @@ final class FirebaseManager {
             }
     }
 
-    func getSharedData(for id: String) async {
-        let collection = try? await db
-            .collection(FBKeys.kUsers)
-            .getDocuments()
-        if let documentRef = collection?.documents.first(where: { $0.documentID == id })?.reference,
-           let changes = try? await documentRef.collection(FBKeys.kChanges).getDocuments(),
-           let feeds = try? await documentRef.collection(FBKeys.kFeeds).getDocuments(),
-           let sleeps = try? await documentRef.collection(FBKeys.kSleeps).getDocuments() {
-            dataManager?.mergeChangesWithRemote(changes.mapToDomainChange())
-            dataManager?.mergeFeedsWithRemote(feeds.mapToDomainFeed())
-            dataManager?.mergeSleepsWithRemote(sleeps.mapToDomainSleep())
+    func getSharedData(for id: String) async -> Bool {
+        do {
+            let collection = try await db
+                .collection(FBKeys.kUsers)
+                .getDocuments()
+
+            if let documentRef = collection.documents.first(where: { $0.documentID == id })?.reference {
+                let changes = try await documentRef.collection(FBKeys.kChanges).getDocuments()
+                let feeds = try await documentRef.collection(FBKeys.kFeeds).getDocuments()
+                let sleeps = try await documentRef.collection(FBKeys.kSleeps).getDocuments()
+                await addIdToShareList(id)
+                dataManager?.mergeChangesWithRemote(changes.mapToDomainChange())
+                dataManager?.mergeFeedsWithRemote(feeds.mapToDomainFeed())
+                dataManager?.mergeSleepsWithRemote(sleeps.mapToDomainSleep())
+                return true
+            } else {
+                return false
+            }
+        }
+        catch {
+            print("Failed to get shared data with error \(error.localizedDescription)")
+            return false
         }
     }
 
@@ -197,19 +208,53 @@ final class FirebaseManager {
 
     // MARK: - Private methods
 
-    private func loginIfPossible() async {
-        if defaultsManager.hasAccount {
-            let credentials = try? KeychainManager.fetchCredentials()
-            let id = await authVM.login(email: credentials?.email ?? "",
-                                        password: credentials?.password ?? "",
-                                        shouldSaveToKeychain: false)
-            defaultsManager.userID = id
-            userID = id
-        } else {
-            let id = await authVM.anonymousLogin()
-            defaultsManager.userID = id
-            userID = id
+    private func addIdToShareList(_ id: String) async {
+        await addIdToSharedWithMe(id)
+        await addIdToSharedTo(id)
+    }
+
+    private func addIdToSharedWithMe(_ id: String) async {
+        guard let userID else {
+            return
         }
+        do {
+            try await db
+                .collection(FBKeys.kUsers)
+                .document(userID)
+                .setData([FBKeys.sharedWithMe: id], merge: true)
+        } catch {
+            print("Failed to set id to shared with me with error: \(error.localizedDescription)")
+        }
+    }
+
+    private func addIdToSharedTo(_ id: String) async {
+        guard let userID else {
+            return
+        }
+        do {
+            try await db
+                .collection(FBKeys.kUsers)
+                .document(userID)
+                .setData([FBKeys.sharedTo: id], merge: true)
+        } catch {
+            print("Failed to set id to shared with me with error: \(error.localizedDescription)")
+        }
+    }
+
+    private func loginIfPossible() async {
+        print("Here")
+//        if defaultsManager.hasAccount {
+//            let credentials = try? KeychainManager.fetchCredentials()
+//            let id = await authVM.login(email: credentials?.email ?? "",
+//                                        password: credentials?.password ?? "",
+//                                        shouldSaveToKeychain: false)
+//            defaultsManager.userID = id
+//            userID = id
+//        } else {
+//            let id = await authVM.anonymousLogin()
+//            defaultsManager.userID = id
+//            userID = id
+//        }
     }
 
     private func listenToLogin() {
@@ -230,67 +275,3 @@ final class FirebaseManager {
             .store(in: &bag)
     }
 }
-
-// MARK: - Firebase extensions
-
-extension QueryDocumentSnapshot {
-    func mapToFeed() -> Feed? {
-        let mappedData = data()
-        guard let amount = mappedData[FBKeys.kAmount] as? Double,
-              let note = mappedData[FBKeys.kNote] as? String,
-              let solidOrLiquid = mappedData[FBKeys.kSolidLiquid] as? String,
-              let timeStamp = mappedData[FBKeys.kDate] as? Timestamp,
-              let id = mappedData[FBKeys.kID] as? String
-        else {
-            return nil
-        }
-        return .init(id: id,
-                     date: Date(timeIntervalSince1970: Double(timeStamp.seconds)),
-                     amount: amount,
-                     note: note.isEmpty ? nil : note,
-                     solidOrLiquid: .init(rawValue: solidOrLiquid) ?? .liquid)
-    }
-
-    func mapToSleep() -> Sleep? {
-        let mappedData = data()
-        guard let id = mappedData[FBKeys.kID] as? String,
-              let timeStamp = mappedData[FBKeys.kDate] as? Timestamp,
-              let start = mappedData[FBKeys.kStart] as? Timestamp,
-              let end = mappedData[FBKeys.kEnd] as? Timestamp
-        else {
-            return nil
-        }
-        return .init(id: id,
-                     date: .init(timeIntervalSince1970: Double(timeStamp.seconds)),
-                     start: .init(timeIntervalSince1970: Double(start.seconds)),
-                     end: .init(timeIntervalSince1970: Double(end.seconds)))
-    }
-
-    func mapToChange() -> NappyChange? {
-        let mappedData = data()
-        guard let id = mappedData[FBKeys.kID] as? String,
-              let timeStamp = mappedData[FBKeys.kDate] as? Timestamp,
-              let wetOrSoiledKey = mappedData[FBKeys.kWetOrSoiled] as? String,
-              let wetOrSoiled = NappyChange.WetOrSoiled(rawValue: wetOrSoiledKey) else {
-            return nil
-        }
-        return .init(id: id,
-                     dateTime: .init(timeIntervalSince1970: Double(timeStamp.seconds)),
-                     wetOrSoiled: wetOrSoiled)
-    }
-}
-
-extension QuerySnapshot {
-    func mapToDomainFeed() -> [Feed] {
-        documents.compactMap { $0.mapToFeed() }
-    }
-
-    func mapToDomainSleep() -> [Sleep] {
-        documents.compactMap { $0.mapToSleep() }
-    }
-
-    func mapToDomainChange() -> [NappyChange] {
-        documents.compactMap { $0.mapToChange() }
-    }
-}
-

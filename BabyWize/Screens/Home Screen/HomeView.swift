@@ -42,7 +42,7 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack(path: $navigationVM.path) {
-            LoadingView(isShowing: $authVM.isLoading, text: "Signing you back in ") {
+            LoadingView(isShowing: $authVM.isLoading, text: "Signing you back in...") {
                 ScrollView {
                     VStack {
                         QuickInfoSection()
@@ -112,6 +112,11 @@ struct HomeView: View {
                 .task {
                     WidgetManager().setLatest()
                 }
+                .overlay {
+                    if sharingVC.isLoading {
+                        loadingView(isShowing: sharingVC.isLoading)
+                    }
+                }
                 .animation(.easeOut, value: iconRotation)
                 .onOpenURL { url in
                     if url.absoluteString.starts(with: "widget") {
@@ -123,6 +128,18 @@ struct HomeView: View {
                 }
             }
         }
+    }
+    
+    @ViewBuilder
+    private func loadingView(isShowing: Bool) -> some View {
+        ProgressView("Working on it....")
+            .frame(width: 250,height: 250)
+            .background(Color.secondary.colorInvert())
+            .foregroundColor(Color.primary)
+            .cornerRadius(20)
+            .opacity(isShowing ? 1 : 0)
+            .scaleEffect(isShowing ? 1 : 0)
+            .animation(.easeInOut, value: isShowing)
     }
 
     // app.babywize://MZhOgd8Hc8f8Japf7gmfzxHWzK63-1@3.com

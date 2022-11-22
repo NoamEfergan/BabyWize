@@ -83,12 +83,7 @@
 		05A42A5E290599E60040A543 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A5B290599E60040A543 /* Colors.swift */; };
 		05A42A5F290599E60040A543 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A5B290599E60040A543 /* Colors.swift */; };
 		05A42A612905A5790040A543 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A602905A5790040A543 /* FirebaseManager.swift */; };
-		05A42A622905A5790040A543 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A602905A5790040A543 /* FirebaseManager.swift */; };
-		05A42A632905A5790040A543 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A602905A5790040A543 /* FirebaseManager.swift */; };
 		05A42A672905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
-		05A42A682905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
-		05A42A692905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
-		05A42A6A2905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
 		05ABD6FD290ECBFA00E1C755 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ABD6FC290ECBFA00E1C755 /* String+extension.swift */; };
 		05ABD7052910217C00E1C755 /* PlaceholderChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ABD7042910217C00E1C755 /* PlaceholderChart.swift */; };
 		05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
@@ -808,7 +803,6 @@
 				054B1F6328CA33610021C5BF /* DataItem.swift in Sources */,
 				05817C5C28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */,
 				056DC49A2916F60F00B30720 /* EntryViewModel.swift in Sources */,
-				05A42A6A2905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
 				05A42A4C2905479B0040A543 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -892,7 +886,6 @@
 				05A42A53290596540040A543 /* LoginView.swift in Sources */,
 				3B64002928D665AA00241D65 /* SignInTests.swift in Sources */,
 				056DC4942916F47900B30720 /* SleepEntryViewModel.swift in Sources */,
-				05A42A622905A5790040A543 /* FirebaseManager.swift in Sources */,
 				056DC4982916F53D00B30720 /* NappyEntryViewModel.swift in Sources */,
 				054B1F6528CA33620021C5BF /* DataItem.swift in Sources */,
 				056083902884147900728F1F /* BabyWizeTests.swift in Sources */,
@@ -900,7 +893,6 @@
 				05A42A4E2905479C0040A543 /* Constants.swift in Sources */,
 				056DC4902916F36B00B30720 /* FeedEntryViewModel.swift in Sources */,
 				056DC49B2916F61000B30720 /* EntryViewModel.swift in Sources */,
-				05A42A682905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
 				05A42A58290598860040A543 /* Color+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -913,8 +905,6 @@
 				05A42A4D2905479C0040A543 /* Constants.swift in Sources */,
 				05A42A59290598860040A543 /* Color+extension.swift in Sources */,
 				05A42A5E290599E60040A543 /* Colors.swift in Sources */,
-				05A42A692905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
-				05A42A632905A5790040A543 /* FirebaseManager.swift in Sources */,
 				0560839A2884147900728F1F /* BabyWizeUITests.swift in Sources */,
 				054B1F6428CA33620021C5BF /* DataItem.swift in Sources */,
 				0560839C2884147900728F1F /* BabyWizeUITestsLaunchTests.swift in Sources */,

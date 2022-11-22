@@ -20,17 +20,17 @@ enum ContainerBuilder {
 
     private static func registerManagers(to container: Container) {
         FirebaseApp.configure()
-        container.register(BabyDataManager.self) { _ in
-            BabyDataManager()
-        }.inObjectScope(.container)
-        container.register(WidgetManager.self) { _ in
-            WidgetManager()
-        }.inObjectScope(.container)
         container.register(UserDefaultManager.self) { _ in
             UserDefaultManager()
         }.inObjectScope(.container)
         container.register(AuthViewModel.self) { _ in
             AuthViewModel()
+        }.inObjectScope(.container)
+        container.register(BabyDataManager.self) { _ in
+            BabyDataManager()
+        }.inObjectScope(.container)
+        container.register(WidgetManager.self) { _ in
+            WidgetManager()
         }.inObjectScope(.container)
     }
 }

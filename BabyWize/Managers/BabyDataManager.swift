@@ -142,9 +142,9 @@ final class BabyDataManager: ObservableObject {
 
     func mergeFeedsWithRemote(_ remoteFeeds: [Feed]) {
         if feedData.isEmpty {
-            feedData = remoteFeeds
+            remoteFeeds.forEach { addFeed($0)}
         }
-         else {
+        else {
             for (remoteFeed, localFeed) in product(remoteFeeds, feedData) {
                 if !feedData.contains(where: { $0.id == remoteFeed.id }) {
                     addFeed(remoteFeed)
@@ -161,7 +161,7 @@ final class BabyDataManager: ObservableObject {
 
     func mergeSleepsWithRemote(_ remoteSleeps: [Sleep]) {
         if sleepData.isEmpty {
-            sleepData = remoteSleeps
+            remoteSleeps.forEach { addSleep($0) }
         }
         else {
             for (remoteSleep, localSleep) in product(remoteSleeps, sleepData) {
@@ -180,7 +180,7 @@ final class BabyDataManager: ObservableObject {
 
     func mergeChangesWithRemote(_ remoteChanges: [NappyChange]) {
         if nappyData.isEmpty {
-            nappyData = remoteChanges
+            remoteChanges.forEach { addNappyChange($0)}
         }
         else {
             for (remoteChange, localChange) in product(remoteChanges, nappyData) {
@@ -200,22 +200,28 @@ final class BabyDataManager: ObservableObject {
     // MARK: - CRUD methods
 
     // ADD
-    func addFeed(_ item: Feed) {
+    func addFeed(_ item: Feed, updateRemote: Bool = true) {
         feedData.append(item)
         coreDataManager.addFeed(item)
-        firebaseManager.addFeed(item)
+        if updateRemote {
+            firebaseManager.addFeed(item)
+        }
     }
 
-    func addSleep(_ item: Sleep) {
+    func addSleep(_ item: Sleep, updateRemote: Bool = true) {
         sleepData.append(item)
         coreDataManager.addSleep(item)
-        firebaseManager.addSleep(item)
+        if updateRemote {
+            firebaseManager.addSleep(item)
+        }
     }
 
-    func addNappyChange(_ item: NappyChange) {
+    func addNappyChange(_ item: NappyChange, updateRemote: Bool = true) {
         nappyData.append(item)
         coreDataManager.addNappyChange(item)
-        firebaseManager.addNappyChange(item)
+        if updateRemote {
+            firebaseManager.addNappyChange(item)
+        }
     }
 
     // Update
