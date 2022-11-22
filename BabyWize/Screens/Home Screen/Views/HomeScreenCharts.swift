@@ -15,6 +15,7 @@ struct HomeScreenCharts: View {
     var body: some View {
         TabView {
             FeedChart(feedData: dataManager.feedData.getUpTo(limit: 6))
+                .frame(width: UIScreen.main.bounds.width)
             SleepChart(sleepData: dataManager.sleepData.getUpTo(limit: 3))
         }
         .tabViewStyle(.page)

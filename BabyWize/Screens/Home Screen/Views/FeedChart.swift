@@ -14,7 +14,7 @@ struct FeedChart: View {
     var showTitle = true
     @State private var isShowingJoint = true
     @InjectedObject private var defaultManager: UserDefaultManager
-
+    
     private let timeTitle = "Time"
     private let amountTitle = "Amount"
     @Environment(\.dynamicTypeSize) var typeSize
@@ -37,6 +37,10 @@ struct FeedChart: View {
         default:
             return 1
         }
+    }
+    
+    private var plotWidth: CGFloat {
+        CGFloat(feedData.count) * (80 + sizeModifier)
     }
 
     var body: some View {
@@ -81,46 +85,37 @@ struct FeedChart: View {
                     .font(.system(.title, design: .rounded))
                     .padding(.leading)
                 Spacer()
-                VStack(alignment: .leading) {
-                    Text("Displaying:")
-                    Menu(defaultManager.chartConfiguration.rawValue.capitalized) {
-                        ForEach(ChartConfiguration.allCases, id: \.self) { config in
-                            Button(config.rawValue.capitalized) {
-                                withAnimation(.easeInOut) {
-                                    defaultManager.chartConfiguration = config
-                                }
-                            }
-                            .fontWeight(.bold)
-                        }
-                    }
-                }
-                .foregroundColor(.secondary)
-                .font(.system(.subheadline, design: .rounded))
-                .padding(.trailing, 5)
+                menuButton
             }
             VStack {
                 Text(feedInfoTitle)
                     .font(.system(.title, design: .rounded))
                     .padding(.leading)
                 Spacer()
-                VStack(alignment: .leading) {
-                    Text("Displaying:")
-                    Menu(defaultManager.chartConfiguration.rawValue.capitalized) {
-                        ForEach(ChartConfiguration.allCases, id: \.self) { config in
-                            Button(config.rawValue.capitalized) {
-                                withAnimation(.easeInOut) {
-                                    defaultManager.chartConfiguration = config
-                                }
-                            }
-                            .fontWeight(.bold)
-                        }
-                    }
-                }
-                .foregroundColor(.secondary)
-                .font(.system(.subheadline, design: .rounded))
-                .padding(.trailing, 5)
+                menuButton
             }
         }
+    }
+    
+    @ViewBuilder
+    private var menuButton: some View {
+        VStack(alignment: .leading) {
+            Text("Displaying:")
+            Menu(defaultManager.chartConfiguration.rawValue.capitalized) {
+                ForEach(ChartConfiguration.allCases, id: \.self) { config in
+                    Button(config.rawValue.capitalized) {
+                        withAnimation(.easeInOut) {
+                            defaultManager.chartConfiguration = config
+                        }
+                    }
+                    .fontWeight(.heavy)
+                }
+            }
+        }
+        
+        .foregroundColor(.secondary)
+        .font(.system(.subheadline, design: .rounded))
+        .padding(.trailing, 5)
     }
 
     @ViewBuilder
@@ -135,13 +130,7 @@ struct FeedChart: View {
                     Chart(feedData.filter(\.isLiquids).sorted(by: { $0.date < $1.date })) { feed in
                         getLiquidsChart(for: feed)
                     }
-                    .chartPlotStyle(content: { plotArea in
-                        plotArea.frame(width: CGFloat(feedData.count) * (80 + sizeModifier))
-                    })
-                    .frame(maxHeight: .greatestFiniteMagnitude)
-                    .frame(minWidth: UIScreen().bounds.width)
-                    .frame(maxWidth: .greatestFiniteMagnitude)
-                    .padding()
+                    .chartModifier(plotWidth: plotWidth)
                 }
             }
             .transition(.push(from: .bottom))
@@ -157,13 +146,7 @@ struct FeedChart: View {
                     Chart(feedData.filter(\.isSolids).sorted(by: { $0.date < $1.date })) { feed in
                         getSolidsChart(for: feed)
                     }
-                    .chartPlotStyle(content: { plotArea in
-                        plotArea.frame(width: CGFloat(feedData.count) * (80 + sizeModifier))
-                    })
-                    .frame(maxHeight: .greatestFiniteMagnitude)
-                    .frame(minWidth: UIScreen().bounds.width)
-                    .frame(maxWidth: .greatestFiniteMagnitude)
-                    .padding()
+                    .chartModifier(plotWidth: plotWidth)
                 }
             }
             .transition(.push(from: .top))
@@ -181,13 +164,7 @@ struct FeedChart: View {
                     getLiquidsChart(for: feed)
                 }
             }
-            .chartPlotStyle(content: { plotArea in
-                plotArea.frame(width: CGFloat(feedData.count) * (50 + sizeModifier))
-            })
-            .frame(maxHeight: .greatestFiniteMagnitude)
-            .frame(minWidth: UIScreen().bounds.width)
-            .frame(maxWidth: .greatestFiniteMagnitude)
-            .padding()
+            .chartModifier(plotWidth: plotWidth)
         }
     }
 
@@ -274,5 +251,26 @@ struct FeedChart_Previews: PreviewProvider {
         ScrollView {
             FeedChart(feedData: PlaceholderChart.MockData.mockFeed, showTitle: false)
         }
+    }
+}
+
+fileprivate struct ChartModifier: ViewModifier {
+    let plotWidth: CGFloat
+    func body(content: Content) -> some View {
+        content
+            .chartPlotStyle(content: { plotArea in
+                plotArea.frame(width: plotWidth)
+            })
+            .frame(maxHeight: .greatestFiniteMagnitude)
+            .frame(minWidth: UIScreen.main.bounds.width)
+            .frame(maxWidth: .greatestFiniteMagnitude)
+            .padding()
+    }
+}
+
+fileprivate extension View {
+    func chartModifier(plotWidth: CGFloat) -> some View {
+        self
+            .modifier(ChartModifier(plotWidth: plotWidth))
     }
 }
