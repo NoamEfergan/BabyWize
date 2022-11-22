@@ -116,8 +116,8 @@ final class FirebaseManager {
                 }
             }
     }
-
-    func getSharedData(for id: String) async -> Bool {
+    @discardableResult
+    func getSharedData(for id: String, addID: Bool = true) async -> Bool {
         do {
             let collection = try await db
                 .collection(FBKeys.kUsers)
@@ -127,10 +127,13 @@ final class FirebaseManager {
                 let changes = try await documentRef.collection(FBKeys.kChanges).getDocuments()
                 let feeds = try await documentRef.collection(FBKeys.kFeeds).getDocuments()
                 let sleeps = try await documentRef.collection(FBKeys.kSleeps).getDocuments()
-                await addIdToShared(id)
+
                 dataManager?.mergeChangesWithRemote(changes.mapToDomainChange())
                 dataManager?.mergeFeedsWithRemote(feeds.mapToDomainFeed())
                 dataManager?.mergeSleepsWithRemote(sleeps.mapToDomainSleep())
+                if addID {
+                    await addIdToShared(id)
+                }
                 return true
             } else {
                 return false
@@ -225,15 +228,16 @@ final class FirebaseManager {
             print("Failed to set id to shared with me with error: \(error.localizedDescription)")
         }
     }
-    
+
     private func fetchSharedDataIfAvailable(id: String) async {
         do {
             let user = try await db.collection(FBKeys.kUsers).document(id).getDocument()
-            let sharedID = user.get(FBKeys.kShared)
+            if let sharedID = user.get(FBKeys.kShared) as? String {
+                await getSharedData(for: sharedID, addID: false)
+            }
         } catch {
             print("Failed fetching user with error: \(error.localizedDescription)")
         }
-        
     }
 
     private func loginIfPossible() async {
