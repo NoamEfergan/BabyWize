@@ -127,7 +127,7 @@ final class FirebaseManager {
                 let changes = try await documentRef.collection(FBKeys.kChanges).getDocuments()
                 let feeds = try await documentRef.collection(FBKeys.kFeeds).getDocuments()
                 let sleeps = try await documentRef.collection(FBKeys.kSleeps).getDocuments()
-                await addIdToShareList(id)
+                await addIdToShared(id)
                 dataManager?.mergeChangesWithRemote(changes.mapToDomainChange())
                 dataManager?.mergeFeedsWithRemote(feeds.mapToDomainFeed())
                 dataManager?.mergeSleepsWithRemote(sleeps.mapToDomainSleep())
@@ -208,12 +208,7 @@ final class FirebaseManager {
 
     // MARK: - Private methods
 
-    private func addIdToShareList(_ id: String) async {
-        await addIdToSharedWithMe(id)
-        await addIdToSharedTo(id)
-    }
-
-    private func addIdToSharedWithMe(_ id: String) async {
+    private func addIdToShared(_ id: String) async {
         guard let userID else {
             return
         }
@@ -221,40 +216,42 @@ final class FirebaseManager {
             try await db
                 .collection(FBKeys.kUsers)
                 .document(userID)
-                .setData([FBKeys.sharedWithMe: id], merge: true)
+                .setData([FBKeys.kShared: id], merge: false)
+            try await db
+                .collection(FBKeys.kUsers)
+                .document(id)
+                .setData([FBKeys.kShared: userID], merge: false)
         } catch {
             print("Failed to set id to shared with me with error: \(error.localizedDescription)")
         }
     }
-
-    private func addIdToSharedTo(_ id: String) async {
-        guard let userID else {
-            return
-        }
+    
+    private func fetchSharedDataIfAvailable(id: String) async {
         do {
-            try await db
-                .collection(FBKeys.kUsers)
-                .document(userID)
-                .setData([FBKeys.sharedTo: id], merge: true)
+            let user = try await db.collection(FBKeys.kUsers).document(id).getDocument()
+            let sharedID = user.get(FBKeys.kShared)
         } catch {
-            print("Failed to set id to shared with me with error: \(error.localizedDescription)")
+            print("Failed fetching user with error: \(error.localizedDescription)")
         }
+        
     }
 
     private func loginIfPossible() async {
-        print("Here")
-//        if defaultsManager.hasAccount {
-//            let credentials = try? KeychainManager.fetchCredentials()
-//            let id = await authVM.login(email: credentials?.email ?? "",
-//                                        password: credentials?.password ?? "",
-//                                        shouldSaveToKeychain: false)
-//            defaultsManager.userID = id
-//            userID = id
-//        } else {
-//            let id = await authVM.anonymousLogin()
-//            defaultsManager.userID = id
-//            userID = id
-//        }
+        if defaultsManager.hasAccount {
+            let credentials = try? KeychainManager.fetchCredentials()
+            let id = await authVM.login(email: credentials?.email ?? "",
+                                        password: credentials?.password ?? "",
+                                        shouldSaveToKeychain: false)
+            defaultsManager.userID = id
+            userID = id
+            if let id {
+                await fetchSharedDataIfAvailable(id: id)
+            }
+        } else {
+            let id = await authVM.anonymousLogin()
+            defaultsManager.userID = id
+            userID = id
+        }
     }
 
     private func listenToLogin() {
@@ -262,7 +259,7 @@ final class FirebaseManager {
             .$didLogIn
             .receive(on: DispatchQueue.main)
             .sink { didLogIn in
-                print(didLogIn)
+                print("Did log in \(didLogIn)")
                 if didLogIn {
                     Task { [weak self] in
                         guard let self else {

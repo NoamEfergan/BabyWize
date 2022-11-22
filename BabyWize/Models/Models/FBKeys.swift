@@ -23,7 +23,5 @@ struct FBKeys {
     static let kEnd = "end"
 
     static let kWetOrSoiled = "wetOrSoild"
-    
-    static let sharedWithMe = "Shared with me"
-    static let sharedTo = "Shared to"
+    static let kShared = "Shared"
 }

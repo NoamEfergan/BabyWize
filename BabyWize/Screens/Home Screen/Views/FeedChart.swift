@@ -182,7 +182,7 @@ struct FeedChart: View {
                 }
             }
             .chartPlotStyle(content: { plotArea in
-                plotArea.frame(width: CGFloat(feedData.count) * (80 + sizeModifier))
+                plotArea.frame(width: CGFloat(feedData.count) * (50 + sizeModifier))
             })
             .frame(maxHeight: .greatestFiniteMagnitude)
             .frame(minWidth: UIScreen().bounds.width)

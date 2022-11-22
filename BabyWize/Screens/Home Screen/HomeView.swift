@@ -118,6 +118,7 @@ struct HomeView: View {
                     }
                 }
                 .animation(.easeOut, value: iconRotation)
+                .animation(.easeOut, value: sharingVC.isLoading)
                 .onOpenURL { url in
                     if url.absoluteString.starts(with: "widget") {
                         wantsToAddEntry = true
