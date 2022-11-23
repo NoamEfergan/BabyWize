@@ -37,6 +37,24 @@ struct KeychainManager {
         }
     }
 
+    static func updateCredentials(_ credentials: Credentials) throws {
+        let account = credentials.email
+        let password = credentials.password.data(using: String.Encoding.utf8)!
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassInternetPassword,
+            kSecAttrServer as String: server
+        ]
+
+        let attributes: [String: Any] = [
+            kSecAttrAccount as String: account,
+            kSecValueData as String: password
+        ]
+        let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+        guard status == errSecSuccess else {
+            throw KeychainError.unhandledError(status: status)
+        }
+    }
+
     static func setCredentials(_ credentials: Credentials) throws {
         let account = credentials.email
         let password = credentials.password.data(using: String.Encoding.utf8)!

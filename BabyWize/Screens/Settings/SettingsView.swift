@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - SettingsView
 struct SettingsView: View {
-    @InjectedObject private var unitsManager: UserDefaultManager
+    @InjectedObject private var defaultsManager: UserDefaultManager
     @State private var isShowingAlert = false
     @State private var isShowingLogoutAlert = false
     @State private var isLoginViewShowing = false
@@ -66,11 +66,22 @@ struct SettingsView: View {
                 }
             }
 
-            Section("Units of messuremants") {
+            Section("Units of measurements") {
                 VStack {
                     liquidsPicker
                     LabelledDivider()
                     solidsPicker
+                }
+            }
+            if !defaultsManager.sharingAccounts.isEmpty {
+                Section {
+                    ForEach(defaultsManager.sharingAccounts, id: \.self) { account in
+                        Text(account.email)
+                    }
+                } header: {
+                    Text("Sharing info with ")
+                } footer: {
+                    Text("You are sharing your data with these accounts, you can disable this at any point")
                 }
             }
         }
@@ -83,7 +94,7 @@ struct SettingsView: View {
         let title = "Liquids"
         ViewThatFits {
             VStack(alignment: .leading) {
-                Picker(title, selection: $unitsManager.liquidUnits) {
+                Picker(title, selection: $defaultsManager.liquidUnits) {
                     ForEach(LiquidFeedUnits.allCases, id: \.self) {
                         Text($0.rawValue)
                     }
@@ -91,7 +102,7 @@ struct SettingsView: View {
             }
             VStack {
                 Text(title)
-                Picker(title, selection: $unitsManager.liquidUnits) {
+                Picker(title, selection: $defaultsManager.liquidUnits) {
                     ForEach(LiquidFeedUnits.allCases, id: \.self) {
                         Text($0.rawValue)
                     }
@@ -107,7 +118,7 @@ struct SettingsView: View {
     private var solidsPicker: some View {
         let title = "Solids"
         ViewThatFits {
-            Picker(title, selection: $unitsManager.solidUnits) {
+            Picker(title, selection: $defaultsManager.solidUnits) {
                 ForEach(SolidFeedUnits.allCases, id: \.self) {
                     Text($0.rawValue)
                 }
@@ -115,7 +126,7 @@ struct SettingsView: View {
             }
             VStack {
                 Text(title)
-                Picker(title, selection: $unitsManager.solidUnits) {
+                Picker(title, selection: $defaultsManager.solidUnits) {
                     ForEach(SolidFeedUnits.allCases, id: \.self) {
                         Text($0.rawValue)
                     }

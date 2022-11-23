@@ -12,6 +12,7 @@ final class SharingViewModel: ObservableObject {
     @InjectedObject private var babyDataManager: BabyDataManager
     private let baseURL = "app.babywize://"
     private var id: String?
+    private var email: String?
     @Published var isShowingAcceptAlert = false
     @Published var acceptAlertTitle = ""
     @Published var hasError = false
@@ -23,6 +24,7 @@ final class SharingViewModel: ObservableObject {
         let id = components?.first
         let email = components?.last
         self.id = id
+        self.email = email
         acceptAlertTitle = "\(email ?? "Someone") is inviting you to share data!"
         isShowingAcceptAlert = true
     }
@@ -35,7 +37,7 @@ final class SharingViewModel: ObservableObject {
         }
         Task { [weak self ] in
             guard let self else { return }
-            let success = await self.babyDataManager.firebaseManager.getSharedData(for: id)
+            let success = await self.babyDataManager.firebaseManager.getSharedData(for: id, email: email)
             self.isLoading = false
             self.hasError = !success
         }

@@ -44,6 +44,23 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
+    var sharingAccounts: [SharingAccount] {
+        get {
+            if let data = UserDefaults.standard.data(forKey: UserConstants.sharedIDs),
+            let decodedValue = try? JSONDecoder().decode([SharingAccount].self, from: data) {
+                return decodedValue
+            } else {
+                return []
+            }
+        }
+        set {
+            if let encodedValue = try? JSONEncoder().encode(newValue) {
+                UserDefaults.standard.set(encodedValue, forKey: UserConstants.sharedIDs)
+            }
+            
+        }
+    }
+
     var userID: String? {
         get {
             UserDefaults.standard.string(forKey: UserConstants.userID)

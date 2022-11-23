@@ -117,7 +117,7 @@ final class FirebaseManager {
             }
     }
     @discardableResult
-    func getSharedData(for id: String, addID: Bool = true) async -> Bool {
+    func getSharedData(for id: String,email: String? = nil, addID: Bool = true) async -> Bool {
         do {
             let collection = try await db
                 .collection(FBKeys.kUsers)
@@ -132,7 +132,7 @@ final class FirebaseManager {
                 dataManager?.mergeFeedsWithRemote(feeds.mapToDomainFeed())
                 dataManager?.mergeSleepsWithRemote(sleeps.mapToDomainSleep())
                 if addID {
-                    await addIdToShared(id)
+                    await addIdToShared(id, email: email)
                 }
                 return true
             } else {
@@ -211,9 +211,13 @@ final class FirebaseManager {
 
     // MARK: - Private methods
 
-    private func addIdToShared(_ id: String) async {
+    private func addIdToShared(_ id: String, email: String?) async {
         guard let userID else {
             return
+        }
+        //TODO: This needs to be an array on firebase
+        if let email {
+            defaultsManager.sharingAccounts = [.init(id: id, email: email)]
         }
         do {
             try await db

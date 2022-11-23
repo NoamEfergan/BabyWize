@@ -14,8 +14,8 @@ final class AuthViewModel: ObservableObject {
     @Published var isRegistering = false
     @Published var hasError = false
     @Published var errorMsg = ""
-    
-    @Published var didLogIn: Bool = false
+
+    @Published var didLogIn = false
 
     func validateEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -66,7 +66,16 @@ final class AuthViewModel: ObservableObject {
         do {
             let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
             if shouldSaveToKeychain {
-                try KeychainManager.setCredentials(.init(email: email, password: password))
+                Task.detached(priority: .background) { [weak self] in
+                    let newCredentials = KeychainManager.Credentials(email: email, password: password)
+                    do {
+                        _ = try KeychainManager.fetchCredentials()
+                        try KeychainManager.updateCredentials(newCredentials)
+                    }
+                    catch {
+                        try? KeychainManager.setCredentials(newCredentials)
+                    }
+                }
             }
             let user = authDataResult.user
             defaultsManager.isLoggedIn = true
@@ -77,7 +86,7 @@ final class AuthViewModel: ObservableObject {
             print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
             return user.uid
         } catch {
-            print("There was an issue when twrying to sign in: \(error.localizedDescription)")
+            print("There was an issue when trying to sign in: \(error.localizedDescription)")
             hasError = true
             errorMsg = error.localizedDescription
             return nil
