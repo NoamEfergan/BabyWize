@@ -233,11 +233,11 @@ final class FirebaseManager {
         }
     }
 
-    private func fetchSharedDataIfAvailable(id: String) async {
+    private func fetchSharedDataIfAvailable(id: String, addID: Bool = false) async {
         do {
             let user = try await db.collection(FBKeys.kUsers).document(id).getDocument()
             if let sharedID = user.get(FBKeys.kShared) as? String {
-                await getSharedData(for: sharedID, addID: false)
+                await getSharedData(for: sharedID, addID: addID)
             }
         } catch {
             print("Failed fetching user with error: \(error.localizedDescription)")
@@ -274,6 +274,9 @@ final class FirebaseManager {
                             return
                         }
                         await self.fetchAllFromRemote()
+                        if let userID = self.userID{
+                            await self.fetchSharedDataIfAvailable(id: userID, addID: true)
+                        }
                     }
                 }
             }

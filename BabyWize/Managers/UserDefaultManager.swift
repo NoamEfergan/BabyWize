@@ -91,4 +91,17 @@ final class UserDefaultManager: ObservableObject {
             chartConfiguration = .joint
         }
     }
+    
+    public func logOut() {
+        self.hasAccount = false
+        self.userID = nil
+        self.sharingAccounts = []
+        self.isLoggedIn = false
+    }
+    
+    public func signIn(with id: String ) {
+        self.hasAccount = true
+        self.userID = id
+        self.isLoggedIn = true
+    }
 }

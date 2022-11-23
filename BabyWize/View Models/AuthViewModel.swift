@@ -42,9 +42,7 @@ final class AuthViewModel: ObservableObject {
             try await authResult.user.link(with: credentials)
             print("Signed in as user \(authResult.user.uid), with email: \(email)")
             hasError = false
-            defaultsManager.isLoggedIn = true
-            defaultsManager.hasAccount = true
-            defaultsManager.userID = authResult.user.uid
+            defaultsManager.signIn(with: authResult.user.uid)
             try KeychainManager.setCredentials(.init(email: email, password: password))
             didLogIn = true
             return true
@@ -66,7 +64,7 @@ final class AuthViewModel: ObservableObject {
         do {
             let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
             if shouldSaveToKeychain {
-                Task.detached(priority: .background) { [weak self] in
+                Task.detached(priority: .background) {
                     let newCredentials = KeychainManager.Credentials(email: email, password: password)
                     do {
                         _ = try KeychainManager.fetchCredentials()
@@ -78,9 +76,7 @@ final class AuthViewModel: ObservableObject {
                 }
             }
             let user = authDataResult.user
-            defaultsManager.isLoggedIn = true
-            defaultsManager.userID = user.uid
-            defaultsManager.hasAccount = true
+            defaultsManager.signIn(with: user.uid)
             hasError = false
             didLogIn = true
             print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
@@ -101,9 +97,7 @@ final class AuthViewModel: ObservableObject {
         do {
             try Auth.auth().signOut()
             hasError = false
-            defaultsManager.isLoggedIn = false
-            defaultsManager.userID = nil
-            defaultsManager.hasAccount = false
+            defaultsManager.logOut()
             NotificationCenter.default.post(name: .didLogOut, object: nil)
             removeCredentialsFromKeychain()
             print("Signed out")
