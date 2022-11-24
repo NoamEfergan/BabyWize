@@ -14,7 +14,7 @@ struct FeedChart: View {
     var showTitle = true
     @State private var isShowingJoint = true
     @InjectedObject private var defaultManager: UserDefaultManager
-    
+
     private let timeTitle = "Time"
     private let amountTitle = "Amount"
     @Environment(\.dynamicTypeSize) var typeSize
@@ -38,7 +38,7 @@ struct FeedChart: View {
             return 1
         }
     }
-    
+
     private var plotWidth: CGFloat {
         CGFloat(feedData.count) * (80 + sizeModifier)
     }
@@ -96,7 +96,7 @@ struct FeedChart: View {
             }
         }
     }
-    
+
     @ViewBuilder
     private var menuButton: some View {
         VStack(alignment: .leading) {
@@ -112,7 +112,7 @@ struct FeedChart: View {
                 }
             }
         }
-        
+
         .foregroundColor(.secondary)
         .font(.system(.subheadline, design: .rounded))
         .padding(.trailing, 5)
@@ -254,7 +254,8 @@ struct FeedChart_Previews: PreviewProvider {
     }
 }
 
-fileprivate struct ChartModifier: ViewModifier {
+// MARK: - ChartModifier
+private struct ChartModifier: ViewModifier {
     let plotWidth: CGFloat
     func body(content: Content) -> some View {
         content
@@ -268,9 +269,8 @@ fileprivate struct ChartModifier: ViewModifier {
     }
 }
 
-fileprivate extension View {
+private extension View {
     func chartModifier(plotWidth: CGFloat) -> some View {
-        self
-            .modifier(ChartModifier(plotWidth: plotWidth))
+        modifier(ChartModifier(plotWidth: plotWidth))
     }
 }

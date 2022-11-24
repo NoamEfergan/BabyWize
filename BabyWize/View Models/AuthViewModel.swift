@@ -42,7 +42,7 @@ final class AuthViewModel: ObservableObject {
             try await authResult.user.link(with: credentials)
             print("Signed in as user \(authResult.user.uid), with email: \(email)")
             hasError = false
-            defaultsManager.signIn(with: authResult.user.uid)
+            defaultsManager.signIn(with: authResult.user.uid, email: email)
             try KeychainManager.setCredentials(.init(email: email, password: password))
             didLogIn = true
             return true
@@ -64,19 +64,10 @@ final class AuthViewModel: ObservableObject {
         do {
             let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
             if shouldSaveToKeychain {
-                Task.detached(priority: .background) {
-                    let newCredentials = KeychainManager.Credentials(email: email, password: password)
-                    do {
-                        _ = try KeychainManager.fetchCredentials()
-                        try KeychainManager.updateCredentials(newCredentials)
-                    }
-                    catch {
-                        try? KeychainManager.setCredentials(newCredentials)
-                    }
-                }
+                addCredentialsToKeychain(email: email, password: password)
             }
             let user = authDataResult.user
-            defaultsManager.signIn(with: user.uid)
+            defaultsManager.signIn(with: user.uid, email: email)
             hasError = false
             didLogIn = true
             print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
@@ -86,6 +77,19 @@ final class AuthViewModel: ObservableObject {
             hasError = true
             errorMsg = error.localizedDescription
             return nil
+        }
+    }
+
+    private func addCredentialsToKeychain(email: String, password: String) {
+        Task.detached(priority: .background) {
+            let newCredentials = KeychainManager.Credentials(email: email, password: password)
+            do {
+                _ = try KeychainManager.fetchCredentials()
+                try KeychainManager.updateCredentials(newCredentials)
+            }
+            catch {
+                try? KeychainManager.setCredentials(newCredentials)
+            }
         }
     }
 

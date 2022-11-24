@@ -24,6 +24,7 @@ enum UserConstants {
     static let hasAccount = "HasAccount"
     static let userID = "UserID"
     static let sharedIDs = "SharedIDs"
+    static let email = "email"
 }
 
 // MARK: - GenericNetworkResponse

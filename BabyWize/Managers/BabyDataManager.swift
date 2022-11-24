@@ -142,7 +142,7 @@ final class BabyDataManager: ObservableObject {
 
     func mergeFeedsWithRemote(_ remoteFeeds: [Feed]) {
         if feedData.isEmpty {
-            remoteFeeds.forEach { addFeed($0)}
+            remoteFeeds.forEach { addFeed($0) }
         }
         else {
             for (remoteFeed, localFeed) in product(remoteFeeds, feedData) {
@@ -180,7 +180,7 @@ final class BabyDataManager: ObservableObject {
 
     func mergeChangesWithRemote(_ remoteChanges: [NappyChange]) {
         if nappyData.isEmpty {
-            remoteChanges.forEach { addNappyChange($0)}
+            remoteChanges.forEach { addNappyChange($0) }
         }
         else {
             for (remoteChange, localChange) in product(remoteChanges, nappyData) {

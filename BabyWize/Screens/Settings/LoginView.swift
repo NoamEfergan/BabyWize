@@ -28,7 +28,7 @@ struct LoginView: View {
     @FocusState private var focusedField: Textfields?
 
     var body: some View {
-        LoadingView(isShowing: $vm.isLoading, text: "Signing in..."){
+        LoadingView(isShowing: $vm.isLoading, text: "Signing in...") {
             VStack(spacing: 30) {
                 VStack {
                     GrayTextField(text: $email,

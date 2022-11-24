@@ -10,6 +10,7 @@ import SwiftUI
 
 final class SharingViewModel: ObservableObject {
     @InjectedObject private var babyDataManager: BabyDataManager
+    @InjectedObject private var defaultsManager: UserDefaultManager
     private let baseURL = "app.babywize://"
     private var id: String?
     private var email: String?
@@ -17,6 +18,7 @@ final class SharingViewModel: ObservableObject {
     @Published var acceptAlertTitle = ""
     @Published var hasError = false
     @Published var isLoading = false
+    @Published var errorMsg: String = ""
 
     func extractInfo(from url: URL) {
         let urlString = url.absoluteString
@@ -30,13 +32,21 @@ final class SharingViewModel: ObservableObject {
     }
 
     func didAcceptSharing() {
-        isLoading = true
-        guard let id else {
+        guard defaultsManager.email != nil else {
             hasError = true
+            errorMsg = "You will need to create an account to share data"
             return
         }
-        Task { [weak self ] in
-            guard let self else { return }
+        isLoading = true
+        guard let id, let email else {
+            hasError = true
+            errorMsg = "Whoops!\nsomething went wrong there, please try again!"
+            return
+        }
+        Task { [weak self] in
+            guard let self else {
+                return
+            }
             let success = await self.babyDataManager.firebaseManager.getSharedData(for: id, email: email)
             self.isLoading = false
             self.hasError = !success

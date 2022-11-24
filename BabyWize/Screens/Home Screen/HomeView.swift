@@ -87,7 +87,7 @@ struct HomeView: View {
                         Text("No thanks")
                     }
                 }
-                .alert("Whoops!\nsomething went wrong there, please try again!", isPresented: $sharingVC.hasError,
+                .alert(sharingVC.errorMsg, isPresented: $sharingVC.hasError,
                        actions: {
                            Button("Try again later") {
                                sharingVC.hasError = false
@@ -130,7 +130,7 @@ struct HomeView: View {
             }
         }
     }
-    
+
     @ViewBuilder
     private func loadingView(isShowing: Bool) -> some View {
         ProgressView("Working on it....")

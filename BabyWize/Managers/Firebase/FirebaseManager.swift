@@ -116,8 +116,9 @@ final class FirebaseManager {
                 }
             }
     }
+
     @discardableResult
-    func getSharedData(for id: String,email: String? = nil, addID: Bool = true) async -> Bool {
+    func getSharedData(for id: String,email: String, addID: Bool = true) async -> Bool {
         do {
             let collection = try await db
                 .collection(FBKeys.kUsers)
@@ -211,23 +212,30 @@ final class FirebaseManager {
 
     // MARK: - Private methods
 
-    private func addIdToShared(_ id: String, email: String?) async {
-        guard let userID else {
+    private func addIdToShared(_ id: String, email: String) async {
+        guard let userID, let userEmail = defaultsManager.email else {
             return
         }
-        //TODO: This needs to be an array on firebase
-        if let email {
-            defaultsManager.sharingAccounts = [.init(id: id, email: email)]
-        }
+        defaultsManager.addNewSharingAccount(.init(id: id, email: email))
+        let sharingAccountDTO: [String: String] = [
+            FBKeys.kID: id,
+            FBKeys.kEmail: email
+        ]
+
+        let sharingToAccountDTO: [String: String] = [
+            FBKeys.kID: userID,
+            FBKeys.kEmail: userEmail
+        ]
+
         do {
             try await db
                 .collection(FBKeys.kUsers)
                 .document(userID)
-                .setData([FBKeys.kShared: id], merge: false)
+                .setData([FBKeys.kShared: sharingAccountDTO], merge: false)
             try await db
                 .collection(FBKeys.kUsers)
                 .document(id)
-                .setData([FBKeys.kShared: userID], merge: false)
+                .setData([FBKeys.kShared: sharingToAccountDTO], merge: false)
         } catch {
             print("Failed to set id to shared with me with error: \(error.localizedDescription)")
         }
@@ -236,8 +244,10 @@ final class FirebaseManager {
     private func fetchSharedDataIfAvailable(id: String, addID: Bool = false) async {
         do {
             let user = try await db.collection(FBKeys.kUsers).document(id).getDocument()
-            if let sharedID = user.get(FBKeys.kShared) as? String {
-                await getSharedData(for: sharedID, addID: addID)
+            if let sharingAccount = user.get(FBKeys.kShared) as? [String: String],
+            let email = sharingAccount[FBKeys.kEmail],
+            let id = sharingAccount[FBKeys.kID] {
+                await getSharedData(for: id, email: email, addID: addID)
             }
         } catch {
             print("Failed fetching user with error: \(error.localizedDescription)")
@@ -245,16 +255,14 @@ final class FirebaseManager {
     }
 
     private func loginIfPossible() async {
-        if defaultsManager.hasAccount {
-            let credentials = try? KeychainManager.fetchCredentials()
-            let id = await authVM.login(email: credentials?.email ?? "",
-                                        password: credentials?.password ?? "",
-                                        shouldSaveToKeychain: false)
-            defaultsManager.userID = id
+        if defaultsManager.hasAccount,
+           let credentials = try? KeychainManager.fetchCredentials(),
+           let id = await authVM.login(email: credentials.email,
+                                       password: credentials.password,
+                                       shouldSaveToKeychain: false) {
+            defaultsManager.signIn(with: id, email: credentials.email)
             userID = id
-            if let id {
-                await fetchSharedDataIfAvailable(id: id)
-            }
+            await fetchSharedDataIfAvailable(id: id)
         } else {
             let id = await authVM.anonymousLogin()
             defaultsManager.userID = id
@@ -274,7 +282,7 @@ final class FirebaseManager {
                             return
                         }
                         await self.fetchAllFromRemote()
-                        if let userID = self.userID{
+                        if let userID = self.userID {
                             await self.fetchSharedDataIfAvailable(id: userID, addID: true)
                         }
                     }

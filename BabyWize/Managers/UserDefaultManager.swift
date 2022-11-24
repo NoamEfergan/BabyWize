@@ -47,7 +47,7 @@ final class UserDefaultManager: ObservableObject {
     var sharingAccounts: [SharingAccount] {
         get {
             if let data = UserDefaults.standard.data(forKey: UserConstants.sharedIDs),
-            let decodedValue = try? JSONDecoder().decode([SharingAccount].self, from: data) {
+               let decodedValue = try? JSONDecoder().decode([SharingAccount].self, from: data) {
                 return decodedValue
             } else {
                 return []
@@ -57,7 +57,14 @@ final class UserDefaultManager: ObservableObject {
             if let encodedValue = try? JSONEncoder().encode(newValue) {
                 UserDefaults.standard.set(encodedValue, forKey: UserConstants.sharedIDs)
             }
-            
+        }
+    }
+
+    func addNewSharingAccount(_ account: SharingAccount) {
+        if let index = sharingAccounts.enumerated().first(where: { $0.element.id == account.id }) {
+            sharingAccounts[index.offset] = account
+        } else {
+            sharingAccounts.append(account)
         }
     }
 
@@ -67,6 +74,15 @@ final class UserDefaultManager: ObservableObject {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: UserConstants.userID)
+        }
+    }
+
+    var email: String? {
+        get {
+            UserDefaults.standard.string(forKey: UserConstants.email)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserConstants.email)
         }
     }
 
@@ -91,17 +107,19 @@ final class UserDefaultManager: ObservableObject {
             chartConfiguration = .joint
         }
     }
-    
+
     public func logOut() {
-        self.hasAccount = false
-        self.userID = nil
-        self.sharingAccounts = []
-        self.isLoggedIn = false
+        hasAccount = false
+        userID = nil
+        sharingAccounts = []
+        isLoggedIn = false
+        email = nil
     }
-    
-    public func signIn(with id: String ) {
-        self.hasAccount = true
-        self.userID = id
-        self.isLoggedIn = true
+
+    public func signIn(with id: String, email: String) {
+        hasAccount = true
+        userID = id
+        isLoggedIn = true
+        self.email = email
     }
 }
