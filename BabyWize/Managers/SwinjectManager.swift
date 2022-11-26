@@ -32,5 +32,12 @@ enum ContainerBuilder {
         container.register(WidgetManager.self) { _ in
             WidgetManager()
         }.inObjectScope(.container)
+        container.register(FirebaseManager.self) { r in
+            FirebaseManager(
+                authVM: r.resolve(AuthViewModel.self)!,
+                defaultsManager: r.resolve(UserDefaultManager.self)!
+            )
+        }.inObjectScope(.container)
+        
     }
 }

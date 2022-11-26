@@ -12,15 +12,18 @@ import Combine
 
 // MARK: - FirebaseManager
 final class FirebaseManager {
-    @InjectedObject private var defaultsManager: UserDefaultManager
-    @InjectedObject private var authVM: AuthViewModel
+    private var defaultsManager: UserDefaultManager
+    private var authVM: AuthViewModel
     private let db = Firestore.firestore()
     private var bag = Set<AnyCancellable>()
 
     private var userID: String?
     private var dataManager: BabyDataManager?
 
-    init() {}
+    init(authVM: AuthViewModel, defaultsManager: UserDefaultManager) {
+        self.authVM = authVM
+        self.defaultsManager = defaultsManager
+    }
 
     func setup(with dataManager: BabyDataManager) {
         Task { [weak self] in
@@ -41,6 +44,45 @@ final class FirebaseManager {
         await getAllFeeds()
         await getAllSleeps()
         await getAllChanges()
+    }
+
+    func createUser(with givenId: String) {
+        db.collection(FBKeys.kUsers).document(givenId).setData([FBKeys.kShared: []])
+    }
+
+    func removeIdFromShared(_ Id: String) {
+        guard let userID else {
+            return
+        }
+        let ref = db
+            .collection(FBKeys.kUsers)
+            .document(userID)
+
+
+        db.runTransaction { transaction, error in
+            let document: DocumentSnapshot
+            do {
+                document = try transaction.getDocument(ref)
+            } catch {
+                print("Failed with error: \(error.localizedDescription)")
+                return [:]
+            }
+            guard var shared: [String: String] = document.data()?[FBKeys.kShared] as? [String: String] else {
+                print("Failed to map remote document to array of dictionaries")
+                return [:]
+            }
+            
+            shared.removeValue(forKey: Id)
+            transaction.updateData([FBKeys.kShared: shared], forDocument: ref)
+            return shared
+        } completion: { _, error in
+            if let error {
+                print("Failed with error: \(error.localizedDescription)")
+            }
+            else {
+                self.defaultsManager.removeSharingAccount(with: Id)
+            }
+        }
     }
 
     // MARK: - Add
@@ -129,9 +171,9 @@ final class FirebaseManager {
                 let feeds = try await documentRef.collection(FBKeys.kFeeds).getDocuments()
                 let sleeps = try await documentRef.collection(FBKeys.kSleeps).getDocuments()
 
-                dataManager?.mergeChangesWithRemote(changes.mapToDomainChange())
-                dataManager?.mergeFeedsWithRemote(feeds.mapToDomainFeed())
-                dataManager?.mergeSleepsWithRemote(sleeps.mapToDomainSleep())
+                await dataManager?.mergeChangesWithRemote(changes.mapToDomainChange())
+                await dataManager?.mergeFeedsWithRemote(feeds.mapToDomainFeed())
+                await dataManager?.mergeSleepsWithRemote(sleeps.mapToDomainSleep())
                 if addID {
                     await addIdToShared(id, email: email)
                 }
@@ -159,7 +201,7 @@ final class FirebaseManager {
             return
         }
         let sleeps = remoteFeedSnapshot.mapToDomainSleep()
-        dataManager?.mergeSleepsWithRemote(sleeps)
+        await dataManager?.mergeSleepsWithRemote(sleeps)
     }
 
     private func getAllChanges() async {
@@ -173,7 +215,7 @@ final class FirebaseManager {
             return
         }
         let changes = remoteFeedSnapshot.mapToDomainChange()
-        dataManager?.mergeChangesWithRemote(changes)
+        await dataManager?.mergeChangesWithRemote(changes)
     }
 
     private func getAllFeeds() async {
@@ -187,7 +229,7 @@ final class FirebaseManager {
             return
         }
         let feeds = remoteFeedSnapshot.mapToDomainFeed()
-        dataManager?.mergeFeedsWithRemote(feeds)
+        await dataManager?.mergeFeedsWithRemote(feeds)
     }
 
     // MARK: - Delete
@@ -218,24 +260,22 @@ final class FirebaseManager {
         }
         defaultsManager.addNewSharingAccount(.init(id: id, email: email))
         let sharingAccountDTO: [String: String] = [
-            FBKeys.kID: id,
-            FBKeys.kEmail: email
+            id: email
         ]
 
         let sharingToAccountDTO: [String: String] = [
-            FBKeys.kID: userID,
-            FBKeys.kEmail: userEmail
+            userID:userEmail
         ]
 
         do {
             try await db
                 .collection(FBKeys.kUsers)
                 .document(userID)
-                .setData([FBKeys.kShared: sharingAccountDTO], merge: false)
+                .setData([FBKeys.kShared: sharingAccountDTO], merge: true)
             try await db
                 .collection(FBKeys.kUsers)
                 .document(id)
-                .setData([FBKeys.kShared: sharingToAccountDTO], merge: false)
+                .setData([FBKeys.kShared: sharingToAccountDTO], merge: true)
         } catch {
             print("Failed to set id to shared with me with error: \(error.localizedDescription)")
         }
@@ -244,10 +284,15 @@ final class FirebaseManager {
     private func fetchSharedDataIfAvailable(id: String, addID: Bool = false) async {
         do {
             let user = try await db.collection(FBKeys.kUsers).document(id).getDocument()
-            if let sharingAccount = user.get(FBKeys.kShared) as? [String: String],
-               let email = sharingAccount[FBKeys.kEmail],
-               let id = sharingAccount[FBKeys.kID] {
-                await getSharedData(for: id, email: email, addID: addID)
+            if let sharingAccounts = user.get(FBKeys.kShared) as? [[String: String]] {
+                for sharingAccount in sharingAccounts {
+                    guard let email = sharingAccount.keys.first,
+                          let id = sharingAccount.values.first else {
+                        print("Failed to get email or ID from shared account!")
+                        break
+                    }
+                    await getSharedData(for: id, email: email, addID: addID)
+                }
             }
         } catch {
             print("Failed fetching user with error: \(error.localizedDescription)")
@@ -286,6 +331,19 @@ final class FirebaseManager {
                             await self.fetchSharedDataIfAvailable(id: userID, addID: true)
                         }
                     }
+                }
+            }
+            .store(in: &bag)
+
+        authVM
+            .$didRegister
+            .receive(on: DispatchQueue.main)
+            .sink { [
+                weak self
+            ] id in
+                if let id {
+                    print("Did register \(id)")
+                    self?.createUser(with: id)
                 }
             }
             .store(in: &bag)

@@ -72,17 +72,52 @@ struct SettingsView: View {
             if !defaultsManager.sharingAccounts.isEmpty {
                 Section {
                     ForEach(defaultsManager.sharingAccounts, id: \.self) { account in
-                        Text(account.email)
+                        HStack {
+                            Text(account.email)
+                            Spacer()
+                            Button {
+                                vm.toggleRemovingAlert(with: account.id)
+                            } label: {
+                                Image(systemName:"xmark.app")
+                                    .resizable()
+                                    .frame(width: 24,height: 24)
+                                    .aspectRatio(1, contentMode: .fit)
+                                    .foregroundColor(.red.opacity(0.7))
+                            }
+
+                        }
                     }
                 } header: {
                     Text("Sharing info with ")
                 } footer: {
                     Text("You are sharing your data with these accounts, you can disable this at any point")
                 }
+                .transition(.scale)
             }
         }
         .listStyle(.insetGrouped)
-        .navigationTitle("Settings")
+        .navigationTitle(
+            "Settings"
+        )
+        .alert("Are you sure you want to stop sharing with this account?",
+               isPresented: $vm.isShowingRemoveAlert,
+               actions: {
+            Button(role: .cancel) {
+                vm.turnOffRemovingAlert()
+            } label: {
+                Text("No")
+            }
+            Button(role: .destructive) {
+                vm.removeFromSharing()
+            } label: {
+                Text("Remove")
+            }
+        })
+        .overlay {
+            if vm.isLoading {
+                LoadingOverlay(isShowing: $vm.isLoading)
+            }
+        }
         .overlay {
             if vm.isShowingQRCode {
                 ZStack {
@@ -96,6 +131,7 @@ struct SettingsView: View {
                 .ignoresSafeArea(.all)
             }
         }
+        .animation(.easeInOut, value: defaultsManager.sharingAccounts.isEmpty)
         .animation(.easeInOut, value: vm.isShowingQRCode)
     }
 

@@ -44,27 +44,29 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
-    var sharingAccounts: [SharingAccount] {
-        get {
-            if let data = UserDefaults.standard.data(forKey: UserConstants.sharedIDs),
-               let decodedValue = try? JSONDecoder().decode([SharingAccount].self, from: data) {
-                return decodedValue
+    @Published var sharingAccounts: [SharingAccount]
+
+    func addNewSharingAccount(_ account: SharingAccount) {
+        DispatchQueue.main.async {[weak self] in
+            guard let self else { return }
+            if let index = self.sharingAccounts.enumerated().first(where: { $0.element.id == account.id }) {
+                self.sharingAccounts[index.offset] = account
             } else {
-                return []
-            }
-        }
-        set {
-            if let encodedValue = try? JSONEncoder().encode(newValue) {
-                UserDefaults.standard.set(encodedValue, forKey: UserConstants.sharedIDs)
+                self.sharingAccounts.append(account)
+                if let encodedValue = try? JSONEncoder().encode(self.sharingAccounts) {
+                    UserDefaults.standard.set(encodedValue, forKey: UserConstants.sharedIDs)
+                }
             }
         }
     }
-
-    func addNewSharingAccount(_ account: SharingAccount) {
-        if let index = sharingAccounts.enumerated().first(where: { $0.element.id == account.id }) {
-            sharingAccounts[index.offset] = account
-        } else {
-            sharingAccounts.append(account)
+    
+    func removeSharingAccount( with id: String ) {
+        DispatchQueue.main.async { [ weak self] in
+            guard let self else { return }
+            self.sharingAccounts = self.sharingAccounts.filter { $0.id != id}
+            if let encodedValue = try? JSONEncoder().encode(self.sharingAccounts) {
+                UserDefaults.standard.set(encodedValue, forKey: UserConstants.sharedIDs)
+            }
         }
     }
 
@@ -105,6 +107,13 @@ final class UserDefaultManager: ObservableObject {
             chartConfiguration = .init(rawValue: savedConfig) ?? .joint
         } else {
             chartConfiguration = .joint
+        }
+
+        if let data = UserDefaults.standard.data(forKey: UserConstants.sharedIDs),
+           let decodedValue = try? JSONDecoder().decode([SharingAccount].self, from: data) {
+            sharingAccounts = decodedValue
+        } else {
+            sharingAccounts = []
         }
     }
 

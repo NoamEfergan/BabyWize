@@ -77,16 +77,18 @@ struct HomeView: View {
                 }
                 .navigationTitle("Baby Wize")
                 .alert(sharingVC.acceptAlertTitle,
-                       isPresented: $sharingVC.isShowingAcceptAlert) {
-                    Button("Accept") {
-                        sharingVC.didAcceptSharing()
+                       isPresented: $sharingVC.isShowingAcceptAlert,
+                       actions: {
+                        Button("Accept") {
+                            sharingVC.didAcceptSharing()
+                        }
+                        Button(role: .cancel) {
+                            sharingVC.isShowingAcceptAlert = false
+                        } label: {
+                            Text("No thanks")
+                        }
                     }
-                    Button(role: .cancel) {
-                        sharingVC.isShowingAcceptAlert = false
-                    } label: {
-                        Text("No thanks")
-                    }
-                }
+                )
                 .alert(sharingVC.errorMsg, isPresented: $sharingVC.hasError,
                        actions: {
                            Button("Try again later") {
@@ -114,7 +116,7 @@ struct HomeView: View {
                 }
                 .overlay {
                     if sharingVC.isLoading {
-                        loadingView(isShowing: sharingVC.isLoading)
+                        LoadingOverlay(isShowing: $sharingVC.isLoading)
                     }
                 }
                 .animation(.easeOut, value: iconRotation)
@@ -129,18 +131,6 @@ struct HomeView: View {
                 }
             }
         }
-    }
-
-    @ViewBuilder
-    private func loadingView(isShowing: Bool) -> some View {
-        ProgressView("Working on it....")
-            .frame(width: 250,height: 250)
-            .background(Color.secondary.colorInvert())
-            .foregroundColor(Color.primary)
-            .cornerRadius(20)
-            .opacity(isShowing ? 1 : 0)
-            .scaleEffect(isShowing ? 1 : 0)
-            .animation(.easeInOut, value: isShowing)
     }
 
     // app.babywize://MZhOgd8Hc8f8Japf7gmfzxHWzK63-1@3.com

@@ -53,6 +53,7 @@
 		057DC333291C2D5C009C0A61 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DC332291C2D5C009C0A61 /* UserDefaultManager.swift */; };
 		058038A3292D98C8006477A2 /* SharingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058038A2292D98C8006477A2 /* SharingAccount.swift */; };
 		058038A6293289AE006477A2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058038A5293289AE006477A2 /* SettingsViewModel.swift */; };
+		058038B629329EAA006477A2 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058038B529329EAA006477A2 /* LoadingOverlay.swift */; };
 		05817C5B28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5928C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld */; };
 		05817C5C28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5928C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld */; };
 		05817C5F28C788580040A4B0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5E28C788580040A4B0 /* DataController.swift */; };
@@ -214,6 +215,7 @@
 		057DC332291C2D5C009C0A61 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		058038A2292D98C8006477A2 /* SharingAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingAccount.swift; sourceTree = "<group>"; };
 		058038A5293289AE006477A2 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		058038B529329EAA006477A2 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		05817C5A28C7806F0040A4B0 /* UserEntriesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserEntriesModel.xcdatamodel; sourceTree = "<group>"; };
 		05817C5E28C788580040A4B0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+extension.swift"; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 				056D7C7B28F32FB500E3514D /* LoadingView.swift */,
 				056DC4882916AA8100B30720 /* AccessibleViews */,
 				0587BB552928306B00F39B25 /* LabelledDivider.swift */,
+				058038B529329EAA006477A2 /* LoadingOverlay.swift */,
 			);
 			path = "Global Views";
 			sourceTree = "<group>";
@@ -884,6 +887,7 @@
 				050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
 				05817C5F28C788580040A4B0 /* DataController.swift in Sources */,
 				055CE1322925350200870066 /* FBKeys.swift in Sources */,
+				058038B629329EAA006477A2 /* LoadingOverlay.swift in Sources */,
 				0587BB582928EA8C00F39B25 /* NSNotification+extension.swift in Sources */,
 				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
 				056DC48F2916F36B00B30720 /* FeedEntryViewModel.swift in Sources */,

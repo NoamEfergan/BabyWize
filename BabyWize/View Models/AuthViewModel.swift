@@ -16,6 +16,7 @@ final class AuthViewModel: ObservableObject {
     @Published var errorMsg = ""
 
     @Published var didLogIn = false
+    @Published var didRegister: String?
 
     func validateEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -45,6 +46,7 @@ final class AuthViewModel: ObservableObject {
             defaultsManager.signIn(with: authResult.user.uid, email: email)
             try KeychainManager.setCredentials(.init(email: email, password: password))
             didLogIn = true
+            didRegister = authResult.user.uid
             return true
         } catch {
             print("There was an issue when trying to sign in: \(error)")

@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 final class SharingViewModel: ObservableObject {
-    @InjectedObject private var babyDataManager: BabyDataManager
     @InjectedObject private var defaultsManager: UserDefaultManager
+    @Inject private var firebaseManager: FirebaseManager
     private let baseURL = "app.babywize://"
     private var id: String?
     private var email: String?
@@ -47,7 +47,7 @@ final class SharingViewModel: ObservableObject {
             guard let self else {
                 return
             }
-            let success = await self.babyDataManager.firebaseManager.getSharedData(for: id, email: email)
+            let success = await firebaseManager.getSharedData(for: id, email: email)
             self.isLoading = false
             self.hasError = !success
         }

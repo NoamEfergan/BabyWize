@@ -10,14 +10,34 @@ import CoreImage.CIFilterBuiltins
 
 // MARK: - SettingsViewModel
 final class SettingsViewModel: ObservableObject {
+    @Inject private var firebaseManager: FirebaseManager
     @Published var isShowingAlert = false
     @Published var isShowingLogoutAlert = false
     @Published var isShowingQRCode = false
+    @Published var isShowingRemoveAlert = false
+    @Published var isLoading = false
     private let qrImage = QrCodeImage()
+    private var idToRemove: String = ""
 
     func generateQRCode(id: String, email: String) -> UIImage? {
         let dataString = "app.babywize://\(id)-\(email)"
         return qrImage.generateQRCode(from: dataString)
+    }
+    
+    func removeFromSharing() {
+        isLoading = true
+        firebaseManager.removeIdFromShared(idToRemove)
+        isLoading = false
+    }
+    
+    func toggleRemovingAlert(with id: String) {
+        self.idToRemove = id
+        isShowingRemoveAlert = true
+    }
+    
+    func turnOffRemovingAlert() {
+        self.idToRemove = ""
+        isShowingRemoveAlert = false
     }
 }
 
