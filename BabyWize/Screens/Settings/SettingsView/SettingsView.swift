@@ -10,33 +10,22 @@ import SwiftUI
 // MARK: - SettingsView
 struct SettingsView: View {
     @InjectedObject private var defaultsManager: UserDefaultManager
-    @State private var isShowingAlert = false
-    @State private var isShowingLogoutAlert = false
-    @State private var isLoginViewShowing = false
-
-    @AppStorage(UserConstants.isLoggedIn) private var savedIsUserLoggedIn: Bool?
     @InjectedObject private var authVM: AuthViewModel
-
-    private var isLoggedIn: Bool {
-        guard let savedIsUserLoggedIn else {
-            return false
-        }
-        return savedIsUserLoggedIn
-    }
+    @StateObject private var vm = SettingsViewModel()
 
     var body: some View {
         List {
             Section {
                 Button {
-                    if isLoggedIn {
-                        isShowingLogoutAlert.toggle()
+                    if defaultsManager.isLoggedIn {
+                        vm.isShowingLogoutAlert.toggle()
                     } else {
-                        isShowingAlert.toggle()
+                        vm.isShowingAlert.toggle()
                     }
                 } label: {
                     loginIconView
                 }
-                .confirmationDialog("Log in or register", isPresented: $isShowingAlert) {
+                .confirmationDialog("Log in or register", isPresented: $vm.isShowingAlert) {
                     NavigationLink("Login") {
                         LoginView()
                     }
@@ -47,7 +36,7 @@ struct SettingsView: View {
                 } message: {
                     Text("Log into an existing account or register")
                 }
-                .confirmationDialog("Logout", isPresented: $isShowingLogoutAlert) {
+                .confirmationDialog("Logout", isPresented: $vm.isShowingLogoutAlert) {
                     Button(role: .destructive) {
                         authVM.logOut()
                     } label: {
@@ -55,14 +44,21 @@ struct SettingsView: View {
                     }
 
                     Button("No") {
-                        isShowingLogoutAlert.toggle()
+                        vm.isShowingLogoutAlert.toggle()
                     }
                 } message: {
                     Text("Are you sure you want to log out?")
                 }
             } footer: {
-                if !isLoggedIn {
+                if !defaultsManager.isLoggedIn {
                     Text("You can log in to keep your data between devices.\nYou can still use the app logged out.")
+                } else {
+                    Button {
+                        vm.isShowingQRCode.toggle()
+                    } label: {
+                        Text("Share data quickly with a QR code!")
+                            .font(.system(.footnote, design: .rounded))
+                    }
                 }
             }
 
@@ -87,6 +83,35 @@ struct SettingsView: View {
         }
         .listStyle(.insetGrouped)
         .navigationTitle("Settings")
+        .overlay {
+            if vm.isShowingQRCode {
+                ZStack {
+                    Color.black.opacity(0.8)
+                        .opacity(vm.isShowingQRCode ? 1 : 0)
+                    qrImage
+                }
+                .onTapGesture {
+                    vm.isShowingQRCode.toggle()
+                }
+                .ignoresSafeArea(.all)
+            }
+        }
+        .animation(.easeInOut, value: vm.isShowingQRCode)
+    }
+
+    @ViewBuilder
+    private var qrImage: some View {
+        if defaultsManager.isLoggedIn,
+           let email = defaultsManager.email ,
+           let id = defaultsManager.userID,
+           let image = vm.generateQRCode(id: id, email: email) {
+            Image(uiImage: image)
+                .interpolation(.none)
+                .resizable()
+                .aspectRatio(1*1, contentMode: .fit)
+        } else {
+            Text("Something went wrong, please try again or contact support")
+        }
     }
 
     @ViewBuilder
@@ -146,9 +171,9 @@ struct SettingsView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25)
-                    .foregroundStyle(isLoggedIn ? Color.red.gradient : Color.blue.gradient)
-                Text(isLoggedIn ? "Log out" : "Log in or register!")
-                    .foregroundColor(isLoggedIn ? .red : nil)
+                    .foregroundStyle(defaultsManager.isLoggedIn ? Color.red.gradient : Color.blue.gradient)
+                Text(defaultsManager.isLoggedIn ? "Log out" : "Log in or register!")
+                    .foregroundColor(defaultsManager.isLoggedIn ? .red : nil)
             }
             VStack(alignment: .center) {
                 Image(systemName: "person.crop.circle")
@@ -156,9 +181,9 @@ struct SettingsView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(minWidth: 25)
                     .frame(maxWidth: 100)
-                    .foregroundStyle(isLoggedIn ? Color.red.gradient : Color.blue.gradient)
-                Text(isLoggedIn ? "Log out" : "Log in or register!")
-                    .foregroundColor(isLoggedIn ? .red : nil)
+                    .foregroundStyle(defaultsManager.isLoggedIn ? Color.red.gradient : Color.blue.gradient)
+                Text(defaultsManager.isLoggedIn ? "Log out" : "Log in or register!")
+                    .foregroundColor(defaultsManager.isLoggedIn ? .red : nil)
                     .multilineTextAlignment(.center)
                     .frame(maxHeight: .infinity)
             }

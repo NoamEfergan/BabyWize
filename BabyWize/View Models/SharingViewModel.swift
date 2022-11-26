@@ -18,7 +18,7 @@ final class SharingViewModel: ObservableObject {
     @Published var acceptAlertTitle = ""
     @Published var hasError = false
     @Published var isLoading = false
-    @Published var errorMsg: String = ""
+    @Published var errorMsg = ""
 
     func extractInfo(from url: URL) {
         let urlString = url.absoluteString

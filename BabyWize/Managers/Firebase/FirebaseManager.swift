@@ -245,8 +245,8 @@ final class FirebaseManager {
         do {
             let user = try await db.collection(FBKeys.kUsers).document(id).getDocument()
             if let sharingAccount = user.get(FBKeys.kShared) as? [String: String],
-            let email = sharingAccount[FBKeys.kEmail],
-            let id = sharingAccount[FBKeys.kID] {
+               let email = sharingAccount[FBKeys.kEmail],
+               let id = sharingAccount[FBKeys.kID] {
                 await getSharedData(for: id, email: email, addID: addID)
             }
         } catch {
