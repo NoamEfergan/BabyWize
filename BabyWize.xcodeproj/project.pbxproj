@@ -640,8 +640,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0560839F2884147900728F1F /* Build configuration list for PBXNativeTarget "BabyWize" */;
 			buildPhases = (
-				056083772884147800728F1F /* Sources */,
 				3BE30FF928D5D90000E75D22 /* ShellScript */,
+				056083772884147800728F1F /* Sources */,
 				056083782884147800728F1F /* Frameworks */,
 				056083792884147800728F1F /* Resources */,
 				050AEEA1288C641A0052A2D1 /* Embed Foundation Extensions */,
@@ -813,7 +813,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftformat >/dev/null; then\n  swiftformat . --swiftversion 5.7\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+			shellScript = "if which swiftformat >/dev/null; then\n  swiftformat . --swiftversion 5.7\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

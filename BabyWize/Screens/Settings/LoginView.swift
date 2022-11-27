@@ -64,21 +64,16 @@ struct LoginView: View {
                         }
 
                     Button("Login") {
-                        hasPasswordError = !vm.validatePassword(password)
-                        hasEmailError = !vm.validateEmail(email)
-                        if !hasPasswordError, !hasEmailError {
-                            Task {
-                                if let _ = await vm.login(email: email, password: password) {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }
-                            }
-                        }
+                        performLogin()
                     }
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .background(RoundedRectangle(cornerRadius: 8, style: .continuous)
                         .fill(.blue.gradient))
+                    .onTapGesture {
+                        performLogin()
+                    }
                 }
                 .animation(.easeInOut, value: focusedField)
                 .padding(.horizontal)
@@ -109,6 +104,19 @@ struct LoginView: View {
                             focusedField = nil
                         }
                     }
+                }
+            }
+        }
+    }
+
+
+    private func performLogin() {
+        hasPasswordError = !vm.validatePassword(password)
+        hasEmailError = !vm.validateEmail(email)
+        if !hasPasswordError, !hasEmailError {
+            Task {
+                if let _ = await vm.login(email: email, password: password) {
+                    self.presentationMode.wrappedValue.dismiss()
                 }
             }
         }

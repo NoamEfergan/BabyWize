@@ -10,9 +10,10 @@ import SwiftUI
 // MARK: - GrayTextField
 struct GrayTextField: View {
     @Binding var text: String
+    @State private var isSecureState = false
     var title: String
     var hint: String
-    var isSecure = false
+    var isSecure = false { didSet { _isSecureState.wrappedValue = isSecure } }
     var contentType: UITextContentType?
     var isFocused: Bool
     var selectedColor = Color.blue
@@ -20,20 +21,34 @@ struct GrayTextField: View {
     var keyboardType: UIKeyboardType = .default
     var errorText = ""
 
+    private var imageName: String {
+        isSecureState ? "eye.slash" : "eye"
+    }
+
+    private var accentColor: Color {
+        isFocused ? selectedColor : Color.secondary
+    }
+
     var body: some View {
-        let accentColor = isFocused ? selectedColor : Color.secondary
         VStack {
             ZStack(alignment: .leading) {
-                if isSecure {
-                    VStack(alignment: .leading) {
-                        SecureField(hint, text: $text)
-                            .textContentType(contentType)
-                            .keyboardType(keyboardType)
-                            .multilineTextAlignment(.leading)
-                            .frame(minHeight: 50)
-                            .padding(.horizontal)
-                            .background(RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .stroke(hasError ? Color.red : accentColor))
+                ZStack(alignment: .trailing) {
+                    VStack {
+                        Group {
+                            if isSecureState {
+                                SecureField(hint, text: $text)
+                            } else {
+                                TextField(hint, text: $text)
+                            }
+                        }
+                        .transition(.opacity)
+                        .textContentType(contentType)
+                        .keyboardType(keyboardType)
+                        .multilineTextAlignment(.leading)
+                        .frame(minHeight: 50)
+                        .padding(.horizontal)
+                        .background(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .stroke(hasError ? Color.red : accentColor))
                         if hasError {
                             Text(errorText)
                                 .foregroundColor(.red)
@@ -41,25 +56,18 @@ struct GrayTextField: View {
                                 .lineLimit(2)
                         }
                     }
-                } else {
-                    VStack(alignment: .leading) {
-                        TextField(title, text: $text)
-                            .textContentType(contentType)
-                            .keyboardType(keyboardType)
-                            .multilineTextAlignment(.leading)
-                            .frame(minHeight: 50)
-                            .padding(.horizontal)
-                            .background(RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .stroke(hasError ? Color.red : accentColor))
-                        if hasError {
-                            Text(errorText)
-                                .foregroundColor(.red)
-                                .font(.system(size: 9, design: .rounded))
-                                .lineLimit(2)
+
+                    if isSecure {
+                        Button {
+                            isSecureState.toggle()
+                        } label: {
+                            Image(systemName: imageName)
+                                .accentColor(.gray)
                         }
+                        .padding(.trailing)
+                        .padding(.bottom, hasError ? 14 : 0)
                     }
                 }
-
                 Text(title)
                     .padding(.horizontal, 5)
                     .frame(height: 15)
@@ -68,6 +76,7 @@ struct GrayTextField: View {
                     .padding(.horizontal, 15)
                     .foregroundColor(hasError ? Color.red : accentColor)
             }
+            .animation(.easeInOut, value: isSecureState)
         }
     }
 }

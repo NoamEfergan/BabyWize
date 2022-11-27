@@ -83,22 +83,17 @@ struct RegisterView: View {
                         }
 
                     Button("Create account") {
-                        hasPasswordError = !vm.validatePassword(password)
-                        hasEmailError = !vm.validateEmail(email)
-                        hasRePasswordError = password != rePassword
-                        if !hasPasswordError, !hasEmailError, !hasRePasswordError {
-                            Task {
-                                if await vm.createAccount(email: email, password: password) {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }
-                            }
-                        }
+                        performRegister()
+                        
                     }
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .background(RoundedRectangle(cornerRadius: 8, style: .continuous)
                         .fill(.blue.gradient))
+                    .onTapGesture {
+                        performRegister()
+                    }
                 }
                 .animation(.easeInOut, value: focusedField)
                 .padding(.horizontal)
@@ -125,6 +120,19 @@ struct RegisterView: View {
                             focusedField = nil
                         }
                     }
+                }
+            }
+        }
+    }
+
+    private func performRegister() {
+        hasPasswordError = !vm.validatePassword(password)
+        hasEmailError = !vm.validateEmail(email)
+        hasRePasswordError = password != rePassword
+        if !hasPasswordError, !hasEmailError, !hasRePasswordError {
+            Task {
+                if await vm.createAccount(email: email, password: password) {
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
         }
