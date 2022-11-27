@@ -71,7 +71,7 @@ final class FirebaseManager {
                 print("Failed to map remote document to array of dictionaries")
                 return [:]
             }
-            
+
             shared.removeValue(forKey: Id)
             transaction.updateData([FBKeys.kShared: shared], forDocument: ref)
             return shared

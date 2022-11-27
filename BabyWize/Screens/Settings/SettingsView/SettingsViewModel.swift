@@ -17,26 +17,26 @@ final class SettingsViewModel: ObservableObject {
     @Published var isShowingRemoveAlert = false
     @Published var isLoading = false
     private let qrImage = QrCodeImage()
-    private var idToRemove: String = ""
+    private var idToRemove = ""
 
     func generateQRCode(id: String, email: String) -> UIImage? {
         let dataString = "app.babywize://\(id)-\(email)"
         return qrImage.generateQRCode(from: dataString)
     }
-    
+
     func removeFromSharing() {
         isLoading = true
         firebaseManager.removeIdFromShared(idToRemove)
         isLoading = false
     }
-    
+
     func toggleRemovingAlert(with id: String) {
-        self.idToRemove = id
+        idToRemove = id
         isShowingRemoveAlert = true
     }
-    
+
     func turnOffRemovingAlert() {
-        self.idToRemove = ""
+        idToRemove = ""
         isShowingRemoveAlert = false
     }
 }

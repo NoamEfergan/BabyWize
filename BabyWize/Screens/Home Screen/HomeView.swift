@@ -79,16 +79,15 @@ struct HomeView: View {
                 .alert(sharingVC.acceptAlertTitle,
                        isPresented: $sharingVC.isShowingAcceptAlert,
                        actions: {
-                        Button("Accept") {
-                            sharingVC.didAcceptSharing()
-                        }
-                        Button(role: .cancel) {
-                            sharingVC.isShowingAcceptAlert = false
-                        } label: {
-                            Text("No thanks")
-                        }
-                    }
-                )
+                           Button("Accept") {
+                               sharingVC.didAcceptSharing()
+                           }
+                           Button(role: .cancel) {
+                               sharingVC.isShowingAcceptAlert = false
+                           } label: {
+                               Text("No thanks")
+                           }
+                       })
                 .alert(sharingVC.errorMsg, isPresented: $sharingVC.hasError,
                        actions: {
                            Button("Try again later") {

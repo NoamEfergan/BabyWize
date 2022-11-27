@@ -47,8 +47,10 @@ final class UserDefaultManager: ObservableObject {
     @Published var sharingAccounts: [SharingAccount]
 
     func addNewSharingAccount(_ account: SharingAccount) {
-        DispatchQueue.main.async {[weak self] in
-            guard let self else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
+            }
             if let index = self.sharingAccounts.enumerated().first(where: { $0.element.id == account.id }) {
                 self.sharingAccounts[index.offset] = account
             } else {
@@ -59,11 +61,13 @@ final class UserDefaultManager: ObservableObject {
             }
         }
     }
-    
-    func removeSharingAccount( with id: String ) {
-        DispatchQueue.main.async { [ weak self] in
-            guard let self else { return }
-            self.sharingAccounts = self.sharingAccounts.filter { $0.id != id}
+
+    func removeSharingAccount(with id: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
+            }
+            self.sharingAccounts = self.sharingAccounts.filter { $0.id != id }
             if let encodedValue = try? JSONEncoder().encode(self.sharingAccounts) {
                 UserDefaults.standard.set(encodedValue, forKey: UserConstants.sharedIDs)
             }

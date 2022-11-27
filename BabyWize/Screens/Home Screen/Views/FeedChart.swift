@@ -40,7 +40,10 @@ struct FeedChart: View {
     }
 
     private var plotWidth: CGFloat {
-        CGFloat(feedData.count) * (80 + sizeModifier)
+        let fullScreenWidth = UIScreen.main.bounds.width
+        let dividedAmount = fullScreenWidth / CGFloat(feedData.count)
+        let minSize = CGFloat(feedData.count) * (100 + sizeModifier)
+        return max(minSize, dividedAmount)
     }
 
     var body: some View {
@@ -54,18 +57,21 @@ struct FeedChart: View {
                         isShowingJoint = true
                     }
             } else {
-                if showTitle {
-                    if isShowingJoint {
-                        jointChart
-                            .contentTransition(.interpolate)
+                Group {
+                    if showTitle {
+                        if isShowingJoint {
+                            jointChart
+                                .contentTransition(.interpolate)
+                        } else {
+                            separateCharts
+                                .contentTransition(.interpolate)
+                        }
                     } else {
                         separateCharts
                             .contentTransition(.interpolate)
                     }
-                } else {
-                    separateCharts
-                        .contentTransition(.interpolate)
                 }
+                .padding(.horizontal)
             }
         }
         .onAppear {
@@ -246,7 +252,7 @@ struct FeedChart: View {
 struct FeedChart_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            FeedChart(feedData: PlaceholderChart.MockData.mockFeed)
+            FeedChart(feedData: PlaceholderChart.MockData.mockFeed.getUpTo(limit: 2))
         }
         ScrollView {
             FeedChart(feedData: PlaceholderChart.MockData.mockFeed, showTitle: false)
@@ -263,7 +269,7 @@ private struct ChartModifier: ViewModifier {
                 plotArea.frame(width: plotWidth)
             })
             .frame(maxHeight: .greatestFiniteMagnitude)
-            .frame(minWidth: UIScreen.main.bounds.width)
+            .frame(width: UIScreen.main.bounds.width)
             .frame(maxWidth: .greatestFiniteMagnitude)
             .padding()
     }

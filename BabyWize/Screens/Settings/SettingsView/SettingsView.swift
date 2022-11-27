@@ -84,7 +84,6 @@ struct SettingsView: View {
                                     .aspectRatio(1, contentMode: .fit)
                                     .foregroundColor(.red.opacity(0.7))
                             }
-
                         }
                     }
                 } header: {
@@ -96,23 +95,21 @@ struct SettingsView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .navigationTitle(
-            "Settings"
-        )
+        .navigationTitle("Settings")
         .alert("Are you sure you want to stop sharing with this account?",
                isPresented: $vm.isShowingRemoveAlert,
                actions: {
-            Button(role: .cancel) {
-                vm.turnOffRemovingAlert()
-            } label: {
-                Text("No")
-            }
-            Button(role: .destructive) {
-                vm.removeFromSharing()
-            } label: {
-                Text("Remove")
-            }
-        })
+                   Button(role: .cancel) {
+                       vm.turnOffRemovingAlert()
+                   } label: {
+                       Text("No")
+                   }
+                   Button(role: .destructive) {
+                       vm.removeFromSharing()
+                   } label: {
+                       Text("Remove")
+                   }
+               })
         .overlay {
             if vm.isLoading {
                 LoadingOverlay(isShowing: $vm.isLoading)
