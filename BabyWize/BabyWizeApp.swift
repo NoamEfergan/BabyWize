@@ -76,11 +76,16 @@ struct BabyWizeApp: App {
 
 // MARK: - ShortcutProvider
 struct ShortcutProvider: AppShortcutsProvider {
-    static var appShortcuts: [AppShortcut] {
-        AppShortcut(intent: LogFeed(),
-                    phrases: [
-                        "Log a feed on \(.applicationName)"
-                    ])
-    }
+    static var appShortcuts: [AppShortcut] =
+        [
+            AppShortcut(intent: LogFeed(),
+                        phrases: [
+                            "Log a feed on \(.applicationName)"
+                        ]),
+            AppShortcut(intent: LogSleep(),
+                        phrases: [
+                            "Log a sleep on \(.applicationName)"
+                        ])
+        ]
 }
 

@@ -48,8 +48,10 @@ final class InfoScreenVM: ObservableObject {
     func addUserActivity() {
         Task {
             do {
-                let intent = LogFeed()
-                try await IntentDonationManager.shared.donate(intent: intent)
+                let feedIntent = LogFeed()
+                let sleepIntent = LogSleep()
+                try await IntentDonationManager.shared.donate(intent: feedIntent)
+                try await IntentDonationManager.shared.donate(intent: sleepIntent)
             } catch {
                 print("Failed with error: \(error.localizedDescription)")
             }

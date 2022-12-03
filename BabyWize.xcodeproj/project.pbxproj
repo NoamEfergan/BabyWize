@@ -18,6 +18,7 @@
 		050AEEBA288DB3870052A2D1 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEEB9288DB3870052A2D1 /* Secrets.swift */; };
 		050FF468293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
 		050FF469293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
+		050FF46F293B8ABD00F445DE /* LogSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF46E293B8ABD00F445DE /* LogSleep.swift */; };
 		053E48B52939120A00A90399 /* LogFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E48B42939120A00A90399 /* LogFeed.swift */; };
 		054B1F6128CA31E00021C5BF /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */; };
 		054B1F6328CA33610021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
@@ -189,6 +190,7 @@
 		050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AddEntryWidgetExtension.entitlements; sourceTree = "<group>"; };
 		050AEEB9288DB3870052A2D1 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		050FF467293A3F6600F445DE /* IntentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentManager.swift; sourceTree = "<group>"; };
+		050FF46E293B8ABD00F445DE /* LogSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSleep.swift; sourceTree = "<group>"; };
 		053E48882939107800A90399 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		053E48932939107900A90399 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		053E48B42939120A00A90399 /* LogFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFeed.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 			children = (
 				053E48B42939120A00A90399 /* LogFeed.swift */,
 				050FF467293A3F6600F445DE /* IntentManager.swift */,
+				050FF46E293B8ABD00F445DE /* LogSleep.swift */,
 			);
 			path = "Siri and shortcuts";
 			sourceTree = "<group>";
@@ -866,6 +869,7 @@
 				3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */,
 				05A42A57290598860040A543 /* Color+extension.swift in Sources */,
 				058038A3292D98C8006477A2 /* SharingAccount.swift in Sources */,
+				050FF46F293B8ABD00F445DE /* LogSleep.swift in Sources */,
 				059C68E82886B66B00C90710 /* DataItem.swift in Sources */,
 				05DD68D52886144E0066BFEC /* EntryType.swift in Sources */,
 				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,

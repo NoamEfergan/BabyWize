@@ -14,7 +14,9 @@ struct LogFeed: AppIntent {
     static let intentClassName = "LogFeedIntent"
 
     static var title: LocalizedStringResource = "Log a feed"
-    static var description = IntentDescription("Quickly and hands free log a feed")
+    static var description = IntentDescription(
+        "Quickly and hands free log a feed"
+    )
     static var suggestedInvocationPhrase = "Log a feed on baby wize"
 
     @Parameter(title: "Amount", requestValueDialog: "How much?")

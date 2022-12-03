@@ -47,11 +47,7 @@ struct InfoView: View {
                     EmptyView()
                 }
             }
-            SiriTipView(intent: LogFeed())
-                .onTapGesture {
-                    vm.requestSiriOrShowError()
-                }
-                .siriTipViewStyle(.dark)
+                    siriView
         }
         .alert(vm.siriRequestTitle, isPresented: $vm.isShowingSiriRequest) {
             Button(role: .cancel) {
@@ -62,6 +58,25 @@ struct InfoView: View {
         }
         .font(.system(.body, design: .rounded))
         .navigationTitle(vm.navigationTitle)
+    }
+
+    @ViewBuilder
+    private var siriView: some View {
+        Group {
+            switch vm.type {
+            case .liquidFeed, .solidFeed:
+                SiriTipView(intent: LogFeed())
+            case .sleep:
+                SiriTipView(intent: LogSleep())
+            default:
+                EmptyView()
+            }
+        }
+        .onTapGesture {
+            vm.requestSiriOrShowError()
+        }
+        .siriTipViewStyle(.dark)
+        
     }
 }
 
