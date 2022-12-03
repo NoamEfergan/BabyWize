@@ -42,7 +42,7 @@ struct FeedChart: View {
     private var plotWidth: CGFloat {
         let fullScreenWidth = UIScreen.main.bounds.width
         let dividedAmount = fullScreenWidth / CGFloat(feedData.count)
-        let minSize = CGFloat(feedData.count) * (100 + sizeModifier)
+        let minSize = CGFloat(feedData.count) * (80 + sizeModifier)
         return max(minSize, dividedAmount)
     }
 
@@ -61,17 +61,13 @@ struct FeedChart: View {
                     if showTitle {
                         if isShowingJoint {
                             jointChart
-                                .contentTransition(.interpolate)
                         } else {
                             separateCharts
-                                .contentTransition(.interpolate)
                         }
                     } else {
                         separateCharts
-                            .contentTransition(.interpolate)
                     }
                 }
-                .padding(.horizontal)
             }
         }
         .onAppear {
@@ -138,6 +134,7 @@ struct FeedChart: View {
                     }
                     .chartModifier(plotWidth: plotWidth)
                 }
+                .scrollIndicators(.visible)
             }
             .transition(.push(from: .bottom))
             .frame(minHeight: 200)
@@ -154,6 +151,7 @@ struct FeedChart: View {
                     }
                     .chartModifier(plotWidth: plotWidth)
                 }
+                .scrollIndicators(.visible)
             }
             .transition(.push(from: .top))
             .frame(minHeight: 200)
@@ -172,6 +170,8 @@ struct FeedChart: View {
             }
             .chartModifier(plotWidth: plotWidth)
         }
+
+        .scrollIndicators(.visible)
     }
 
     @ChartContentBuilder
@@ -252,7 +252,7 @@ struct FeedChart: View {
 struct FeedChart_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            FeedChart(feedData: PlaceholderChart.MockData.mockFeed.getUpTo(limit: 2))
+            FeedChart(feedData: PlaceholderChart.MockData.mockFeed.getUpTo(limit: 7))
         }
         ScrollView {
             FeedChart(feedData: PlaceholderChart.MockData.mockFeed, showTitle: false)
@@ -269,7 +269,7 @@ private struct ChartModifier: ViewModifier {
                 plotArea.frame(width: plotWidth)
             })
             .frame(maxHeight: .greatestFiniteMagnitude)
-            .frame(width: UIScreen.main.bounds.width)
+            .frame(minWidth: UIScreen.main.bounds.width)
             .frame(maxWidth: .greatestFiniteMagnitude)
             .padding()
     }

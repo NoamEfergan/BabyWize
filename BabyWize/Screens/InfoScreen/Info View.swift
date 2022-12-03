@@ -51,6 +51,7 @@ struct InfoView: View {
                 .onTapGesture {
                     vm.requestSiriOrShowError()
                 }
+                .siriTipViewStyle(.dark)
         }
         .alert(vm.siriRequestTitle, isPresented: $vm.isShowingSiriRequest) {
             Button(role: .cancel) {
@@ -58,7 +59,6 @@ struct InfoView: View {
             } label: {
                 Text("Ok")
             }
-
         }
         .font(.system(.body, design: .rounded))
         .navigationTitle(vm.navigationTitle)

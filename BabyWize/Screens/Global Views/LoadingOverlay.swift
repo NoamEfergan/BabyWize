@@ -16,7 +16,7 @@ struct LoadingOverlay: View {
             .foregroundColor(Color.primary)
             .cornerRadius(20)
             .opacity(isShowing ? 1 : 0)
-            .scaleEffect(isShowing ? 1 : 0)
+            .scaleEffect(isShowing ? 1 : 0.1)
             .animation(.easeInOut, value: isShowing)
     }
 }

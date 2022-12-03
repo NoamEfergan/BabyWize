@@ -28,7 +28,7 @@ struct LoadingView<Content>: View where Content: View {
                     .foregroundColor(Color.primary)
                     .cornerRadius(20)
                     .opacity(self.isShowing ? 1 : 0)
-                    .scaleEffect(self.isShowing ? 1 : 0)
+                    .scaleEffect(self.isShowing ? 1 : 0.1)
                     .animation(.easeInOut, value: isShowing)
             }
         }

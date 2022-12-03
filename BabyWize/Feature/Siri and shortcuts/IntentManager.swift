@@ -11,16 +11,14 @@ import AppIntents
 
 // MARK: - IntentManager
 struct IntentManager {
-    static func requestSiriAuth() {
-
-    }
+    static func requestSiriAuth() {}
 }
 
 // MARK: - ShortcutProvider
 struct ShortcutProvider: AppShortcutsProvider {
     @AppShortcutsBuilder static var appShortcuts: [AppShortcut] {
-            AppShortcut(intent: LogFeed(), phrases: [
-                "Log a feed"
-            ])
+        AppShortcut(intent: LogFeed(), phrases: [
+            "Log a feed"
+        ])
     }
 }

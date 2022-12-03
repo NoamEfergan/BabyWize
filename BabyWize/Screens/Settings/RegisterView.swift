@@ -84,7 +84,6 @@ struct RegisterView: View {
 
                     Button("Create account") {
                         performRegister()
-                        
                     }
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)

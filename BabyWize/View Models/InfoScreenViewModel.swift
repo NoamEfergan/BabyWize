@@ -23,7 +23,7 @@ final class InfoScreenVM: ObservableObject {
     @Published var solidSectionTitle: String = .nonAvailable
     @Published var screen: Screens = .sleep
     @Published var inputScreen: Screens = .detailInputSleep
-    
+
     @Published var isShowingSiriRequest = false
 
     var type: EntryType? {
@@ -36,6 +36,7 @@ final class InfoScreenVM: ObservableObject {
             return nil
         }
     }
+
     var siriRequestTitle = "You're going to need to allow Siri in order to use these shortcuts"
 
     init(screen: Screens) {
@@ -43,7 +44,7 @@ final class InfoScreenVM: ObservableObject {
         inputScreen = screen == .feed ? .detailInputLiquidFeed : .detailInputSleep
         setTitles()
     }
-    
+
     func addUserActivity() {
 //        let identifier = "LogFeedIntent"
 //        let userActivity = NSUserActivity(activityType: identifier)
@@ -56,16 +57,19 @@ final class InfoScreenVM: ObservableObject {
 //        IntentDonationManager.shared.donate(intent: LogFeed())
         Task {
             do {
-                try await LogFeed().donate()
+                let intent = LogFeed()
+                try await IntentDonationManager.shared.donate(intent: intent)
             } catch {
                 print("Failed with error: \(error.localizedDescription)")
             }
         }
     }
-    
+
     func requestSiriOrShowError() {
         INPreferences.requestSiriAuthorization { [weak self] status in
-            guard let self else { return }
+            guard let self else {
+                return
+            }
             switch status {
             case .authorized:
                 self.isShowingSiriRequest = false

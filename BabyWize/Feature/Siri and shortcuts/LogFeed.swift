@@ -16,7 +16,7 @@ struct LogFeed: AppIntent, CustomIntentMigratedAppIntent {
     static var title: LocalizedStringResource = "Log a feed"
     static var description = IntentDescription("Quickly and hands free log a feed")
     static var suggestedInvocationPhrase = "Log a feed"
-    
+
     @Parameter(title: "Amount")
     var amount: Double?
 
