@@ -18,7 +18,6 @@
 		050AEEBA288DB3870052A2D1 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEEB9288DB3870052A2D1 /* Secrets.swift */; };
 		050FF468293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
 		050FF469293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
-		050FF46A293A3F6A00F445DE /* LogFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E48B42939120A00A90399 /* LogFeed.swift */; };
 		053E48B52939120A00A90399 /* LogFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E48B42939120A00A90399 /* LogFeed.swift */; };
 		054B1F6128CA31E00021C5BF /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */; };
 		054B1F6328CA33610021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
@@ -850,7 +849,6 @@
 				05817C5C28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */,
 				056DC49A2916F60F00B30720 /* EntryViewModel.swift in Sources */,
 				05A42A4C2905479B0040A543 /* Constants.swift in Sources */,
-				050FF46A293A3F6A00F445DE /* LogFeed.swift in Sources */,
 				050FF469293A3F6600F445DE /* IntentManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

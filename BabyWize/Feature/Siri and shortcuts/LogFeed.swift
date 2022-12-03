@@ -10,7 +10,7 @@ import AppIntents
 
 // MARK: - LogFeed
 struct LogFeed: AppIntent {
-//    @Inject private var dataManager: BabyDataManager
+    @Inject private var dataManager: BabyDataManager
     static let intentClassName = "LogFeedIntent"
 
     static var title: LocalizedStringResource = "Log a feed"
@@ -35,6 +35,12 @@ struct LogFeed: AppIntent {
         guard let solidOrLiquid else {
             throw $solidOrLiquid.needsValueError("Is it a solid or a liquid feed?")
         }
+        let newFeed = Feed(id: UUID().uuidString,
+                           date: .now,
+                           amount: amount,
+                           note: nil,
+                           solidOrLiquid: .init(rawValue: solidOrLiquid.rawValue) ?? .liquid)
+        await dataManager.addFeed(newFeed)
         return .result(dialog: "Done! logged a \(solidOrLiquid.rawValue) feed of \(amount.description)")
     }
 }
