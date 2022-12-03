@@ -33,7 +33,7 @@ struct RegisterView: View {
     var body: some View {
         LoadingView(isShowing: $vm.isRegistering, text: "Please wait while we create your account") {
             VStack(spacing: 30) {
-                VStack {
+                VStack(spacing: 30) {
                     GrayTextField(text: $email,
                                   title: "Email",
                                   hint: "Please enter your email",
@@ -43,6 +43,9 @@ struct RegisterView: View {
                                   keyboardType: .emailAddress,
                                   errorText: "Please enter a valid email")
                         .tag(Textfields.email)
+                        .onTapGesture {
+                            focusedField = .email
+                        }
                         .focused($focusedField, equals: .email)
                         .submitLabel(.next)
                         .onSubmit {
@@ -59,6 +62,9 @@ struct RegisterView: View {
                                   hasError: hasPasswordError,
                                   errorText: "Password must be at least 8 characters long,\n and contain at least 1 capital letter and 1 number ")
                         .tag(Textfields.password)
+                        .onTapGesture {
+                            focusedField = .password
+                        }
                         .focused($focusedField, equals: .password)
                         .submitLabel(.next)
                         .onSubmit {
@@ -75,6 +81,9 @@ struct RegisterView: View {
                                   hasError: hasRePasswordError,
                                   errorText: "Both passwords must match")
                         .tag(Textfields.rePassword)
+                        .onTapGesture {
+                            focusedField = .rePassword
+                        }
                         .focused($focusedField, equals: .rePassword)
                         .submitLabel(.done)
                         .onSubmit {

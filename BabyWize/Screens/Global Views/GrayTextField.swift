@@ -36,9 +36,9 @@ struct GrayTextField: View {
                     VStack {
                         Group {
                             if isSecureState {
-                                SecureField(hint, text: $text)
+                                SecureField("", text: $text)
                             } else {
-                                TextField(hint, text: $text)
+                                TextField("", text: $text)
                             }
                         }
                         .transition(.opacity)
@@ -72,11 +72,13 @@ struct GrayTextField: View {
                     .padding(.horizontal, 5)
                     .frame(height: 15)
                     .background(.white)
-                    .padding(.bottom, hasError ? 75 : 50)
+                    .padding(.bottom, hasError ? 17 : 0)
+                    .offset(y: isFocused ? -25 : 0 )
                     .padding(.horizontal, 15)
                     .foregroundColor(hasError ? Color.red : accentColor)
             }
             .animation(.easeInOut, value: isSecureState)
+            .animation(.easeInOut, value: isFocused)
         }
     }
 }
@@ -85,7 +87,7 @@ struct GrayTextField: View {
 struct GrayTextField_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            GrayTextField(text: .constant("test"),
+            GrayTextField(text: .constant(""),
                           title: "test",
                           hint: "this is a test",
                           isSecure: true,

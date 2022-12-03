@@ -30,7 +30,7 @@ struct LoginView: View {
     var body: some View {
         LoadingView(isShowing: $vm.isLoading, text: "Signing in...") {
             VStack(spacing: 30) {
-                VStack {
+                VStack(spacing: 30) {
                     GrayTextField(text: $email,
                                   title: "Email",
                                   hint: "Please enter your email",
@@ -40,6 +40,9 @@ struct LoginView: View {
                                   keyboardType: .emailAddress,
                                   errorText: "Please enter a valid email")
                         .tag(Textfields.email)
+                        .onTapGesture {
+                            focusedField = .email
+                        }
                         .focused($focusedField, equals: .email)
                         .submitLabel(.next)
                         .onSubmit {
@@ -56,6 +59,9 @@ struct LoginView: View {
                                   hasError: hasPasswordError,
                                   errorText: "Password must be at least 8 characters long,\n and contain at least 1 capital letter and 1 number ")
                         .tag(Textfields.password)
+                        .onTapGesture {
+                            focusedField = .password
+                        }
                         .focused($focusedField, equals: .password)
                         .submitLabel(.next)
                         .onSubmit {
