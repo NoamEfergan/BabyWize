@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Intents
+import AppIntents
 
 final class InfoScreenVM: ObservableObject {
     @InjectedObject private var dataManager: BabyDataManager
@@ -21,6 +23,8 @@ final class InfoScreenVM: ObservableObject {
     @Published var solidSectionTitle: String = .nonAvailable
     @Published var screen: Screens = .sleep
     @Published var inputScreen: Screens = .detailInputSleep
+    
+    @Published var isShowingSiriRequest = false
 
     var type: EntryType? {
         switch inputScreen {
@@ -32,11 +36,44 @@ final class InfoScreenVM: ObservableObject {
             return nil
         }
     }
+    var siriRequestTitle = "You're going to need to allow Siri in order to use these shortcuts"
 
     init(screen: Screens) {
         self.screen = screen
         inputScreen = screen == .feed ? .detailInputLiquidFeed : .detailInputSleep
         setTitles()
+    }
+    
+    func addUserActivity() {
+//        let identifier = "LogFeedIntent"
+//        let userActivity = NSUserActivity(activityType: identifier)
+//        let title = "Quickly and hands free log a feed!"
+//        userActivity.title = title
+//        userActivity.suggestedInvocationPhrase = "Log a feed"
+//        userActivity.isEligibleForPrediction = true
+//        userActivity.persistentIdentifier = identifier
+//        let shortcut = INShortcut(userActivity: userActivity)
+//        IntentDonationManager.shared.donate(intent: LogFeed())
+        Task {
+            do {
+                try await LogFeed().donate()
+            } catch {
+                print("Failed with error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func requestSiriOrShowError() {
+        INPreferences.requestSiriAuthorization { [weak self] status in
+            guard let self else { return }
+            switch status {
+            case .authorized:
+                self.isShowingSiriRequest = false
+                self.addUserActivity()
+            default:
+                self.isShowingSiriRequest = true
+            }
+        }
     }
 
     private func setTitles() {

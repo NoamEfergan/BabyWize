@@ -16,6 +16,10 @@
 		050AEEA0288C641A0052A2D1 /* AddEntryWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEEA6288C6B170052A2D1 /* WidgetManager.swift */; };
 		050AEEBA288DB3870052A2D1 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEEB9288DB3870052A2D1 /* Secrets.swift */; };
+		050FF468293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
+		050FF469293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
+		050FF46A293A3F6A00F445DE /* LogFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E48B42939120A00A90399 /* LogFeed.swift */; };
+		053E48B52939120A00A90399 /* LogFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E48B42939120A00A90399 /* LogFeed.swift */; };
 		054B1F6128CA31E00021C5BF /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */; };
 		054B1F6328CA33610021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		054B1F6428CA33620021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
@@ -185,6 +189,10 @@
 		050AEEA6288C6B170052A2D1 /* WidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetManager.swift; sourceTree = "<group>"; };
 		050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AddEntryWidgetExtension.entitlements; sourceTree = "<group>"; };
 		050AEEB9288DB3870052A2D1 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		050FF467293A3F6600F445DE /* IntentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentManager.swift; sourceTree = "<group>"; };
+		053E48882939107800A90399 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		053E48932939107900A90399 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		053E48B42939120A00A90399 /* LogFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFeed.swift; sourceTree = "<group>"; };
 		054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		055CE12F2922DDCA00870066 /* ChartConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartConfiguration.swift; sourceTree = "<group>"; };
 		055CE1312925350200870066 /* FBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBKeys.swift; sourceTree = "<group>"; };
@@ -310,6 +318,8 @@
 			children = (
 				050AEE91288C64190052A2D1 /* WidgetKit.framework */,
 				050AEE93288C64190052A2D1 /* SwiftUI.framework */,
+				053E48882939107800A90399 /* Intents.framework */,
+				053E48932939107900A90399 /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -324,6 +334,15 @@
 				3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */,
 			);
 			path = AddEntryWidget;
+			sourceTree = "<group>";
+		};
+		050FF466293A3B6700F445DE /* Siri and shortcuts */ = {
+			isa = PBXGroup;
+			children = (
+				053E48B42939120A00A90399 /* LogFeed.swift */,
+				050FF467293A3F6600F445DE /* IntentManager.swift */,
+			);
+			path = "Siri and shortcuts";
 			sourceTree = "<group>";
 		};
 		056083722884147800728F1F = {
@@ -575,6 +594,7 @@
 		05DD68C72885FC4C0066BFEC /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				050FF466293A3B6700F445DE /* Siri and shortcuts */,
 				05DD68C82885FC520066BFEC /* Dependency Injection */,
 			);
 			path = Feature;
@@ -710,7 +730,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					050AEE8E288C64190052A2D1 = {
@@ -742,9 +762,6 @@
 				05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */,
 				05580E7528CB2B7300E4ECDE /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				3BE30FEC28D5D59000E75D22 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				05C1B205290BD35600039F8E /* XCRemoteSwiftPackageReference "Snappable" */,
-				05ABD7062910269700E1C755 /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */,
-				058038A7293290CD006477A2 /* XCRemoteSwiftPackageReference "QRCode" */,
 			);
 			productRefGroup = 0560837C2884147800728F1F /* Products */;
 			projectDirPath = "";
@@ -833,6 +850,8 @@
 				05817C5C28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */,
 				056DC49A2916F60F00B30720 /* EntryViewModel.swift in Sources */,
 				05A42A4C2905479B0040A543 /* Constants.swift in Sources */,
+				050FF46A293A3F6A00F445DE /* LogFeed.swift in Sources */,
+				050FF469293A3F6600F445DE /* IntentManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,8 +891,10 @@
 				056DC4A12916F9EE00B30720 /* SleepInputDetailView.swift in Sources */,
 				05DD68CA2885FC720066BFEC /* DependencyInjectionProtocols.swift in Sources */,
 				056083A9288417F700728F1F /* Date+extension.swift in Sources */,
+				053E48B52939120A00A90399 /* LogFeed.swift in Sources */,
 				05A42A672905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
 				05B8AF69288633A100BBC41B /* Array+extension.swift in Sources */,
+				050FF468293A3F6600F445DE /* IntentManager.swift in Sources */,
 				05DD68C42885FB2C0066BFEC /* BabyDataManager.swift in Sources */,
 				05ABD6FD290ECBFA00E1C755 /* String+extension.swift in Sources */,
 				05A42A5C290599E60040A543 /* Colors.swift in Sources */,
@@ -973,7 +994,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4J7W4CYA5S;
+				DEVELOPMENT_TEAM = YHVXQV27R7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AddEntryWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AddEntryWidget;
@@ -984,7 +1005,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.AddEntryWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = app.dev.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1003,7 +1024,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4J7W4CYA5S;
+				DEVELOPMENT_TEAM = YHVXQV27R7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AddEntryWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AddEntryWidget;
@@ -1014,7 +1035,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.AddEntryWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = app.dev.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1149,7 +1170,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyWize/Preview Content\"";
-				DEVELOPMENT_TEAM = 4J7W4CYA5S;
+				DEVELOPMENT_TEAM = YHVXQV27R7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BabyWize/Info.plist;
@@ -1165,7 +1186,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize;
+				PRODUCT_BUNDLE_IDENTIFIER = app.dev.BabyWize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1187,7 +1208,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyWize/Preview Content\"";
-				DEVELOPMENT_TEAM = 4J7W4CYA5S;
+				DEVELOPMENT_TEAM = YHVXQV27R7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BabyWize/Info.plist;
@@ -1203,7 +1224,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize;
+				PRODUCT_BUNDLE_IDENTIFIER = app.dev.BabyWize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1347,30 +1368,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
-			};
-		};
-		058038A7293290CD006477A2 /* XCRemoteSwiftPackageReference "QRCode" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dagronf/QRCode.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-		05ABD7062910269700E1C755 /* XCRemoteSwiftPackageReference "hstack-snap-to-scroll" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/swiftui-library/hstack-snap-to-scroll";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		05C1B205290BD35600039F8E /* XCRemoteSwiftPackageReference "Snappable" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hugehoge/Snappable.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
 			};
 		};
 		05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */ = {

@@ -5,8 +5,10 @@
 //  Created by Noam Efergan on 19/07/2022.
 //
 
+import AppIntents
 import Charts
 import SwiftUI
+
 
 // MARK: - InfoView
 struct InfoView: View {
@@ -45,6 +47,18 @@ struct InfoView: View {
                     EmptyView()
                 }
             }
+            SiriTipView(intent: LogFeed())
+                .onTapGesture {
+                    vm.requestSiriOrShowError()
+                }
+        }
+        .alert(vm.siriRequestTitle, isPresented: $vm.isShowingSiriRequest) {
+            Button(role: .cancel) {
+                vm.isShowingSiriRequest.toggle()
+            } label: {
+                Text("Ok")
+            }
+
         }
         .font(.system(.body, design: .rounded))
         .navigationTitle(vm.navigationTitle)
