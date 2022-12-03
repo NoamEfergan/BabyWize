@@ -45,19 +45,6 @@ final class InfoScreenVM: ObservableObject {
         setTitles()
     }
 
-    func addUserActivity() {
-        Task {
-            do {
-                let feedIntent = LogFeed()
-                let sleepIntent = LogSleep()
-                try await IntentDonationManager.shared.donate(intent: feedIntent)
-                try await IntentDonationManager.shared.donate(intent: sleepIntent)
-            } catch {
-                print("Failed with error: \(error.localizedDescription)")
-            }
-        }
-    }
-
     func requestSiriOrShowError() {
         INPreferences.requestSiriAuthorization { [weak self] status in
             guard let self else {
@@ -66,7 +53,6 @@ final class InfoScreenVM: ObservableObject {
             switch status {
             case .authorized:
                 self.isShowingSiriRequest = false
-                self.addUserActivity()
             default:
                 self.isShowingSiriRequest = true
             }

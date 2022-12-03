@@ -65,6 +65,16 @@ struct BabyWizeApp: App {
                     isShowingSplash.toggle()
                 }
             }
+            .task {
+                do {
+                    let feedIntent = LogFeed()
+                    let sleepIntent = LogSleep()
+                    try await IntentDonationManager.shared.donate(intent: feedIntent)
+                    try await IntentDonationManager.shared.donate(intent: sleepIntent)
+                } catch {
+                    print("Failed with error: \(error.localizedDescription)")
+                }
+            }
         }
         .onChange(of: scenePhase) { newValue in
             if newValue == .background {
@@ -76,6 +86,7 @@ struct BabyWizeApp: App {
 
 // MARK: - ShortcutProvider
 struct ShortcutProvider: AppShortcutsProvider {
+    static var shortcutTileColor: ShortcutTileColor = .pink
     static var appShortcuts: [AppShortcut] =
         [
             AppShortcut(intent: LogFeed(),
@@ -85,6 +96,10 @@ struct ShortcutProvider: AppShortcutsProvider {
             AppShortcut(intent: LogSleep(),
                         phrases: [
                             "Log a sleep on \(.applicationName)"
+                        ]),
+            AppShortcut(intent: LogNappy(),
+                        phrases: [
+                            "Log a nappy change on \(.applicationName)"
                         ])
         ]
 }

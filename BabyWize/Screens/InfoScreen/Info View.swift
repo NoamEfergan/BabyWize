@@ -47,7 +47,7 @@ struct InfoView: View {
                     EmptyView()
                 }
             }
-                    siriView
+            siriView
         }
         .alert(vm.siriRequestTitle, isPresented: $vm.isShowingSiriRequest) {
             Button(role: .cancel) {
@@ -76,7 +76,6 @@ struct InfoView: View {
             vm.requestSiriOrShowError()
         }
         .siriTipViewStyle(.dark)
-        
     }
 }
 
