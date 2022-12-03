@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Swinject
+import AppIntents
 
 // MARK: - AppDelegate
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -48,7 +49,7 @@ struct BabyWizeApp: App {
                         .resizable()
                         .aspectRatio(1*1, contentMode: .fit)
                         .frame(width: 185)
-                        .rotationEffect(Angle(degrees: self.isShowingSplash ? 360 : 0.0))
+                        .rotationEffect(Angle(degrees: isShowingSplash ? 360 : 0.0))
                 }
                 .scaleEffect(isShowingSplash ? 1 : 40)
                 .opacity(isShowingSplash ? 1 : 0)
@@ -72,3 +73,14 @@ struct BabyWizeApp: App {
         }
     }
 }
+
+// MARK: - ShortcutProvider
+struct ShortcutProvider: AppShortcutsProvider {
+    static var appShortcuts: [AppShortcut] {
+        AppShortcut(intent: LogFeed(),
+                    phrases: [
+                        "Log a feed on \(.applicationName)"
+                    ])
+    }
+}
+

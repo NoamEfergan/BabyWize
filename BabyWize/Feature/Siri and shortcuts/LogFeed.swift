@@ -9,25 +9,25 @@ import Foundation
 import AppIntents
 
 // MARK: - LogFeed
-@available(iOS 16.0, macOS 13.0, watchOS 9.0, tvOS 16.0, *)
-struct LogFeed: AppIntent, CustomIntentMigratedAppIntent {
+struct LogFeed: AppIntent {
+//    @Inject private var dataManager: BabyDataManager
     static let intentClassName = "LogFeedIntent"
 
     static var title: LocalizedStringResource = "Log a feed"
     static var description = IntentDescription("Quickly and hands free log a feed")
-    static var suggestedInvocationPhrase = "Log a feed"
+    static var suggestedInvocationPhrase = "Log a feed on baby wize"
 
-    @Parameter(title: "Amount")
+    @Parameter(title: "Amount", requestValueDialog: "How much?")
     var amount: Double?
 
-    @Parameter(title: "Solid or liquid")
+    @Parameter(title: "Solid or liquid", requestValueDialog: "Is it a solid feed or a liquid feed?")
     var solidOrLiquid: IntentSolidOrLiquid?
 
     static var parameterSummary: some ParameterSummary {
         Summary("Add a \(\.$solidOrLiquid) feed of \(\.$amount) to my entries.")
     }
 
-    func perform() async throws -> some IntentResult {
+    func perform() async throws -> some IntentResult & ProvidesDialog {
         // TODO: Place your refactored intent handler code here.
         guard let amount else {
             throw $amount.needsValueError("How much?")
@@ -35,7 +35,7 @@ struct LogFeed: AppIntent, CustomIntentMigratedAppIntent {
         guard let solidOrLiquid else {
             throw $solidOrLiquid.needsValueError("Is it a solid or a liquid feed?")
         }
-        return .result(dialog: "Done! logged a \(solidOrLiquid.rawValue) feed of \(amount)")
+        return .result(dialog: "Done! logged a \(solidOrLiquid.rawValue) feed of \(amount.description)")
     }
 }
 

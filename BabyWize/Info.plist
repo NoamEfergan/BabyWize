@@ -19,6 +19,7 @@
 	<array>
 		<string>ConfigurationIntent</string>
 		<string>LogFeedIntent</string>
+		<string>LogFeed</string>
 	</array>
 </dict>
 </plist>

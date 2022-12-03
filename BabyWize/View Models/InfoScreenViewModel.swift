@@ -46,15 +46,6 @@ final class InfoScreenVM: ObservableObject {
     }
 
     func addUserActivity() {
-//        let identifier = "LogFeedIntent"
-//        let userActivity = NSUserActivity(activityType: identifier)
-//        let title = "Quickly and hands free log a feed!"
-//        userActivity.title = title
-//        userActivity.suggestedInvocationPhrase = "Log a feed"
-//        userActivity.isEligibleForPrediction = true
-//        userActivity.persistentIdentifier = identifier
-//        let shortcut = INShortcut(userActivity: userActivity)
-//        IntentDonationManager.shared.donate(intent: LogFeed())
         Task {
             do {
                 let intent = LogFeed()
