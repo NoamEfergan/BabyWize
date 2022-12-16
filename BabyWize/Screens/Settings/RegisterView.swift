@@ -48,6 +48,11 @@ struct RegisterView: View {
                         }
                         .focused($focusedField, equals: .email)
                         .submitLabel(.next)
+                        .onChange(of: focusedField ){ newValue in
+                            if newValue != .email {
+                                hasEmailError = !vm.validateEmail(email)
+                            }
+                        }
                         .onSubmit {
                             hasEmailError = !vm.validateEmail(email)
                             focusedField = .password
@@ -67,6 +72,11 @@ struct RegisterView: View {
                         }
                         .focused($focusedField, equals: .password)
                         .submitLabel(.next)
+                        .onChange(of: focusedField ){ newValue in
+                            if newValue != .password {
+                                hasPasswordError = !vm.validatePassword(password)
+                            }
+                        }
                         .onSubmit {
                             hasPasswordError = !vm.validatePassword(password)
                             focusedField = .rePassword
@@ -85,6 +95,11 @@ struct RegisterView: View {
                             focusedField = .rePassword
                         }
                         .focused($focusedField, equals: .rePassword)
+                        .onChange(of: focusedField ){ newValue in
+                            if newValue != .rePassword {
+                                hasRePasswordError = password != rePassword
+                            }
+                        }
                         .submitLabel(.done)
                         .onSubmit {
                             hasRePasswordError = password != rePassword

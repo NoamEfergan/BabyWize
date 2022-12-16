@@ -125,7 +125,7 @@ final class AuthViewModel: ObservableObject {
     func anonymousLogin() async -> String? {
         do {
             let authResult = try await Auth.auth().signInAnonymously()
-            print("UserID (login):" + authResult.user.uid)
+            print("UserID (login):" + authResult.user.uid + " Signed in anonymously")
             return authResult.user.uid
         } catch {
             print(error.localizedDescription)

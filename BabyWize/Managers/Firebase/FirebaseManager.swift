@@ -11,31 +11,19 @@ import Foundation
 import Combine
 
 // MARK: - FirebaseManager
-final class FirebaseManager {
-    private var defaultsManager: UserDefaultManager
-    private var authVM: AuthViewModel
-    private let db = Firestore.firestore()
-    private var bag = Set<AnyCancellable>()
+class FirebaseManager {
+    typealias FirebaseDocument = FirebaseFirestore.DocumentReference
+    var defaultsManager: UserDefaultManager
+    var authVM: AuthViewModel
+    var bag = Set<AnyCancellable>()
+    var listenerRegistration: ListenerRegistration?
+    let db = Firestore.firestore()
 
-    private var userID: String?
     private var dataManager: BabyDataManager?
 
     init(authVM: AuthViewModel, defaultsManager: UserDefaultManager) {
         self.authVM = authVM
         self.defaultsManager = defaultsManager
-    }
-
-    func setup(with dataManager: BabyDataManager) {
-        Task { [weak self] in
-            guard let self else {
-                return
-            }
-            userID = defaultsManager.userID
-            self.dataManager = dataManager
-            await self.loginIfPossible()
-            await fetchAllFromRemote()
-            listenToLogin()
-        }
     }
 
     // MARK: - Public methods
@@ -47,11 +35,16 @@ final class FirebaseManager {
     }
 
     func createUser(with givenId: String) {
-        db.collection(FBKeys.kUsers).document(givenId).setData([FBKeys.kShared: []])
+        let document: FirebaseDocument = db.collection(FBKeys.kUsers).document(givenId)
+        document.setData([FBKeys.kShared: []]) { error in
+            if let error {
+                print("Failed with error: \(error.localizedDescription)")
+            }
+        }
     }
 
     func removeIdFromShared(_ Id: String) {
-        guard let userID else {
+        guard let userID = defaultsManager.userID else {
             return
         }
         let ref = db
@@ -85,10 +78,28 @@ final class FirebaseManager {
         }
     }
 
+    func fetchSharedDataIfAvailable(id: String, addID: Bool = false) async {
+        do {
+            let user = try await db.collection(FBKeys.kUsers).document(id).getDocument()
+            if let sharingAccounts = user.get(FBKeys.kShared) as? [[String: String]] {
+                for sharingAccount in sharingAccounts {
+                    guard let email = sharingAccount.keys.first,
+                          let id = sharingAccount.values.first else {
+                        print("Failed to get email or ID from shared account!")
+                        break
+                    }
+                    await getSharedData(for: id, email: email, addID: addID)
+                }
+            }
+        } catch {
+            print("Failed fetching user with error: \(error.localizedDescription)")
+        }
+    }
+
     // MARK: - Add
 
     func addFeed(_ item: Feed) {
-        guard let userID else {
+        guard let userID = defaultsManager.userID else {
             return
         }
         let feedDTO: [String: Any] = [
@@ -113,7 +124,7 @@ final class FirebaseManager {
     }
 
     func addSleep(_ item: Sleep) {
-        guard let userID else {
+        guard let userID = defaultsManager.userID else {
             return
         }
         let sleepDTO: [String: Any] = [
@@ -137,7 +148,7 @@ final class FirebaseManager {
     }
 
     func addNappyChange(_ item: NappyChange) {
-        guard let userID else {
+        guard let userID = defaultsManager.userID else {
             return
         }
         let changeDTO: [String: Any] = [
@@ -191,7 +202,7 @@ final class FirebaseManager {
     // MARK: - Get/ edit
 
     private func getAllSleeps() async {
-        guard let userID,
+        guard let userID = defaultsManager.userID,
               let remoteFeedSnapshot = try? await db
               .collection(FBKeys.kUsers)
               .document(userID)
@@ -205,7 +216,7 @@ final class FirebaseManager {
     }
 
     private func getAllChanges() async {
-        guard let userID,
+        guard let userID = defaultsManager.userID,
               let remoteFeedSnapshot = try? await db
               .collection(FBKeys.kUsers)
               .document(userID)
@@ -219,7 +230,7 @@ final class FirebaseManager {
     }
 
     private func getAllFeeds() async {
-        guard let userID,
+        guard let userID = defaultsManager.userID,
               let remoteFeedSnapshot = try? await db
               .collection(FBKeys.kUsers)
               .document(userID)
@@ -235,7 +246,7 @@ final class FirebaseManager {
     // MARK: - Delete
 
     func removeItems(items: [any DataItem], key: String) {
-        guard let userID else {
+        guard let userID = defaultsManager.userID else {
             return
         }
         let batch = db.batch()
@@ -255,7 +266,7 @@ final class FirebaseManager {
     // MARK: - Private methods
 
     private func addIdToShared(_ id: String, email: String) async {
-        guard let userID, let userEmail = defaultsManager.email else {
+        guard let userID = defaultsManager.userID, let userEmail = defaultsManager.email else {
             return
         }
         defaultsManager.addNewSharingAccount(.init(id: id, email: email))
@@ -281,24 +292,6 @@ final class FirebaseManager {
         }
     }
 
-    private func fetchSharedDataIfAvailable(id: String, addID: Bool = false) async {
-        do {
-            let user = try await db.collection(FBKeys.kUsers).document(id).getDocument()
-            if let sharingAccounts = user.get(FBKeys.kShared) as? [[String: String]] {
-                for sharingAccount in sharingAccounts {
-                    guard let email = sharingAccount.keys.first,
-                          let id = sharingAccount.values.first else {
-                        print("Failed to get email or ID from shared account!")
-                        break
-                    }
-                    await getSharedData(for: id, email: email, addID: addID)
-                }
-            }
-        } catch {
-            print("Failed fetching user with error: \(error.localizedDescription)")
-        }
-    }
-
     private func loginIfPossible() async {
         if defaultsManager.hasAccount,
            let credentials = try? KeychainManager.fetchCredentials(),
@@ -306,46 +299,10 @@ final class FirebaseManager {
                                        password: credentials.password,
                                        shouldSaveToKeychain: false) {
             defaultsManager.signIn(with: id, email: credentials.email)
-            userID = id
             await fetchSharedDataIfAvailable(id: id)
         } else {
             let id = await authVM.anonymousLogin()
             defaultsManager.userID = id
-            userID = id
         }
-    }
-
-    private func listenToLogin() {
-        authVM
-            .$didLogIn
-            .receive(on: DispatchQueue.main)
-            .sink { didLogIn in
-                print("Did log in \(didLogIn)")
-                if didLogIn {
-                    Task { [weak self] in
-                        guard let self else {
-                            return
-                        }
-                        await self.fetchAllFromRemote()
-                        if let userID = self.userID {
-                            await self.fetchSharedDataIfAvailable(id: userID, addID: true)
-                        }
-                    }
-                }
-            }
-            .store(in: &bag)
-
-        authVM
-            .$didRegister
-            .receive(on: DispatchQueue.main)
-            .sink { [
-                weak self
-            ] id in
-                if let id {
-                    print("Did register \(id)")
-                    self?.createUser(with: id)
-                }
-            }
-            .store(in: &bag)
     }
 }

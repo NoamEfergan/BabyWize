@@ -20,6 +20,8 @@ struct GrayTextField: View {
     var hasError = false
     var keyboardType: UIKeyboardType = .default
     var errorText = ""
+    var onCommit: (() -> Void)? = nil
+    var onChangeEdit: ((Bool) -> Void)? = nil
 
     private var imageName: String {
         isSecureState ? "eye.slash" : "eye"
@@ -27,6 +29,14 @@ struct GrayTextField: View {
 
     private var accentColor: Color {
         isFocused ? selectedColor : Color.secondary
+    }
+    
+    private var textShouldBeUp : Bool {
+        if isFocused {
+            return true
+        } else {
+            return !text.isEmpty
+        }
     }
 
     var body: some View {
@@ -52,8 +62,8 @@ struct GrayTextField: View {
                         if hasError {
                             Text(errorText)
                                 .foregroundColor(.red)
-                                .font(.system(size: 9, design: .rounded))
-                                .lineLimit(2)
+                                .font(.system(.footnote, design: .rounded))
+                                .lineLimit(1)
                         }
                     }
 
@@ -73,7 +83,7 @@ struct GrayTextField: View {
                     .frame(height: 15)
                     .background(.white)
                     .padding(.bottom, hasError ? 17 : 0)
-                    .offset(y: isFocused ? -25 : 0 )
+                    .offset(y: textShouldBeUp ? -25 : 0 )
                     .padding(.horizontal, 15)
                     .foregroundColor(hasError ? Color.red : accentColor)
             }

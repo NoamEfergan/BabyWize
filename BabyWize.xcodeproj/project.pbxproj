@@ -35,6 +35,8 @@
 		0560839A2884147900728F1F /* BabyWizeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083992884147900728F1F /* BabyWizeUITests.swift */; };
 		0560839C2884147900728F1F /* BabyWizeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */; };
 		056083A9288417F700728F1F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
+		056BC6BD294C6EFF00339442 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 056BC6BC294C6EFF00339442 /* FirebaseFirestoreCombine-Community */; };
+		056BC6C1294C71B200339442 /* FirebaseListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056BC6C0294C71B200339442 /* FirebaseListeners.swift */; };
 		056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D7C7B28F32FB500E3514D /* LoadingView.swift */; };
 		056DC4832916A0EC00B30720 /* AccessibleLabeledContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */; };
 		056DC4872916AA7900B30720 /* AccessibleLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */; };
@@ -209,6 +211,7 @@
 		056083992884147900728F1F /* BabyWizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITests.swift; sourceTree = "<group>"; };
 		0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		056083A8288417F700728F1F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
+		056BC6C0294C71B200339442 /* FirebaseListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListeners.swift; sourceTree = "<group>"; };
 		056D7C7B28F32FB500E3514D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleLabeledContent.swift; sourceTree = "<group>"; };
 		056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleLabeledTextField.swift; sourceTree = "<group>"; };
@@ -291,6 +294,7 @@
 				3BE30FF228D5D59000E75D22 /* FirebaseDatabaseSwift in Frameworks */,
 				05580E7728CB2B7300E4ECDE /* Algorithms in Frameworks */,
 				3BE30FEE28D5D59000E75D22 /* FirebaseAuth in Frameworks */,
+				056BC6BD294C6EFF00339442 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				3BE30FF628D5D59000E75D22 /* FirebaseFirestoreSwift in Frameworks */,
 				3BE30FF028D5D59000E75D22 /* FirebaseDatabase in Frameworks */,
 				3BE30FF828D5D59000E75D22 /* FirebaseStorage in Frameworks */,
@@ -483,6 +487,7 @@
 			children = (
 				05A42A602905A5790040A543 /* FirebaseManager.swift */,
 				05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */,
+				056BC6C0294C71B200339442 /* FirebaseListeners.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -687,6 +692,7 @@
 				3BE30FF328D5D59000E75D22 /* FirebaseFirestore */,
 				3BE30FF528D5D59000E75D22 /* FirebaseFirestoreSwift */,
 				3BE30FF728D5D59000E75D22 /* FirebaseStorage */,
+				056BC6BC294C6EFF00339442 /* FirebaseFirestoreCombine-Community */,
 			);
 			productName = BabyTracker;
 			productReference = 0560837B2884147800728F1F /* BabyWize.app */;
@@ -898,6 +904,7 @@
 				056083A9288417F700728F1F /* Date+extension.swift in Sources */,
 				053E48B52939120A00A90399 /* LogFeed.swift in Sources */,
 				05A42A672905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
+				056BC6C1294C71B200339442 /* FirebaseListeners.swift in Sources */,
 				05B8AF69288633A100BBC41B /* Array+extension.swift in Sources */,
 				050FF468293A3F6600F445DE /* IntentManager.swift in Sources */,
 				05DD68C42885FB2C0066BFEC /* BabyDataManager.swift in Sources */,
@@ -1011,7 +1018,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.dev.BabyWize.AddEntryWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1041,7 +1048,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.dev.BabyWize.AddEntryWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1182,6 +1189,7 @@
 				INFOPLIST_FILE = BabyWize/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Baby Wize";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSSiriUsageDescription = "We need to use Siri to utilise shortcuts and Siri control";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
@@ -1192,7 +1200,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.dev.BabyWize;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1220,6 +1228,7 @@
 				INFOPLIST_FILE = BabyWize/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Baby Wize";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSSiriUsageDescription = "We need to use Siri to utilise shortcuts and Siri control";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
@@ -1230,7 +1239,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.dev.BabyWize;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1399,6 +1408,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 05580E7528CB2B7300E4ECDE /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
+		};
+		056BC6BC294C6EFF00339442 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3BE30FEC28D5D59000E75D22 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
 		};
 		05A42A4F290549D90040A543 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;
