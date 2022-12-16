@@ -26,6 +26,18 @@ class FirebaseManager {
         self.defaultsManager = defaultsManager
     }
 
+    func setup(with dataManager: BabyDataManager) {
+        Task { [weak self] in
+            guard let self else {
+                return
+            }
+            self.dataManager = dataManager
+            await self.loginIfPossible()
+            await fetchAllFromRemote()
+            listenToLogin()
+        }
+    }
+
     // MARK: - Public methods
 
     func fetchAllFromRemote() async {
