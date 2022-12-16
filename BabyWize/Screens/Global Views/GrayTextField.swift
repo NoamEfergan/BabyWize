@@ -30,7 +30,7 @@ struct GrayTextField: View {
     private var accentColor: Color {
         isFocused ? selectedColor : Color.secondary
     }
-    
+
     private var textShouldBeUp : Bool {
         if isFocused {
             return true
@@ -83,7 +83,7 @@ struct GrayTextField: View {
                     .frame(height: 15)
                     .background(.white)
                     .padding(.bottom, hasError ? 17 : 0)
-                    .offset(y: textShouldBeUp ? -25 : 0 )
+                    .offset(y: textShouldBeUp ? -25 : 0)
                     .padding(.horizontal, 15)
                     .foregroundColor(hasError ? Color.red : accentColor)
             }

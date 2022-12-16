@@ -17,120 +17,162 @@ struct BabyCoreDataManager {
 
     func addFeed(_ item: Feed) {
         item.mapToSavedFeed(context: moc)
-        save()
+        do {
+            try moc.save()
+        } catch {
+            print("Failed to add feed with error: \(error.localizedDescription)")
+        }
     }
 
     func addSleep(_ item: Sleep) {
         item.mapToSavedSleep(context: moc)
-        save()
+        do {
+            try moc.save()
+        } catch {
+            print("Failed to add sleep with error: \(error.localizedDescription)")
+        }
     }
 
     func addNappyChange(_ item: NappyChange) {
         item.mapToSavedChange(context: moc)
-        save()
-    }
-
-    private func save() {
         do {
             try moc.save()
         } catch {
-            print("Failed to save item!")
-            print(error.localizedDescription)
+            print("Failed to add nappy change with error: \(error.localizedDescription)")
         }
     }
 
     // Update
 
     func updateFeed(_ item: Feed) {
-        let savedFeeds = try? moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed]
-        let relevantFeed = savedFeeds?.first(where: { $0.id == item.id })
-        relevantFeed?.date = item.date
-        relevantFeed?.amount = item.amount
-        relevantFeed?.note = item.note
-        try? moc.save()
+        do {
+            let savedFeeds = try moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed]
+            let relevantFeed = savedFeeds?.first(where: { $0.id == item.id })
+            relevantFeed?.date = item.date
+            relevantFeed?.amount = item.amount
+            relevantFeed?.note = item.note
+            try moc.save()
+        } catch {
+            print("Failed to update feed with error: \(error.localizedDescription)")
+        }
     }
 
     func updateSleep(_ item: Sleep) {
-        let savedSleeps = try? moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
-        let relevantSleep = savedSleeps?.first(where: { $0.id == item.id })
-        relevantSleep?.date = item.date
-        relevantSleep?.start = item.start
-        relevantSleep?.end = item.end
+        do {
+            let savedSleeps = try moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
+            let relevantSleep = savedSleeps?.first(where: { $0.id == item.id })
+            relevantSleep?.date = item.date
+            relevantSleep?.start = item.start
+            relevantSleep?.end = item.end
 
-        try? moc.save()
+            try moc.save()
+        } catch {
+            print("Failed to update sleep with error: \(error.localizedDescription)")
+        }
     }
 
     func updateChange(_ item: NappyChange) {
-        let savedChanges = try? moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
-        let relevantChange = savedChanges?.first(where: { $0.id == item.id })
-        relevantChange?.dateTime = item.dateTime
-        relevantChange?.wetOrSoiled = item.wetOrSoiled.rawValue
-        try? moc.save()
+        do {
+            let savedChanges = try moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
+            let relevantChange = savedChanges?.first(where: { $0.id == item.id })
+            relevantChange?.dateTime = item.dateTime
+            relevantChange?.wetOrSoiled = item.wetOrSoiled.rawValue
+            try moc.save()
+        } catch {
+            print("Failed to update nappy change with error: \(error.localizedDescription)")
+        }
     }
 
     // Remove
 
     func removeFeed(_ localFeeds: [Feed]) {
-        let savedFeeds = try? moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed]
-
-        var itemsToDelete: [SavedFeed] = []
-        for (local, saved) in product(localFeeds, savedFeeds ?? []) {
-            if saved.id == local.id {
-                itemsToDelete.append(saved)
+        do {
+            let savedFeeds = try moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed]
+            var itemsToDelete: [SavedFeed] = []
+            for (local, saved) in product(localFeeds, savedFeeds ?? []) {
+                if saved.id == local.id {
+                    itemsToDelete.append(saved)
+                }
             }
+            itemsToDelete.forEach { moc.delete($0) }
+            try moc.save()
+        } catch {
+            print("Failed to delete feed with error: \(error.localizedDescription)")
         }
-        itemsToDelete.forEach { moc.delete($0) }
-        try? moc.save()
     }
 
     func removeSleep(_ localSleeps: [Sleep]) {
-        let savedSleeps = try? moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
+        do {
+            let savedSleeps = try moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
 
-        var itemsToDelete: [SavedSleep] = []
-        for (local, saved) in product(localSleeps, savedSleeps ?? []) {
-            if saved.id == local.id {
-                itemsToDelete.append(saved)
+            var itemsToDelete: [SavedSleep] = []
+            for (local, saved) in product(localSleeps, savedSleeps ?? []) {
+                if saved.id == local.id {
+                    itemsToDelete.append(saved)
+                }
             }
+            itemsToDelete.forEach { moc.delete($0) }
+            try moc.save()
+        } catch {
+            print("Failed to remove sleep with error: \(error.localizedDescription)")
         }
-        itemsToDelete.forEach { moc.delete($0) }
-        try? moc.save()
     }
 
     func removeChange(_ localChanges: [NappyChange]) {
-        let savedChanged = try? moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
+        do {
+            let savedChanged = try moc.fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
 
-        var itemsToDelete: [SavedNappyChange] = []
-        for (local, saved) in product(localChanges, savedChanged ?? []) {
-            if saved.id == local.id {
-                itemsToDelete.append(saved)
+            var itemsToDelete: [SavedNappyChange] = []
+            for (local, saved) in product(localChanges, savedChanged ?? []) {
+                if saved.id == local.id {
+                    itemsToDelete.append(saved)
+                }
             }
+            itemsToDelete.forEach { moc.delete($0) }
+            try moc.save()
+        } catch {
+            print("Failed to remove nappy change with error: \(error.localizedDescription)")
         }
-        itemsToDelete.forEach { moc.delete($0) }
-        try? moc.save()
     }
 
     // MARK: - Helper methods
 
     func fetchFeeds() -> [Feed] {
-        guard let savedFeeds = try? moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed] else {
+        do {
+            guard let savedFeeds = try moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed] else {
+                return []
+            }
+            return savedFeeds.compactMap { $0.mapToFeed() }
+        } catch {
+            print("Failed fetch feeds with error: \(error.localizedDescription)")
             return []
         }
-        return savedFeeds.compactMap { $0.mapToFeed() }
     }
 
     func fetchSleeps() -> [Sleep] {
-        guard let savedSleeps = try? moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep] else {
+        do {
+            guard let savedSleeps = try moc.fetch(.init(entityName: Constants.savedSleep.rawValue)) as? [SavedSleep]
+            else {
+                return []
+            }
+            return savedSleeps.compactMap { $0.mapToSleep() }
+        } catch {
+            print("Failed fetch sleeps with error: \(error.localizedDescription)")
             return []
         }
-        return savedSleeps.compactMap { $0.mapToSleep() }
     }
 
     func fetchChanges() -> [NappyChange] {
-        guard let savedChanges = try? moc
-            .fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
-        else {
+        do {
+            guard let savedChanges = try moc
+                .fetch(.init(entityName: Constants.savedChange.rawValue)) as? [SavedNappyChange]
+            else {
+                return []
+            }
+            return savedChanges.compactMap { $0.mapToNappyChange() }
+        } catch {
+            print("Failed fetch nappy changes with error: \(error.localizedDescription)")
             return []
         }
-        return savedChanges.compactMap { $0.mapToNappyChange() }
     }
 }

@@ -5,8 +5,9 @@
 //  Created by Noam Efergan on 16/12/2022.
 //
 
-import FirebaseCore
+
 import FirebaseFirestoreCombineSwift
+import FirebaseFirestore
 import Foundation
 import Combine
 
@@ -26,7 +27,6 @@ extension FirebaseManager {
                             await self.fetchAllFromRemote()
                             await self.fetchSharedDataIfAvailable(id: userID, addID: true)
                         }
-                        self.addListeners()
                     }
                 }
             }
@@ -48,22 +48,43 @@ extension FirebaseManager {
         guard let userID = defaultsManager.userID else {
             return
         }
-        listenerRegistration = db
-            .collection(userID)
-            .document(FBKeys.kFeeds)
-            .addSnapshotListener { _, _ in
-                print("Noam: Here ✋")
-            }
+        addFeedsListener(userID: userID)
+    }
 
+    private func addFeedsListener(userID: String) {
         db
-            .collection(userID)
-            .document(FBKeys.kFeeds)
-            .snapshotPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink { error in
-                print(error)
-            } receiveValue: { snapshot in
-                print(snapshot)
-            }.store(in: &bag)
+            .collection(FBKeys.kUsers)
+            .document(userID)
+            .collection(FBKeys.kFeeds)
+            .addSnapshotListener { [weak self] snapshot, error in
+                guard let self else {
+                    return
+                }
+                if let error {
+                    print("Failed with error: \(error.localizedDescription)")
+                }
+                snapshot?.documentChanges.forEach(self.handleFeedDocumentChange)
+            }
+    }
+
+    private func handleFeedDocumentChange(_ change: DocumentChange) {
+        switch change.type {
+        case .added:
+            if let feed = change.document.mapToFeed() {
+                dataManager?.addFeed(feed, updateRemote: false)
+            }
+        case .modified:
+            if let feed = change.document.mapToFeed(),
+               let index = dataManager?.feedData.firstIndex(where: { $0.id == feed.id }) {
+                dataManager?.updateFeed(feed, index: index, updateRemote: false)
+            }
+        case .removed:
+            print(change.document.data())
+            if let feed = change.document.mapToFeed(),
+               let indices = dataManager?.feedData.filter({ $0.id == feed.id }).indices.compactMap({ Int($0) }) {
+                let indexSet = IndexSet(indices)
+                dataManager?.removeFeed(at: indexSet)
+            }
+        }
     }
 }

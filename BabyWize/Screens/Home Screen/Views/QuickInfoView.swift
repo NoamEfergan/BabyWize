@@ -10,25 +10,11 @@ import SwiftUI
 // MARK: - QuickInfoView
 struct QuickInfoView: View {
     let color: Color
-    let backgroundColor: Color?
+    var backgroundColor: Color? = nil
     let title: String
-    let value: String
+    @Binding var value: String
     let shouldShowInfo: Bool
     let leadingTo: Screens
-
-    init(color: Color,
-         backgroundColor: Color? = nil,
-         title: String,
-         value: String,
-         shouldShowInfo: Bool,
-         leadingTo: Screens) {
-        self.color = color
-        self.backgroundColor = backgroundColor
-        self.title = title
-        self.value = value
-        self.shouldShowInfo = shouldShowInfo
-        self.leadingTo = leadingTo
-    }
 
     var spacing: Double {
         value.contains("\n") ? 0 : 10
@@ -69,12 +55,16 @@ struct QuickInfoView: View {
 struct QuickInfoView_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
-            QuickInfoView(color: .init(hex: "#F05052"), title: "Last sleep", value: "5 Hours,\n40 mins",
+            QuickInfoView(color: .init(hex: "#F05052"),
+                          title: "Last sleep",
+                          value: .constant("5 Hours,\n40 mins"),
                           shouldShowInfo: true,
                           leadingTo: .feed)
                 .frame(width: 200)
 
-            QuickInfoView(color: .init(hex: "#F05052"), title: "Last Feed", value: "170ml", shouldShowInfo: true,
+            QuickInfoView(color: .init(hex: "#F05052"),
+                          title: "Last Feed",
+                          value: .constant("170ml"), shouldShowInfo: true,
                           leadingTo: .feed)
                 .frame(width: 200)
         }

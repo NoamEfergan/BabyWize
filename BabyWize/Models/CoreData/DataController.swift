@@ -15,7 +15,9 @@ class DataController: ObservableObject {
         container.loadPersistentStores { _, error in
             if let error {
                 print("Failed with error: \(error.localizedDescription)")
+                return
             }
+            self.container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         }
     }
 }

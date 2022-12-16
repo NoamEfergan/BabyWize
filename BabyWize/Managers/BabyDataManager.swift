@@ -19,9 +19,28 @@ final class BabyDataManager: ObservableObject {
 
     // MARK: - Exposed variables
 
-    @Published var sleepData: [Sleep] = []
-    @Published var feedData: [Feed] = []
-    @Published var nappyData: [NappyChange] = []
+    @Published var sleepData: [Sleep] = [] {
+        didSet {
+            lastSleepString = getLast(for: .sleep)
+        }
+    }
+
+    @Published var feedData: [Feed] = [] {
+        didSet {
+            lastFeedString = getLast(for: .liquidFeed)
+        }
+    }
+
+    @Published var nappyData: [NappyChange] = [] {
+        didSet {
+            lastChangeString = getLast(for: .nappy)
+        }
+    }
+
+    @Published var lastFeedString: String = .nonAvailable
+    @Published var lastSleepString: String = .nonAvailable
+    @Published var lastChangeString: String = .nonAvailable
+
     private var bag = Set<AnyCancellable>()
 
     init() {
@@ -46,26 +65,6 @@ final class BabyDataManager: ObservableObject {
             return nappyData.isEmpty
         case .solidFeed:
             return feedData.filter(\.isSolids).isEmpty
-        }
-    }
-
-    func getLast(for type: EntryType) -> String {
-        defer {
-            _ = self.objectWillChange
-        }
-        switch type {
-        case .liquidFeed, .solidFeed:
-            guard let lastItem = feedData.last else {
-                return .nonAvailable
-            }
-            return lastItem.amount.displayableAmount(isSolid: lastItem.isSolids)
-        case .sleep:
-            return sleepData.last?.getDisplayableString() ?? .nonAvailable
-        case .nappy:
-            guard let lastNappy = nappyData.last else {
-                return .nonAvailable
-            }
-            return "\(lastNappy.dateTime.formatted(date: .omitted, time: .shortened)), \(lastNappy.wetOrSoiled.rawValue) "
         }
     }
 
@@ -141,6 +140,9 @@ final class BabyDataManager: ObservableObject {
     }
 
     func mergeFeedsWithRemote(_ remoteFeeds: [Feed]) {
+        defer {
+            feedData = feedData.uniqued(on: { $0.id })
+        }
         if feedData.isEmpty {
             remoteFeeds.forEach { addFeed($0) }
         }
@@ -160,6 +162,9 @@ final class BabyDataManager: ObservableObject {
     }
 
     func mergeSleepsWithRemote(_ remoteSleeps: [Sleep]) {
+        defer {
+            sleepData = sleepData.uniqued(on: { $0.id })
+        }
         if sleepData.isEmpty {
             remoteSleeps.forEach { addSleep($0) }
         }
@@ -179,6 +184,9 @@ final class BabyDataManager: ObservableObject {
     }
 
     func mergeChangesWithRemote(_ remoteChanges: [NappyChange]) {
+        defer {
+            nappyData = nappyData.uniqued(on: { $0.id })
+        }
         if nappyData.isEmpty {
             remoteChanges.forEach { addNappyChange($0) }
         }
@@ -310,6 +318,26 @@ final class BabyDataManager: ObservableObject {
     }
 
     // MARK: - Private methods
+
+    private func getLast(for type: EntryType) -> String {
+        defer {
+            _ = self.objectWillChange
+        }
+        switch type {
+        case .liquidFeed, .solidFeed:
+            guard let lastItem = feedData.last else {
+                return .nonAvailable
+            }
+            return lastItem.amount.displayableAmount(isSolid: lastItem.isSolids)
+        case .sleep:
+            return sleepData.last?.getDisplayableString() ?? .nonAvailable
+        case .nappy:
+            guard let lastNappy = nappyData.last else {
+                return .nonAvailable
+            }
+            return "\(lastNappy.dateTime.formatted(date: .omitted, time: .shortened)), \(lastNappy.wetOrSoiled.rawValue) "
+        }
+    }
 
     @objc private func logOutAndRemoveAll() {
         EntryType.allCases.forEach { removeAll(for: $0, includingRemote: false) }

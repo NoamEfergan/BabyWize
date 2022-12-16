@@ -19,7 +19,7 @@ class FirebaseManager {
     var listenerRegistration: ListenerRegistration?
     let db = Firestore.firestore()
 
-    private var dataManager: BabyDataManager?
+    var dataManager: BabyDataManager?
 
     init(authVM: AuthViewModel, defaultsManager: UserDefaultManager) {
         self.authVM = authVM
@@ -35,6 +35,7 @@ class FirebaseManager {
             await self.loginIfPossible()
             await fetchAllFromRemote()
             listenToLogin()
+            addListeners()
         }
     }
 

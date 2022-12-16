@@ -20,19 +20,19 @@ struct QuickInfoSection: View {
                 HStack {
                     QuickInfoView(color: .init(hex: "#F05052"),
                                   title: "Last Feed",
-                                  value: dataManager.getLast(for: .liquidFeed),
+                                  value: $dataManager.lastFeedString,
                                   shouldShowInfo: !dataManager.feedData.isEmpty,
                                   leadingTo: .feed)
                     QuickInfoView(color: .init(hex: "#5354EC"),
                                   title: "Last Sleep",
-                                  value: dataManager.getLast(for: .sleep),
+                                  value: $dataManager.lastSleepString,
                                   shouldShowInfo: !dataManager.sleepData.isEmpty,
                                   leadingTo: .sleep)
                 }
                 QuickInfoView(color: .init(hex: "#F0A24E"),
                               backgroundColor: .init(hex: "#F6DDC5"),
                               title: "Last Nappy Change",
-                              value: dataManager.getLast(for: .nappy),
+                              value: $dataManager.lastChangeString,
                               shouldShowInfo: !dataManager.nappyData.isEmpty,
                               leadingTo: .detailInputNappy)
             }
@@ -40,18 +40,18 @@ struct QuickInfoSection: View {
             VStack {
                 QuickInfoView(color: .init(hex: "#F05052"),
                               title: "Last Feed",
-                              value: dataManager.getLast(for: .liquidFeed),
+                              value: $dataManager.lastFeedString,
                               shouldShowInfo: !dataManager.feedData.isEmpty,
                               leadingTo: .feed)
                 QuickInfoView(color: .init(hex: "#5354EC"),
                               title: "Last Sleep",
-                              value: dataManager.getLast(for: .sleep),
+                              value: $dataManager.lastSleepString,
                               shouldShowInfo: !dataManager.sleepData.isEmpty,
                               leadingTo: .sleep)
                 QuickInfoView(color: .init(hex: "#F0A24E"),
                               backgroundColor: .init(hex: "#F6DDC5"),
                               title: "Last Nappy Change",
-                              value: dataManager.getLast(for: .nappy),
+                              value: $dataManager.lastChangeString,
                               shouldShowInfo: false,
                               leadingTo: .none)
             }
