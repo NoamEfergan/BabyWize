@@ -15,21 +15,26 @@ struct AccessibleLabeledTextField: View {
     @Binding var value: String
 
     var body: some View {
-        switch typeSize {
-        case .xSmall, .small, .medium, .large, .xLarge :
-            LabeledContent(label) {
-                TextField(hint, text: $value)
-                    .textFieldStyle(.roundedBorder)
+        Group {
+            switch typeSize {
+            case .xSmall, .small, .medium, .large, .xLarge :
+                LabeledContent(label) {
+                    TextField(hint, text: $value)
+                        .textFieldStyle(.roundedBorder)
+                }
+            default:
+                VStack(alignment: .leading) {
+                    Text(label)
+                    TextField(hint, text: $value)
+                        .multilineTextAlignment(.leading)
+                        .textFieldStyle(.roundedBorder)
+                }
+                .font(.system(.body, design: .rounded))
             }
-        default:
-            VStack(alignment: .leading) {
-                Text(label)
-                TextField(hint, text: $value)
-                    .multilineTextAlignment(.leading)
-                    .textFieldStyle(.roundedBorder)
-            }
-            .font(.system(.body, design: .rounded))
         }
+        .accessibilityElement()
+        .accessibilityLabel(label)
+        .accessibilityValue(value)
     }
 }
 

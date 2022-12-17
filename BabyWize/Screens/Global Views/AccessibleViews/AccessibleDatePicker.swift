@@ -14,21 +14,26 @@ struct AccessibleDatePicker: View {
     @Binding var value: Date
 
     var body: some View {
-        switch typeSize {
-        case .xSmall, .small, .medium, .large, .xLarge :
+        Group {
+            switch typeSize {
+            case .xSmall, .small, .medium, .large, .xLarge :
 
-            DatePicker(label, selection: $value)
-                .datePickerStyle(.compact)
-        default:
-            VStack(alignment: .leading) {
-                Text(label)
-                DatePicker("", selection: $value)
+                DatePicker(label, selection: $value)
                     .datePickerStyle(.compact)
-                    .labelsHidden()
-                    .multilineTextAlignment(.leading)
+            default:
+                VStack(alignment: .leading) {
+                    Text(label)
+                    DatePicker("", selection: $value)
+                        .datePickerStyle(.compact)
+                        .labelsHidden()
+                        .multilineTextAlignment(.leading)
+                }
+                .font(.system(.body, design: .rounded))
             }
-            .font(.system(.body, design: .rounded))
         }
+        .accessibilityElement()
+        .accessibilityLabel(label)
+        .accessibilityValue(value.formatted())
     }
 }
 

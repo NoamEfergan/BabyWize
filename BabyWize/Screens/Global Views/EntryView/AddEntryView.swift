@@ -33,6 +33,8 @@ struct AddEntryView: View {
             if !errorText.isEmpty {
                 Text(errorText)
                     .foregroundColor(.red)
+                    .accessibilityLabel("Error")
+                    .accessibilityValue(errorText)
             }
             Button("Add") {
                 do {
@@ -70,6 +72,8 @@ struct AddEntryView: View {
         Picker("Entry Type?", selection:$entryType) {
             ForEach(EntryType.allCases.filter({ $0 != .solidFeed }), id: \.self) {
                 Text($0.title)
+                    .accessibilityLabel($0.title)
+                    .accessibilityAddTraits(.isButton)
             }
         }
     }

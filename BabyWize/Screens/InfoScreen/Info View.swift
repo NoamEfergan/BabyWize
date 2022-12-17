@@ -14,6 +14,16 @@ import SwiftUI
 struct InfoView: View {
     @InjectedObject private var dataManager: BabyDataManager
     @ObservedObject var vm: InfoScreenVM
+
+    private var shouldShowAllInputs: Bool {
+        guard let type = vm.type else {
+            return false
+        }
+        return dataManager.getAverage(for: type) != .nonAvailable
+            && dataManager.getBiggest(for: type) != .nonAvailable
+            && dataManager.getSmallest(for: type) != .nonAvailable
+    }
+
     var body: some View {
         List {
             if let type = vm.type {
@@ -21,7 +31,9 @@ struct InfoView: View {
                     AccessibleLabeledContent(label:vm.averageTitle, value: dataManager.getAverage(for: type))
                     AccessibleLabeledContent(label:vm.largestTitle, value: dataManager.getBiggest(for: type))
                     AccessibleLabeledContent(label: vm.smallestTitle, value: dataManager.getSmallest(for: type))
-                    NavigationLink("All inputs", value: vm.inputScreen)
+                    if shouldShowAllInputs {
+                        NavigationLink("All inputs", value: vm.inputScreen)
+                    }
                 }
                 if type == .liquidFeed, !dataManager.feedData.filter(\.isSolids).isEmpty {
                     Section(vm.solidSectionTitle) {
