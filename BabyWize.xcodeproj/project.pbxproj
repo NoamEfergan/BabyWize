@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05027FD4294E80CA00F8C6A8 /* AccessiblePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05027FD3294E80CA00F8C6A8 /* AccessiblePicker.swift */; };
 		050AEE92288C64190052A2D1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE91288C64190052A2D1 /* WidgetKit.framework */; };
 		050AEE94288C64190052A2D1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE93288C64190052A2D1 /* SwiftUI.framework */; };
 		050AEE97288C64190052A2D1 /* AddEntryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEE96288C64190052A2D1 /* AddEntryWidget.swift */; };
@@ -181,6 +182,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05027FD3294E80CA00F8C6A8 /* AccessiblePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessiblePicker.swift; sourceTree = "<group>"; };
 		050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AddEntryWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		050AEE91288C64190052A2D1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		050AEE93288C64190052A2D1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -428,6 +430,7 @@
 				056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */,
 				056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */,
 				056DC4892916AC4400B30720 /* AccessibleDatePicker.swift */,
+				05027FD3294E80CA00F8C6A8 /* AccessiblePicker.swift */,
 			);
 			path = AccessibleViews;
 			sourceTree = "<group>";
@@ -900,6 +903,7 @@
 				05817C5F28C788580040A4B0 /* DataController.swift in Sources */,
 				055CE1322925350200870066 /* FBKeys.swift in Sources */,
 				058038B629329EAA006477A2 /* LoadingOverlay.swift in Sources */,
+				05027FD4294E80CA00F8C6A8 /* AccessiblePicker.swift in Sources */,
 				0587BB582928EA8C00F39B25 /* NSNotification+extension.swift in Sources */,
 				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
 				056DC48F2916F36B00B30720 /* FeedEntryViewModel.swift in Sources */,

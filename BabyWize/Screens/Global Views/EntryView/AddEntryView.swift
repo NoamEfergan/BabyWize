@@ -13,7 +13,6 @@ struct AddEntryView: View {
     @StateObject var feedVM: FeedEntryViewModel = .init()
     @StateObject var sleepVM: SleepEntryViewModel = .init()
     @StateObject var nappyVM: NappyEntryViewModel = .init()
-    @Environment(\.dynamicTypeSize) var typeSize
     @State private var startDate: Date = .init()
     @State private var endDate: Date = .init()
     @State private var errorText = ""
@@ -21,7 +20,9 @@ struct AddEntryView: View {
 
     var body: some View {
         ScrollView {
-            entryPicker
+            AccessiblePicker(title: "Entry type?",
+                             selection: $entryType,
+                             data: EntryType.allCases.filter({ $0 != .solidFeed }).compactMap({ $0.title }))
             switch entryType {
             case .liquidFeed, .solidFeed:
                 FeedEntryView(vm: feedVM)
@@ -62,37 +63,6 @@ struct AddEntryView: View {
         })
         .animation(.easeIn, value: errorText)
         .animation(.easeInOut, value: entryType)
-    }
-
-    private var pickerTitle: some View {
-        Text("Entry Type")
-    }
-
-    private var picker: some View {
-        Picker("Entry Type?", selection:$entryType) {
-            ForEach(EntryType.allCases.filter({ $0 != .solidFeed }), id: \.self) {
-                Text($0.title)
-                    .accessibilityLabel($0.title)
-                    .accessibilityAddTraits(.isButton)
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var entryPicker: some View {
-        switch typeSize {
-        case .xSmall, .small, .medium, .large, .xLarge , .xxLarge:
-            HStack {
-                picker
-                    .pickerStyle(.segmented)
-            }
-        default:
-            VStack {
-                pickerTitle
-                picker
-                    .pickerStyle(.automatic)
-            }
-        }
     }
 }
 

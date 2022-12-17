@@ -8,11 +8,13 @@
 import Foundation
 import Swinject
 
+// MARK: - SleepEntryViewModel
 final class SleepEntryViewModel: EntryViewModel {
     @InjectedObject private var dataManager: BabyDataManager
     @Published var sleepDate: Date = .init()
     @Published var startDate: Date = .init()
     @Published var endDate: Date = .init()
+    @Published var selectedLiveOrOld: LiveOrOld = .Old
     var itemID = ""
 
     init() {}
@@ -64,5 +66,12 @@ final class SleepEntryViewModel: EntryViewModel {
         startDate = .init()
         endDate = .init()
         sleepDate = .init()
+    }
+}
+
+// MARK: SleepEntryViewModel.LiveOrOld
+extension SleepEntryViewModel {
+    enum LiveOrOld: String, Codable, CaseIterable {
+        case Live, Old
     }
 }

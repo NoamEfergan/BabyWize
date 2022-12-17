@@ -10,37 +10,17 @@ import SwiftUI
 // MARK: - NappyEntryView
 struct NappyEntryView: View {
     @ObservedObject var vm: NappyEntryViewModel
-    @Environment(\.dynamicTypeSize) var typeSize
+
     var body: some View {
         VStack {
             AccessibleDatePicker(label: "When", value: $vm.changeDate)
                 .padding()
-            switch typeSize {
-            case .xSmall, .small, .medium, .large, .xLarge , .xxLarge:
-                HStack {
-                    pickerTitle
-                    picker
-                        .pickerStyle(.segmented)
-                }
-            default:
-                VStack {
-                    pickerTitle
-                    picker
-                        .pickerStyle(.automatic)
-                }
-            }
-        }
-    }
-
-    private var pickerTitle: some View {
-        Text("Wet or soiled?")
-    }
-
-    private var picker: some View {
-        Picker("Wet or soiled?", selection: $vm.wetOrSoiled) {
-            ForEach(NappyChange.WetOrSoiled.allCases, id: \.self) { item in
-                Text(item.rawValue).tag(item)
-                    .font(.system(.body, design: .rounded))
+            HStack {
+                let title = "Wet or soiled?"
+                Text(title)
+                AccessiblePicker(title: title,
+                                 selection: $vm.wetOrSoiled,
+                                 data: NappyChange.WetOrSoiled.allCases.compactMap { $0.rawValue })
             }
         }
     }

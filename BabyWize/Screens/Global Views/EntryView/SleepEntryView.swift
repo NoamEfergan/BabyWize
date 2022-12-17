@@ -10,6 +10,7 @@ import SwiftUI
 // MARK: - SleepEntryView
 struct SleepEntryView: View {
     @ObservedObject var vm: SleepEntryViewModel
+    let pickerTitle = "Live or old?"
     var body: some View {
         VStack(alignment: .leading) {
             AccessibleDatePicker(label: "When", value: $vm.sleepDate)
