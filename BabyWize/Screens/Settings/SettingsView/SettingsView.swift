@@ -59,6 +59,8 @@ struct SettingsView: View {
                         Text("Share data quickly with a QR code!")
                             .font(.system(.footnote, design: .rounded))
                     }
+                    .accessibilityLabel("Share data")
+                    .accessibilityHint("Opens a QR code to share your data with someone else")
                 }
             }
 

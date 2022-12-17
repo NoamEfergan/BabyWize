@@ -51,6 +51,9 @@ struct GrayTextField: View {
                                 TextField("", text: $text)
                             }
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel("\(title) Text field")
+                        .accessibilityValue(text)
                         .transition(.opacity)
                         .textContentType(contentType)
                         .keyboardType(keyboardType)
@@ -64,6 +67,8 @@ struct GrayTextField: View {
                                 .foregroundColor(.red)
                                 .font(.system(.footnote, design: .rounded))
                                 .lineLimit(1)
+                                .accessibilityLabel("\(title) Error label")
+                                .accessibilityValue(errorText)
                         }
                     }
 
@@ -74,6 +79,7 @@ struct GrayTextField: View {
                             Image(systemName: imageName)
                                 .accentColor(.gray)
                         }
+                        .accessibilityHidden(true)
                         .padding(.trailing)
                         .padding(.bottom, hasError ? 14 : 0)
                     }
@@ -86,6 +92,7 @@ struct GrayTextField: View {
                     .offset(y: textShouldBeUp ? -25 : 0)
                     .padding(.horizontal, 15)
                     .foregroundColor(hasError ? Color.red : accentColor)
+                    .accessibilityHidden(true)
             }
             .animation(.easeInOut, value: isSecureState)
             .animation(.easeInOut, value: isFocused)
