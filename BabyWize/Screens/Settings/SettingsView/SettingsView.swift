@@ -95,6 +95,26 @@ struct SettingsView: View {
                 }
                 .transition(.scale)
             }
+            Section {
+                Group {
+                    Button("Report a bug 🐛") {
+                        if let url = vm.createEmailUrl() {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                    .accessibilityLabel("Report a bug")
+                    Button("Privacy policy") {
+                        if let url = URL(string: "https://www.babywize.app/privacypolicy/") {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                }
+                .font(.system(.body, design: .rounded))
+            } header: {
+                Text("Contact")
+            } footer: {
+                Text("We're always available at contact@babywize.app")
+            }
         }
         .listStyle(.insetGrouped)
         .navigationTitle("Settings")

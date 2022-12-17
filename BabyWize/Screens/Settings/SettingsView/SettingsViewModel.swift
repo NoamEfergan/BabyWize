@@ -39,6 +39,27 @@ final class SettingsViewModel: ObservableObject {
         idToRemove = ""
         isShowingRemoveAlert = false
     }
+
+    func createEmailUrl() -> URL? {
+        let to = "contact@babywize.app"
+        let gmailUrl = URL(string: "googlegmail://co?to=\(to)")
+        let outlookUrl = URL(string: "ms-outlook://compose?to=\(to)")
+        let yahooMail = URL(string: "ymail://mail/compose?to=\(to)")
+        let sparkUrl = URL(string: "readdle-spark://compose?recipient=\(to)")
+        let defaultUrl = URL(string: "mailto:\(to)")
+
+        if let gmailUrl, UIApplication.shared.canOpenURL(gmailUrl) {
+            return gmailUrl
+        } else if let outlookUrl, UIApplication.shared.canOpenURL(outlookUrl) {
+            return outlookUrl
+        } else if let yahooMail, UIApplication.shared.canOpenURL(yahooMail) {
+            return yahooMail
+        } else if let sparkUrl, UIApplication.shared.canOpenURL(sparkUrl) {
+            return sparkUrl
+        }
+
+        return defaultUrl
+    }
 }
 
 // MARK: - QrCodeImage

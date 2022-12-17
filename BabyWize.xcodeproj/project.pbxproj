@@ -670,7 +670,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0560839F2884147900728F1F /* Build configuration list for PBXNativeTarget "BabyWize" */;
 			buildPhases = (
-				3BE30FF928D5D90000E75D22 /* ShellScript */,
 				056083772884147800728F1F /* Sources */,
 				056083782884147800728F1F /* Frameworks */,
 				056083792884147800728F1F /* Resources */,
@@ -823,27 +822,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3BE30FF928D5D90000E75D22 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftformat >/dev/null; then\n  swiftformat . --swiftversion 5.7\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		050AEE8B288C64190052A2D1 /* Sources */ = {
