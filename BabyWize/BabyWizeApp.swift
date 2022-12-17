@@ -45,11 +45,12 @@ struct BabyWizeApp: App {
                 ZStack {
                     Theme.mainGradient
                         .ignoresSafeArea()
-                    Image("NoBGLogo")
+                    Image(decorative: "NoBGLogo")
                         .resizable()
                         .aspectRatio(1*1, contentMode: .fit)
                         .frame(width: 185)
                         .rotationEffect(Angle(degrees: isShowingSplash ? 360 : 0.0))
+                        .accessibilityHidden(true)
                 }
                 .scaleEffect(isShowingSplash ? 1 : 40)
                 .opacity(isShowingSplash ? 1 : 0)

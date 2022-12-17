@@ -61,6 +61,9 @@ struct HomeView: View {
                                 .frame(width: 32, height: 32)
                                 .foregroundColor(.secondary)
                         }
+                        .accessibilityRemoveTraits(.isImage)
+                        .accessibilityAddTraits(.isButton)
+                        .accessibilityLabel("Settings")
                     }
 
                     ToolbarItemGroup(placement: .navigationBarTrailing) {

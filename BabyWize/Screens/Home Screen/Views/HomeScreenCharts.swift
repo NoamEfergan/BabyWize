@@ -16,11 +16,14 @@ struct HomeScreenCharts: View {
         TabView {
             FeedChart(feedData: dataManager.feedData.getUpTo(limit: 6))
                 .frame(width: UIScreen.main.bounds.width)
+                .accessibilityLabel("Feed Chart")
             SleepChart(sleepData: dataManager.sleepData.getUpTo(limit: 3))
+                .accessibilityLabel("Sleep Chart")
         }
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         .frame(minHeight: 200)
+        .accessibilityLabel("Charts")
     }
 }
 

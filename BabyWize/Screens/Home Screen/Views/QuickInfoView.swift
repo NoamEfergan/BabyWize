@@ -26,17 +26,23 @@ struct QuickInfoView: View {
                 HStack(alignment: .top) {
                     Text(title)
                         .font(.system(.body, design: .rounded))
+                        .accessibilityHidden(true)
                     Spacer()
                     if shouldShowInfo {
                         NavigationLink(value: leadingTo) {
                             Image(systemName: "info.circle.fill")
                         }
+                        .accessibilityLabel("Show \(title) info")
+                        .accessibilityRemoveTraits(.isImage)
+                        .accessibilityAddTraits(.isButton)
                     }
                 }
                 .padding(.top)
                 Text(value)
                     .font(.system(.title, design: .rounded))
                     .bold()
+                    .accessibilityLabel(title)
+                    .accessibilityValue(value)
                 Spacer()
             }
         }

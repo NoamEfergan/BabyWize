@@ -114,10 +114,14 @@ struct FeedChart: View {
                 }
             }
         }
-
         .foregroundColor(.secondary)
         .font(.system(.subheadline, design: .rounded))
         .padding(.trailing, 5)
+        .accessibilityElement()
+        .accessibilityLabel("Displaying feed charts")
+        .accessibilityValue(defaultManager.chartConfiguration.rawValue)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint("Tap this to switch from joint charts to separate charts")
     }
 
     @ViewBuilder
@@ -184,7 +188,7 @@ struct FeedChart: View {
                     .foregroundColor(.secondary)
                     .font(.footnote)
             }
-
+            .accessibilityHidden(true)
 
         getPointMark(for: feed, amount: unit)
             .foregroundStyle(Color.blue.gradient)
@@ -193,8 +197,11 @@ struct FeedChart: View {
                     .foregroundColor(.secondary)
                     .font(.footnote)
             }
+            .accessibilityLabel(feed.date.formatted())
+            .accessibilityValue("\(feed.amount.liquidFeedDisplayableAmount()), \(feed.solidOrLiquid.rawValue)")
         getLineMark(for: feed, amount: unit, series: "Liquids")
             .foregroundStyle(Color.blue.gradient)
+            .accessibilityHidden(true)
     }
 
     @ChartContentBuilder
@@ -207,6 +214,7 @@ struct FeedChart: View {
                     .foregroundColor(.secondary)
                     .font(.footnote)
             }
+            .accessibilityHidden(true)
 
         getPointMark(for: feed, amount: amount)
             .foregroundStyle(Color.orange.gradient)
@@ -215,8 +223,11 @@ struct FeedChart: View {
                     .foregroundColor(.secondary)
                     .font(.footnote)
             }
+            .accessibilityLabel(feed.date.formatted())
+            .accessibilityValue("\(feed.amount.solidFeedDisplayableAmount()), \(feed.solidOrLiquid.rawValue)")
         getLineMark(for: feed, amount: amount, series: "Solids")
             .foregroundStyle(Color.orange.gradient)
+            .accessibilityHidden(true)
     }
 
     private func getBarMark(for feed: Feed, amount: Double) -> some ChartContent {
