@@ -54,8 +54,10 @@ struct SleepChart: View {
                                 Text("\(amountValue)")
                                     .font(.system(.body, design: .rounded))
                             }
-
                             .foregroundStyle(Color.red.gradient)
+                            .accessibilityLabel(sleep.date.formatted())
+                            .accessibilityValue(sleep.getDisplayableString()
+                                .replacingOccurrences(of: "\n", with: " and "))
                     }
                     .chartPlotStyle(content: { plotArea in
                         plotArea.frame(width: CGFloat(sleepData.count) * (120 + sizeModifier))

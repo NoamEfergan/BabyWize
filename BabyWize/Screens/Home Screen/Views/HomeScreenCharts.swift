@@ -23,7 +23,6 @@ struct HomeScreenCharts: View {
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         .frame(minHeight: 200)
-        .accessibilityLabel("Charts")
     }
 }
 
