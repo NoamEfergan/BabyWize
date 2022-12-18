@@ -8,11 +8,11 @@
 import SwiftUI
 
 // MARK: - AccessiblePicker
-struct AccessiblePicker<Selection: Hashable>: View {
+struct AccessiblePicker<Selection: Hashable, Content: View>: View {
     @Environment(\.dynamicTypeSize) var typeSize
     let title: String
     @Binding var selection: Selection
-    let data: [String]
+    let content: () -> Content
 
     var body: some View {
         switch typeSize {
@@ -32,19 +32,20 @@ struct AccessiblePicker<Selection: Hashable>: View {
 
     @ViewBuilder
     private var picker: some View {
-        Picker(title, selection: $selection) {
-            ForEach(data, id: \.self) {
-                Text($0.capitalized)
-                    .accessibilityLabel($0)
-                    .accessibilityAddTraits(.isButton)
-            }
-        }
+        Picker(title, selection: $selection, content: content)
+            .font(.system(.body,design: .rounded))
     }
 }
 
 // MARK: - AccessiblePicker_Previews
 struct AccessiblePicker_Previews: PreviewProvider {
     static var previews: some View {
-        AccessiblePicker(title: "Test", selection: .constant("Test"), data: ["test", "test2"])
+        AccessiblePicker(title: "Test", selection: .constant("Test")) {
+            ForEach(["Test, Test2"], id: \.self) {
+                Text($0.capitalized)
+                    .accessibilityLabel($0)
+                    .accessibilityAddTraits(.isButton)
+            }
+        }
     }
 }

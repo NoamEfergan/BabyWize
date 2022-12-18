@@ -9,11 +9,15 @@ import Foundation
 extension TimeInterval {
     var displayableString: String {
         let hoursString = hour > 1 ? " hrs" : " hour"
-        let minuteString = minute > 1 ? "mins" : "min"
+        let minuteString = minute > 1 ? " mins" : " min"
         let separator = minute > 0 ? ",\n" : ""
-        let hourDisplayable = hour > 0 ? hour.description + hoursString : ""
+        let hourDisplayable: String? = hour > 0 ? hour.description + hoursString : nil
         let minutesDisplayable = minute > 0 ? minute.description + minuteString : ""
-        return "\(hourDisplayable)\(separator)\(minutesDisplayable)"
+        if let hourDisplayable {
+            return "\(hourDisplayable)\(separator)\(minutesDisplayable)"
+        } else {
+            return "\(minutesDisplayable)"
+        }
     }
 
     var hourMinuteSecondMS: String {

@@ -17,12 +17,29 @@ struct AddEntryView: View {
     @State private var endDate: Date = .init()
     @State private var errorText = ""
     @State private var entryType: EntryType = .liquidFeed
+    @Inject private var defaultManager: UserDefaultManager
+
+    var buttonTitle: String {
+        guard entryType == .sleep else {
+            return "Add"
+        }
+        if sleepVM.selectedLiveOrOld == .Live {
+            return defaultManager.hasTimerRunning ? "Stop" : "Start"
+        } else {
+            return "Add"
+        }
+    }
 
     var body: some View {
         ScrollView {
             AccessiblePicker(title: "Entry type?",
-                             selection: $entryType,
-                             data: EntryType.allCases.filter({ $0 != .solidFeed }).compactMap({ $0.title }))
+                             selection: $entryType) {
+                ForEach(EntryType.allCases.filter { $0 != .solidFeed } , id: \.self) {
+                    Text($0.title)
+                        .accessibilityLabel($0.title)
+                        .accessibilityAddTraits(.isButton)
+                }
+            }
             switch entryType {
             case .liquidFeed, .solidFeed:
                 FeedEntryView(vm: feedVM)
@@ -37,13 +54,13 @@ struct AddEntryView: View {
                     .accessibilityLabel("Error")
                     .accessibilityValue(errorText)
             }
-            Button("Add") {
+            Button(buttonTitle) {
                 do {
                     switch entryType {
                     case .liquidFeed, .solidFeed:
                         try feedVM.addEntry()
                     case .sleep:
-                        try sleepVM.addEntry()
+                        try sleepVM.handleAddingEntry()
                     case .nappy:
                         try nappyVM.addEntry()
                     }

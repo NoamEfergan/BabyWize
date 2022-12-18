@@ -26,6 +26,24 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
+    var hasTimerRunning: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: UserConstants.hasTimerRunning)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserConstants.hasTimerRunning)
+        }
+    }
+
+    var sleepStartDate: Date? {
+        get {
+            UserDefaults.standard.object(forKey: UserConstants.sleepStartTime) as? Date
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserConstants.sleepStartTime)
+        }
+    }
+
     var hasAccount: Bool {
         get {
             UserDefaults.standard.bool(forKey: UserConstants.hasAccount)

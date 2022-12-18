@@ -19,8 +19,13 @@ struct NappyEntryView: View {
                 let title = "Wet or soiled?"
                 Text(title)
                 AccessiblePicker(title: title,
-                                 selection: $vm.wetOrSoiled,
-                                 data: NappyChange.WetOrSoiled.allCases.compactMap { $0.rawValue })
+                                 selection: $vm.wetOrSoiled) {
+                    ForEach(NappyChange.WetOrSoiled.allCases, id: \.self) {
+                        Text($0.rawValue.capitalized)
+                            .accessibilityLabel($0.rawValue)
+                            .accessibilityAddTraits(.isButton)
+                    }
+                }
             }
         }
     }

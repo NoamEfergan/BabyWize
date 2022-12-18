@@ -11,12 +11,16 @@ import SwiftUI
 struct FeedEntryView: View {
     @ObservedObject var vm: FeedEntryViewModel
 
-
     var body: some View {
         VStack(alignment: .leading) {
             AccessiblePicker(title: "Solid or liquid?",
-                             selection: $vm.solidOrLiquid,
-                             data: Feed.SolidOrLiquid.allCases.compactMap { $0.rawValue })
+                             selection: $vm.solidOrLiquid) {
+                ForEach(Feed.SolidOrLiquid.allCases, id: \.self) {
+                    Text($0.rawValue.capitalized)
+                        .accessibilityLabel($0.rawValue)
+                        .accessibilityAddTraits(.isButton)
+                }
+            }
             AccessibleDatePicker(label: "When", value: $vm.feedDate)
             AccessibleLabeledTextField(label: "Amount", hint: "Please enter an amount", value: $vm.amount)
                 .keyboardType(.decimalPad)
