@@ -10,13 +10,19 @@ extension TimeInterval {
     var displayableString: String {
         let hoursString = hour > 1 ? " hrs" : " hour"
         let minuteString = minute > 1 ? " mins" : " min"
+        let secondsString = second > 1 ? " secs" : " sec"
         let separator = minute > 0 ? ",\n" : ""
         let hourDisplayable: String? = hour > 0 ? hour.description + hoursString : nil
         let minutesDisplayable = minute > 0 ? minute.description + minuteString : ""
+        let secondsDisplayable = second > 0 ? second.description + secondsString : ""
         if let hourDisplayable {
             return "\(hourDisplayable)\(separator)\(minutesDisplayable)"
         } else {
-            return "\(minutesDisplayable)"
+            if minutesDisplayable.isEmpty {
+                return secondsDisplayable
+            } else {
+                return "\(minutesDisplayable)\(separator)\(secondsString)"
+            }
         }
     }
 

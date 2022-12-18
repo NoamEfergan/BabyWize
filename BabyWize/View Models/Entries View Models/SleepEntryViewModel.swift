@@ -51,18 +51,18 @@ final class SleepEntryViewModel: EntryViewModel {
 
     func startSleepTimer() {
         defaultManager.hasTimerRunning = true
-//        defaultManager.sleepStartDate = .now
+        defaultManager.sleepStartDate = .now
         NotificationCenter.default.post(name: NSNotification.sleepTimerStart , object: nil)
     }
 
     func stopSleepTimer() throws {
         defaultManager.hasTimerRunning = false
-//        guard let startTime = defaultManager.sleepStartDate else {
-//            throw EntryError.invalidSleepDate
-//        }
-//        let sleep = Sleep(id: UUID().uuidString, date: .now, start: startTime, end: .now)
-//        dataManager.addSleep(sleep)
-//        reset()
+        guard let startTime = defaultManager.sleepStartDate else {
+            throw EntryError.invalidSleepDate
+        }
+        let sleep = Sleep(id: UUID().uuidString, date: .now, start: startTime, end: .now)
+        dataManager.addSleep(sleep)
+        reset()
         defaultManager.sleepStartDate = nil
         NotificationCenter.default.post(name: NSNotification.sleepTimerEnd , object: nil)
     }
