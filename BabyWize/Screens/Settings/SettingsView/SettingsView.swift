@@ -110,6 +110,7 @@ struct SettingsView: View {
                     }
                 }
                 .font(.system(.body, design: .rounded))
+                .foregroundStyle(AppColours.errorGradient)
             } header: {
                 Text("Contact")
             } footer: {
@@ -226,9 +227,9 @@ struct SettingsView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25)
-                    .foregroundStyle(defaultsManager.isLoggedIn ? Color.red.gradient : Color.blue.gradient)
+                    .foregroundStyle(defaultsManager.isLoggedIn ? AppColours.errorGradient : AppColours.gradient)
                 Text(defaultsManager.isLoggedIn ? "Log out" : "Log in or register!")
-                    .foregroundColor(defaultsManager.isLoggedIn ? .red : nil)
+                    .foregroundStyle(defaultsManager.isLoggedIn ? AppColours.errorGradient : AppColours.gradient)
             }
             VStack(alignment: .center) {
                 Image(systemName: "person.crop.circle")
@@ -236,9 +237,9 @@ struct SettingsView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(minWidth: 25)
                     .frame(maxWidth: 100)
-                    .foregroundStyle(defaultsManager.isLoggedIn ? Color.red.gradient : Color.blue.gradient)
+                    .foregroundStyle(defaultsManager.isLoggedIn ? AppColours.errorGradient : AppColours.gradient)
                 Text(defaultsManager.isLoggedIn ? "Log out" : "Log in or register!")
-                    .foregroundColor(defaultsManager.isLoggedIn ? .red : nil)
+                    .foregroundStyle(defaultsManager.isLoggedIn ? AppColours.errorGradient : AppColours.gradient)
                     .multilineTextAlignment(.center)
                     .frame(maxHeight: .infinity)
             }

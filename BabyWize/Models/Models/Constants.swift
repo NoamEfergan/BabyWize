@@ -46,4 +46,17 @@ enum AppColours {
     ],
     startPoint: .topLeading,
     endPoint: .bottomTrailing)
+
+    public static let errorGradient: LinearGradient = .init(colors: [
+        .init(hex: "#EB4E3E"),
+        .init(hex: "#FF6F76"),
+    ],
+    startPoint: .topLeading,
+    endPoint: .bottomTrailing)
+
+    public static let secondary: LinearGradient = .init(colors: [
+        .secondary
+    ],
+    startPoint: .topLeading,
+    endPoint: .bottomTrailing)
 }

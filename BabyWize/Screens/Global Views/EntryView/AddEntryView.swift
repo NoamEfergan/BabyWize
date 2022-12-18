@@ -72,7 +72,9 @@ struct AddEntryView: View {
                     }
                     errorText = entryError.errorText
                 }
-            }.buttonStyle(.borderedProminent)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(AppColours.gradient)
         }
         .padding()
         .onChange(of: entryType, perform: { _ in

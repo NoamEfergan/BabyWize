@@ -16,7 +16,7 @@ struct GrayTextField: View {
     var isSecure = false { didSet { _isSecureState.wrappedValue = isSecure } }
     var contentType: UITextContentType?
     var isFocused: Bool
-    var selectedColor = Color.blue
+    var selectedColor: LinearGradient = AppColours.gradient
     var hasError = false
     var keyboardType: UIKeyboardType = .default
     var errorText = ""
@@ -27,8 +27,8 @@ struct GrayTextField: View {
         isSecureState ? "eye.slash" : "eye"
     }
 
-    private var accentColor: Color {
-        isFocused ? selectedColor : Color.secondary
+    private var accentColor: LinearGradient {
+        isFocused ? selectedColor : AppColours.secondary
     }
 
     private var textShouldBeUp : Bool {
@@ -61,7 +61,7 @@ struct GrayTextField: View {
                         .frame(minHeight: 50)
                         .padding(.horizontal)
                         .background(RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .stroke(hasError ? Color.red : accentColor))
+                            .stroke(hasError ? AppColours.errorGradient : AppColours.gradient))
                         if hasError {
                             Text(errorText)
                                 .foregroundColor(.red)
@@ -91,7 +91,7 @@ struct GrayTextField: View {
                     .padding(.bottom, hasError ? 17 : 0)
                     .offset(y: textShouldBeUp ? -25 : 0)
                     .padding(.horizontal, 15)
-                    .foregroundColor(hasError ? Color.red : accentColor)
+                    .foregroundStyle(hasError ? AppColours.errorGradient: accentColor)
                     .accessibilityHidden(true)
             }
             .animation(.easeInOut, value: isSecureState)

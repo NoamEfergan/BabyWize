@@ -76,7 +76,7 @@ struct LoginView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .background(RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .fill(.blue.gradient))
+                        .fill(AppColours.gradient))
                     .onTapGesture {
                         performLogin()
                     }

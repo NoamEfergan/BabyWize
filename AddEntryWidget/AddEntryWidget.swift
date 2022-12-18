@@ -105,7 +105,7 @@ struct WidgetView: View {
         .frame(maxHeight: .infinity)
         .padding()
         .foregroundColor(.white)
-        .background(Color.blue.gradient)
+        .background(AppColours.gradient)
     }
 
     private var buttonView: some View {
@@ -120,7 +120,7 @@ struct WidgetView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
         .foregroundColor(.white)
-        .background(Color.blue.gradient)
+        .background(AppColours.gradient)
     }
 }
 
