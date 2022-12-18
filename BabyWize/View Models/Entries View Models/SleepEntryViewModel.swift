@@ -16,6 +16,7 @@ final class SleepEntryViewModel: EntryViewModel {
     @Published var startDate: Date = .init()
     @Published var endDate: Date = .init()
     @Published var selectedLiveOrOld: LiveOrOld = .Old
+
     var itemID = ""
 
     init() {

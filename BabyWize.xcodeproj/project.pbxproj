@@ -30,6 +30,7 @@
 		0543E5AB294F1AA40046FE3F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
 		0543E5AC294F1ABD0046FE3F /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A56290598860040A543 /* Color+extension.swift */; };
 		0543E5AD294F22AE0046FE3F /* SleepActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414E5294F0F71009A4791 /* SleepActivityLiveActivity.swift */; };
+		0543E5AF294F42BC0046FE3F /* AddEntryViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5AE294F42BC0046FE3F /* AddEntryViewVM.swift */; };
 		054B1F6128CA31E00021C5BF /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */; };
 		054B1F6328CA33610021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		054B1F6428CA33620021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
@@ -221,6 +222,7 @@
 		053E48B42939120A00A90399 /* LogFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFeed.swift; sourceTree = "<group>"; };
 		0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimeComponent.swift; sourceTree = "<group>"; };
 		0543E5A5294F132E0046FE3F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		0543E5AE294F42BC0046FE3F /* AddEntryViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryViewVM.swift; sourceTree = "<group>"; };
 		054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		055CE12F2922DDCA00870066 /* ChartConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartConfiguration.swift; sourceTree = "<group>"; };
 		055CE1312925350200870066 /* FBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBKeys.swift; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 				056DC48E2916F36B00B30720 /* FeedEntryViewModel.swift */,
 				056DC4922916F47900B30720 /* SleepEntryViewModel.swift */,
 				056DC4962916F53D00B30720 /* NappyEntryViewModel.swift */,
+				0543E5AE294F42BC0046FE3F /* AddEntryViewVM.swift */,
 			);
 			path = "Entries View Models";
 			sourceTree = "<group>";
@@ -942,6 +945,7 @@
 				05A42A48290545DD0040A543 /* BabyCoreDataManager.swift in Sources */,
 				05FE380C2902895F002D3D34 /* QuickInfoView.swift in Sources */,
 				05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */,
+				0543E5AF294F42BC0046FE3F /* AddEntryViewVM.swift in Sources */,
 				05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */,
 				3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */,
 				05A42A57290598860040A543 /* Color+extension.swift in Sources */,

@@ -33,13 +33,17 @@ struct SleepEntryView: View {
                 }
             }
         }
+        .padding()
+        .animation(.easeInOut, value: vm.selectedLiveOrOld)
         .onAppear {
             guard let start = defaultManager.sleepStartDate else {
                 return
             }
             startDate = start
         }
-        .padding()
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.sleepTimerEnd)) { _ in
+            startDate = nil
+        }
     }
 }
 

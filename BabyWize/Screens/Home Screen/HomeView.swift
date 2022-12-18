@@ -22,6 +22,7 @@ struct HomeView: View {
     @Environment(\.dynamicTypeSize) var typeSize
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @StateObject private var sharingVC = SharingViewModel()
+    @StateObject private var addEntryViewVM = AddEntryViewVM()
 
     @State private var isShowingNewEntrySheet = false
     @State private var wantsToAddEntry = false
@@ -98,8 +99,8 @@ struct HomeView: View {
                            }
                        })
                 .sheet(isPresented: $isShowingNewEntrySheet) {
-                    AddEntryView()
-                        .presentationDetents([.fraction(0.4), .medium])
+                    AddEntryView(vm: addEntryViewVM)
+                        .presentationDetents([.fraction(0.45), .medium])
                         .onDisappear {
                             wantsToAddEntry = false
                         }
@@ -124,9 +125,11 @@ struct HomeView: View {
                 .animation(.easeOut, value: iconRotation)
                 .animation(.easeOut, value: sharingVC.isLoading)
                 .onOpenURL { url in
-                    // TODO: Handle going immediately to the sleep tab
                     if url.absoluteString.starts(with: "widget") {
                         wantsToAddEntry = true
+                        if url.absoluteString.contains("openSleep") {
+                            addEntryViewVM.entryType = .sleep
+                        }
                     }
                     if url.absoluteString.starts(with: "app.babywize") {
                         sharingVC.extractInfo(from: url)
@@ -146,7 +149,7 @@ struct HomeView: View {
         case .settings:
             SettingsView()
         case .newEntry:
-            AddEntryView()
+            AddEntryView(vm: addEntryViewVM)
                 .onDisappear {
                     wantsToAddEntry = false
                 }
