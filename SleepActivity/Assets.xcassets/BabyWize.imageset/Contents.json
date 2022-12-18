@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Baby Wize-02.jpg",
+      "filename" : "BabyWize.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Baby Wize-02 1.jpg",
+      "filename" : "BabyWize 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Baby Wize-02 2.jpg",
+      "filename" : "BabyWize 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

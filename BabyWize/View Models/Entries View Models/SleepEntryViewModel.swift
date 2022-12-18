@@ -18,7 +18,9 @@ final class SleepEntryViewModel: EntryViewModel {
     @Published var selectedLiveOrOld: LiveOrOld = .Old
     var itemID = ""
 
-    init() {}
+    init() {
+        selectedLiveOrOld = defaultManager.hasTimerRunning ? .Live : .Old
+    }
 
     func handleAddingEntry() throws {
         switch selectedLiveOrOld {
@@ -49,18 +51,20 @@ final class SleepEntryViewModel: EntryViewModel {
 
     func startSleepTimer() {
         defaultManager.hasTimerRunning = true
-        defaultManager.sleepStartDate = .now
+//        defaultManager.sleepStartDate = .now
+        NotificationCenter.default.post(name: NSNotification.sleepTimerStart , object: nil)
     }
 
     func stopSleepTimer() throws {
         defaultManager.hasTimerRunning = false
-        guard let startTime = defaultManager.sleepStartDate else {
-            throw EntryError.invalidSleepDate
-        }
-        let sleep = Sleep(id: UUID().uuidString, date: .now, start: startTime, end: .now)
-        dataManager.addSleep(sleep)
-        reset()
+//        guard let startTime = defaultManager.sleepStartDate else {
+//            throw EntryError.invalidSleepDate
+//        }
+//        let sleep = Sleep(id: UUID().uuidString, date: .now, start: startTime, end: .now)
+//        dataManager.addSleep(sleep)
+//        reset()
         defaultManager.sleepStartDate = nil
+        NotificationCenter.default.post(name: NSNotification.sleepTimerEnd , object: nil)
     }
 
     func editEntry() throws {
@@ -104,4 +108,9 @@ extension SleepEntryViewModel {
     enum LiveOrOld: String, Codable, CaseIterable {
         case Live, Old
     }
+}
+
+extension NSNotification {
+    static let sleepTimerStart = NSNotification.Name("SleepTimerStart")
+    static let sleepTimerEnd = NSNotification.Name("SleepTimerEnd")
 }

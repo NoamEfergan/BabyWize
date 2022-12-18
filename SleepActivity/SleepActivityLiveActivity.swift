@@ -13,7 +13,6 @@ import SwiftUI
 struct SleepActivityAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         // Dynamic stateful properties about your activity go here!
-        var value: Int
     }
 
     // Fixed non-changing properties about your activity go here!
@@ -21,50 +20,58 @@ struct SleepActivityAttributes: ActivityAttributes {
 }
 
 // MARK: - SleepActivityLiveActivity
+@available(iOS 16.1, *)
 struct SleepActivityLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: SleepActivityAttributes.self) { _ in
             // Lock screen/banner UI goes here
-            VStack {
-                Text("Hello")
-            }
-            .activityBackgroundTint(Color.cyan)
-            .activitySystemActionForegroundColor(Color.black)
-
-        } dynamicIsland: { _ in
+            timeView
+                .padding(.vertical)
+                .activityBackgroundTint(.clear)
+                .activitySystemActionForegroundColor(Color.black)
+        }
+    dynamicIsland: { _ in
             DynamicIsland {
-                // Expanded UI goes here.  Compose the expanded UI through
-                // various regions, like leading/trailing/center/bottom
-                DynamicIslandExpandedRegion(.leading) {
-                    Text("Leading")
-                }
-                DynamicIslandExpandedRegion(.trailing) {
-                    Text("Trailing")
-                }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom")
-                    // more content
+                    timeView
                 }
             } compactLeading: {
-//                Image("BWSVG")
-//                    .resizable()
-//                    .frame(width: 24, height: 24)
-                Text("L")
+                Text("Sleep")
+
             } compactTrailing: {
-                Text("T")
+                iconImage
             } minimal: {
-                Text("Min")
+                iconImage
             }
-            .widgetURL(URL(string: "http://www.apple.com"))
+            .widgetURL(URL(string: "widget://openSleep"))
             .keylineTint(Color.red)
         }
+    }
+
+    private var timeView: some View {
+        VStack(alignment: .center) {
+            Text("Baby's asleep for:")
+                .font(.system(.title2, design: .rounded))
+                .bold()
+            Text(Date.now, style: .timer)
+                .font(.system(.title, design: .rounded))
+                .bold()
+                .multilineTextAlignment(.center)
+        }
+    }
+
+    private var iconImage: some View {
+        Image("BabyWize")
+            .resizable()
+            .frame(width: 34, height: 34)
     }
 }
 
 // MARK: - SleepActivityLiveActivity_Previews
+@available(iOS 16.2, *)
 struct SleepActivityLiveActivity_Previews: PreviewProvider {
     static let attributes = SleepActivityAttributes(name: "Me")
-    static let contentState = SleepActivityAttributes.ContentState(value: 3)
+    static let contentState = SleepActivityAttributes.ContentState()
 
     static var previews: some View {
         attributes

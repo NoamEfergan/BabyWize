@@ -5,7 +5,7 @@
 //  Created by Noam Efergan on 17/07/2022.
 //
 
-
+import ActivityKit
 import SwiftUI
 import Swinject
 import AppIntents
@@ -30,6 +30,9 @@ struct BabyWizeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var navigationVM = NavigationViewModel()
     @AppStorage(UserConstants.isLoggedIn) private var savedIsUserLoggedIn: Bool?
+    @State private var _activity: Any?
+    @available(iOS 16.1, *)
+    private var activity: Activity<SleepActivityAttributes>? { _activity as? Activity<SleepActivityAttributes> }
 
     init() {
         let mainContainer = ContainerBuilder.buildMainContainer()
@@ -43,7 +46,7 @@ struct BabyWizeApp: App {
         WindowGroup {
             ZStack {
                 ZStack {
-                    Theme.mainGradient
+                    AppColours.gradient
                         .ignoresSafeArea()
                     Image(decorative: "NoBGLogo")
                         .resizable()
@@ -59,6 +62,21 @@ struct BabyWizeApp: App {
                     .environment(\.managedObjectContext, dataController.container.viewContext)
                     .environment(\.colorScheme, .light)
                     .opacity(isShowingSplash ? 0 : 1)
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.sleepTimerStart)) { _ in
+                        if #available(iOS 16.1, *) {
+                            startActivity()
+                        } else {
+                            print("Tried to start live activity from iOS 16")
+                        }
+                    }
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.sleepTimerEnd)) { _ in
+                        if #available(iOS 16.1, *) {
+                            endActivity()
+                        } else {
+                            // Fallback on earlier versions
+                            print("Tried to end live activity from iOS 16")
+                        }
+                    }
             }
             .animation(.easeInOut(duration: 1), value: isShowingSplash)
             .onAppear {
@@ -81,6 +99,25 @@ struct BabyWizeApp: App {
             if newValue == .background {
                 WidgetManager().setLatest()
             }
+        }
+    }
+
+    @available(iOS 16.1, *)
+    private func startActivity() {
+        let attributes = SleepActivityAttributes(name: "Baby Sleep Timer")
+        let state = SleepActivityAttributes.ContentState()
+        _activity = try? Activity<SleepActivityAttributes>
+            .request(attributes: attributes, contentState: state, pushType: nil)
+        print("Started live activity")
+    }
+
+    @available(iOS 16.1, *)
+    private func endActivity() {
+        Task {
+            guard let activity else {
+                return
+            }
+            await activity.end(using: nil, dismissalPolicy: .immediate)
         }
     }
 }

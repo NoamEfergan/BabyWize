@@ -11,7 +11,8 @@ import SwiftUI
 @main
 struct SleepActivityBundle: WidgetBundle {
     var body: some Widget {
-        SleepActivity()
-        SleepActivityLiveActivity()
+        if #available(iOS 16.1, *) {
+            SleepActivityLiveActivity()
+        }
     }
 }

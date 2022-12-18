@@ -124,6 +124,7 @@ struct HomeView: View {
                 .animation(.easeOut, value: iconRotation)
                 .animation(.easeOut, value: sharingVC.isLoading)
                 .onOpenURL { url in
+                    // TODO: Handle going immediately to the sleep tab
                     if url.absoluteString.starts(with: "widget") {
                         wantsToAddEntry = true
                     }

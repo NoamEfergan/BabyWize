@@ -10,6 +10,7 @@ import SwiftUI
 // MARK: - CountdownTimeComponent
 struct CountdownTimeComponent: View {
     let title: String
+    let showingTitles: Bool
     @Binding var counterValue: String
 
     var body: some View {
@@ -25,8 +26,10 @@ struct CountdownTimeComponent: View {
                 .animation(.easeInOut, value: counterValue)
                 .transition(.opacity)
 
-            Text(title)
-                .font(.system(.footnote, design: .rounded))
+            if showingTitles {
+                Text(title)
+                    .font(.system(.footnote, design: .rounded))
+            }
         }
     }
 }
@@ -34,6 +37,7 @@ struct CountdownTimeComponent: View {
 // MARK: - CountdownTimeComponent_Previews
 struct CountdownTimeComponent_Previews: PreviewProvider {
     static var previews: some View {
-        CountdownTimeComponent(title: "hours".lowercased(),counterValue: .constant("23"))
+        CountdownTimeComponent(title: "hours".lowercased(),showingTitles: true, counterValue: .constant("23"))
+        CountdownTimeComponent(title: "hours".lowercased(),showingTitles: false, counterValue: .constant("23"))
     }
 }

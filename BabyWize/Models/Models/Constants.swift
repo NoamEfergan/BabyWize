@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // MARK: - Constants
 enum Constants: String {
@@ -33,4 +34,16 @@ enum UserConstants {
 enum GenericNetworkResponse {
     case succsess
     case fail(msg: String)
+}
+
+// MARK: - AppColours
+enum AppColours {
+    public static let gradient: LinearGradient = .init(colors: [
+        .init(hex: "#F5C0A7"),
+        .init(hex: "#F2AAA2"),
+        .init(hex: "#F0969E"),
+        .init(hex: "#EE829A")
+    ],
+    startPoint: .topLeading,
+    endPoint: .bottomTrailing)
 }
