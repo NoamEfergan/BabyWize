@@ -11,9 +11,7 @@ import SwiftUI
 struct SleepEntryView: View {
     @ObservedObject var vm: SleepEntryViewModel
     @Inject private var defaultManager: UserDefaultManager
-    @State private var timeSinceStart: TimeInterval = 0.0
-    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
+    @State private var startDate: Date? = nil
     var body: some View {
         VStack(alignment: vm.selectedLiveOrOld == .Old ? .leading : .center) {
             AccessiblePicker(title: "Live or old?",
@@ -30,12 +28,8 @@ struct SleepEntryView: View {
                 AccessibleDatePicker(label: "From", value: $vm.startDate)
                 AccessibleDatePicker(label: "Until", value: $vm.endDate)
             case .Live:
-                if timeSinceStart > 0.0 {
-                    Text(timeSinceStart.hourMinuteSecondMS)
-                        .onReceive(timer) { _ in
-                            timeSinceStart += 1
-                        }
-                        .contentTransition(.interpolate)
+                if let startDate {
+                    TimerView(startDate: startDate)
                 }
             }
         }
@@ -43,7 +37,7 @@ struct SleepEntryView: View {
             guard let start = defaultManager.sleepStartDate else {
                 return
             }
-            timeSinceStart = Date().timeIntervalSince(start)
+            startDate = start
         }
         .padding()
     }

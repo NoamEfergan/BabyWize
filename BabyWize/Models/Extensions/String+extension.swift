@@ -19,4 +19,12 @@ extension String {
         }
         return interval
     }
+
+    func makeTwoDigit() -> String {
+        var val = self
+        if val.count < 2 {
+            val = "0" + val
+        }
+        return val
+    }
 }

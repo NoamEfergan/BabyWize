@@ -21,6 +21,12 @@
 		050FF469293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
 		050FF46F293B8ABD00F445DE /* LogSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF46E293B8ABD00F445DE /* LogSleep.swift */; };
 		053E48B52939120A00A90399 /* LogFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E48B42939120A00A90399 /* LogFeed.swift */; };
+		0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
+		0543E5A4294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
+		0543E5A6294F132E0046FE3F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A5294F132E0046FE3F /* TimerView.swift */; };
+		0543E5A7294F132E0046FE3F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A5294F132E0046FE3F /* TimerView.swift */; };
+		0543E5A8294F15650046FE3F /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ABD6FC290ECBFA00E1C755 /* String+extension.swift */; };
+		0543E5A9294F15A40046FE3F /* TimeInterval+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */; };
 		054B1F6128CA31E00021C5BF /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */; };
 		054B1F6328CA33610021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		054B1F6428CA33620021C5BF /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
@@ -65,6 +71,14 @@
 		05817C5C28C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5928C7806F0040A4B0 /* UserEntriesModel.xcdatamodeld */; };
 		05817C5F28C788580040A4B0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5E28C788580040A4B0 /* DataController.swift */; };
 		05817C6028C788580040A4B0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05817C5E28C788580040A4B0 /* DataController.swift */; };
+		058414E0294F0F71009A4791 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE91288C64190052A2D1 /* WidgetKit.framework */; };
+		058414E1294F0F71009A4791 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE93288C64190052A2D1 /* SwiftUI.framework */; };
+		058414E4294F0F71009A4791 /* SleepActivityBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414E3294F0F71009A4791 /* SleepActivityBundle.swift */; };
+		058414E6294F0F71009A4791 /* SleepActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414E5294F0F71009A4791 /* SleepActivityLiveActivity.swift */; };
+		058414E8294F0F71009A4791 /* SleepActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414E7294F0F71009A4791 /* SleepActivity.swift */; };
+		058414EA294F0F72009A4791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058414E9294F0F72009A4791 /* Assets.xcassets */; };
+		058414EE294F0F72009A4791 /* SleepActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 058414DF294F0F71009A4791 /* SleepActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		058414F2294F104E009A4791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		0587BB5129281F2C00F39B25 /* TimeInterval+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */; };
 		0587BB5229281F2C00F39B25 /* TimeInterval+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */; };
 		0587BB5329281F2C00F39B25 /* TimeInterval+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */; };
@@ -155,6 +169,13 @@
 			remoteGlobalIDString = 0560837A2884147800728F1F;
 			remoteInfo = BabyTracker;
 		};
+		058414EC294F0F72009A4791 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 056083732884147800728F1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 058414DE294F0F71009A4791;
+			remoteInfo = SleepActivityExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -165,6 +186,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				050AEEA0288C641A0052A2D1 /* AddEntryWidgetExtension.appex in Embed Foundation Extensions */,
+				058414EE294F0F72009A4791 /* SleepActivityExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +221,8 @@
 		053E48882939107800A90399 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		053E48932939107900A90399 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		053E48B42939120A00A90399 /* LogFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFeed.swift; sourceTree = "<group>"; };
+		0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimeComponent.swift; sourceTree = "<group>"; };
+		0543E5A5294F132E0046FE3F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		055CE12F2922DDCA00870066 /* ChartConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartConfiguration.swift; sourceTree = "<group>"; };
 		055CE1312925350200870066 /* FBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBKeys.swift; sourceTree = "<group>"; };
@@ -233,6 +257,12 @@
 		058038B529329EAA006477A2 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		05817C5A28C7806F0040A4B0 /* UserEntriesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserEntriesModel.xcdatamodel; sourceTree = "<group>"; };
 		05817C5E28C788580040A4B0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		058414DF294F0F71009A4791 /* SleepActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SleepActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		058414E3294F0F71009A4791 /* SleepActivityBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepActivityBundle.swift; sourceTree = "<group>"; };
+		058414E5294F0F71009A4791 /* SleepActivityLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepActivityLiveActivity.swift; sourceTree = "<group>"; };
+		058414E7294F0F71009A4791 /* SleepActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepActivity.swift; sourceTree = "<group>"; };
+		058414E9294F0F72009A4791 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		058414EB294F0F72009A4791 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+extension.swift"; sourceTree = "<group>"; };
 		0587BB552928306B00F39B25 /* LabelledDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledDivider.swift; sourceTree = "<group>"; };
 		0587BB572928EA8C00F39B25 /* NSNotification+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+extension.swift"; sourceTree = "<group>"; };
@@ -319,6 +349,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		058414DC294F0F71009A4791 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058414E1294F0F71009A4791 /* SwiftUI.framework in Frameworks */,
+				058414E0294F0F71009A4791 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -356,6 +395,15 @@
 			path = "Siri and shortcuts";
 			sourceTree = "<group>";
 		};
+		0543E5A1294F12020046FE3F /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */,
+				0543E5A5294F132E0046FE3F /* TimerView.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 		056083722884147800728F1F = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +413,7 @@
 				0560838E2884147900728F1F /* BabyWizeTests */,
 				056083982884147900728F1F /* BabyWizeUITests */,
 				050AEE95288C64190052A2D1 /* AddEntryWidget */,
+				058414E2294F0F71009A4791 /* SleepActivity */,
 				050AEE90288C64190052A2D1 /* Frameworks */,
 				0560837C2884147800728F1F /* Products */,
 			);
@@ -377,6 +426,7 @@
 				0560838B2884147900728F1F /* BabyWizeTests.xctest */,
 				056083952884147900728F1F /* BabyWizeUITests.xctest */,
 				050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */,
+				058414DF294F0F71009A4791 /* SleepActivityExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -463,6 +513,18 @@
 				054B1F6028CA31E00021C5BF /* CoreDataExtensions.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		058414E2294F0F71009A4791 /* SleepActivity */ = {
+			isa = PBXGroup;
+			children = (
+				058414E3294F0F71009A4791 /* SleepActivityBundle.swift */,
+				058414E5294F0F71009A4791 /* SleepActivityLiveActivity.swift */,
+				058414E7294F0F71009A4791 /* SleepActivity.swift */,
+				058414E9294F0F72009A4791 /* Assets.xcassets */,
+				058414EB294F0F72009A4791 /* Info.plist */,
+			);
+			path = SleepActivity;
 			sourceTree = "<group>";
 		};
 		059C68E32886AEF800C90710 /* InfoScreen */ = {
@@ -624,6 +686,7 @@
 		05DD68D1288613FF0066BFEC /* Global Views */ = {
 			isa = PBXGroup;
 			children = (
+				0543E5A1294F12020046FE3F /* Timer */,
 				059C68EA2886BD5C00C90710 /* InputDetailView */,
 				05DD68DA28861C820066BFEC /* EntryView */,
 				3B64002428D65B0700241D65 /* GrayTextField.swift */,
@@ -683,6 +746,7 @@
 			);
 			dependencies = (
 				050AEE9F288C641A0052A2D1 /* PBXTargetDependency */,
+				058414ED294F0F72009A4791 /* PBXTargetDependency */,
 			);
 			name = BabyWize;
 			packageProductDependencies = (
@@ -736,6 +800,23 @@
 			productReference = 056083952884147900728F1F /* BabyWizeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		058414DE294F0F71009A4791 /* SleepActivityExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 058414F1294F0F72009A4791 /* Build configuration list for PBXNativeTarget "SleepActivityExtension" */;
+			buildPhases = (
+				058414DB294F0F71009A4791 /* Sources */,
+				058414DC294F0F71009A4791 /* Frameworks */,
+				058414DD294F0F71009A4791 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SleepActivityExtension;
+			productName = SleepActivityExtension;
+			productReference = 058414DF294F0F71009A4791 /* SleepActivityExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -743,7 +824,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					050AEE8E288C64190052A2D1 = {
@@ -759,6 +840,9 @@
 					056083942884147900728F1F = {
 						CreatedOnToolsVersion = 14.0;
 						TestTargetID = 0560837A2884147800728F1F;
+					};
+					058414DE294F0F71009A4791 = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -784,6 +868,7 @@
 				0560838A2884147900728F1F /* BabyWizeTests */,
 				056083942884147900728F1F /* BabyWizeUITests */,
 				050AEE8E288C64190052A2D1 /* AddEntryWidgetExtension */,
+				058414DE294F0F71009A4791 /* SleepActivityExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -821,6 +906,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		058414DD294F0F71009A4791 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058414F2294F104E009A4791 /* Assets.xcassets in Resources */,
+				058414EA294F0F72009A4791 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,6 +972,7 @@
 				05FE380E29028B13002D3D34 /* QuickInfoSection.swift in Sources */,
 				059C68E52886AF0500C90710 /* Info View.swift in Sources */,
 				0587BB562928306B00F39B25 /* LabelledDivider.swift in Sources */,
+				0543E5A6294F132E0046FE3F /* TimerView.swift in Sources */,
 				05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */,
 				056DC49D2916F8FF00B30720 /* FeedInputDetailView.swift in Sources */,
 				056DC4A12916F9EE00B30720 /* SleepInputDetailView.swift in Sources */,
@@ -897,6 +992,7 @@
 				056DC4A32916FA7500B30720 /* NappyInputDetailView.swift in Sources */,
 				05DD68D9288619DB0066BFEC /* LiquidFeedUnits.swift in Sources */,
 				3B64002728D6620800241D65 /* AuthViewModel.swift in Sources */,
+				0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */,
 				0587BB5129281F2C00F39B25 /* TimeInterval+extension.swift in Sources */,
 				05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */,
 				050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
@@ -959,6 +1055,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		058414DB294F0F71009A4791 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0543E5A7294F132E0046FE3F /* TimerView.swift in Sources */,
+				0543E5A9294F15A40046FE3F /* TimeInterval+extension.swift in Sources */,
+				058414E4294F0F71009A4791 /* SleepActivityBundle.swift in Sources */,
+				0543E5A8294F15650046FE3F /* String+extension.swift in Sources */,
+				058414E6294F0F71009A4791 /* SleepActivityLiveActivity.swift in Sources */,
+				0543E5A4294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */,
+				058414E8294F0F71009A4791 /* SleepActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -976,6 +1086,11 @@
 			isa = PBXTargetDependency;
 			target = 0560837A2884147800728F1F /* BabyWize */;
 			targetProxy = 056083962884147900728F1F /* PBXContainerItemProxy */;
+		};
+		058414ED294F0F72009A4791 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 058414DE294F0F71009A4791 /* SleepActivityExtension */;
+			targetProxy = 058414EC294F0F72009A4791 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1308,6 +1423,62 @@
 			};
 			name = Release;
 		};
+		058414EF294F0F72009A4791 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YHVXQV27R7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SleepActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SleepActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize.SleepActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		058414F0294F0F72009A4791 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YHVXQV27R7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SleepActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SleepActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize.SleepActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1352,6 +1523,15 @@
 			buildConfigurations = (
 				056083A62884147900728F1F /* Debug */,
 				056083A72884147900728F1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		058414F1294F0F72009A4791 /* Build configuration list for PBXNativeTarget "SleepActivityExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				058414EF294F0F72009A4791 /* Debug */,
+				058414F0294F0F72009A4791 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
