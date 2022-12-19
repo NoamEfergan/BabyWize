@@ -22,5 +22,7 @@
 		<string>readdle-spark</string>
 		<string>ymail</string>
 	</array>
+	<key>Enable Testability</key>
+	<true/>
 </dict>
 </plist>

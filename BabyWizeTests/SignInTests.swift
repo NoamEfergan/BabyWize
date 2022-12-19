@@ -9,10 +9,12 @@
 import XCTest
 
 final class SignInTests: XCTestCase {
-    let vm: AuthViewModel
+    var vm: AuthViewModel!
 
     override func setUpWithError() throws {
-        vm = .init()
+        let container = ContainerBuilder.buildMockContainer()
+        Resolver.shared.setDependencyContainer(container)
+        vm = Resolver.shared.resolve(AuthViewModel.self)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -30,6 +32,6 @@ final class SignInTests: XCTestCase {
     func test_password_validation() {
         XCTAssertFalse(vm.validatePassword("1234"))
         XCTAssertFalse(vm.validatePassword("test"))
-        XCTAssertFalse(vm.validatePassword("Tesst1234"))
+        XCTAssertTrue(vm.validatePassword("Tesst1234"))
     }
 }
