@@ -161,4 +161,34 @@ final class BabyDataManagerTests: XCTestCase {
         manager.mergeSleepsWithRemote([firstSleep, secondSleep, thirdSleep])
         XCTAssertEqual(manager.lastSleepString, thirdSleep.getDisplayableString())
     }
+
+    func testBiggestSmallestAndAverageFeed() {
+        let firstFeed = Feed(id: UUID().uuidString, date: .now, amount: 10, note: nil, solidOrLiquid: .liquid)
+        let secondFeed = Feed(id: UUID().uuidString, date: .now, amount: 20, note: nil, solidOrLiquid: .liquid)
+        manager.mergeFeedsWithRemote([firstFeed,secondFeed])
+        XCTAssertEqual(manager.getAverage(for: .liquidFeed), 15.displayableAmount(isSolid: false))
+        XCTAssertEqual(manager.getBiggest(for: .liquidFeed), 20.displayableAmount(isSolid: false))
+        XCTAssertEqual(manager.getSmallest(for: .liquidFeed), 10.displayableAmount(isSolid: false))
+    }
+
+    func getBiggestSmallestAndAverageSleep() throws {
+        let formatter = ISO8601DateFormatter()
+        let firstDate = try XCTUnwrap(formatter.date(from:"2022-12-19T14:15:27+0000"))
+        let secondDate = try XCTUnwrap(formatter.date(from:"2022-12-19T16:15:27+0000"))
+
+        let thirdDate = try XCTUnwrap(formatter.date(from:"2022-12-19T17:15:27+0000"))
+        let forthDate = try XCTUnwrap(formatter.date(from:"2022-12-19T18:15:27+0000"))
+
+        let firstSleep = Sleep(id: UUID().uuidString, date: .now, start: firstDate, end: secondDate)
+        let secondSleep = Sleep(id: UUID().uuidString, date: .now, start: thirdDate, end: forthDate)
+
+        let hour = TimeInterval(60 * 60)
+        let twoHours = hour * 2
+        let hourAndAHalf = hour * 1.5
+
+        manager.mergeSleepsWithRemote([firstSleep, secondSleep])
+        XCTAssertEqual(manager.getBiggest(for: .sleep), twoHours.hourMinuteSecondMS)
+        XCTAssertEqual(manager.getSmallest(for: .sleep), hour.hourMinuteSecondMS)
+        XCTAssertEqual(manager.getAverage(for: .sleep), hourAndAHalf.hourMinuteSecondMS)
+    }
 }
