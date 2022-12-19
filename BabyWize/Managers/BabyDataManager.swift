@@ -335,7 +335,7 @@ final class BabyDataManager: ObservableObject {
             guard let lastNappy = nappyData.last else {
                 return .nonAvailable
             }
-            return "\(lastNappy.dateTime.formatted(date: .omitted, time: .shortened)), \(lastNappy.wetOrSoiled.rawValue) "
+            return "\(lastNappy.dateTime.formatted(date: .omitted, time: .shortened)), \(lastNappy.wetOrSoiled.rawValue)"
         }
     }
 

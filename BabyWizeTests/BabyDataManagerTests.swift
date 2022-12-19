@@ -114,4 +114,51 @@ final class BabyDataManagerTests: XCTestCase {
         manager.mergeChangesWithRemote([firstChange, secondChange, thirdChange])
         XCTAssertEqual(manager.nappyData.count, 2)
     }
+
+    func testRemoveAll() {
+        let id = UUID().uuidString
+        let firstFeed = Feed(id: id, date: .now, amount: 12, note: nil, solidOrLiquid: .liquid)
+        let secondFeed = Feed(id: UUID().uuidString, date: .now, amount: 12, note: nil, solidOrLiquid: .liquid)
+        let thirdFeed = Feed(id: id, date: .now, amount: 12, note: nil, solidOrLiquid: .liquid)
+
+        manager.mergeFeedsWithRemote([firstFeed,secondFeed,thirdFeed])
+        manager.removeAll(for: .liquidFeed)
+        XCTAssertEqual(manager.feedData.count, 0)
+
+        let firstSleep = Sleep(id: id, date: .now, start: .now, end: .now)
+        let secondSleep = Sleep(id: UUID().uuidString, date: .now, start: .now, end: .now)
+        let thirdSleep = Sleep(id: id, date: .now, start: .now, end: .now)
+
+        manager.mergeSleepsWithRemote([firstSleep, secondSleep, thirdSleep])
+        manager.removeAll(for: .sleep)
+        XCTAssertEqual(manager.sleepData.count, 0)
+
+        let firstChange = NappyChange(id: id, dateTime: .now, wetOrSoiled: .soiled)
+        let secondChange = NappyChange(id: UUID().uuidString, dateTime: .now, wetOrSoiled: .soiled)
+        let thirdChange = NappyChange(id: id, dateTime: .now, wetOrSoiled: .soiled)
+
+        manager.mergeChangesWithRemote([firstChange, secondChange, thirdChange])
+        manager.removeAll(for: .nappy)
+        XCTAssertEqual(manager.nappyData.count, 0)
+    }
+
+    func testLastFeed() {
+        let firstFeed = Feed(id: UUID().uuidString, date: .now, amount: 11, note: nil, solidOrLiquid: .liquid)
+        let secondFeed = Feed(id: UUID().uuidString, date: .now, amount: 12, note: nil, solidOrLiquid: .liquid)
+        let thirdFeed = Feed(id: UUID().uuidString, date: .now, amount: 13, note: nil, solidOrLiquid: .liquid)
+        manager.mergeFeedsWithRemote([firstFeed,secondFeed,thirdFeed])
+        XCTAssertEqual(manager.lastFeedString, thirdFeed.amount.liquidFeedDisplayableAmount())
+    }
+
+    func testLastSleep() {
+        let firstStart = Date.getRandomMockDate()
+        let firstEnd = Date.getRandomEndData(from: firstStart)
+
+        let firstSleep = Sleep(id: UUID().uuidString, date: .now, start: .now, end: .now)
+        let secondSleep = Sleep(id: UUID().uuidString, date: .now, start: .now, end: .now)
+        let thirdSleep = Sleep(id: UUID().uuidString, date: .now, start: firstStart, end: firstEnd)
+
+        manager.mergeSleepsWithRemote([firstSleep, secondSleep, thirdSleep])
+        XCTAssertEqual(manager.lastSleepString, thirdSleep.getDisplayableString())
+    }
 }
