@@ -210,6 +210,7 @@ final class BabyDataManager: ObservableObject {
     // ADD
     func addFeed(_ item: Feed, updateRemote: Bool = true) {
         feedData.append(item)
+        feedData = feedData.uniqued(on: { $0.id })
         coreDataManager.addFeed(item)
         if updateRemote {
             firebaseManager.addFeed(item)
@@ -218,6 +219,7 @@ final class BabyDataManager: ObservableObject {
 
     func addSleep(_ item: Sleep, updateRemote: Bool = true) {
         sleepData.append(item)
+        sleepData = sleepData.uniqued(on: { $0.id })
         coreDataManager.addSleep(item)
         if updateRemote {
             firebaseManager.addSleep(item)
@@ -226,6 +228,7 @@ final class BabyDataManager: ObservableObject {
 
     func addNappyChange(_ item: NappyChange, updateRemote: Bool = true) {
         nappyData.append(item)
+        nappyData = nappyData.uniqued(on: { $0.id })
         coreDataManager.addNappyChange(item)
         if updateRemote {
             firebaseManager.addNappyChange(item)
@@ -263,7 +266,7 @@ final class BabyDataManager: ObservableObject {
     func removeFeed(at offsets: IndexSet, includingRemote: Bool = true) {
         let localFeeds = offsets.compactMap {
             feedData[$0]
-        }
+        }.uniqued(on: { $0.id })
         coreDataManager.removeFeed(localFeeds)
         feedData.remove(atOffsets: offsets)
         if includingRemote {
@@ -274,7 +277,7 @@ final class BabyDataManager: ObservableObject {
     func removeSleep(at offsets: IndexSet, includingRemote: Bool = true) {
         let localSleeps = offsets.compactMap {
             sleepData[$0]
-        }
+        }.uniqued(on: { $0.id })
         coreDataManager.removeSleep(localSleeps)
         sleepData.remove(atOffsets: offsets)
         if includingRemote {
@@ -285,7 +288,7 @@ final class BabyDataManager: ObservableObject {
     func removeChange(at offsets: IndexSet, includingRemote: Bool = true) {
         let localChanges = offsets.compactMap {
             nappyData[$0]
-        }
+        }.uniqued(on: { $0.id })
         coreDataManager.removeChange(localChanges)
         nappyData.remove(atOffsets: offsets)
         if includingRemote {

@@ -15,7 +15,6 @@ final class SignInTests: XCTestCase {
         let container = ContainerBuilder.buildMockContainer()
         Resolver.shared.setDependencyContainer(container)
         vm = Resolver.shared.resolve(AuthViewModel.self)
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {

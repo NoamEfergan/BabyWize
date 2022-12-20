@@ -229,7 +229,7 @@ struct SettingsView: View {
                     .frame(width: 25)
                     .foregroundStyle(defaultsManager.isLoggedIn ? AppColours.errorGradient : AppColours.gradient)
                 Text(defaultsManager.isLoggedIn ? "Log out" : "Log in or register!")
-                    .foregroundStyle(defaultsManager.isLoggedIn ? AppColours.errorGradient : AppColours.gradient)
+                    .foregroundStyle(defaultsManager.isLoggedIn ? Color.red.gradient : Color.blue.gradient)
             }
             VStack(alignment: .center) {
                 Image(systemName: "person.crop.circle")

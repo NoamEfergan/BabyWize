@@ -50,8 +50,9 @@ struct AddEntryView: View {
             vm.errorText = ""
             vm.buttonTitle = vm.getButtonTitle()
         }
-        .onChange(of: vm.shouldDismiss) { shouldDismiss in
+        .onReceive(vm.$shouldDismiss) { shouldDismiss in
             if shouldDismiss {
+                vm.shouldDismiss = false
                 dismiss()
             }
         }

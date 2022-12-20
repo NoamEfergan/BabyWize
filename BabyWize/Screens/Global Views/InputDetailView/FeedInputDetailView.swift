@@ -51,9 +51,9 @@ struct FeedInputDetailView: View {
                     dataManager.removeFeed(at: offsets)
                     presentableData.remove(atOffsets: offsets)
                 }
-                .onChange(of: dataManager.feedData, perform: { _ in
+                .onChange(of: dataManager.feedData) { _ in
                     setPresentableData()
-                })
+                }
                 .onChange(of: presentableData) { newValue in
                     if newValue.isEmpty {
                         if dataManager.feedData.isEmpty {
@@ -95,7 +95,7 @@ struct FeedInputDetailView: View {
     }
 
     private func setPresentableData() {
-        presentableData = dataManager.feedData.filter({ $0.solidOrLiquid == solidOrLiquid })
+        presentableData = dataManager.feedData.filter({ $0.solidOrLiquid == solidOrLiquid }).uniqued(on: { $0.id })
     }
 }
 
