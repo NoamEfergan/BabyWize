@@ -28,7 +28,7 @@ lane :test_and_scan do
       devices: 'iPhone 14',
       code_coverage: true,
       output_style: "raw",
-      result_bundle: "true",
+      result_bundle: true,
       derived_data_path: "~/Library/Developer/Xcode/DerivedData"
   )
 
