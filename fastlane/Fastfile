@@ -29,7 +29,7 @@ lane :test_and_scan do
       code_coverage: true,
       output_style: "raw",
       result_bundle: "true",
-      derived_data_path: "/Users/noam.efergan/Library/Developer/Xcode/DerivedData"
+      derived_data_path: "~/Library/Developer/Xcode/DerivedData"
   )
 
 end
