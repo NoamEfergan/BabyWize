@@ -22,5 +22,9 @@
 		<string>readdle-spark</string>
 		<string>ymail</string>
 	</array>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>ConfigurationIntent</string>
+	</array>
 </dict>
 </plist>
