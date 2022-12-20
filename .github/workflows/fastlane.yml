@@ -1,0 +1,14 @@
+name: Fastlane
+
+on:
+  push:
+    branches:
+      - add-fast-lane
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Fastlane
+        run: fastlane test_and_scan
