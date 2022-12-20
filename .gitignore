@@ -1,9 +1,11 @@
-
 BabyTracker/Models/Secrets.swift
 BabyWize.xcodeproj/project.xcworkspace/xcuserdata
 BabyWize/.DS_Store
 .DS_Store
 *.xcuserstate
 .idea
-BabyWize.xcodeproj/xcuserdata
+BabyWize.xcodeproj/xcuserdatals
 *.xcbkptlist
+fastlane/README.md
+fastlane/report.xml
+fastlane/test_output

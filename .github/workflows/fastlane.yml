@@ -1,0 +1,16 @@
+name: Run tests
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: macos-12
+    env:
+      FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 60
+    steps:
+      - uses: actions/checkout@v2
+      - name: Select Xcode 14.2
+        run: sudo xcode-select -s /Applications/Xcode_14.2.app
+      - name: Run Fastlane
+        run: fastlane test_and_scan
