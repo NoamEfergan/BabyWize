@@ -2,7 +2,7 @@ name: Run tests
 on:
   push:
     branches:
-      - add-fast-lane
+      - main
 jobs:
   build:
     runs-on: macos-12
