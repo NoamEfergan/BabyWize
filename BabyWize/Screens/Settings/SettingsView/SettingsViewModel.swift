@@ -16,6 +16,7 @@ final class SettingsViewModel: ObservableObject {
     @Published var isShowingQRCode = false
     @Published var isShowingRemoveAlert = false
     @Published var isLoading = false
+    @Published var isShowingDeleteAccountAlert = false
     private let qrImage = QrCodeImage()
     private var idToRemove = ""
 

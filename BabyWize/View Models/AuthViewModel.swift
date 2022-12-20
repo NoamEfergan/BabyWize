@@ -17,6 +17,7 @@ final class AuthViewModel: ObservableObject {
 
     @Published var didLogIn = false
     @Published var didRegister: String?
+    @Published var didDeleteAccount: String?
 
     func validateEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -80,6 +81,15 @@ final class AuthViewModel: ObservableObject {
             errorMsg = error.localizedDescription
             return nil
         }
+    }
+
+    func deleteAccountAndLogOut() {
+        guard let userID = defaultsManager.userID else {
+            return
+        }
+        Auth.auth().currentUser?.delete()
+        didDeleteAccount = userID
+        logOut()
     }
 
     private func addCredentialsToKeychain(email: String, password: String) {

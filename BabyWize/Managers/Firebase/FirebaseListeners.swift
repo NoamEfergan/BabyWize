@@ -42,6 +42,16 @@ extension FirebaseManager {
                 }
             }
             .store(in: &bag)
+
+        authVM
+            .$didDeleteAccount
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] userID in
+                if let userID {
+                    self?.deleteAccount(userID: userID)
+                }
+            }
+            .store(in: &bag)
     }
 
     func addListeners() {

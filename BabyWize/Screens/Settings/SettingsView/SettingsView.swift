@@ -108,7 +108,13 @@ struct SettingsView: View {
                             UIApplication.shared.open(url)
                         }
                     }
+                    if defaultsManager.isLoggedIn {
+                        Button("Delete account") {
+                            vm.isShowingDeleteAccountAlert = true
+                        }
+                    }
                 }
+
                 .font(.system(.body, design: .rounded))
                 .foregroundStyle(AppColours.errorGradient)
             } header: {
@@ -119,20 +125,32 @@ struct SettingsView: View {
         }
         .listStyle(.insetGrouped)
         .navigationTitle("Settings")
+        .alert("Are you sure you want to delete your account? THIS CANNOT BE UNDONE",
+               isPresented: $vm.isShowingDeleteAccountAlert) {
+            Button(role: .cancel) {
+                vm.isShowingDeleteAccountAlert = false
+            } label: {
+                Text("No")
+            }
+            Button(role: .destructive) {
+                authVM.deleteAccountAndLogOut()
+            } label: {
+                Text("Remove")
+            }
+        }
         .alert("Are you sure you want to stop sharing with this account?",
-               isPresented: $vm.isShowingRemoveAlert,
-               actions: {
-                   Button(role: .cancel) {
-                       vm.turnOffRemovingAlert()
-                   } label: {
-                       Text("No")
-                   }
-                   Button(role: .destructive) {
-                       vm.removeFromSharing()
-                   } label: {
-                       Text("Remove")
-                   }
-               })
+               isPresented: $vm.isShowingRemoveAlert) {
+            Button(role: .cancel) {
+                vm.turnOffRemovingAlert()
+            } label: {
+                Text("No")
+            }
+            Button(role: .destructive) {
+                vm.removeFromSharing()
+            } label: {
+                Text("Remove")
+            }
+        }
         .overlay {
             if vm.isLoading {
                 LoadingOverlay(isShowing: $vm.isLoading)

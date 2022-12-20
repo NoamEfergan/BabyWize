@@ -96,13 +96,22 @@ class FirebaseManager {
             let user = try await db.collection(FBKeys.kUsers).document(id).getDocument()
             if let sharingAccounts = user.get(FBKeys.kShared) as? [[String: String]] {
                 for sharingAccount in sharingAccounts {
-                    guard let email = sharingAccount.keys.first,
-                          let id = sharingAccount.values.first else {
+                    guard let email = sharingAccount.values.first,
+                          let id = sharingAccount.keys.first else {
                         print("Failed to get email or ID from shared account!")
                         break
                     }
                     await getSharedData(for: id, email: email, addID: addID)
                 }
+            } else if let sharingAccount = user.get(FBKeys.kShared) as? [String: String] {
+                guard let email = sharingAccount.values.first,
+                      let id = sharingAccount.keys.first else {
+                    print("Failed to get email or ID from shared account!")
+                    return
+                }
+                await getSharedData(for: id, email: email, addID: addID)
+            } else {
+                print("Failed to map to sharing accounts!")
             }
         } catch {
             print("Failed fetching user with error: \(error.localizedDescription)")
@@ -316,6 +325,16 @@ class FirebaseManager {
         } else {
             let id = await authVM.anonymousLogin()
             defaultsManager.userID = id
+        }
+    }
+
+    func deleteAccount(userID: String) {
+        db.collection(FBKeys.kUsers).document(userID).delete { error in
+            if let error {
+                print("Failed to delete account with error: \(error.localizedDescription)")
+            } else {
+                print("account deleted")
+            }
         }
     }
 }
