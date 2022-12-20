@@ -142,7 +142,7 @@ struct BabyCoreDataManager {
             guard let savedFeeds = try moc.fetch(.init(entityName: Constants.savedFeed.rawValue)) as? [SavedFeed] else {
                 return []
             }
-            return savedFeeds.compactMap { $0.mapToFeed() }
+            return savedFeeds.compactMap { $0.mapToFeed() }.uniqued(on: { $0.id })
         } catch {
             print("Failed fetch feeds with error: \(error.localizedDescription)")
             return []
@@ -155,7 +155,7 @@ struct BabyCoreDataManager {
             else {
                 return []
             }
-            return savedSleeps.compactMap { $0.mapToSleep() }
+            return savedSleeps.compactMap { $0.mapToSleep() }.uniqued(on: { $0.id })
         } catch {
             print("Failed fetch sleeps with error: \(error.localizedDescription)")
             return []
@@ -169,7 +169,7 @@ struct BabyCoreDataManager {
             else {
                 return []
             }
-            return savedChanges.compactMap { $0.mapToNappyChange() }
+            return savedChanges.compactMap { $0.mapToNappyChange() }.uniqued(on: { $0.id })
         } catch {
             print("Failed fetch nappy changes with error: \(error.localizedDescription)")
             return []
