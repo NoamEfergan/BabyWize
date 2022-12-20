@@ -12,7 +12,7 @@ import WidgetKit
 // MARK: - Provider
 struct Provider: IntentTimelineProvider {
     private func getEntry(configuration: ConfigurationIntent, date: Date) -> SimpleEntry {
-        guard let container = UserDefaults(suiteName: "group.app.babyData") else {
+        guard let container = UserDefaults(suiteName: "group.babyData") else {
             return SimpleEntry(date: date,
                                configuration: configuration,
                                lastFeed: nil,

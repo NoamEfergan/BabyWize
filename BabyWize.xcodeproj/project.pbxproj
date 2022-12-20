@@ -185,6 +185,11 @@
 		05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
 		05B8AF69288633A100BBC41B /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+extension.swift */; };
 		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
+		05CC3AD72951C8B700D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3AD62951C8B700D306C8 /* GoogleService-Info.plist */; };
+		05CC3AD82951C8B700D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3AD62951C8B700D306C8 /* GoogleService-Info.plist */; };
+		05CC3AD92951C8B700D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3AD62951C8B700D306C8 /* GoogleService-Info.plist */; };
+		05CC3ADA2951C8B700D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3AD62951C8B700D306C8 /* GoogleService-Info.plist */; };
+		05CC3ADB2951C8B700D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3AD62951C8B700D306C8 /* GoogleService-Info.plist */; };
 		05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */; };
 		05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05DD68BE2885B7E40066BFEC /* Swinject */; };
 		05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C12885B8460066BFEC /* SwinjectManager.swift */; };
@@ -207,8 +212,6 @@
 		3B64002928D665AA00241D65 /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002828D665AA00241D65 /* SignInTests.swift */; };
 		3B64002A28D665C600241D65 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002628D6620800241D65 /* AuthViewModel.swift */; };
 		3BE30FE628D5D25A00E75D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
-		3BE30FEA28D5D40900E75D22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */; };
-		3BE30FEB28D5D40900E75D22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */; };
 		3BE30FF028D5D59000E75D22 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FEF28D5D59000E75D22 /* FirebaseDatabase */; };
 		3BE30FF228D5D59000E75D22 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF128D5D59000E75D22 /* FirebaseDatabaseSwift */; };
 		3BE30FF428D5D59000E75D22 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF328D5D59000E75D22 /* FirebaseFirestore */; };
@@ -354,6 +357,7 @@
 		05B8AF6628862C7C00BBC41B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		05B8AF68288633A100BBC41B /* Array+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extension.swift"; sourceTree = "<group>"; };
 		05B8AF6D2886989C00BBC41B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		05CC3AD62951C8B700D306C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCharts.swift; sourceTree = "<group>"; };
 		05DD68C12885B8460066BFEC /* SwinjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectManager.swift; sourceTree = "<group>"; };
 		05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManager.swift; sourceTree = "<group>"; };
@@ -374,7 +378,6 @@
 		3B64002628D6620800241D65 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		3B64002828D665AA00241D65 /* SignInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTests.swift; sourceTree = "<group>"; };
 		3BE30FE828D5D2B900E75D22 /* BabyWize.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyWize.entitlements; sourceTree = "<group>"; };
-		3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3BE30FFB28D5DCF100E75D22 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -452,8 +455,8 @@
 				050AEE96288C64190052A2D1 /* AddEntryWidget.swift */,
 				050AEE98288C64190052A2D1 /* AddEntryWidget.intentdefinition */,
 				050AEE99288C641A0052A2D1 /* Assets.xcassets */,
+				05CC3AD62951C8B700D306C8 /* GoogleService-Info.plist */,
 				050AEE9B288C641A0052A2D1 /* Info.plist */,
-				3BE30FE928D5D40800E75D22 /* GoogleService-Info.plist */,
 			);
 			path = AddEntryWidget;
 			sourceTree = "<group>";
@@ -960,7 +963,7 @@
 			files = (
 				3BE30FE628D5D25A00E75D22 /* Assets.xcassets in Resources */,
 				050AEE9A288C641A0052A2D1 /* Assets.xcassets in Resources */,
-				3BE30FEB28D5D40900E75D22 /* GoogleService-Info.plist in Resources */,
+				05CC3ADA2951C8B700D306C8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -969,9 +972,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				056083862884147900728F1F /* Preview Assets.xcassets in Resources */,
+				05CC3AD72951C8B700D306C8 /* GoogleService-Info.plist in Resources */,
 				056083832884147900728F1F /* Assets.xcassets in Resources */,
 				05DF6CF82917CBBC00EACE7C /* Launch Screen.storyboard in Resources */,
-				3BE30FEA28D5D40900E75D22 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,6 +982,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CC3AD82951C8B700D306C8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -986,6 +990,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CC3AD92951C8B700D306C8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,6 +1000,7 @@
 			files = (
 				058414F2294F104E009A4791 /* Assets.xcassets in Resources */,
 				058414EA294F0F72009A4791 /* Assets.xcassets in Resources */,
+				05CC3ADB2951C8B700D306C8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,7 +1267,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize.AddEntryWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1291,7 +1297,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize.AddEntryWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1423,6 +1429,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = BabyWize/BabyWize.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyWize/Preview Content\"";
@@ -1444,8 +1451,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1463,6 +1471,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = BabyWize/BabyWize.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyWize/Preview Content\"";
@@ -1484,8 +1493,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1506,7 +1516,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWizeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWizeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1526,7 +1536,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWizeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWizeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1544,7 +1554,7 @@
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWizeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWizeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1562,7 +1572,7 @@
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWizeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWizeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1590,7 +1600,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize.SleepActivity;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.SleepActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1618,7 +1628,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = NoamEfergan.BabyWize.SleepActivity;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.SleepActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSSupportsLiveActivities</key>
-	<true/>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -15,6 +13,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>Enable Testability</key>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>googlegmail</string>
@@ -22,7 +22,5 @@
 		<string>readdle-spark</string>
 		<string>ymail</string>
 	</array>
-	<key>Enable Testability</key>
-	<true/>
 </dict>
 </plist>

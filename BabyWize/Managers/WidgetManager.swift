@@ -10,7 +10,7 @@ import WidgetKit
 
 struct WidgetManager {
     @Inject private var dataManager: BabyDataManager
-    static let suiteName = "group.app.babyData"
+    static let suiteName = "group.babyData"
 
     func setLatest() {
         let lastFeed = dataManager.feedData.last

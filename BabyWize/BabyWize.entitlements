@@ -6,7 +6,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.app.babyData</string>
+		<string>group.babyData</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
