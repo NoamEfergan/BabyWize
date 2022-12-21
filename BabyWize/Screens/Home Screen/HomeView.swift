@@ -7,6 +7,7 @@
 
 import Charts
 import SwiftUI
+import StoreKit
 
 // MARK: - Screens
 enum Screens: String {
@@ -20,6 +21,7 @@ struct HomeView: View {
     @InjectedObject private var defaultsManager: UserDefaultManager
     @InjectedObject private var authVM: AuthViewModel
     @Environment(\.dynamicTypeSize) var typeSize
+    @Environment(\.requestReview) var requestReview
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @StateObject private var sharingVC = SharingViewModel()
     @StateObject private var addEntryViewVM = AddEntryViewVM()
@@ -117,6 +119,11 @@ struct HomeView: View {
                 .task {
                     WidgetManager().setLatest()
                 }
+                .onAppear {
+                    if getShouldRequestReview() {
+                        requestReview()
+                    }
+                }
                 .overlay {
                     if sharingVC.isLoading {
                         LoadingOverlay(isShowing: $sharingVC.isLoading)
@@ -138,8 +145,6 @@ struct HomeView: View {
             }
         }
     }
-
-    // app.babywize://MZhOgd8Hc8f8Japf7gmfzxHWzK63-1@3.com
 
     // MARK: - Navigation
 
@@ -171,6 +176,24 @@ struct HomeView: View {
         default:
             EmptyView()
         }
+    }
+
+    // MARK: - Private methods
+
+
+    private func setInitialDownloadDate() {
+        if UserDefaults.standard.object(forKey: UserConstants.initialInstallDate) as? Date == nil {
+            UserDefaults.standard.set(Date.now, forKey: UserConstants.initialInstallDate)
+        }
+    }
+
+    private func getShouldRequestReview() -> Bool {
+        guard let initialInstallDate = UserDefaults.standard.object(forKey: UserConstants.initialInstallDate) as? Date
+        else {
+            setInitialDownloadDate()
+            return false
+        }
+        return initialInstallDate.timeIntervalSinceNow.hour > 72
     }
 }
 
