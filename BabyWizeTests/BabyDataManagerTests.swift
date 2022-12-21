@@ -42,7 +42,7 @@ final class BabyDataManagerTests: XCTestCase {
         var firstFeed = try XCTUnwrap(manager.feedData.first)
         firstFeed.amount = 12.0
         let index = try XCTUnwrap(manager.feedData.firstIndex(where: { $0.id == firstFeed.id }))
-        manager.updateFeed(firstFeed, index: index)
+        manager.updateFeed(firstFeed, index: index, updateRemote: false)
         XCTAssertEqual(manager.feedData.first?.amount, 12.0)
 
         // Remove
@@ -63,7 +63,7 @@ final class BabyDataManagerTests: XCTestCase {
         let firstSleep = try XCTUnwrap(manager.sleepData.first)
         let newSleep = Sleep(id: firstSleep.id, date: firstSleep.date, start: newDate, end: firstSleep.end)
         let index = try XCTUnwrap(manager.sleepData.firstIndex(where: { $0.id == firstSleep.id }))
-        manager.updateSleep(newSleep, index: index)
+        manager.updateSleep(newSleep, index: index, updateRemote: false)
         XCTAssertEqual(manager.sleepData.first?.start, newDate)
 
         // Remove
@@ -82,7 +82,7 @@ final class BabyDataManagerTests: XCTestCase {
         let firstChange = try XCTUnwrap(manager.nappyData.first)
         let newChange = NappyChange(id: firstChange.id, dateTime: firstChange.dateTime, wetOrSoiled: .soiled)
         let index = try XCTUnwrap(manager.nappyData.firstIndex(where: { $0.id == firstChange.id }))
-        manager.updateChange(newChange, index: index)
+        manager.updateChange(newChange, index: index, updateRemote: false)
         XCTAssertEqual(manager.nappyData.first?.wetOrSoiled, .soiled)
 
         // Remove
