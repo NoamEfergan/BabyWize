@@ -26,9 +26,6 @@ final class BabyDataManager: ObservableObject {
     }
 
     @Published var feedData: [Feed] = [] {
-        willSet {
-            print(newValue)
-        }
         didSet {
             lastFeedString = getLast(for: .liquidFeed)
         }
