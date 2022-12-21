@@ -10,6 +10,11 @@ import SwiftUI
 // MARK: - FeedEntryView
 struct FeedEntryView: View {
     @ObservedObject var vm: FeedEntryViewModel
+    @Inject private var defaultManager: UserDefaultManager
+
+    private var unitText: String {
+        vm.solidOrLiquid == .liquid ? defaultManager.liquidUnits.rawValue : defaultManager.solidUnits.rawValue
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -22,7 +27,7 @@ struct FeedEntryView: View {
                 }
             }
             AccessibleDatePicker(label: "When", value: $vm.feedDate)
-            AccessibleLabeledTextField(label: "Amount", hint: "Please enter an amount", value: $vm.amount)
+            AccessibleLabeledTextField(label: "Amount", hint: "Enter an amount in \(unitText)", value: $vm.amount)
                 .keyboardType(.decimalPad)
             AccessibleLabeledTextField(label: "Notes", hint: "Milk, porridge, fruit etc...", value: $vm.feedNote)
         }
