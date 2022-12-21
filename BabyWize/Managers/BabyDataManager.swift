@@ -238,10 +238,11 @@ final class BabyDataManager: ObservableObject {
     // Update
 
     func updateFeed(_ item: Feed, index: Array<Feed>.Index, updateRemote: Bool = true) {
-        feedData[index] = item
-        coreDataManager.updateFeed(item)
         if updateRemote {
             firebaseManager.addFeed(item)
+        } else {
+            feedData[index] = item
+            coreDataManager.updateFeed(item)
         }
     }
 
@@ -262,6 +263,18 @@ final class BabyDataManager: ObservableObject {
     }
 
     // Remove
+
+    func removeFeed(item: Feed, includingRemote: Bool = true) {
+        guard let index = feedData.firstIndex(where: { $0.id == item.id }) else {
+            print("Failed to find feed to remvoe")
+            return
+        }
+        let feed = feedData[index]
+        feedData.removeAll(where: { $0 == feed })
+        if includingRemote {
+            firebaseManager.removeItems(items: [feed], key: FBKeys.kFeeds)
+        }
+    }
 
     func removeFeed(at offsets: IndexSet, includingRemote: Bool = true) {
         let localFeeds = offsets.compactMap {
@@ -386,14 +399,21 @@ final class BabyDataManager: ObservableObject {
 
                 return (nil, selectedUnit)
             }
-            .sink(receiveValue: { pair in
+            .sink(receiveValue: { [weak self] pair in
+                guard let self else {
+                    print("Failed to capture self")
+                    return
+                }
                 guard let from = pair.0,
                       let to = pair.1
                 else {
                     return
                 }
-                self.feedData.filter(\.isLiquids).indices.forEach { index in
-                    let feed = self.feedData[index]
+                self.feedData.filter(\.isLiquids).forEach { feed in
+                    guard let index = self.feedData.firstIndex(where: { $0.id == feed.id }) else {
+                        print("Failed to convert liquid feed unit, no feed found")
+                        return
+                    }
                     let newFeed = Feed(id: feed.id,
                                        date: feed.date,
                                        amount: feed.amount.convertLiquids(from: from, to: to),
@@ -401,6 +421,7 @@ final class BabyDataManager: ObservableObject {
                                        solidOrLiquid: feed.solidOrLiquid)
                     self.updateFeed(newFeed, index: index)
                 }
+
             })
             .store(in: &bag)
 

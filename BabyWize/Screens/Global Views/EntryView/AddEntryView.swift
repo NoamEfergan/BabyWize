@@ -10,6 +10,7 @@ import SwiftUI
 // MARK: - AddEntryView
 struct AddEntryView: View {
     @Environment(\.dismiss) var dismiss
+    @InjectedObject private var defaultManager: UserDefaultManager
     @ObservedObject var vm: AddEntryViewVM
 
     var body: some View {
@@ -48,6 +49,9 @@ struct AddEntryView: View {
         .animation(.easeInOut, value: vm.entryType)
         .onChange(of: vm.entryType) { _ in
             vm.errorText = ""
+            vm.buttonTitle = vm.getButtonTitle()
+        }
+        .onChange(of: defaultManager.hasTimerRunning) { _ in
             vm.buttonTitle = vm.getButtonTitle()
         }
         .onReceive(vm.$shouldDismiss) { shouldDismiss in

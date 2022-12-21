@@ -26,12 +26,9 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
-    var hasTimerRunning: Bool {
-        get {
-            UserDefaults.standard.bool(forKey: UserConstants.hasTimerRunning)
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: UserConstants.hasTimerRunning)
+    @Published var hasTimerRunning: Bool {
+        didSet {
+            UserDefaults.standard.set(hasTimerRunning, forKey: UserConstants.hasTimerRunning)
         }
     }
 
@@ -137,6 +134,8 @@ final class UserDefaultManager: ObservableObject {
         } else {
             sharingAccounts = []
         }
+
+        hasTimerRunning = UserDefaults.standard.bool(forKey: UserConstants.hasTimerRunning)
     }
 
     public func logOut() {

@@ -51,6 +51,8 @@ final class SleepEntryViewModel: EntryViewModel {
     }
 
     func startSleepTimer() {
+        defaultManager.hasTimerRunning = false
+        defaultManager.sleepStartDate = nil
         defaultManager.hasTimerRunning = true
         defaultManager.sleepStartDate = .now
         NotificationCenter.default.post(name: NSNotification.sleepTimerStart , object: nil)
