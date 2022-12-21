@@ -21,7 +21,7 @@ extension TimeInterval {
             if minutesDisplayable.isEmpty {
                 return secondsDisplayable
             } else {
-                return "\(minutesDisplayable)\(separator)\(secondsString)"
+                return "\(minutesDisplayable)\(second > 0 ? separator : "")\(secondsDisplayable)"
             }
         }
     }

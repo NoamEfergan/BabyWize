@@ -421,15 +421,6 @@ final class BabyDataManager: ObservableObject {
                                        solidOrLiquid: feed.solidOrLiquid)
                     self.updateFeed(newFeed, index: index)
                 }
-//                self.feedData.filter(\.isLiquids).indices.forEach { index in
-//                    let feed = self.feedData[index]
-//                    let newFeed = Feed(id: feed.id,
-//                                       date: feed.date,
-//                                       amount: feed.amount.convertLiquids(from: from, to: to),
-//                                       note: feed.note,
-//                                       solidOrLiquid: feed.solidOrLiquid)
-//                    self.updateFeed(newFeed, index: index)
-//                }
 
             })
             .store(in: &bag)

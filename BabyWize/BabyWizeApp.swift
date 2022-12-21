@@ -104,11 +104,16 @@ struct BabyWizeApp: App {
 
     @available(iOS 16.1, *)
     private func startActivity() {
-        let attributes = SleepActivityAttributes(name: "Baby Sleep Timer")
-        let state = SleepActivityAttributes.ContentState()
-        _activity = try? Activity<SleepActivityAttributes>
-            .request(attributes: attributes, contentState: state, pushType: nil)
-        print("Started live activity")
+        Task {
+            if activity?.activityState == .active {
+                await activity?.end(using: nil, dismissalPolicy: .immediate)
+            }
+            let attributes = SleepActivityAttributes(name: "Baby Sleep Timer")
+            let state = SleepActivityAttributes.ContentState()
+            _activity = try? Activity<SleepActivityAttributes>
+                .request(attributes: attributes, contentState: state, pushType: nil)
+            print("Started live activity")
+        }
     }
 
     @available(iOS 16.1, *)
@@ -118,6 +123,7 @@ struct BabyWizeApp: App {
                 return
             }
             await activity.end(using: nil, dismissalPolicy: .immediate)
+            print("Stopped live activity")
         }
     }
 }
