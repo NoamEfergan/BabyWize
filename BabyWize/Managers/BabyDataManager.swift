@@ -26,6 +26,9 @@ final class BabyDataManager: ObservableObject {
     }
 
     @Published var feedData: [Feed] = [] {
+        willSet {
+            print(newValue)
+        }
         didSet {
             lastFeedString = getLast(for: .liquidFeed)
         }
@@ -399,14 +402,21 @@ final class BabyDataManager: ObservableObject {
 
                 return (nil, selectedUnit)
             }
-            .sink(receiveValue: { pair in
+            .sink(receiveValue: { [weak self] pair in
+                guard let self else {
+                    print("Failed to capture self")
+                    return
+                }
                 guard let from = pair.0,
                       let to = pair.1
                 else {
                     return
                 }
-                self.feedData.filter(\.isLiquids).indices.forEach { index in
-                    let feed = self.feedData[index]
+                self.feedData.filter(\.isLiquids).forEach { feed in
+                    guard let index = self.feedData.firstIndex(where: { $0.id == feed.id }) else {
+                        print("Failed to convert liquid feed unit, no feed found")
+                        return
+                    }
                     let newFeed = Feed(id: feed.id,
                                        date: feed.date,
                                        amount: feed.amount.convertLiquids(from: from, to: to),
@@ -414,6 +424,15 @@ final class BabyDataManager: ObservableObject {
                                        solidOrLiquid: feed.solidOrLiquid)
                     self.updateFeed(newFeed, index: index)
                 }
+//                self.feedData.filter(\.isLiquids).indices.forEach { index in
+//                    let feed = self.feedData[index]
+//                    let newFeed = Feed(id: feed.id,
+//                                       date: feed.date,
+//                                       amount: feed.amount.convertLiquids(from: from, to: to),
+//                                       note: feed.note,
+//                                       solidOrLiquid: feed.solidOrLiquid)
+//                    self.updateFeed(newFeed, index: index)
+//                }
 
             })
             .store(in: &bag)

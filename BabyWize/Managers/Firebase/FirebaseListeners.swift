@@ -100,17 +100,26 @@ extension FirebaseManager {
     }
 
     private func handleFeedDocumentChange(_ change: DocumentChange) {
+        guard let dataManager else {
+            print("Failed to find data manager!")
+            return
+        }
         switch change.type {
         case .added:
+
             if let feed = change.document.mapToFeed() {
-                dataManager?.addFeed(feed, updateRemote: false)
+                if dataManager.feedData.contains(where: { $0.id == feed.id }) {
+                    print("Feed already existed!")
+                    return
+                }
+                dataManager.addFeed(feed, updateRemote: false)
             } else {
                 print("Failed to add feed from remote notification")
             }
         case .modified:
             if let feed = change.document.mapToFeed(),
-               let index = dataManager?.feedData.firstIndex(where: { $0.id == feed.id }) {
-                dataManager?.updateFeed(feed, index: index, updateRemote: false)
+               let index = dataManager.feedData.firstIndex(where: { $0.id == feed.id }) {
+                dataManager.updateFeed(feed, index: index, updateRemote: false)
             } else {
                 print("Failed to modify feed from remote notification")
             }
@@ -120,17 +129,26 @@ extension FirebaseManager {
     }
 
     private func handleSleepDocumentChange(_ change: DocumentChange) {
+        guard let dataManager else {
+            print("Failed to find data manager!")
+            return
+        }
         switch change.type {
         case .added:
+
             if let sleep = change.document.mapToSleep() {
-                dataManager?.addSleep(sleep, updateRemote: false)
+                if dataManager.sleepData.contains(where: { $0.id == sleep.id }) {
+                    print("sleep already existed!")
+                    return
+                }
+                dataManager.addSleep(sleep, updateRemote: false)
             } else {
                 print("Failed to add sleep from remote notification")
             }
         case .modified:
             if let sleep = change.document.mapToSleep(),
-               let index = dataManager?.sleepData.firstIndex(where: { $0.id == sleep.id }) {
-                dataManager?.updateSleep(sleep, index: index, updateRemote: false)
+               let index = dataManager.sleepData.firstIndex(where: { $0.id == sleep.id }) {
+                dataManager.updateSleep(sleep, index: index, updateRemote: false)
             } else {
                 print("Failed to modify sleep from remote notification")
             }
@@ -141,17 +159,25 @@ extension FirebaseManager {
 
 
     private func handleNappyDocumentChange(_ change: DocumentChange) {
+        guard let dataManager else {
+            print("Failed to find data manager!")
+            return
+        }
         switch change.type {
         case .added:
             if let nappyChange = change.document.mapToChange() {
-                dataManager?.addNappyChange(nappyChange, updateRemote: false)
+                if dataManager.nappyData.contains(where: { $0.id == nappyChange.id }) {
+                    print("nappyChange already existed!")
+                    return
+                }
+                dataManager.addNappyChange(nappyChange, updateRemote: false)
             } else {
                 print("Failed to add nappy change from remote notification")
             }
         case .modified:
             if let nappyChange = change.document.mapToChange(),
-               let index = dataManager?.nappyData.firstIndex(where: { $0.id == nappyChange.id }) {
-                dataManager?.updateChange(nappyChange, index: index, updateRemote: false)
+               let index = dataManager.nappyData.firstIndex(where: { $0.id == nappyChange.id }) {
+                dataManager.updateChange(nappyChange, index: index, updateRemote: false)
             } else {
                 print("Failed to modify nappy change from remote notification")
             }
