@@ -48,8 +48,11 @@ struct FeedInputDetailView: View {
                 }
 
                 .onDelete { offsets in
-                    dataManager.removeFeed(at: offsets)
-                    presentableData.remove(atOffsets: offsets)
+                    for index in offsets {
+                        let feed = presentableData[index]
+                        presentableData.remove(at: index)
+                        dataManager.removeFeed(item: feed)
+                    }
                 }
                 .onChange(of: dataManager.feedData) { _ in
                     setPresentableData()
