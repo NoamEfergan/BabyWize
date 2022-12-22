@@ -6,9 +6,9 @@
 //
 
 import ActivityKit
+import AppIntents
 import SwiftUI
 import Swinject
-import AppIntents
 
 // MARK: - AppDelegate
 class AppDelegate: NSObject, UIApplicationDelegate {

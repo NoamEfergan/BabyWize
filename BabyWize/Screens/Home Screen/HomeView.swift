@@ -7,6 +7,7 @@
 
 import Charts
 import SwiftUI
+import StoreKit
 
 // MARK: - Screens
 enum Screens: String {
@@ -20,6 +21,7 @@ struct HomeView: View {
     @InjectedObject private var defaultsManager: UserDefaultManager
     @InjectedObject private var authVM: AuthViewModel
     @Environment(\.dynamicTypeSize) var typeSize
+    @Environment(\.requestReview) var requestReview
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @StateObject private var sharingVC = SharingViewModel()
     @StateObject private var addEntryViewVM = AddEntryViewVM()
@@ -81,23 +83,21 @@ struct HomeView: View {
                 }
                 .navigationTitle("Baby Wize")
                 .alert(sharingVC.acceptAlertTitle,
-                       isPresented: $sharingVC.isShowingAcceptAlert,
-                       actions: {
-                           Button("Accept") {
-                               sharingVC.didAcceptSharing()
-                           }
-                           Button(role: .cancel) {
-                               sharingVC.isShowingAcceptAlert = false
-                           } label: {
-                               Text("No thanks")
-                           }
-                       })
-                .alert(sharingVC.errorMsg, isPresented: $sharingVC.hasError,
-                       actions: {
-                           Button("Try again later") {
-                               sharingVC.hasError = false
-                           }
-                       })
+                       isPresented: $sharingVC.isShowingAcceptAlert) {
+                    Button("Accept") {
+                        sharingVC.didAcceptSharing()
+                    }
+                    Button(role: .cancel) {
+                        sharingVC.isShowingAcceptAlert = false
+                    } label: {
+                        Text("No thanks")
+                    }
+                }
+                .alert(sharingVC.errorMsg, isPresented: $sharingVC.hasError) {
+                    Button("Try again later") {
+                        sharingVC.hasError = false
+                    }
+                }
                 .sheet(isPresented: $isShowingNewEntrySheet) {
                     AddEntryView(vm: addEntryViewVM)
                         .presentationDetents([.fraction(0.45), .medium])
@@ -105,17 +105,23 @@ struct HomeView: View {
                             wantsToAddEntry = false
                         }
                 }
-                .onChange(of: wantsToAddEntry, perform: { newValue in
+                .onChange(of: wantsToAddEntry) { newValue in
                     iconRotation = newValue ? 45 : 0
                     if shouldShowSheet {
                         isShowingNewEntrySheet = newValue
                     } else {
                         newValue ? navigationVM.path.append(.newEntry) : navigationVM.path.removeAll()
                     }
-                })
+                }
                 .navigationDestination(for: Screens.self, destination: handleScreensNavigation)
                 .task {
                     WidgetManager().setLatest()
+                }
+                .onAppear {
+                    if getShouldRequestReview() {
+                        requestReview()
+                        UserDefaults.standard.set(true, forKey: UserConstants.hasAskedForReview)
+                    }
                 }
                 .overlay {
                     if sharingVC.isLoading {
@@ -137,9 +143,8 @@ struct HomeView: View {
                 }
             }
         }
+        .tint(Color(hex: "#5354EC"))
     }
-
-    // app.babywize://MZhOgd8Hc8f8Japf7gmfzxHWzK63-1@3.com
 
     // MARK: - Navigation
 
@@ -170,6 +175,29 @@ struct HomeView: View {
 
         default:
             EmptyView()
+        }
+    }
+
+    // MARK: - Private methods
+
+
+    private func setInitialDownloadDate() {
+        if UserDefaults.standard.object(forKey: UserConstants.initialInstallDate) as? Date == nil {
+            UserDefaults.standard.set(Date.now, forKey: UserConstants.initialInstallDate)
+        }
+    }
+
+    private func getShouldRequestReview() -> Bool {
+        guard let initialInstallDate = UserDefaults.standard.object(forKey: UserConstants.initialInstallDate) as? Date
+        else {
+            setInitialDownloadDate()
+            return false
+        }
+        let hasAskedForeReview = UserDefaults.standard.bool(forKey: UserConstants.hasAskedForReview)
+        if hasAskedForeReview {
+            return false
+        } else {
+            return initialInstallDate.timeIntervalSinceNow.hour > 72
         }
     }
 }
