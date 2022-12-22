@@ -29,6 +29,7 @@ enum UserConstants {
     static let hasTimerRunning = "timerRunning"
     static let sleepStartTime = "sleepStart"
     static let initialInstallDate = "initialInstall"
+    static let hasAskedForReview = "askedForReview"
 }
 
 // MARK: - GenericNetworkResponse

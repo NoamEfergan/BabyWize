@@ -341,14 +341,17 @@ final class BabyDataManager: ObservableObject {
         }
         switch type {
         case .liquidFeed, .solidFeed:
-            guard let lastItem = feedData.last else {
+            let sortedFeeds = feedData.sorted(by: { $0.date < $1.date })
+            guard let lastItem = sortedFeeds.last else {
                 return .nonAvailable
             }
             return lastItem.amount.displayableAmount(isSolid: lastItem.isSolids)
         case .sleep:
-            return sleepData.last?.getDisplayableString() ?? .nonAvailable
+            let sortedSleeps = sleepData.sorted(by: { $0.date < $1.date })
+            return sortedSleeps.last?.getDisplayableString() ?? .nonAvailable
         case .nappy:
-            guard let lastNappy = nappyData.last else {
+            let sortedChanges = nappyData.sorted(by: { $0.dateTime < $1.dateTime })
+            guard let lastNappy = sortedChanges.last else {
                 return .nonAvailable
             }
             return "\(lastNappy.dateTime.formatted(date: .omitted, time: .shortened)), \(lastNappy.wetOrSoiled.rawValue)"

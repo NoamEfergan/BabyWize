@@ -12,7 +12,7 @@ struct SettingsView: View {
     @InjectedObject private var defaultsManager: UserDefaultManager
     @InjectedObject private var authVM: AuthViewModel
     @StateObject private var vm = SettingsViewModel()
-
+    private let accentColour = Color(hex: "#5354EC")
     var body: some View {
         List {
             Section {
@@ -58,6 +58,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Share data quickly with a QR code!")
                             .font(.system(.footnote, design: .rounded))
+                            .foregroundColor(accentColour)
                     }
                     .accessibilityLabel("Share data")
                     .accessibilityHint("Opens a QR code to share your data with someone else")
@@ -121,6 +122,7 @@ struct SettingsView: View {
                 Text("Contact")
             } footer: {
                 Text("We're always available at contact@babywize.app")
+                    .accentColor(accentColour)
             }
         }
         .listStyle(.insetGrouped)

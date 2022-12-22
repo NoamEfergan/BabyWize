@@ -83,23 +83,21 @@ struct HomeView: View {
                 }
                 .navigationTitle("Baby Wize")
                 .alert(sharingVC.acceptAlertTitle,
-                       isPresented: $sharingVC.isShowingAcceptAlert,
-                       actions: {
-                           Button("Accept") {
-                               sharingVC.didAcceptSharing()
-                           }
-                           Button(role: .cancel) {
-                               sharingVC.isShowingAcceptAlert = false
-                           } label: {
-                               Text("No thanks")
-                           }
-                       })
-                .alert(sharingVC.errorMsg, isPresented: $sharingVC.hasError,
-                       actions: {
-                           Button("Try again later") {
-                               sharingVC.hasError = false
-                           }
-                       })
+                       isPresented: $sharingVC.isShowingAcceptAlert) {
+                    Button("Accept") {
+                        sharingVC.didAcceptSharing()
+                    }
+                    Button(role: .cancel) {
+                        sharingVC.isShowingAcceptAlert = false
+                    } label: {
+                        Text("No thanks")
+                    }
+                }
+                .alert(sharingVC.errorMsg, isPresented: $sharingVC.hasError) {
+                    Button("Try again later") {
+                        sharingVC.hasError = false
+                    }
+                }
                 .sheet(isPresented: $isShowingNewEntrySheet) {
                     AddEntryView(vm: addEntryViewVM)
                         .presentationDetents([.fraction(0.45), .medium])
@@ -107,14 +105,14 @@ struct HomeView: View {
                             wantsToAddEntry = false
                         }
                 }
-                .onChange(of: wantsToAddEntry, perform: { newValue in
+                .onChange(of: wantsToAddEntry) { newValue in
                     iconRotation = newValue ? 45 : 0
                     if shouldShowSheet {
                         isShowingNewEntrySheet = newValue
                     } else {
                         newValue ? navigationVM.path.append(.newEntry) : navigationVM.path.removeAll()
                     }
-                })
+                }
                 .navigationDestination(for: Screens.self, destination: handleScreensNavigation)
                 .task {
                     WidgetManager().setLatest()
@@ -122,6 +120,7 @@ struct HomeView: View {
                 .onAppear {
                     if getShouldRequestReview() {
                         requestReview()
+                        UserDefaults.standard.set(true, forKey: UserConstants.hasAskedForReview)
                     }
                 }
                 .overlay {
@@ -144,6 +143,7 @@ struct HomeView: View {
                 }
             }
         }
+        .tint(Color(hex: "#5354EC"))
     }
 
     // MARK: - Navigation
@@ -193,7 +193,12 @@ struct HomeView: View {
             setInitialDownloadDate()
             return false
         }
-        return initialInstallDate.timeIntervalSinceNow.hour > 72
+        let hasAskedForeReview = UserDefaults.standard.bool(forKey: UserConstants.hasAskedForReview)
+        if hasAskedForeReview {
+            return false
+        } else {
+            return initialInstallDate.timeIntervalSinceNow.hour > 72
+        }
     }
 }
 

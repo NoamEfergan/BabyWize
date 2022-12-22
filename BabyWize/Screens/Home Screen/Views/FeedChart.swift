@@ -40,10 +40,7 @@ struct FeedChart: View {
     }
 
     private var plotWidth: CGFloat {
-        let fullScreenWidth = UIScreen.main.bounds.width
-        let dividedAmount = fullScreenWidth / CGFloat(feedData.count)
-        let minSize = CGFloat(feedData.count) * (80 + sizeModifier)
-        return max(minSize, dividedAmount)
+        350 + sizeModifier
     }
 
     var body: some View {
