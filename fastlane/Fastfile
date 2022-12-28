@@ -7,8 +7,36 @@ lane :test_and_scan do
     project: "BabyWize.xcodeproj",
       scheme: "BabyWize",
       device: 'iPhone 14',
-      # derived_data_path: "~/Library/Developer/Xcode/DerivedData"
   )
-
 end
+
+desc "Export app into IPA and send to app store connect"
+lane :export_and_upload do 
+  export_app
+  upload_app
+end
+
+ desc "Export the app into an IPA file"
+ lane :export_app do 
+  gym(
+    project: "BabyWize.xcodeproj",
+    scheme: "BabyWize",
+    export_xcargs: "-allowProvisioningUpdates",
+    output_name: "ReleaseApp.ipa"
+  )
+ end
+
+ desc "Deliver the app"
+ lane :upload_app do
+  deliver(
+    ipa: "ReleaseApp.ipa",
+    submit_for_review: false,
+    automatic_release: false,
+    skip_screenshots: true,
+    skip_metadata: true,
+    skip_app_version_update: true,
+    force: true
+  )
+ end
+
 end

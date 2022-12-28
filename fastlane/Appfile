@@ -4,3 +4,5 @@
 
 # For more information about the Appfile, see:
 #     https://docs.fastlane.tools/advanced/#appfile
+ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"] = "aidi-nblo-rwco-kgfk"
+apple_id("noamifergan@gmail.com") # Your Apple Developer Portal username
