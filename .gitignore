@@ -9,3 +9,5 @@ BabyWize.xcodeproj/xcuserdatals
 fastlane/README.md
 fastlane/report.xml
 fastlane/test_output
+ReleaseApp.app.dSYM.zip
+ReleaseApp.ipa
