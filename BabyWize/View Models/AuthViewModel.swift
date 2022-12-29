@@ -63,9 +63,6 @@ final class AuthViewModel: ObservableObject {
     @discardableResult
     func login(email: String, password: String, shouldSaveToKeychain: Bool = true) async -> String? {
         isLoading = true
-        guard checkForInternet() else {
-            return nil
-        }
         defer {
             isLoading = false
         }
@@ -99,9 +96,6 @@ final class AuthViewModel: ObservableObject {
 
     func logOut() {
         isLoading = true
-        guard checkForInternet() else {
-            return
-        }
         defer {
             isLoading = false
         }
@@ -121,20 +115,6 @@ final class AuthViewModel: ObservableObject {
     }
 
     // MARK: - Private methods
-
-    private func checkForInternet() -> Bool {
-        switch monitor.currentPath.status {
-        case .satisfied:
-            print("Connected to internet")
-            return true
-        default:
-            print("Disconnected from internet")
-            hasError = true
-            errorMsg = "Please make sure you've got an active internet connection for remote syncing of data"
-            isLoading = false
-            return false
-        }
-    }
 
     private func addCredentialsToKeychain(email: String, password: String) {
         Task.detached(priority: .background) {

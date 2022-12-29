@@ -52,7 +52,9 @@ struct Feed: DataItem {
     let note: String?
     let solidOrLiquid: SolidOrLiquid
 
-    enum SolidOrLiquid: Codable, Equatable, Hashable, CaseIterable {
+    enum SolidOrLiquid: Codable, Equatable, Hashable, CaseIterable, Identifiable {
+        var id: Self { self }
+
         static var allCases: [Feed.SolidOrLiquid] = [.solid, .liquid(type: .formula), .liquid(type: .breast)]
 
         case solid
@@ -63,7 +65,7 @@ struct Feed: DataItem {
             case .solid:
                 return "Solid"
             case .liquid(let type):
-                return "Liquid (\(type.rawValue.capitalized)"
+                return "Liquid (\(type.rawValue.capitalized))"
             }
         }
     }
