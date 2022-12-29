@@ -17,6 +17,7 @@ struct FBKeys {
     static let kDate = "date"
     static let kNote = "note"
     static let kSolidLiquid = "solidOrLiquid"
+    static let kLiquidType = "liquidType"
     static let kID = "id"
     static let kEmail = "email"
 

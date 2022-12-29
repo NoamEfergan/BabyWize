@@ -53,6 +53,9 @@ struct FeedChart: View {
                     .onAppear {
                         isShowingJoint = true
                     }
+                    .onDisappear {
+                        isShowingJoint = defaultManager.chartConfiguration == .joint
+                    }
             } else {
                 Group {
                     if showTitle {
@@ -195,7 +198,7 @@ struct FeedChart: View {
                     .font(.footnote)
             }
             .accessibilityLabel(feed.date.formatted())
-            .accessibilityValue("\(feed.amount.liquidFeedDisplayableAmount()), \(feed.solidOrLiquid.rawValue)")
+            .accessibilityValue("\(feed.amount.liquidFeedDisplayableAmount()), \(feed.solidOrLiquid.title)")
         getLineMark(for: feed, amount: unit, series: "Liquids")
             .foregroundStyle(Color.blue.gradient)
             .accessibilityHidden(true)
@@ -221,7 +224,7 @@ struct FeedChart: View {
                     .font(.footnote)
             }
             .accessibilityLabel(feed.date.formatted())
-            .accessibilityValue("\(feed.amount.solidFeedDisplayableAmount()), \(feed.solidOrLiquid.rawValue)")
+            .accessibilityValue("\(feed.amount.solidFeedDisplayableAmount()), \(feed.solidOrLiquid.title)")
         getLineMark(for: feed, amount: amount, series: "Solids")
             .foregroundStyle(Color.orange.gradient)
             .accessibilityHidden(true)

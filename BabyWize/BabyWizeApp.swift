@@ -40,7 +40,6 @@ struct BabyWizeApp: App {
     }
 
     @Environment(\.scenePhase) var scenePhase
-    @StateObject private var dataController = DataController()
     @State private var isShowingSplash = true
     var body: some Scene {
         WindowGroup {
@@ -59,7 +58,6 @@ struct BabyWizeApp: App {
                 .opacity(isShowingSplash ? 1 : 0)
                 HomeView()
                     .environmentObject(navigationVM)
-                    .environment(\.managedObjectContext, dataController.container.viewContext)
                     .environment(\.colorScheme, .light)
                     .opacity(isShowingSplash ? 0 : 1)
                     .onReceive(NotificationCenter.default.publisher(for: NSNotification.sleepTimerStart)) { _ in

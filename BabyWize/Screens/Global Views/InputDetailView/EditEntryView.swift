@@ -60,6 +60,13 @@ struct EditEntryView_Previews: PreviewProvider {
                                  date: .now,
                                  amount: 180,
                                  note: "test",
-                                 solidOrLiquid: .liquid))
+                                 solidOrLiquid: .liquid(type: .formula)))
+        EditEntryView(viewModel: FeedEntryViewModel(),
+                      type: .liquidFeed,
+                      item: Feed(id: "1",
+                                 date: .now,
+                                 amount: 180,
+                                 note: "test",
+                                 solidOrLiquid: .liquid(type: .breast)))
     }
 }

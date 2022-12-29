@@ -13,20 +13,27 @@ import FirebaseFirestore
 
 extension QueryDocumentSnapshot {
     func mapToFeed() -> Feed? {
+        typealias FeedType = Feed.LiquidFeedType
         let mappedData = data()
         guard let amount = mappedData[FBKeys.kAmount] as? Double,
               let note = mappedData[FBKeys.kNote] as? String,
-              let solidOrLiquid = mappedData[FBKeys.kSolidLiquid] as? String,
+              let solidOrLiquidKey = mappedData[FBKeys.kSolidLiquid] as? String,
               let timeStamp = mappedData[FBKeys.kDate] as? Timestamp,
               let id = mappedData[FBKeys.kID] as? String
         else {
             return nil
         }
+        let liquidFeedType: FeedType = mappedData[FBKeys.kLiquidType] as? FeedType ?? .formula
+        var solidOrLiquid: Feed.SolidOrLiquid {
+            solidOrLiquidKey.lowercased() == Feed.SolidOrLiquid.solid.title.lowercased()
+                ? .solid
+                : .liquid(type: liquidFeedType)
+        }
         return .init(id: id,
                      date: Date(timeIntervalSince1970: Double(timeStamp.seconds)),
                      amount: amount,
                      note: note.isEmpty ? nil : note,
-                     solidOrLiquid: .init(rawValue: solidOrLiquid) ?? .liquid)
+                     solidOrLiquid: solidOrLiquid)
     }
 
     func mapToSleep() -> Sleep? {

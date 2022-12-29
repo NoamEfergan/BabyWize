@@ -13,16 +13,18 @@ struct FeedEntryView: View {
     @Inject private var defaultManager: UserDefaultManager
 
     private var unitText: String {
-        vm.solidOrLiquid == .liquid ? defaultManager.liquidUnits.rawValue : defaultManager.solidUnits.rawValue
+        vm.solidOrLiquid == .solid ? defaultManager.solidUnits.rawValue : defaultManager.liquidUnits.rawValue
     }
+
+
 
     var body: some View {
         VStack(alignment: .leading) {
             AccessiblePicker(title: "Solid or liquid?",
                              selection: $vm.solidOrLiquid) {
-                ForEach(Feed.SolidOrLiquid.allCases, id: \.self) {
-                    Text($0.rawValue.capitalized)
-                        .accessibilityLabel($0.rawValue)
+                ForEach(Feed.SolidOrLiquid.allCases, id: \.self.title) {
+                    Text($0.title)
+                        .accessibilityLabel($0.title)
                         .accessibilityAddTraits(.isButton)
                 }
             }

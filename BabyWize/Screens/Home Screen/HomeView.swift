@@ -98,6 +98,11 @@ struct HomeView: View {
                         sharingVC.hasError = false
                     }
                 }
+                .alert(authVM.errorMsg, isPresented: $authVM.hasError) {
+                    Button("OK") {
+                        authVM.hasError = false
+                    }
+                }
                 .sheet(isPresented: $isShowingNewEntrySheet) {
                     AddEntryView(vm: addEntryViewVM)
                         .presentationDetents([.fraction(0.45), .medium])

@@ -18,7 +18,8 @@ struct InputDetailView: View {
         Group {
             switch type {
             case .liquidFeed:
-                FeedInputDetailView(solidOrLiquid: .liquid)
+                // TODO: Check for this default
+                FeedInputDetailView(solidOrLiquid: .liquid(type: .formula))
             case .solidFeed:
                 FeedInputDetailView(solidOrLiquid: .solid)
             case .sleep:

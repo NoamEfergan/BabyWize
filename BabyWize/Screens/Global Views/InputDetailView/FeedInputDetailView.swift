@@ -27,7 +27,7 @@ struct FeedInputDetailView: View {
                         AccessibleLabeledContent(label:"Amount",
                                                  value: feed.amount.displayableAmount(isSolid: feed.isSolids))
                         AccessibleLabeledContent(label:"Date", value: feed.date.formatted())
-                        AccessibleLabeledContent(label:"Type", value: feed.solidOrLiquid.rawValue.capitalized)
+                        AccessibleLabeledContent(label:"Type", value: feed.solidOrLiquid.title)
                         if let note = feed.note, !note.isEmpty {
                             AccessibleLabeledContent(label:"Notes", value: feed.note ?? "n/a")
                         }
@@ -77,7 +77,12 @@ struct FeedInputDetailView: View {
             }
             .confirmationDialog("Remove All", isPresented: $isShowingAlert) {
                 Button(role: .destructive) {
-                    dataManager.removeAll(for: solidOrLiquid == .liquid ? .liquidFeed : .solidFeed)
+                    switch solidOrLiquid {
+                    case .solid:
+                        dataManager.removeAll(for: .solidFeed)
+                    case .liquid:
+                        dataManager.removeAll(for: .liquidFeed)
+                    }
                 } label: {
                     Text("Yes")
                 }
@@ -106,6 +111,7 @@ struct FeedInputDetailView: View {
 struct FeedInputDetailView_Previews: PreviewProvider {
     static var previews: some View {
         FeedInputDetailView(solidOrLiquid: .solid)
-        FeedInputDetailView(solidOrLiquid: .liquid)
+        FeedInputDetailView(solidOrLiquid: .liquid(type: .formula))
+        FeedInputDetailView(solidOrLiquid: .liquid(type: .breast))
     }
 }

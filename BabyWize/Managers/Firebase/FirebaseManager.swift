@@ -124,13 +124,24 @@ class FirebaseManager {
         guard let userID = defaultsManager.userID else {
             return
         }
+        var liquidFeedType: String {
+            switch item.solidOrLiquid {
+            case .solid:
+                return ""
+            case .liquid(type: let type):
+                return type.rawValue.lowercased()
+            }
+        }
         let feedDTO: [String: Any] = [
             FBKeys.kDate: item.date,
             FBKeys.kAmount: item.amount,
             FBKeys.kNote: item.note ?? "",
             FBKeys.kID: item.id,
-            FBKeys.kSolidLiquid: item.solidOrLiquid.rawValue
+            FBKeys.kSolidLiquid: item.solidOrLiquid.title.lowercased(),
+            FBKeys.kLiquidType: liquidFeedType
         ]
+
+
         db
             .collection(FBKeys.kUsers)
             .document(userID)

@@ -5,6 +5,7 @@
 //  Created by Noam Efergan on 17/09/2022.
 //
 
+import Network
 import FirebaseAuth
 import Foundation
 
@@ -18,6 +19,7 @@ final class AuthViewModel: ObservableObject {
     @Published var didLogIn = false
     @Published var didRegister: String?
     @Published var didDeleteAccount: String?
+    let monitor = NWPathMonitor()
 
     func validateEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -61,6 +63,9 @@ final class AuthViewModel: ObservableObject {
     @discardableResult
     func login(email: String, password: String, shouldSaveToKeychain: Bool = true) async -> String? {
         isLoading = true
+        guard checkForInternet() else {
+            return nil
+        }
         defer {
             isLoading = false
         }
@@ -92,21 +97,11 @@ final class AuthViewModel: ObservableObject {
         logOut()
     }
 
-    private func addCredentialsToKeychain(email: String, password: String) {
-        Task.detached(priority: .background) {
-            let newCredentials = KeychainManager.Credentials(email: email, password: password)
-            do {
-                _ = try KeychainManager.fetchCredentials()
-                try KeychainManager.updateCredentials(newCredentials)
-            }
-            catch {
-                try? KeychainManager.setCredentials(newCredentials)
-            }
-        }
-    }
-
     func logOut() {
         isLoading = true
+        guard checkForInternet() else {
+            return
+        }
         defer {
             isLoading = false
         }
@@ -122,6 +117,35 @@ final class AuthViewModel: ObservableObject {
             print("There was an issue when trying to sign in: \(error)")
             hasError = true
             return
+        }
+    }
+
+    // MARK: - Private methods
+
+    private func checkForInternet() -> Bool {
+        switch monitor.currentPath.status {
+        case .satisfied:
+            print("Connected to internet")
+            return true
+        default:
+            print("Disconnected from internet")
+            hasError = true
+            errorMsg = "Please make sure you've got an active internet connection for remote syncing of data"
+            isLoading = false
+            return false
+        }
+    }
+
+    private func addCredentialsToKeychain(email: String, password: String) {
+        Task.detached(priority: .background) {
+            let newCredentials = KeychainManager.Credentials(email: email, password: password)
+            do {
+                _ = try KeychainManager.fetchCredentials()
+                try KeychainManager.updateCredentials(newCredentials)
+            }
+            catch {
+                try? KeychainManager.setCredentials(newCredentials)
+            }
         }
     }
 
