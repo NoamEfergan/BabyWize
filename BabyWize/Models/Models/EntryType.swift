@@ -17,7 +17,7 @@ enum EntryType: String, CaseIterable, Hashable {
         case .sleep:
             return "Sleep"
         case .nappy:
-            return "Nappy Change"
+            return "Nappy"
         case .breastFeed:
             return "Breast Feed"
         }

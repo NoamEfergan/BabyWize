@@ -19,6 +19,7 @@ final class AddEntryViewVM: ObservableObject {
     @Published var feedVM: FeedEntryViewModel = .init()
     @Published var sleepVM: SleepEntryViewModel = .init()
     @Published var nappyVM: NappyEntryViewModel = .init()
+    @Published var breastFeedVM: BreastFeedEntryViewModel = .init()
     @Published var shouldDismiss = false
     @Published var buttonTitle = ""
     private var bag = Set<AnyCancellable>()
@@ -30,12 +31,23 @@ final class AddEntryViewVM: ObservableObject {
 
     func getButtonTitle() -> String {
         let add = "Add"
-        guard entryType == .sleep else {
-            return add
-        }
-        if sleepVM.selectedLiveOrOld == .Live {
-            return defaultManager.hasTimerRunning ? "Stop" : "Start"
-        } else {
+        let stop = "Stop"
+        let start = "Start"
+
+        switch entryType {
+        case .sleep:
+            if sleepVM.selectedLiveOrOld == .Live {
+                return defaultManager.hasTimerRunning ? stop : start
+            } else {
+                return add
+            }
+        case .breastFeed:
+            if breastFeedVM.selectedLiveOrOld == .Live {
+                return defaultManager.hasFeedTimerRunning ? stop : start
+            } else {
+                return add
+            }
+        default:
             return add
         }
     }
@@ -50,7 +62,7 @@ final class AddEntryViewVM: ObservableObject {
             case .nappy:
                 try nappyVM.addEntry()
             case .breastFeed:
-                fatalError("need to implement")
+                try breastFeedVM.addEntry()
             }
             shouldDismiss = true
         } catch {

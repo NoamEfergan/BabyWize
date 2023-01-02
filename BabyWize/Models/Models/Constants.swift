@@ -27,7 +27,9 @@ enum UserConstants {
     static let sharedIDs = "SharedIDs"
     static let email = "email"
     static let hasTimerRunning = "timerRunning"
+    static let hasFeedTimerRunning = "feedTimerRunning"
     static let sleepStartTime = "sleepStart"
+    static let feedStartTime = "feedStart"
     static let initialInstallDate = "initialInstall"
     static let hasAskedForReview = "askedForReview"
 }

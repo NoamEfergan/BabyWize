@@ -30,7 +30,7 @@ struct AddEntryView: View {
             case .nappy:
                 NappyEntryView(vm: vm.nappyVM)
             case .breastFeed:
-                Text("Needs to implement!")
+                BreastFeedEntryView(vm: vm.breastFeedVM)
             }
             if !vm.errorText.isEmpty {
                 Text(vm.errorText)
@@ -54,6 +54,9 @@ struct AddEntryView: View {
             vm.buttonTitle = vm.getButtonTitle()
         }
         .onChange(of: defaultManager.hasTimerRunning) { _ in
+            vm.buttonTitle = vm.getButtonTitle()
+        }
+        .onChange(of: defaultManager.hasFeedTimerRunning) { _ in
             vm.buttonTitle = vm.getButtonTitle()
         }
         .onReceive(vm.$shouldDismiss) { shouldDismiss in

@@ -85,7 +85,7 @@ final class SleepEntryViewModel: EntryViewModel {
             throw EntryError.general
         }
         let newSleep: Sleep = .init(id: itemID, date: sleepDate, start: startDate, end: endDate)
-        dataManager.sleepData[index] = newSleep
+        dataManager.updateSleep(newSleep, index: index)
         reset()
     }
 
