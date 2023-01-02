@@ -122,25 +122,17 @@ class FirebaseManager {
 
     func addFeed(_ item: Feed) {
         guard let userID = defaultsManager.userID else {
+            print("Failed to add feed to remote, no userID")
             return
         }
-        var liquidFeedType: String {
-            switch item.solidOrLiquid {
-            case .solid:
-                return ""
-            case .liquid(type: let type):
-                return type.rawValue.lowercased()
-            }
-        }
+
         let feedDTO: [String: Any] = [
             FBKeys.kDate: item.date,
             FBKeys.kAmount: item.amount,
             FBKeys.kNote: item.note ?? "",
             FBKeys.kID: item.id,
             FBKeys.kSolidLiquid: item.solidOrLiquid.title.lowercased(),
-            FBKeys.kLiquidType: liquidFeedType
         ]
-
 
         db
             .collection(FBKeys.kUsers)
@@ -158,6 +150,7 @@ class FirebaseManager {
 
     func addSleep(_ item: Sleep) {
         guard let userID = defaultsManager.userID else {
+            print("Failed to add sleep to remote, no userID")
             return
         }
         let sleepDTO: [String: Any] = [
@@ -182,6 +175,7 @@ class FirebaseManager {
 
     func addNappyChange(_ item: NappyChange) {
         guard let userID = defaultsManager.userID else {
+            print("Failed to add nappy change to remote, no userID")
             return
         }
         let changeDTO: [String: Any] = [
@@ -195,6 +189,31 @@ class FirebaseManager {
             .collection(FBKeys.kChanges)
             .document(item.id)
             .setData(changeDTO) { err in
+                if let err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added")
+                }
+            }
+    }
+
+    func addBreastFeed(_ item: BreastFeed) {
+        guard let userID = defaultsManager.userID else {
+            print("Failed to add breast feed to remote, no userID")
+            return
+        }
+        let feedDTO: [String: Any] = [
+            FBKeys.kID: item.id,
+            FBKeys.kDate: item.date,
+            FBKeys.kStart: item.start,
+            FBKeys.kEnd: item.end
+        ]
+        db
+            .collection(FBKeys.kUsers)
+            .document(userID)
+            .collection(FBKeys.kBreast)
+            .document(item.id)
+            .setData(feedDTO) { err in
                 if let err {
                     print("Error adding document: \(err)")
                 } else {

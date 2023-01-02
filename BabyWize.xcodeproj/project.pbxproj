@@ -20,6 +20,7 @@
 		050FF468293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
 		050FF469293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
 		050FF46F293B8ABD00F445DE /* LogSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF46E293B8ABD00F445DE /* LogSleep.swift */; };
+		0514C3A32962F6ED005DD0C4 /* BreastFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A22962F6ED005DD0C4 /* BreastFeedView.swift */; };
 		05187BB4295083B1002B6C49 /* BabyDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */; };
 		05187BB52950840E002B6C49 /* BabyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */; };
 		05187BB729508633002B6C49 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BB629508633002B6C49 /* FirebaseAuth */; };
@@ -281,6 +282,7 @@
 		050AEEB9288DB3870052A2D1 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		050FF467293A3F6600F445DE /* IntentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentManager.swift; sourceTree = "<group>"; };
 		050FF46E293B8ABD00F445DE /* LogSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSleep.swift; sourceTree = "<group>"; };
+		0514C3A22962F6ED005DD0C4 /* BreastFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedView.swift; sourceTree = "<group>"; };
 		05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManagerTests.swift; sourceTree = "<group>"; };
 		053E48882939107800A90399 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		053E48932939107900A90399 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
@@ -756,6 +758,7 @@
 				05DD68DB28861C930066BFEC /* FeedEntryView.swift */,
 				05DD68DD28861CD70066BFEC /* SleepEntryView.swift */,
 				05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */,
+				0514C3A22962F6ED005DD0C4 /* BreastFeedView.swift */,
 			);
 			path = EntryView;
 			sourceTree = "<group>";
@@ -1072,6 +1075,7 @@
 				05A42A52290596540040A543 /* LoginView.swift in Sources */,
 				056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */,
 				056DC4972916F53D00B30720 /* NappyEntryViewModel.swift in Sources */,
+				0514C3A32962F6ED005DD0C4 /* BreastFeedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

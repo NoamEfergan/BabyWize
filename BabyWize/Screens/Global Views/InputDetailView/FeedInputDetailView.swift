@@ -111,7 +111,7 @@ struct FeedInputDetailView: View {
 struct FeedInputDetailView_Previews: PreviewProvider {
     static var previews: some View {
         FeedInputDetailView(solidOrLiquid: .solid)
-        FeedInputDetailView(solidOrLiquid: .liquid(type: .formula))
-        FeedInputDetailView(solidOrLiquid: .liquid(type: .breast))
+        FeedInputDetailView(solidOrLiquid: .liquid)
+        FeedInputDetailView(solidOrLiquid: .liquid)
     }
 }

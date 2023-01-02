@@ -13,7 +13,6 @@ import FirebaseFirestore
 
 extension QueryDocumentSnapshot {
     func mapToFeed() -> Feed? {
-        typealias FeedType = Feed.LiquidFeedType
         let mappedData = data()
         guard let amount = mappedData[FBKeys.kAmount] as? Double,
               let note = mappedData[FBKeys.kNote] as? String,
@@ -23,11 +22,8 @@ extension QueryDocumentSnapshot {
         else {
             return nil
         }
-        let liquidFeedType: FeedType = mappedData[FBKeys.kLiquidType] as? FeedType ?? .formula
         var solidOrLiquid: Feed.SolidOrLiquid {
-            solidOrLiquidKey.lowercased() == Feed.SolidOrLiquid.solid.title.lowercased()
-                ? .solid
-                : .liquid(type: liquidFeedType)
+            solidOrLiquidKey.lowercased() == Feed.SolidOrLiquid.solid.title.lowercased() ? .solid : .liquid
         }
         return .init(id: id,
                      date: Date(timeIntervalSince1970: Double(timeStamp.seconds)),
@@ -62,6 +58,21 @@ extension QueryDocumentSnapshot {
         return .init(id: id,
                      dateTime: .init(timeIntervalSince1970: Double(timeStamp.seconds)),
                      wetOrSoiled: wetOrSoiled)
+    }
+
+    func mapToBreastFeed() -> BreastFeed? {
+        let mappedData = data()
+        guard let id = mappedData[FBKeys.kID] as? String,
+              let timeStamp = mappedData[FBKeys.kDate] as? Timestamp,
+              let start = mappedData[FBKeys.kStart] as? Timestamp,
+              let end = mappedData[FBKeys.kEnd] as? Timestamp
+        else {
+            return nil
+        }
+        return .init(id: id,
+                     date: .init(timeIntervalSince1970: Double(timeStamp.seconds)),
+                     start: .init(timeIntervalSince1970: Double(start.seconds)),
+                     end: .init(timeIntervalSince1970: Double(end.seconds)))
     }
 }
 

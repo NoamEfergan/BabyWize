@@ -49,6 +49,8 @@ final class AddEntryViewVM: ObservableObject {
                 try sleepVM.handleAddingEntry()
             case .nappy:
                 try nappyVM.addEntry()
+            case .breastFeed:
+                fatalError("need to implement")
             }
             shouldDismiss = true
         } catch {

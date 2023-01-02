@@ -12,6 +12,7 @@ struct FBKeys {
     static let kFeeds = "feeds"
     static let kSleeps = "sleeps"
     static let kChanges = "changes"
+    static let kBreast = "breast feeds"
 
     static let kAmount = "amount"
     static let kDate = "date"

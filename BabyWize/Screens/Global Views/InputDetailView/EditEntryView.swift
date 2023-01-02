@@ -24,6 +24,8 @@ struct EditEntryView<Item: DataItem, ViewModel: EntryViewModel>: View {
                 SleepEntryView(vm: viewModel as! SleepEntryViewModel)
             case .nappy:
                 NappyEntryView(vm: viewModel as! NappyEntryViewModel)
+            case .breastFeed:
+                Text("Need to implement this!")
             }
             if !errorText.isEmpty {
                 Text(errorText)
@@ -60,13 +62,13 @@ struct EditEntryView_Previews: PreviewProvider {
                                  date: .now,
                                  amount: 180,
                                  note: "test",
-                                 solidOrLiquid: .liquid(type: .formula)))
+                                 solidOrLiquid: .liquid))
         EditEntryView(viewModel: FeedEntryViewModel(),
                       type: .liquidFeed,
                       item: Feed(id: "1",
                                  date: .now,
                                  amount: 180,
                                  note: "test",
-                                 solidOrLiquid: .liquid(type: .breast)))
+                                 solidOrLiquid: .liquid))
     }
 }

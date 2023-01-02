@@ -18,14 +18,15 @@ struct InputDetailView: View {
         Group {
             switch type {
             case .liquidFeed:
-                // TODO: Check for this default
-                FeedInputDetailView(solidOrLiquid: .liquid(type: .formula))
+                FeedInputDetailView(solidOrLiquid: .liquid)
             case .solidFeed:
                 FeedInputDetailView(solidOrLiquid: .solid)
             case .sleep:
                 SleepInputDetailView()
             case .nappy:
                 NappyInputDetailView()
+            case .breastFeed:
+                Text("Need to implement this")
             }
         }
         .environment(\.editMode, $editMode)

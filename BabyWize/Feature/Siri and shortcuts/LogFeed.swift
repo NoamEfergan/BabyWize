@@ -38,7 +38,7 @@ struct LogFeed: AppIntent {
         var solidOrLiquidObject: Feed.SolidOrLiquid {
             switch solidOrLiquid {
             case .liquid:
-                return .liquid(type: .formula)
+                return .liquid
             case .solid:
                 return .solid
             }

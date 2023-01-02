@@ -54,24 +54,17 @@ struct Feed: DataItem {
 
     enum SolidOrLiquid: Codable, Equatable, Hashable, CaseIterable, Identifiable {
         var id: Self { self }
-
-        static var allCases: [Feed.SolidOrLiquid] = [.solid, .liquid(type: .formula), .liquid(type: .breast)]
-
         case solid
-        case liquid(type: LiquidFeedType)
+        case liquid
 
         var title: String {
             switch self {
             case .solid:
                 return "Solid"
-            case .liquid(let type):
-                return "Liquid (\(type.rawValue.capitalized))"
+            case .liquid:
+                return "Liquid"
             }
         }
-    }
-
-    enum LiquidFeedType: String, Codable, Equatable, Hashable {
-        case breast, formula
     }
 
     var isLiquids: Bool {
@@ -80,5 +73,25 @@ struct Feed: DataItem {
 
     var isSolids: Bool {
         solidOrLiquid == .solid
+    }
+}
+
+// MARK: - BreastFeed
+struct BreastFeed: DataItem {
+    let id: String
+    let date: Date
+    let start: Date
+    let end: Date
+
+    func getTimeInterval() -> TimeInterval {
+        end.timeIntervalSince(start)
+    }
+
+    func getDuration() -> String {
+        getTimeInterval().hourMinuteSecondMS
+    }
+
+    func getDisplayableString() -> String {
+        getTimeInterval().displayableString
     }
 }

@@ -19,7 +19,7 @@ struct PlaceholderChart: View {
     var body: some View {
         Group {
             switch type {
-            case .liquidFeed, .solidFeed:
+            case .liquidFeed, .solidFeed, .breastFeed:
                 dummyFeedChart
                     .redacted(reason: .placeholder)
             case .sleep:
@@ -123,22 +123,22 @@ extension PlaceholderChart {
                  date: Date.getRandomMockDate(),
                  amount: .getRandomFeedAmount(),
                  note: nil,
-                 solidOrLiquid: Feed.SolidOrLiquid.liquid(type: .formula)),
+                 solidOrLiquid: Feed.SolidOrLiquid.liquid),
             Feed(id: UUID().uuidString,
                  date: Date.getRandomMockDate(),
                  amount: .getRandomFeedAmount(),
                  note: nil,
-                 solidOrLiquid: Feed.SolidOrLiquid.liquid(type: .formula)),
+                 solidOrLiquid: Feed.SolidOrLiquid.liquid),
             Feed(id: UUID().uuidString,
                  date: Date.getRandomMockDate(),
                  amount: .getRandomFeedAmount(),
                  note: nil,
-                 solidOrLiquid: Feed.SolidOrLiquid.liquid(type: .breast)),
+                 solidOrLiquid: Feed.SolidOrLiquid.liquid),
             Feed(id: UUID().uuidString,
                  date: Date.getRandomMockDate(),
                  amount: .getRandomFeedAmount(),
                  note: nil,
-                 solidOrLiquid: Feed.SolidOrLiquid.liquid(type: .breast)),
+                 solidOrLiquid: Feed.SolidOrLiquid.liquid)
         ]
         .sorted(by: { $0.date < $1.date })
 

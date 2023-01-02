@@ -29,6 +29,8 @@ struct AddEntryView: View {
                 SleepEntryView(vm: vm.sleepVM)
             case .nappy:
                 NappyEntryView(vm: vm.nappyVM)
+            case .breastFeed:
+                Text("Needs to implement!")
             }
             if !vm.errorText.isEmpty {
                 Text(vm.errorText)

@@ -14,7 +14,7 @@ final class FeedEntryViewModel: EntryViewModel {
     @Published var feedDate: Date = .init()
     @Published var feedNote = ""
     // TODO: Check this as default
-    @Published var solidOrLiquid: Feed.SolidOrLiquid = .liquid(type: .formula)
+    @Published var solidOrLiquid: Feed.SolidOrLiquid = .liquid
     var itemID = ""
 
     init() {}
@@ -69,7 +69,7 @@ final class FeedEntryViewModel: EntryViewModel {
         amount = ""
         feedDate = .init()
         feedNote = ""
-        solidOrLiquid = .liquid(type: .formula)
+        solidOrLiquid = .liquid
         itemID = ""
     }
 }
