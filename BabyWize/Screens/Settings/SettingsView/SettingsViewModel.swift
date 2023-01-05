@@ -17,6 +17,9 @@ final class SettingsViewModel: ObservableObject {
     @Published var isShowingRemoveAlert = false
     @Published var isLoading = false
     @Published var isShowingDeleteAccountAlert = false
+
+    @Published var showTips = false
+    @Published var showThanks = false
     private let qrImage = QrCodeImage()
     private var idToRemove = ""
 
@@ -60,6 +63,20 @@ final class SettingsViewModel: ObservableObject {
         }
 
         return defaultUrl
+    }
+
+    func handleTipAction(_ action: TipsAction?) -> Bool {
+        if action == .successful {
+            showTips = false
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.showThanks.toggle()
+            }
+
+            return true
+        } else {
+            return false
+        }
     }
 }
 

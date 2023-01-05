@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import StoreKit
 
 // MARK: - SettingsView
 struct SettingsView: View {
+    @EnvironmentObject private var store: TipManager
     @InjectedObject private var defaultsManager: UserDefaultManager
     @InjectedObject private var authVM: AuthViewModel
     @StateObject private var vm = SettingsViewModel()
+
     private let accentColour = Color(hex: "#5354EC")
     var body: some View {
         List {
@@ -99,7 +102,7 @@ struct SettingsView: View {
             Section {
                 Group {
                     Button("Tip jar 💸") {
-                        print("clicked tip")
+                        vm.showTips.toggle()
                     }
                     .foregroundStyle(.blue.gradient)
 
@@ -178,6 +181,31 @@ struct SettingsView: View {
         }
         .animation(.easeInOut, value: defaultsManager.sharingAccounts.isEmpty)
         .animation(.easeInOut, value: vm.isShowingQRCode)
+        .overlay(alignment: .bottom) {
+            if vm.showThanks {
+                thankYouScreen
+            }
+        }
+        .overlay {
+            if vm.showTips {
+                Color.black.opacity(0.8)
+                    .ignoresSafeArea()
+                    .transition(.opacity)
+                    .onTapGesture {
+                        vm.showTips.toggle()
+                    }
+                cardVw
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
+        .animation(.spring(), value: vm.showTips)
+        .animation(.spring(), value: vm.showThanks)
+        .onChange(of: store.action) { action in
+            if vm.handleTipAction(action) {
+                store.reset()
+            }
+        }
+        .alert(isPresented: $store.hasError, error: store.error) {}
     }
 
     @ViewBuilder
@@ -277,6 +305,107 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             SettingsView()
+                .environmentObject(TipManager())
         }
+    }
+}
+
+private extension SettingsView {
+    @ViewBuilder
+    var cardVw: some View {
+        VStack(spacing: 8) {
+            HStack {
+                Spacer()
+                Button {
+                    vm.showTips.toggle()
+                } label: {
+                    Image(systemName: "xmark")
+                        .symbolVariant(.circle.fill)
+                        .font(.system(.largeTitle, design: .rounded).bold())
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(.gray, .gray.opacity(0.2))
+                }
+            }
+
+            Text("Enjoying the app so far?")
+                .font(.system(.title2, design: .rounded).bold())
+                .multilineTextAlignment(.center)
+
+            Text("This app is made by one dad out of the UK, trying to help parents get by.")
+                .font(.system(.body, design: .rounded))
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 16)
+
+            ForEach(store.items) { item in
+                configureProductVw(item)
+            }
+        }
+        .padding(16)
+        .background(Color("card-background"), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .padding(8)
+        .overlay(alignment: .top) {
+            Image("BWSVG")
+                .resizable()
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .frame(width: 75, height: 75)
+                .padding(6)
+                .offset(y: -25)
+        }
+    }
+
+    @ViewBuilder
+    func configureProductVw(_ item: Product) -> some View {
+        HStack {
+            VStack(alignment: .leading,
+                   spacing: 3) {
+                Text(item.displayName)
+                    .font(.system(.title3, design: .rounded).bold())
+                Text(item.description)
+                    .font(.system(.callout, design: .rounded).weight(.regular))
+            }
+
+            Spacer()
+
+            Button(item.displayPrice) {
+                Task {
+                    await store.purchase(item)
+                }
+            }
+            .tint(.blue)
+            .buttonStyle(.bordered)
+            .font(.callout.bold())
+        }
+        .padding(16)
+        .background(Color("cell-background"),in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+    }
+
+    @ViewBuilder
+    var thankYouScreen: some View {
+        VStack(spacing: 8) {
+            Text("Thank You 💕")
+                .font(.system(.title2, design: .rounded).bold())
+                .multilineTextAlignment(.center)
+
+            Text("Your support means the world to me, thank you for supporting indie developers")
+                .font(.system(.body, design: .rounded))
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 16)
+
+            Button {
+                vm.showThanks.toggle()
+            } label: {
+                Text("Close")
+                    .font(.system(.title3, design: .rounded).bold())
+                    .tint(.white)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(.blue, in: RoundedRectangle(cornerRadius: 10,
+                                                            style: .continuous))
+            }
+        }
+        .padding(16)
+        .background(Color("card-background"), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .padding(.horizontal, 8)
+        .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 }

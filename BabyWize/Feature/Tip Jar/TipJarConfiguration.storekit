@@ -10,8 +10,8 @@
       "internalID" : "725B3434",
       "localizations" : [
         {
-          "description" : "",
-          "displayName" : "",
+          "description" : "Nothing like a little Whippy 🍦",
+          "displayName" : "Buy me an ice cream ",
           "locale" : "en_US"
         }
       ],
@@ -20,13 +20,13 @@
       "type" : "Consumable"
     },
     {
-      "displayPrice" : "0.99",
+      "displayPrice" : "1.99",
       "familyShareable" : false,
       "internalID" : "E765A10A",
       "localizations" : [
         {
-          "description" : "",
-          "displayName" : "",
+          "description" : "Help me fight off the world famous UK heat 🧃",
+          "displayName" : "Buy me a soda",
           "locale" : "en_US"
         }
       ],
@@ -35,13 +35,13 @@
       "type" : "Consumable"
     },
     {
-      "displayPrice" : "0.99",
+      "displayPrice" : "4.99",
       "familyShareable" : false,
       "internalID" : "2A9528EC",
       "localizations" : [
         {
-          "description" : "",
-          "displayName" : "",
+          "description" : "Sort my luch out 🍔",
+          "displayName" : "Buy me a Big Mac",
           "locale" : "en_US"
         }
       ],
@@ -50,13 +50,13 @@
       "type" : "Consumable"
     },
     {
-      "displayPrice" : "0.99",
+      "displayPrice" : "9.99",
       "familyShareable" : false,
       "internalID" : "FFB41F71",
       "localizations" : [
         {
-          "description" : "",
-          "displayName" : "",
+          "description" : "Cheers, this one is to you! 🍺",
+          "displayName" : "Buy me a pint",
           "locale" : "en_US"
         }
       ],

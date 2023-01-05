@@ -8,27 +8,39 @@
 import SwiftUI
 import StoreKit
 
-// MARK: - TestView
-struct TestView: View {
-    @State private var myProduct: Product?
+// MARK: - ProductsListView
+struct ProductsListView: View {
+    @EnvironmentObject private var store: TipManager
 
     var body: some View {
-        VStack {
-            Text("Product Info")
-            Text(myProduct?.displayName ?? "")
-            Text(myProduct?.description ?? "")
-            Text(myProduct?.displayPrice ?? "")
-            Text(myProduct?.price.description ?? "")
-        }
-        .task {
-            myProduct = try? await Product.products(for: ["app.babywize.tinyTip"]).first
+        ForEach(store.items) { item in
+            ProductView(item: item)
         }
     }
 }
 
-// MARK: - TestView_Previews
-struct TestView_Previews: PreviewProvider {
-    static var previews: some View {
-        TestView()
+// MARK: - ProductView
+struct ProductView: View {
+    let item: Product
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading,
+                   spacing: 3) {
+                Text(item.displayName)
+                    .font(.system(.title3, design: .rounded).bold())
+                Text(item.description)
+                    .font(.system(.callout, design: .rounded).weight(.regular))
+            }
+
+            Spacer()
+
+            Button(item.displayPrice) {
+                // TODO: Handle purchase
+            }
+            .tint(.blue)
+            .buttonStyle(.bordered)
+            .font(.callout.bold())
+        }
     }
 }
+
