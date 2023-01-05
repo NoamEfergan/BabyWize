@@ -14,7 +14,8 @@ struct HomeScreenCharts: View {
 
     var body: some View {
         TabView {
-            FeedChart(feedData: dataManager.feedData.getUpTo(limit: 6))
+            FeedChart(feedData: dataManager.feedData.getUpTo(limit: 6),
+                      breastFeedData: dataManager.breastFeedData.getUpTo(limit: 6))
                 .frame(width: UIScreen.main.bounds.width)
                 .accessibilityLabel("Feed Chart")
             SleepChart(sleepData: dataManager.sleepData.getUpTo(limit: 3))

@@ -142,6 +142,31 @@ extension PlaceholderChart {
         ]
         .sorted(by: { $0.date < $1.date })
 
+        static func getMockBreast() -> [BreastFeed] {
+            let firstStart = Date.getRandomMockDate()
+            let secondStart = Date.getRandomMockDate()
+            let thirdStart = Date.getRandomMockDate()
+
+            let firstEnd = Date.getRandomEndData(from: firstStart)
+            let secondEnd = Date.getRandomEndData(from: secondStart)
+            let thirdEnd = Date.getRandomEndData(from: thirdStart)
+
+            return [
+                BreastFeed(id: UUID().uuidString,
+                           date: Date.getRandomMockDate(),
+                           start: firstStart,
+                           end:firstEnd),
+                BreastFeed(id: UUID().uuidString,
+                           date: Date.getRandomMockDate(),
+                           start: secondStart,
+                           end:secondEnd),
+                BreastFeed(id: UUID().uuidString,
+                           date: Date.getRandomMockDate(),
+                           start: thirdStart,
+                           end:thirdEnd),
+            ].sorted(by: { $0.date < $1.date })
+        }
+
         static func getMockSleep() -> [Sleep] {
             let firstStart = Date.getRandomMockDate()
             let secondStart = Date.getRandomMockDate()

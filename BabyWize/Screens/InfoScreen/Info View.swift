@@ -50,7 +50,7 @@ struct InfoView: View {
             Section("total history") {
                 switch vm.type {
                 case .liquidFeed:
-                    FeedChart(feedData: dataManager.feedData, showTitle: false)
+                    FeedChart(feedData: dataManager.feedData, breastFeedData: [], showTitle: false)
                         .frame(minHeight: 200)
                 case .sleep:
                     SleepChart(sleepData: dataManager.sleepData, showTitle: false)
