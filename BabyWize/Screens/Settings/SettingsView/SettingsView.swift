@@ -98,6 +98,11 @@ struct SettingsView: View {
             }
             Section {
                 Group {
+                    Button("Tip jar 💸") {
+                        print("clicked tip")
+                    }
+                    .foregroundStyle(.blue.gradient)
+
                     Button("Report a bug 🐛") {
                         if let url = vm.createEmailUrl() {
                             UIApplication.shared.open(url)
