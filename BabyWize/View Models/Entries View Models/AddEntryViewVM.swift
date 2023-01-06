@@ -62,7 +62,7 @@ final class AddEntryViewVM: ObservableObject {
             case .nappy:
                 try nappyVM.addEntry()
             case .breastFeed:
-                try breastFeedVM.addEntry()
+                try breastFeedVM.handleAddingEntry()
             }
             shouldDismiss = true
         } catch {

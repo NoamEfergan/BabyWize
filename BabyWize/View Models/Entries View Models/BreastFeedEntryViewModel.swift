@@ -22,6 +22,19 @@ final class BreastFeedEntryViewModel: EntryViewModel {
         selectedLiveOrOld = defaultManager.hasTimerRunning ? .Live : .Old
     }
 
+    func handleAddingEntry() throws {
+        switch selectedLiveOrOld {
+        case .Old:
+            try addEntry()
+        case .Live:
+            if defaultManager.hasFeedTimerRunning {
+                try stopFeedTimer()
+            } else {
+                startFeedTimer()
+            }
+        }
+    }
+
     func addEntry() throws {
         guard startDate != endDate else {
             throw EntryError.sameSleepDate
@@ -69,6 +82,29 @@ final class BreastFeedEntryViewModel: EntryViewModel {
         startDate = .init()
         endDate = .init()
         feedDate = .init()
+    }
+
+    // MARK: - Private methods
+
+    private func stopFeedTimer() throws {
+        defaultManager.hasTimerRunning = false
+        guard let startTime = defaultManager.feedStartDate else {
+            throw EntryError.invalidSleepDate
+        }
+        let feed = BreastFeed(id: UUID().uuidString, date: .now, start: startTime, end: .now)
+
+        dataManager.addBreastFeed(feed)
+        reset()
+        defaultManager.feedStartDate = nil
+        NotificationCenter.default.post(name: NSNotification.feedTimerEnd , object: nil)
+    }
+
+    func startFeedTimer() {
+        defaultManager.hasFeedTimerRunning = false
+        defaultManager.feedStartDate = nil
+        defaultManager.hasFeedTimerRunning = true
+        defaultManager.feedStartDate = .now
+        NotificationCenter.default.post(name: NSNotification.feedTimerStart , object: nil)
     }
 }
 
