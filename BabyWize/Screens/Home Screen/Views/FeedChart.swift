@@ -27,7 +27,7 @@ struct FeedChart: View {
             if showTitle {
                 headerView
             }
-            if feedData.isEmpty {
+            if feedData.isEmpty && breastFeedData.isEmpty {
                 PlaceholderChart(type: .liquidFeed)
                     .onAppear {
                         isShowingJoint = true
@@ -148,20 +148,22 @@ struct FeedChart: View {
     @ViewBuilder
     private var jointChart: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Formula and solid feeds")
-                .font(.system(.subheadline, design: .rounded))
-                .foregroundColor(.secondary)
-                .padding(.leading)
+            if !feedData.isEmpty {
+                Text("Formula and solid feeds")
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundColor(.secondary)
+                    .padding(.leading)
 
-            ScrollView(.horizontal) {
-                Chart(feedData.sorted(by: { $0.date < $1.date })) { feed in
-                    if feed.solidOrLiquid == .solid {
-                        getSolidsChart(for: feed)
-                    } else {
-                        getLiquidsChart(for: feed)
+                ScrollView(.horizontal) {
+                    Chart(feedData.sorted(by: { $0.date < $1.date })) { feed in
+                        if feed.solidOrLiquid == .solid {
+                            getSolidsChart(for: feed)
+                        } else {
+                            getLiquidsChart(for: feed)
+                        }
                     }
+                    .chartModifier(plotWidth: plotWidth)
                 }
-                .chartModifier(plotWidth: plotWidth)
             }
 
             breastFeedChart
@@ -183,6 +185,7 @@ struct FeedChart: View {
                         getBreastFeedChart(for: feed)
                     }
                     .chartModifier(plotWidth: plotWidth)
+                    .chartYAxis(.hidden)
                 }
                 .scrollIndicators(.visible)
             }
@@ -257,6 +260,11 @@ struct FeedChart: View {
             .accessibilityLabel(feed.date.formatted())
             .accessibilityValue("Breast feed, \(duration)")
             .foregroundStyle(Color.pink.gradient)
+            .annotation(position: .top, alignment: .center) {
+                Text("\(duration)")
+                    .foregroundColor(.secondary)
+                    .font(.footnote)
+            }
 
         LineMark(x: .value(timeTitle, date),
                  y: .value(durationTitle, duration),
@@ -330,11 +338,11 @@ struct FeedChart_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
             FeedChart(feedData: PlaceholderChart.MockData.mockFeed.getUpTo(limit: 7),
-                      breastFeedData: PlaceholderChart.MockData.getMockBreast())
+                      breastFeedData: PlaceholderChart.MockData.mockBreast)
         }
         ScrollView {
             FeedChart(feedData: PlaceholderChart.MockData.mockFeed,
-                      breastFeedData: PlaceholderChart.MockData.getMockBreast(),
+                      breastFeedData: PlaceholderChart.MockData.mockBreast,
                       showTitle: false)
         }
     }

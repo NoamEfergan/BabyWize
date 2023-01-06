@@ -31,7 +31,10 @@ struct HomeView: View {
     @State private var iconRotation: Double = 0
 
     var minChartHeight: Double {
-        defaultsManager.chartConfiguration == .joint ? 350 : 550
+        let hasBothType = !dataManager.feedData.isEmpty && !dataManager.breastFeedData.isEmpty
+        let minJoint: Double = hasBothType ? 550 : 350
+        let minSeparate: Double = hasBothType ? 750 : 550
+        return defaultsManager.chartConfiguration == .joint ? minJoint : minSeparate
     }
 
     private var shouldShowSheet: Bool {

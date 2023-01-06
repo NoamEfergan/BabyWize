@@ -84,7 +84,7 @@ struct PlaceholderChart: View {
         .onAppear {
             if !didAnimateSleepAlready {
                 sleepData.removeAll()
-                for (index, item) in MockData.getMockSleep().enumerated() {
+                for (index, item) in MockData.mockSleep.enumerated() {
                     withAnimation(.easeIn(duration: 0.2).delay(Double(index) * 0.2)) {
                         sleepData.append(item)
                     }
@@ -107,42 +107,45 @@ struct PlaceholderChart_Previews: PreviewProvider {
 extension PlaceholderChart {
     // MARK: - MockData
 
-    enum MockData {
-        static let mockFeed: [Feed] = [
-            Feed(id: UUID().uuidString,
+    class MockData {
+        init() {}
+        static var mockFeed: [Feed] { [
+            Feed(id: "1",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
+                 amount: 100,
                  note: nil,
                  solidOrLiquid: Feed.SolidOrLiquid.solid),
-            Feed(id: UUID().uuidString,
+            Feed(id:"2",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
+                 amount: 120,
                  note: nil,
                  solidOrLiquid: Feed.SolidOrLiquid.solid),
-            Feed(id: UUID().uuidString,
+            Feed(id: "3",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
+                 amount: 130,
                  note: nil,
                  solidOrLiquid: Feed.SolidOrLiquid.liquid),
-            Feed(id: UUID().uuidString,
+            Feed(id: "4",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
+                 amount: 120,
                  note: nil,
                  solidOrLiquid: Feed.SolidOrLiquid.liquid),
-            Feed(id: UUID().uuidString,
+            Feed(id: "5",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
+                 amount: 110,
                  note: nil,
                  solidOrLiquid: Feed.SolidOrLiquid.liquid),
-            Feed(id: UUID().uuidString,
+            Feed(id: "6",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
+                 amount: 150,
                  note: nil,
                  solidOrLiquid: Feed.SolidOrLiquid.liquid)
-        ]
-        .sorted(by: { $0.date < $1.date })
+            ]
+            .sorted(by: { $0.date < $1.date })
+        }
 
-        static func getMockBreast() -> [BreastFeed] {
+
+        static var mockBreast: [BreastFeed] {
             let firstStart = Date.getRandomMockDate()
             let secondStart = Date.getRandomMockDate()
             let thirdStart = Date.getRandomMockDate()
@@ -167,7 +170,7 @@ extension PlaceholderChart {
             ].sorted(by: { $0.date < $1.date })
         }
 
-        static func getMockSleep() -> [Sleep] {
+        static var mockSleep: [Sleep] {
             let firstStart = Date.getRandomMockDate()
             let secondStart = Date.getRandomMockDate()
             let thirdStart = Date.getRandomMockDate()
