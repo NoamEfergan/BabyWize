@@ -12,7 +12,7 @@ import StoreKit
 // MARK: - Screens
 enum Screens: String {
     case home, settings, newEntry, feed, sleep, detailInputLiquidFeed,detailInputSolidFeed, detailInputNappy,
-         detailInputSleep, none
+         detailInputSleep,detailInputBreastFeed , none
 }
 
 // MARK: - HomeView
@@ -143,6 +143,8 @@ struct HomeView: View {
                         wantsToAddEntry = true
                         if url.absoluteString.contains("openSleep") {
                             addEntryViewVM.entryType = .sleep
+                        } else if url.absoluteString.contains("openFeed") {
+                            addEntryViewVM.entryType = .breastFeed
                         }
                     }
                     if url.absoluteString.starts(with: "app.babywize") {
@@ -180,6 +182,9 @@ struct HomeView: View {
         case .detailInputNappy:
             InputDetailView(type: .nappy)
                 .navigationTitle("All nappy changes")
+        case .detailInputBreastFeed:
+            InputDetailView(type: .breastFeed)
+                .navigationTitle("All breast feeds")
 
         default:
             EmptyView()

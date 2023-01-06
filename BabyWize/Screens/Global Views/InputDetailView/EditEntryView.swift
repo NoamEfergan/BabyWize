@@ -25,7 +25,7 @@ struct EditEntryView<Item: DataItem, ViewModel: EntryViewModel>: View {
             case .nappy:
                 NappyEntryView(vm: viewModel as! NappyEntryViewModel)
             case .breastFeed:
-                Text("Need to implement this!")
+                BreastFeedEntryView(vm: viewModel as! BreastFeedEntryViewModel)
             }
             if !errorText.isEmpty {
                 Text(errorText)

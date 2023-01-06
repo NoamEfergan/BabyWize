@@ -65,7 +65,7 @@
             startingLineNumber = "268"
             endingLineNumber = "268"
             landmarkName = "getBreastFeedChart(for:)"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -383,22 +383,6 @@
             startingLineNumber = "51"
             endingLineNumber = "51"
             landmarkName = "listenToLogin()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6F937044-367F-4A43-B8BD-1350C1290297"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BabyWize/View Models/Entries View Models/AddEntryViewVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "getButtonTitle()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

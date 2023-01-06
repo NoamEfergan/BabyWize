@@ -93,6 +93,14 @@
 		05187BFD295091DE002B6C49 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		05187BFF295091F7002B6C49 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BFE295091F7002B6C49 /* Swinject */; };
 		05187C0029509203002B6C49 /* SleepActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414E5294F0F71009A4791 /* SleepActivityLiveActivity.swift */; };
+		0523666D29687D93008B58A2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE91288C64190052A2D1 /* WidgetKit.framework */; };
+		0523666E29687D93008B58A2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE93288C64190052A2D1 /* SwiftUI.framework */; };
+		0523667129687D93008B58A2 /* FeedActivityBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523667029687D93008B58A2 /* FeedActivityBundle.swift */; };
+		0523667329687D93008B58A2 /* FeedActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523667229687D93008B58A2 /* FeedActivityLiveActivity.swift */; };
+		0523667729687D94008B58A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0523667629687D94008B58A2 /* Assets.xcassets */; };
+		0523667B29687D94008B58A2 /* FeedActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0523666C29687D93008B58A2 /* FeedActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0523667F29687F64008B58A2 /* FeedActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523667229687D93008B58A2 /* FeedActivityLiveActivity.swift */; };
+		05236682296884FB008B58A2 /* BreastFeedInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05236681296884FB008B58A2 /* BreastFeedInputDetailView.swift */; };
 		053E48B52939120A00A90399 /* LogFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E48B42939120A00A90399 /* LogFeed.swift */; };
 		0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
 		0543E5A4294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
@@ -223,6 +231,13 @@
 			remoteGlobalIDString = 050AEE8E288C64190052A2D1;
 			remoteInfo = AddEntryWidgetExtension;
 		};
+		0523667929687D94008B58A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 056083732884147800728F1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0523666B29687D93008B58A2;
+			remoteInfo = FeedActivityExtension;
+		};
 		0560838C2884147900728F1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 056083732884147800728F1F /* Project object */;
@@ -254,6 +269,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				050AEEA0288C641A0052A2D1 /* AddEntryWidgetExtension.appex in Embed Foundation Extensions */,
+				0523667B29687D94008B58A2 /* FeedActivityExtension.appex in Embed Foundation Extensions */,
 				058414EE294F0F72009A4791 /* SleepActivityExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -290,6 +306,12 @@
 		0514C3A62963024C005DD0C4 /* BreastFeedEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedEntryViewModel.swift; sourceTree = "<group>"; };
 		0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedEntryView.swift; sourceTree = "<group>"; };
 		05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManagerTests.swift; sourceTree = "<group>"; };
+		0523666C29687D93008B58A2 /* FeedActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FeedActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0523667029687D93008B58A2 /* FeedActivityBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedActivityBundle.swift; sourceTree = "<group>"; };
+		0523667229687D93008B58A2 /* FeedActivityLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedActivityLiveActivity.swift; sourceTree = "<group>"; };
+		0523667629687D94008B58A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0523667829687D94008B58A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05236681296884FB008B58A2 /* BreastFeedInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedInputDetailView.swift; sourceTree = "<group>"; };
 		053E48882939107800A90399 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		053E48932939107900A90399 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		053E48B42939120A00A90399 /* LogFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFeed.swift; sourceTree = "<group>"; };
@@ -386,6 +408,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0523666929687D93008B58A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0523666E29687D93008B58A2 /* SwiftUI.framework in Frameworks */,
+				0523666D29687D93008B58A2 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		056083782884147800728F1F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -466,6 +497,17 @@
 			path = "Siri and shortcuts";
 			sourceTree = "<group>";
 		};
+		0523666F29687D93008B58A2 /* FeedActivity */ = {
+			isa = PBXGroup;
+			children = (
+				0523667029687D93008B58A2 /* FeedActivityBundle.swift */,
+				0523667229687D93008B58A2 /* FeedActivityLiveActivity.swift */,
+				0523667629687D94008B58A2 /* Assets.xcassets */,
+				0523667829687D94008B58A2 /* Info.plist */,
+			);
+			path = FeedActivity;
+			sourceTree = "<group>";
+		};
 		0543E5A1294F12020046FE3F /* Timer */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,6 +527,7 @@
 				056083982884147900728F1F /* BabyWizeUITests */,
 				050AEE95288C64190052A2D1 /* AddEntryWidget */,
 				058414E2294F0F71009A4791 /* SleepActivity */,
+				0523666F29687D93008B58A2 /* FeedActivity */,
 				050AEE90288C64190052A2D1 /* Frameworks */,
 				0560837C2884147800728F1F /* Products */,
 			);
@@ -498,6 +541,7 @@
 				056083952884147900728F1F /* BabyWizeUITests.xctest */,
 				050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */,
 				058414DF294F0F71009A4791 /* SleepActivityExtension.appex */,
+				0523666C29687D93008B58A2 /* FeedActivityExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -606,6 +650,7 @@
 				056DC49C2916F8FF00B30720 /* FeedInputDetailView.swift */,
 				056DC4A02916F9EE00B30720 /* SleepInputDetailView.swift */,
 				056DC4A22916FA7500B30720 /* NappyInputDetailView.swift */,
+				05236681296884FB008B58A2 /* BreastFeedInputDetailView.swift */,
 			);
 			path = InputDetailView;
 			sourceTree = "<group>";
@@ -794,6 +839,23 @@
 			productReference = 050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		0523666B29687D93008B58A2 /* FeedActivityExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0523667C29687D94008B58A2 /* Build configuration list for PBXNativeTarget "FeedActivityExtension" */;
+			buildPhases = (
+				0523666829687D93008B58A2 /* Sources */,
+				0523666929687D93008B58A2 /* Frameworks */,
+				0523666A29687D93008B58A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FeedActivityExtension;
+			productName = FeedActivityExtension;
+			productReference = 0523666C29687D93008B58A2 /* FeedActivityExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		0560837A2884147800728F1F /* BabyWize */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0560839F2884147900728F1F /* Build configuration list for PBXNativeTarget "BabyWize" */;
@@ -809,6 +871,7 @@
 			dependencies = (
 				050AEE9F288C641A0052A2D1 /* PBXTargetDependency */,
 				058414ED294F0F72009A4791 /* PBXTargetDependency */,
+				0523667A29687D94008B58A2 /* PBXTargetDependency */,
 			);
 			name = BabyWize;
 			packageProductDependencies = (
@@ -898,6 +961,9 @@
 					050AEE8E288C64190052A2D1 = {
 						CreatedOnToolsVersion = 14.0;
 					};
+					0523666B29687D93008B58A2 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					0560837A2884147800728F1F = {
 						CreatedOnToolsVersion = 14.0;
 					};
@@ -937,6 +1003,7 @@
 				056083942884147900728F1F /* BabyWizeUITests */,
 				050AEE8E288C64190052A2D1 /* AddEntryWidgetExtension */,
 				058414DE294F0F71009A4791 /* SleepActivityExtension */,
+				0523666B29687D93008B58A2 /* FeedActivityExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -949,6 +1016,14 @@
 				3BE30FE628D5D25A00E75D22 /* Assets.xcassets in Resources */,
 				05CC3AE02951EB3800D306C8 /* GoogleService-Info.plist in Resources */,
 				050AEE9A288C641A0052A2D1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0523666A29687D93008B58A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0523667729687D94008B58A2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,6 +1083,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0523666829687D93008B58A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0523667129687D93008B58A2 /* FeedActivityBundle.swift in Sources */,
+				0523667329687D93008B58A2 /* FeedActivityLiveActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		056083772884147800728F1F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1037,6 +1121,7 @@
 				056DC48A2916AC4400B30720 /* AccessibleDatePicker.swift in Sources */,
 				057DC333291C2D5C009C0A61 /* UserDefaultManager.swift in Sources */,
 				05ABD7052910217C00E1C755 /* PlaceholderChart.swift in Sources */,
+				05236682296884FB008B58A2 /* BreastFeedInputDetailView.swift in Sources */,
 				05FE380E29028B13002D3D34 /* QuickInfoSection.swift in Sources */,
 				059C68E52886AF0500C90710 /* Info View.swift in Sources */,
 				0587BB562928306B00F39B25 /* LabelledDivider.swift in Sources */,
@@ -1066,6 +1151,7 @@
 				055CE1322925350200870066 /* FBKeys.swift in Sources */,
 				058038B629329EAA006477A2 /* LoadingOverlay.swift in Sources */,
 				05027FD4294E80CA00F8C6A8 /* AccessiblePicker.swift in Sources */,
+				0523667F29687F64008B58A2 /* FeedActivityLiveActivity.swift in Sources */,
 				0587BB582928EA8C00F39B25 /* NSNotification+extension.swift in Sources */,
 				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
 				056DC48F2916F36B00B30720 /* FeedEntryViewModel.swift in Sources */,
@@ -1209,6 +1295,11 @@
 			target = 050AEE8E288C64190052A2D1 /* AddEntryWidgetExtension */;
 			targetProxy = 050AEE9E288C641A0052A2D1 /* PBXContainerItemProxy */;
 		};
+		0523667A29687D94008B58A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0523666B29687D93008B58A2 /* FeedActivityExtension */;
+			targetProxy = 0523667929687D94008B58A2 /* PBXContainerItemProxy */;
+		};
 		0560838D2884147900728F1F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0560837A2884147800728F1F /* BabyWize */;
@@ -1280,6 +1371,64 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0523667D29687D94008B58A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4J7W4CYA5S;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FeedActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FeedActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.FeedActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0523667E29687D94008B58A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4J7W4CYA5S;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FeedActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FeedActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.FeedActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1625,6 +1774,15 @@
 			buildConfigurations = (
 				050AEEA2288C641A0052A2D1 /* Debug */,
 				050AEEA3288C641A0052A2D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0523667C29687D94008B58A2 /* Build configuration list for PBXNativeTarget "FeedActivityExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0523667D29687D94008B58A2 /* Debug */,
+				0523667E29687D94008B58A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

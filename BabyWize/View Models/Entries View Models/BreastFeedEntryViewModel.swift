@@ -96,6 +96,7 @@ final class BreastFeedEntryViewModel: EntryViewModel {
         dataManager.addBreastFeed(feed)
         reset()
         defaultManager.feedStartDate = nil
+        defaultManager.hasFeedTimerRunning = false
         NotificationCenter.default.post(name: NSNotification.feedTimerEnd , object: nil)
     }
 

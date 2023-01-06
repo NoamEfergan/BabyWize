@@ -26,7 +26,7 @@ struct InputDetailView: View {
             case .nappy:
                 NappyInputDetailView()
             case .breastFeed:
-                Text("Need to implement this")
+                BreastFeedInputDetailView()
             }
         }
         .environment(\.editMode, $editMode)
