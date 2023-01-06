@@ -23,7 +23,7 @@ struct Provider: IntentTimelineProvider {
                            configuration: configuration,
                            lastFeed: container.string(forKey: "lastFeed"),
                            lastSleep: container.string(forKey: "lastSleep"),
-                           lastNappy: container.object(forKey: "lastNappy") as? Date)
+                           lastNappy: container.string(forKey: "lastNappy"))
     }
 
     func placeholder(in _: Context) -> SimpleEntry {
@@ -57,7 +57,7 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationIntent
     let lastFeed: String?
     let lastSleep: String?
-    let lastNappy: Date?
+    let lastNappy: String?
 }
 
 // MARK: - AddEntryWidget
@@ -91,18 +91,31 @@ struct WidgetView: View {
         }
     }
 
-    private var summaryView: some View {
+    private func getSummaryEntryView(_ title: String, _ value: String?) -> some View {
         VStack {
-            LabeledContent("Last Feed", value: entry.lastFeed ?? "None recorded")
-            Divider()
-                .overlay(.white)
-            LabeledContent("Last Nappy Change", value: entry.lastNappy?.formatted() ?? "None recorded")
-            Divider()
-                .overlay(.white)
-            LabeledContent("Last Sleep", value: entry.lastSleep ?? "None recorded")
+            Text(title)
+                .font(.system(.body, design: .rounded))
+            Spacer()
+            Text(value ?? "None recorded")
+                .fontWeight(.semibold)
+                .font(.system(.title3, design: .rounded))
+                .multilineTextAlignment(.center)
+            Spacer()
         }
-        .fontWeight(.semibold)
-        .frame(maxHeight: .infinity)
+    }
+
+    private var summaryView: some View {
+        HStack {
+            getSummaryEntryView("Last Feed", entry.lastFeed)
+            Divider()
+                .overlay(.white)
+            getSummaryEntryView("Last Change", entry.lastNappy)
+            Divider()
+                .overlay(.white)
+            getSummaryEntryView("Last Sleep", entry.lastSleep)
+        }
+
+        .frame(maxWidth: .infinity)
         .padding()
         .foregroundColor(.white)
         .background(AppColours.gradient)
@@ -130,16 +143,16 @@ struct AddEntryWidget_Previews: PreviewProvider {
         WidgetView(entry:
             SimpleEntry(date: Date(),
                         configuration: ConfigurationIntent(),
-                        lastFeed: "120 ml",
-                        lastSleep: "1 hr 20 min",
-                        lastNappy: Date()))
+                        lastFeed: "1 mins,\n43 secs",
+                        lastSleep: "1 mins,\n43 secs",
+                        lastNappy: Date.now.formatted()))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
         WidgetView(entry:
             SimpleEntry(date: Date(),
                         configuration: ConfigurationIntent(),
-                        lastFeed: "120 ml",
-                        lastSleep: "1 hr 20 min",
-                        lastNappy: Date()))
+                        lastFeed: "1 mins,\n43 secs",
+                        lastSleep: "1 mins,\n43 secs",
+                        lastNappy: Date.now.formatted()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

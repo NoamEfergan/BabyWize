@@ -27,13 +27,13 @@ final class BabyDataManager: ObservableObject {
 
     @Published var feedData: [Feed] = [] {
         didSet {
-            lastFeedString = getLast(for: .liquidFeed)
+            lastFeedString = getLastFeed()
         }
     }
 
     @Published var breastFeedData: [BreastFeed] = [] {
         didSet {
-            print("Need to implement get last for breast feeds as well!")
+            lastFeedString = getLastFeed()
         }
     }
 
@@ -366,6 +366,24 @@ final class BabyDataManager: ObservableObject {
     }
 
     // MARK: - Private methods
+
+    private func getLastFeed() -> String {
+        guard let lastBreastFeed = breastFeedData.last else {
+            return getLast(for: .liquidFeed)
+        }
+        guard let lastFeed = feedData.last else {
+            return getLast(for:.breastFeed)
+        }
+
+        switch lastBreastFeed.date.compare(lastFeed.date) {
+        // lastBreastFeed is older than lastFeed
+        case .orderedAscending:
+            return getLast(for: .liquidFeed)
+        // lastFeed is older than lastBreastFeed
+        default:
+            return getLast(for: .breastFeed)
+        }
+    }
 
     private func getLast(for type: EntryType) -> String {
         defer {
