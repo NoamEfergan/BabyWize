@@ -85,5 +85,16 @@ final class AddEntryViewVM: ObservableObject {
                 self.buttonTitle = self.getButtonTitle()
             }
             .store(in: &bag)
+
+        breastFeedVM
+            .$selectedLiveOrOld
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else {
+                    return
+                }
+                self.buttonTitle = self.getButtonTitle()
+            }
+            .store(in: &bag)
     }
 }
