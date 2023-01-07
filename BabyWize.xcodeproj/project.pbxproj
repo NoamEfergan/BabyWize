@@ -94,10 +94,6 @@
 		05187BFD295091DE002B6C49 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		05187BFF295091F7002B6C49 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BFE295091F7002B6C49 /* Swinject */; };
 		05187C0029509203002B6C49 /* SleepActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414E5294F0F71009A4791 /* SleepActivityLiveActivity.swift */; };
-		052366842968AF92008B58A2 /* Baby Wize.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 052366832968AF92008B58A2 /* Baby Wize.storekit */; };
-		052366852968AF92008B58A2 /* Baby Wize.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 052366832968AF92008B58A2 /* Baby Wize.storekit */; };
-		052366862968AF92008B58A2 /* Baby Wize.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 052366832968AF92008B58A2 /* Baby Wize.storekit */; };
-		052366882968B1D4008B58A2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052366872968B1D4008B58A2 /* StoreKit.framework */; };
 		053E48B52939120A00A90399 /* LogFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E48B42939120A00A90399 /* LogFeed.swift */; };
 		0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
 		0543E5A4294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
@@ -302,7 +298,6 @@
 		0514C3B12966C7D6005DD0C4 /* TestTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTipView.swift; sourceTree = "<group>"; };
 		05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManagerTests.swift; sourceTree = "<group>"; };
 		052366832968AF92008B58A2 /* Baby Wize.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Baby Wize.storekit"; sourceTree = "<group>"; };
-		052366872968B1D4008B58A2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		053E48882939107800A90399 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		053E48932939107900A90399 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		053E48B42939120A00A90399 /* LogFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFeed.swift; sourceTree = "<group>"; };
@@ -414,7 +409,6 @@
 				05187BB729508633002B6C49 /* FirebaseAuth in Frameworks */,
 				3BE30FF028D5D59000E75D22 /* FirebaseDatabase in Frameworks */,
 				3BE30FF828D5D59000E75D22 /* FirebaseStorage in Frameworks */,
-				052366882968B1D4008B58A2 /* StoreKit.framework in Frameworks */,
 				05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */,
 				3BE30FF428D5D59000E75D22 /* FirebaseFirestore in Frameworks */,
 			);
@@ -453,7 +447,6 @@
 		050AEE90288C64190052A2D1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				052366872968B1D4008B58A2 /* StoreKit.framework */,
 				050AEE91288C64190052A2D1 /* WidgetKit.framework */,
 				050AEE93288C64190052A2D1 /* SwiftUI.framework */,
 				053E48882939107800A90399 /* Intents.framework */,
@@ -988,7 +981,6 @@
 			files = (
 				3BE30FE628D5D25A00E75D22 /* Assets.xcassets in Resources */,
 				05CC3AE02951EB3800D306C8 /* GoogleService-Info.plist in Resources */,
-				052366852968AF92008B58A2 /* Baby Wize.storekit in Resources */,
 				050AEE9A288C641A0052A2D1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1000,7 +992,6 @@
 				056083862884147900728F1F /* Preview Assets.xcassets in Resources */,
 				05CC3ADD2951EB3800D306C8 /* GoogleService-Info.plist in Resources */,
 				056083832884147900728F1F /* Assets.xcassets in Resources */,
-				052366842968AF92008B58A2 /* Baby Wize.storekit in Resources */,
 				05DF6CF82917CBBC00EACE7C /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1027,7 +1018,6 @@
 			files = (
 				058414F2294F104E009A4791 /* Assets.xcassets in Resources */,
 				05CC3AE12951EB3800D306C8 /* GoogleService-Info.plist in Resources */,
-				052366862968AF92008B58A2 /* Baby Wize.storekit in Resources */,
 				058414EA294F0F72009A4791 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1285,7 +1275,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddEntryWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AddEntryWidget/Info.plist;
@@ -1315,7 +1305,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddEntryWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AddEntryWidget/Info.plist;
@@ -1461,7 +1451,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyWize/BabyWize.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyWize/Preview Content\"";
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				ENABLE_PREVIEWS = YES;
@@ -1503,7 +1493,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyWize/BabyWize.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyWize/Preview Content\"";
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				ENABLE_PREVIEWS = YES;
@@ -1617,7 +1607,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SleepActivity/Info.plist;
@@ -1645,7 +1635,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SleepActivity/Info.plist;
