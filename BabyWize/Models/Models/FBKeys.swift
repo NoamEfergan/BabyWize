@@ -12,11 +12,13 @@ struct FBKeys {
     static let kFeeds = "feeds"
     static let kSleeps = "sleeps"
     static let kChanges = "changes"
+    static let kBreast = "breast feeds"
 
     static let kAmount = "amount"
     static let kDate = "date"
     static let kNote = "note"
     static let kSolidLiquid = "solidOrLiquid"
+    static let kLiquidType = "liquidType"
     static let kID = "id"
     static let kEmail = "email"
 

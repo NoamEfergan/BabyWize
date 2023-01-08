@@ -12,7 +12,7 @@ import XCTest
 final class BabyDataManagerTests: XCTestCase {
     var manager: BabyDataManager!
     let mockFeeds = PlaceholderChart.MockData.mockFeed
-    let mockSleeps = PlaceholderChart.MockData.getMockSleep()
+    let mockSleeps = PlaceholderChart.MockData.mockSleep
     override func setUpWithError() throws {
         let container = ContainerBuilder.buildMockContainer()
         Resolver.shared.setDependencyContainer(container)

@@ -35,22 +35,36 @@ struct InfoView: View {
                         NavigationLink("All inputs", value: vm.inputScreen)
                     }
                 }
-                if type == .liquidFeed, !dataManager.feedData.filter(\.isSolids).isEmpty {
-                    Section(vm.solidSectionTitle) {
-                        AccessibleLabeledContent(label:vm.solidFeedAverageTitle,
-                                                 value: dataManager.getAverage(for: .solidFeed))
-                        AccessibleLabeledContent(label:vm.solidFeedLargestTitle,
-                                                 value: dataManager.getBiggest(for: .solidFeed))
-                        AccessibleLabeledContent(label: vm.solidFeedSmallestTitle,
-                                                 value: dataManager.getSmallest(for: .solidFeed))
-                        NavigationLink("All inputs", value: Screens.detailInputSolidFeed)
+                if type == .liquidFeed {
+                    if !dataManager.feedData.filter(\.isSolids).isEmpty {
+                        Section(vm.solidSectionTitle) {
+                            AccessibleLabeledContent(label:vm.solidFeedAverageTitle,
+                                                     value: dataManager.getAverage(for: .solidFeed))
+                            AccessibleLabeledContent(label:vm.solidFeedLargestTitle,
+                                                     value: dataManager.getBiggest(for: .solidFeed))
+                            AccessibleLabeledContent(label: vm.solidFeedSmallestTitle,
+                                                     value: dataManager.getSmallest(for: .solidFeed))
+                            NavigationLink("All inputs", value: Screens.detailInputSolidFeed)
+                        }
+                    }
+
+                    if !dataManager.breastFeedData.isEmpty {
+                        Section("Breast feeds") {
+                            AccessibleLabeledContent(label:"Average feed",
+                                                     value: dataManager.getAverage(for: .breastFeed))
+                            AccessibleLabeledContent(label: "Longest feed",
+                                                     value: dataManager.getBiggest(for: .breastFeed))
+                            AccessibleLabeledContent(label: "Shortest feed",
+                                                     value: dataManager.getSmallest(for: .breastFeed))
+                            NavigationLink("All inputs", value: Screens.detailInputBreastFeed)
+                        }
                     }
                 }
             }
             Section("total history") {
                 switch vm.type {
                 case .liquidFeed:
-                    FeedChart(feedData: dataManager.feedData, showTitle: false)
+                    FeedChart(feedData: dataManager.feedData, breastFeedData: [], showTitle: false)
                         .frame(minHeight: 200)
                 case .sleep:
                     SleepChart(sleepData: dataManager.sleepData, showTitle: false)

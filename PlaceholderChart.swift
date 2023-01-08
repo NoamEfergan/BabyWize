@@ -19,7 +19,7 @@ struct PlaceholderChart: View {
     var body: some View {
         Group {
             switch type {
-            case .liquidFeed, .solidFeed:
+            case .liquidFeed, .solidFeed, .breastFeed:
                 dummyFeedChart
                     .redacted(reason: .placeholder)
             case .sleep:
@@ -84,7 +84,7 @@ struct PlaceholderChart: View {
         .onAppear {
             if !didAnimateSleepAlready {
                 sleepData.removeAll()
-                for (index, item) in MockData.getMockSleep().enumerated() {
+                for (index, item) in MockData.mockSleep.enumerated() {
                     withAnimation(.easeIn(duration: 0.2).delay(Double(index) * 0.2)) {
                         sleepData.append(item)
                     }
@@ -107,36 +107,70 @@ struct PlaceholderChart_Previews: PreviewProvider {
 extension PlaceholderChart {
     // MARK: - MockData
 
-    enum MockData {
-        static let mockFeed: [Feed] = [
-            Feed(id: UUID().uuidString,
+    class MockData {
+        init() {}
+        static var mockFeed: [Feed] { [
+            Feed(id: "1",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
+                 amount: 100,
+                 note: nil,
+                 solidOrLiquid: Feed.SolidOrLiquid.solid),
+            Feed(id:"2",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
+                 amount: 120,
+                 note: nil,
+                 solidOrLiquid: Feed.SolidOrLiquid.solid),
+            Feed(id: "3",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
+                 amount: 130,
+                 note: nil,
+                 solidOrLiquid: Feed.SolidOrLiquid.liquid),
+            Feed(id: "4",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
+                 amount: 120,
+                 note: nil,
+                 solidOrLiquid: Feed.SolidOrLiquid.liquid),
+            Feed(id: "5",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-            Feed(id: UUID().uuidString,
+                 amount: 110,
+                 note: nil,
+                 solidOrLiquid: Feed.SolidOrLiquid.liquid),
+            Feed(id: "6",
                  date: Date.getRandomMockDate(),
-                 amount: .getRandomFeedAmount(),
-                 note: nil, solidOrLiquid: Feed.SolidOrLiquid.allCases.randomElement()!),
-        ]
-        .sorted(by: { $0.date < $1.date })
+                 amount: 150,
+                 note: nil,
+                 solidOrLiquid: Feed.SolidOrLiquid.liquid)
+            ]
+            .sorted(by: { $0.date < $1.date })
+        }
 
-        static func getMockSleep() -> [Sleep] {
+
+        static var mockBreast: [BreastFeed] {
+            let firstStart = Date.getRandomMockDate()
+            let secondStart = Date.getRandomMockDate()
+            let thirdStart = Date.getRandomMockDate()
+
+            let firstEnd = Date.getRandomEndData(from: firstStart)
+            let secondEnd = Date.getRandomEndData(from: secondStart)
+            let thirdEnd = Date.getRandomEndData(from: thirdStart)
+
+            return [
+                BreastFeed(id: UUID().uuidString,
+                           date: Date.getRandomMockDate(),
+                           start: firstStart,
+                           end:firstEnd),
+                BreastFeed(id: UUID().uuidString,
+                           date: Date.getRandomMockDate(),
+                           start: secondStart,
+                           end:secondEnd),
+                BreastFeed(id: UUID().uuidString,
+                           date: Date.getRandomMockDate(),
+                           start: thirdStart,
+                           end:thirdEnd),
+            ].sorted(by: { $0.date < $1.date })
+        }
+
+        static var mockSleep: [Sleep] {
             let firstStart = Date.getRandomMockDate()
             let secondStart = Date.getRandomMockDate()
             let thirdStart = Date.getRandomMockDate()

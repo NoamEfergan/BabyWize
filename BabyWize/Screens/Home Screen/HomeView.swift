@@ -12,7 +12,7 @@ import StoreKit
 // MARK: - Screens
 enum Screens: String {
     case home, settings, newEntry, feed, sleep, detailInputLiquidFeed,detailInputSolidFeed, detailInputNappy,
-         detailInputSleep, none
+         detailInputSleep,detailInputBreastFeed , none
 }
 
 // MARK: - HomeView
@@ -31,7 +31,10 @@ struct HomeView: View {
     @State private var iconRotation: Double = 0
 
     var minChartHeight: Double {
-        defaultsManager.chartConfiguration == .joint ? 350 : 550
+        let hasBothType = !dataManager.feedData.isEmpty && !dataManager.breastFeedData.isEmpty
+        let minJoint: Double = hasBothType ? 550 : 350
+        let minSeparate: Double = hasBothType ? 750 : 550
+        return defaultsManager.chartConfiguration == .joint ? minJoint : minSeparate
     }
 
     private var shouldShowSheet: Bool {
@@ -98,6 +101,11 @@ struct HomeView: View {
                         sharingVC.hasError = false
                     }
                 }
+                .alert(authVM.errorMsg, isPresented: $authVM.hasError) {
+                    Button("OK") {
+                        authVM.hasError = false
+                    }
+                }
                 .sheet(isPresented: $isShowingNewEntrySheet) {
                     AddEntryView(vm: addEntryViewVM)
                         .presentationDetents([.fraction(0.45), .medium])
@@ -135,6 +143,8 @@ struct HomeView: View {
                         wantsToAddEntry = true
                         if url.absoluteString.contains("openSleep") {
                             addEntryViewVM.entryType = .sleep
+                        } else if url.absoluteString.contains("openFeed") {
+                            addEntryViewVM.entryType = .breastFeed
                         }
                     }
                     if url.absoluteString.starts(with: "app.babywize") {
@@ -172,6 +182,9 @@ struct HomeView: View {
         case .detailInputNappy:
             InputDetailView(type: .nappy)
                 .navigationTitle("All nappy changes")
+        case .detailInputBreastFeed:
+            InputDetailView(type: .breastFeed)
+                .navigationTitle("All breast feeds")
 
         default:
             EmptyView()

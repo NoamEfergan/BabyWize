@@ -13,7 +13,7 @@ import Algorithms
 final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
 
-    private let coreDataManager = BabyCoreDataManager()
+
     @Inject private var firebaseManager: FirebaseManager
     @InjectedObject private var unitsManager: UserDefaultManager
 
@@ -27,7 +27,13 @@ final class BabyDataManager: ObservableObject {
 
     @Published var feedData: [Feed] = [] {
         didSet {
-            lastFeedString = getLast(for: .liquidFeed)
+            lastFeedString = getLastFeed()
+        }
+    }
+
+    @Published var breastFeedData: [BreastFeed] = [] {
+        didSet {
+            lastFeedString = getLastFeed()
         }
     }
 
@@ -44,7 +50,6 @@ final class BabyDataManager: ObservableObject {
     private var bag = Set<AnyCancellable>()
 
     init() {
-        fetchSavedValues()
         listenToUnitChanges()
         firebaseManager.setup(with: self)
         NotificationCenter.default.addObserver(self,
@@ -65,6 +70,8 @@ final class BabyDataManager: ObservableObject {
             return nappyData.isEmpty
         case .solidFeed:
             return feedData.filter(\.isSolids).isEmpty
+        case .breastFeed:
+            return breastFeedData.isEmpty
         }
     }
 
@@ -77,8 +84,9 @@ final class BabyDataManager: ObservableObject {
         case .sleep:
             return getAverageSleepDuration()
         case .nappy:
-            // TODO: Make this
-            return "Something"
+            return .nonAvailable
+        case .breastFeed:
+            return getAverageBreastFeed()
         }
     }
 
@@ -107,7 +115,9 @@ final class BabyDataManager: ObservableObject {
         case .sleep:
             return sleepData.max(by: { $0.getDuration() < $1.getDuration() })?.getDuration() ?? .nonAvailable
         case .nappy:
-            return ""
+            return .nonAvailable
+        case .breastFeed:
+            return breastFeedData.max(by: { $0.getDuration() < $1.getDuration() })?.getDuration() ?? .nonAvailable
         }
     }
 
@@ -135,7 +145,9 @@ final class BabyDataManager: ObservableObject {
         case .sleep:
             return sleepData.min(by: { $0.getDuration() < $1.getDuration() })?.getDuration() ?? .nonAvailable
         case .nappy:
-            return ""
+            return .nonAvailable
+        case .breastFeed:
+            return breastFeedData.min(by: { $0.getDuration() < $1.getDuration() })?.getDuration() ?? .nonAvailable
         }
     }
 
@@ -211,7 +223,6 @@ final class BabyDataManager: ObservableObject {
     func addFeed(_ item: Feed, updateRemote: Bool = true) {
         feedData.append(item)
         feedData = feedData.uniqued(on: { $0.id })
-        coreDataManager.addFeed(item)
         if updateRemote {
             firebaseManager.addFeed(item)
         }
@@ -220,7 +231,6 @@ final class BabyDataManager: ObservableObject {
     func addSleep(_ item: Sleep, updateRemote: Bool = true) {
         sleepData.append(item)
         sleepData = sleepData.uniqued(on: { $0.id })
-        coreDataManager.addSleep(item)
         if updateRemote {
             firebaseManager.addSleep(item)
         }
@@ -229,9 +239,16 @@ final class BabyDataManager: ObservableObject {
     func addNappyChange(_ item: NappyChange, updateRemote: Bool = true) {
         nappyData.append(item)
         nappyData = nappyData.uniqued(on: { $0.id })
-        coreDataManager.addNappyChange(item)
         if updateRemote {
             firebaseManager.addNappyChange(item)
+        }
+    }
+
+    func addBreastFeed(_ item: BreastFeed, updateRemote: Bool = true) {
+        breastFeedData.append(item)
+        breastFeedData = breastFeedData.uniqued(on: { $0.id })
+        if updateRemote {
+            firebaseManager.addBreastFeed(item)
         }
     }
 
@@ -242,13 +259,11 @@ final class BabyDataManager: ObservableObject {
             firebaseManager.addFeed(item)
         } else {
             feedData[index] = item
-            coreDataManager.updateFeed(item)
         }
     }
 
     func updateSleep(_ item: Sleep, index: Array<Sleep>.Index, updateRemote: Bool = true) {
         sleepData[index] = item
-        coreDataManager.updateSleep(item)
         if updateRemote {
             firebaseManager.addSleep(item)
         }
@@ -256,9 +271,15 @@ final class BabyDataManager: ObservableObject {
 
     func updateChange(_ item: NappyChange, index: Array<NappyChange>.Index, updateRemote: Bool = true) {
         nappyData[index] = item
-        coreDataManager.updateChange(item)
         if updateRemote {
             firebaseManager.addNappyChange(item)
+        }
+    }
+
+    func updateBreastFeed(_ item: BreastFeed, index: Array<Sleep>.Index, updateRemote: Bool = true) {
+        breastFeedData[index] = item
+        if updateRemote {
+            firebaseManager.addBreastFeed(item)
         }
     }
 
@@ -280,7 +301,6 @@ final class BabyDataManager: ObservableObject {
         let localFeeds = offsets.compactMap {
             feedData[$0]
         }.uniqued(on: { $0.id })
-        coreDataManager.removeFeed(localFeeds)
         feedData.remove(atOffsets: offsets)
         if includingRemote {
             firebaseManager.removeItems(items: localFeeds, key: FBKeys.kFeeds)
@@ -291,7 +311,6 @@ final class BabyDataManager: ObservableObject {
         let localSleeps = offsets.compactMap {
             sleepData[$0]
         }.uniqued(on: { $0.id })
-        coreDataManager.removeSleep(localSleeps)
         sleepData.remove(atOffsets: offsets)
         if includingRemote {
             firebaseManager.removeItems(items: localSleeps, key: FBKeys.kSleeps)
@@ -302,10 +321,19 @@ final class BabyDataManager: ObservableObject {
         let localChanges = offsets.compactMap {
             nappyData[$0]
         }.uniqued(on: { $0.id })
-        coreDataManager.removeChange(localChanges)
         nappyData.remove(atOffsets: offsets)
         if includingRemote {
             firebaseManager.removeItems(items: localChanges, key: FBKeys.kChanges)
+        }
+    }
+
+    func removeBreastFeed(at offsets: IndexSet, includingRemote: Bool = true) {
+        let localFeeds = offsets.compactMap {
+            breastFeedData[$0]
+        }.uniqued(on: { $0.id })
+        breastFeedData.remove(atOffsets: offsets)
+        if includingRemote {
+            firebaseManager.removeItems(items: localFeeds, key: FBKeys.kBreast)
         }
     }
 
@@ -330,10 +358,32 @@ final class BabyDataManager: ObservableObject {
             let indices = feedData.filter(\.isSolids).indices.compactMap { Int($0) }
             let indexSet = IndexSet(indices)
             removeFeed(at: indexSet, includingRemote: includingRemote)
+        case .breastFeed:
+            let indices = breastFeedData.indices.compactMap { Int($0) }
+            let indexSet = IndexSet(indices)
+            removeSleep(at: indexSet, includingRemote: includingRemote)
         }
     }
 
     // MARK: - Private methods
+
+    private func getLastFeed() -> String {
+        guard let lastBreastFeed = breastFeedData.last else {
+            return getLast(for: .liquidFeed)
+        }
+        guard let lastFeed = feedData.last else {
+            return getLast(for:.breastFeed)
+        }
+
+        switch lastBreastFeed.date.compare(lastFeed.date) {
+        // lastBreastFeed is older than lastFeed
+        case .orderedAscending:
+            return getLast(for: .liquidFeed)
+        // lastFeed is older than lastBreastFeed
+        default:
+            return getLast(for: .breastFeed)
+        }
+    }
 
     private func getLast(for type: EntryType) -> String {
         defer {
@@ -355,6 +405,9 @@ final class BabyDataManager: ObservableObject {
                 return .nonAvailable
             }
             return "\(lastNappy.dateTime.formatted(date: .omitted, time: .shortened)), \(lastNappy.wetOrSoiled.rawValue)"
+        case .breastFeed:
+            let sortedFeeds = breastFeedData.sorted(by: { $0.date < $1.date })
+            return sortedFeeds.last?.getDisplayableString() ?? .nonAvailable
         }
     }
 
@@ -374,6 +427,17 @@ final class BabyDataManager: ObservableObject {
         return returnableAmount.displayableAmount(isSolid: isSolid)
     }
 
+    private func getAverageBreastFeed() -> String {
+        let totalAmount = breastFeedData.reduce(0) {
+            $0 + $1.getTimeInterval()
+        }
+        let amount = (totalAmount / Double(breastFeedData.count))
+        if amount.isNaN {
+            return .nonAvailable
+        }
+        return amount.hourMinuteSecondMS
+    }
+
     private func getAverageSleepDuration() -> String {
         let totalAmount = sleepData.reduce(0) {
             $0 + $1.getTimeInterval()
@@ -383,12 +447,6 @@ final class BabyDataManager: ObservableObject {
             return .nonAvailable
         }
         return amount.hourMinuteSecondMS
-    }
-
-    private func fetchSavedValues() {
-        feedData = coreDataManager.fetchFeeds()
-        sleepData = coreDataManager.fetchSleeps()
-        nappyData = coreDataManager.fetchChanges()
     }
 
     private func listenToUnitChanges() {

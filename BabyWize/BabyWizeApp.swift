@@ -30,9 +30,15 @@ struct BabyWizeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var navigationVM = NavigationViewModel()
     @AppStorage(UserConstants.isLoggedIn) private var savedIsUserLoggedIn: Bool?
-    @State private var _activity: Any?
+    @State private var _sleepActivity: Any?
+    @State private var _feedActivity: Any?
     @available(iOS 16.1, *)
-    private var activity: Activity<SleepActivityAttributes>? { _activity as? Activity<SleepActivityAttributes> }
+    private var sleepActivity: Activity<SleepActivityAttributes>? {
+        _sleepActivity as? Activity<SleepActivityAttributes>
+    }
+
+    @available(iOS 16.1, *)
+    private var feedActivity: Activity<FeedActivityAttributes>? { _feedActivity as? Activity<FeedActivityAttributes> }
 
     init() {
         let mainContainer = ContainerBuilder.buildMainContainer()
@@ -40,7 +46,6 @@ struct BabyWizeApp: App {
     }
 
     @Environment(\.scenePhase) var scenePhase
-    @StateObject private var dataController = DataController()
     @State private var isShowingSplash = true
     @StateObject private var store = TipManager()
     var body: some Scene {
@@ -60,20 +65,34 @@ struct BabyWizeApp: App {
                 .opacity(isShowingSplash ? 1 : 0)
                 HomeView()
                     .environmentObject(navigationVM)
-                    .environment(\.managedObjectContext, dataController.container.viewContext)
                     .environment(\.colorScheme, .light)
                     .environmentObject(store)
                     .opacity(isShowingSplash ? 0 : 1)
                     .onReceive(NotificationCenter.default.publisher(for: NSNotification.sleepTimerStart)) { _ in
                         if #available(iOS 16.1, *) {
-                            startActivity()
+                            startSleepActivity()
                         } else {
                             print("Tried to start live activity from iOS 16")
                         }
                     }
                     .onReceive(NotificationCenter.default.publisher(for: NSNotification.sleepTimerEnd)) { _ in
                         if #available(iOS 16.1, *) {
-                            endActivity()
+                            endSleepActivity()
+                        } else {
+                            // Fallback on earlier versions
+                            print("Tried to end live activity from iOS 16")
+                        }
+                    }
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.feedTimerStart)) { _ in
+                        if #available(iOS 16.1, *) {
+                            startFeedActivity()
+                        } else {
+                            print("Tried to start live activity from iOS 16")
+                        }
+                    }
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.feedTimerEnd)) { _ in
+                        if #available(iOS 16.1, *) {
+                            endFeedActivity()
                         } else {
                             // Fallback on earlier versions
                             print("Tried to end live activity from iOS 16")
@@ -105,27 +124,52 @@ struct BabyWizeApp: App {
     }
 
     @available(iOS 16.1, *)
-    private func startActivity() {
+    private func startSleepActivity() {
         Task {
-            if activity?.activityState == .active {
-                await activity?.end(using: nil, dismissalPolicy: .immediate)
+            if sleepActivity?.activityState == .active {
+                await sleepActivity?.end(using: nil, dismissalPolicy: .immediate)
             }
             let attributes = SleepActivityAttributes(name: "Baby Sleep Timer")
             let state = SleepActivityAttributes.ContentState()
-            _activity = try? Activity<SleepActivityAttributes>
+            _sleepActivity = try? Activity<SleepActivityAttributes>
                 .request(attributes: attributes, contentState: state, pushType: nil)
-            print("Started live activity")
+            print("Started live sleep activity")
         }
     }
 
     @available(iOS 16.1, *)
-    private func endActivity() {
+    private func startFeedActivity() {
         Task {
-            guard let activity else {
+            if feedActivity?.activityState == .active {
+                await feedActivity?.end(using: nil, dismissalPolicy: .immediate)
+            }
+            let attributes = FeedActivityAttributes(name: "Baby Feed Timer")
+            let state = FeedActivityAttributes.ContentState()
+            _feedActivity = try? Activity<FeedActivityAttributes>
+                .request(attributes: attributes, contentState: state, pushType: nil)
+            print("Started live feed activity")
+        }
+    }
+
+    @available(iOS 16.1, *)
+    private func endSleepActivity() {
+        Task {
+            guard let sleepActivity else {
                 return
             }
-            await activity.end(using: nil, dismissalPolicy: .immediate)
-            print("Stopped live activity")
+            await sleepActivity.end(using: nil, dismissalPolicy: .immediate)
+            print("Stopped live sleep activity")
+        }
+    }
+
+    @available(iOS 16.1, *)
+    private func endFeedActivity() {
+        Task {
+            guard let feedActivity else {
+                return
+            }
+            await feedActivity.end(using: nil, dismissalPolicy: .immediate)
+            print("Stopped live feed activity")
         }
     }
 }

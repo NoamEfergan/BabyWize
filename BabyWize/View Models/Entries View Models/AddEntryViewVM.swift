@@ -19,6 +19,7 @@ final class AddEntryViewVM: ObservableObject {
     @Published var feedVM: FeedEntryViewModel = .init()
     @Published var sleepVM: SleepEntryViewModel = .init()
     @Published var nappyVM: NappyEntryViewModel = .init()
+    @Published var breastFeedVM: BreastFeedEntryViewModel = .init()
     @Published var shouldDismiss = false
     @Published var buttonTitle = ""
     private var bag = Set<AnyCancellable>()
@@ -30,12 +31,23 @@ final class AddEntryViewVM: ObservableObject {
 
     func getButtonTitle() -> String {
         let add = "Add"
-        guard entryType == .sleep else {
-            return add
-        }
-        if sleepVM.selectedLiveOrOld == .Live {
-            return defaultManager.hasTimerRunning ? "Stop" : "Start"
-        } else {
+        let stop = "Stop"
+        let start = "Start"
+
+        switch entryType {
+        case .sleep:
+            if sleepVM.selectedLiveOrOld == .Live {
+                return defaultManager.hasTimerRunning ? stop : start
+            } else {
+                return add
+            }
+        case .breastFeed:
+            if breastFeedVM.selectedLiveOrOld == .Live {
+                return defaultManager.hasFeedTimerRunning ? stop : start
+            } else {
+                return add
+            }
+        default:
             return add
         }
     }
@@ -49,6 +61,8 @@ final class AddEntryViewVM: ObservableObject {
                 try sleepVM.handleAddingEntry()
             case .nappy:
                 try nappyVM.addEntry()
+            case .breastFeed:
+                try breastFeedVM.handleAddingEntry()
             }
             shouldDismiss = true
         } catch {
@@ -62,6 +76,17 @@ final class AddEntryViewVM: ObservableObject {
 
     func listenToLiveOrOld() {
         sleepVM
+            .$selectedLiveOrOld
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else {
+                    return
+                }
+                self.buttonTitle = self.getButtonTitle()
+            }
+            .store(in: &bag)
+
+        breastFeedVM
             .$selectedLiveOrOld
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in

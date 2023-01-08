@@ -13,22 +13,16 @@ struct WidgetManager {
     static let suiteName = "group.babyData"
 
     func setLatest() {
-        let lastFeed = dataManager.feedData.last
-        let lastSleep = dataManager.sleepData.last
-        let lastNappy = dataManager.nappyData.last
+        let lastFeed = dataManager.lastFeedString
+        let lastSleep = dataManager.lastSleepString
+        let lastNappy = dataManager.lastChangeString
 
         guard let container = UserDefaults(suiteName: Self.suiteName) else {
             return
         }
-        if let lastFeed {
-            container.set(lastFeed.amount.displayableAmount(isSolid: lastFeed.isSolids), forKey: "lastFeed")
-        }
-        if let lastSleep {
-            container.set(lastSleep.getDisplayableString(), forKey: "lastSleep")
-        }
-        if let lastNappy {
-            container.set(lastNappy.dateTime, forKey: "lastNappy")
-        }
+        container.set(lastFeed, forKey: "lastFeed")
+        container.set(lastSleep, forKey: "lastSleep")
+        container.set(lastNappy, forKey: "lastNappy")
 
         WidgetCenter.shared.reloadAllTimelines()
     }

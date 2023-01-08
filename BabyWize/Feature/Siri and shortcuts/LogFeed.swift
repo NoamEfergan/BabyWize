@@ -35,11 +35,19 @@ struct LogFeed: AppIntent {
         guard let solidOrLiquid else {
             throw $solidOrLiquid.needsValueError("Is it a solid or a liquid feed?")
         }
+        var solidOrLiquidObject: Feed.SolidOrLiquid {
+            switch solidOrLiquid {
+            case .liquid:
+                return .liquid
+            case .solid:
+                return .solid
+            }
+        }
         let newFeed = Feed(id: UUID().uuidString,
                            date: .now,
                            amount: amount,
                            note: nil,
-                           solidOrLiquid: .init(rawValue: solidOrLiquid.rawValue) ?? .liquid)
+                           solidOrLiquid: solidOrLiquidObject)
         await dataManager.addFeed(newFeed)
         return .result(dialog: "Done! logged a \(solidOrLiquid.rawValue) feed of \(amount.description)")
     }

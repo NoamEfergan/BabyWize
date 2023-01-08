@@ -75,6 +75,8 @@ extension FirebaseManager {
                 return FBKeys.kSleeps
             case .nappy:
                 return FBKeys.kChanges
+            case .breastFeed:
+                return FBKeys.kBreast
             }
         }
         db
@@ -95,6 +97,8 @@ extension FirebaseManager {
                     snapshot?.documentChanges.forEach(self.handleSleepDocumentChange)
                 case .nappy:
                     snapshot?.documentChanges.forEach(self.handleNappyDocumentChange)
+                case .breastFeed:
+                    snapshot?.documentChanges.forEach(self.handleBreastFeedDocumentChange)
                 }
             }
     }
@@ -183,6 +187,34 @@ extension FirebaseManager {
             }
         case .removed:
             print("Nappy change removed in remote")
+        }
+    }
+
+    private func handleBreastFeedDocumentChange(_ change: DocumentChange) {
+        guard let dataManager else {
+            print("Failed to find data manager!")
+            return
+        }
+        switch change.type {
+        case .added:
+            if let breastFeed = change.document.mapToBreastFeed() {
+                if dataManager.breastFeedData.contains(where: { $0.id == breastFeed.id }) {
+                    print("breast feed already existed!")
+                    return
+                }
+                dataManager.addBreastFeed(breastFeed, updateRemote: false)
+            } else {
+                print("Failed to add breast feed from remote notification")
+            }
+        case .modified:
+            if let breastFeed = change.document.mapToBreastFeed(),
+               let index = dataManager.breastFeedData.firstIndex(where: { $0.id == breastFeed.id }) {
+                dataManager.updateBreastFeed(breastFeed, index: index, updateRemote: false)
+            } else {
+                print("Failed to modify breast feed from remote notification")
+            }
+        case .removed:
+            print("breast feed removed in remote")
         }
     }
 }

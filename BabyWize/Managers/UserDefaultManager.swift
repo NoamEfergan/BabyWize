@@ -32,12 +32,27 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
+    @Published var hasFeedTimerRunning: Bool {
+        didSet {
+            UserDefaults.standard.set(hasFeedTimerRunning, forKey: UserConstants.hasFeedTimerRunning)
+        }
+    }
+
     var sleepStartDate: Date? {
         get {
             UserDefaults.standard.object(forKey: UserConstants.sleepStartTime) as? Date
         }
         set {
             UserDefaults.standard.set(newValue, forKey: UserConstants.sleepStartTime)
+        }
+    }
+
+    var feedStartDate: Date? {
+        get {
+            UserDefaults.standard.object(forKey: UserConstants.feedStartTime) as? Date
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserConstants.feedStartTime)
         }
     }
 
@@ -136,6 +151,7 @@ final class UserDefaultManager: ObservableObject {
         }
 
         hasTimerRunning = UserDefaults.standard.bool(forKey: UserConstants.hasTimerRunning)
+        hasFeedTimerRunning = UserDefaults.standard.bool(forKey: UserConstants.hasFeedTimerRunning)
     }
 
     public func logOut() {

@@ -52,15 +52,46 @@ struct Feed: DataItem {
     let note: String?
     let solidOrLiquid: SolidOrLiquid
 
-    enum SolidOrLiquid: String, Codable, CaseIterable {
-        case solid, liquid
+    enum SolidOrLiquid: Codable, Equatable, Hashable, CaseIterable, Identifiable {
+        var id: Self { self }
+        case solid
+        case liquid
+
+        var title: String {
+            switch self {
+            case .solid:
+                return "Solid"
+            case .liquid:
+                return "Liquid"
+            }
+        }
     }
 
     var isLiquids: Bool {
-        solidOrLiquid == .liquid
+        solidOrLiquid != .solid
     }
 
     var isSolids: Bool {
         solidOrLiquid == .solid
+    }
+}
+
+// MARK: - BreastFeed
+struct BreastFeed: DataItem {
+    let id: String
+    let date: Date
+    let start: Date
+    let end: Date
+
+    func getTimeInterval() -> TimeInterval {
+        end.timeIntervalSince(start)
+    }
+
+    func getDuration() -> String {
+        getTimeInterval().hourMinuteSecondMS
+    }
+
+    func getDisplayableString() -> String {
+        getTimeInterval().displayableString
     }
 }

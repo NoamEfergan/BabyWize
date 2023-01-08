@@ -5,6 +5,7 @@
 //  Created by Noam Efergan on 17/09/2022.
 //
 
+import Network
 import FirebaseAuth
 import Foundation
 
@@ -18,6 +19,7 @@ final class AuthViewModel: ObservableObject {
     @Published var didLogIn = false
     @Published var didRegister: String?
     @Published var didDeleteAccount: String?
+    let monitor = NWPathMonitor()
 
     func validateEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -92,19 +94,6 @@ final class AuthViewModel: ObservableObject {
         logOut()
     }
 
-    private func addCredentialsToKeychain(email: String, password: String) {
-        Task.detached(priority: .background) {
-            let newCredentials = KeychainManager.Credentials(email: email, password: password)
-            do {
-                _ = try KeychainManager.fetchCredentials()
-                try KeychainManager.updateCredentials(newCredentials)
-            }
-            catch {
-                try? KeychainManager.setCredentials(newCredentials)
-            }
-        }
-    }
-
     func logOut() {
         isLoading = true
         defer {
@@ -122,6 +111,21 @@ final class AuthViewModel: ObservableObject {
             print("There was an issue when trying to sign in: \(error)")
             hasError = true
             return
+        }
+    }
+
+    // MARK: - Private methods
+
+    private func addCredentialsToKeychain(email: String, password: String) {
+        Task.detached(priority: .background) {
+            let newCredentials = KeychainManager.Credentials(email: email, password: password)
+            do {
+                _ = try KeychainManager.fetchCredentials()
+                try KeychainManager.updateCredentials(newCredentials)
+            }
+            catch {
+                try? KeychainManager.setCredentials(newCredentials)
+            }
         }
     }
 

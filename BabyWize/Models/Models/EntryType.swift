@@ -8,7 +8,7 @@
 import Foundation
 
 enum EntryType: String, CaseIterable, Hashable {
-    case liquidFeed, sleep, nappy, solidFeed
+    case liquidFeed, sleep, nappy, solidFeed, breastFeed
 
     var title: String {
         switch self {
@@ -17,7 +17,9 @@ enum EntryType: String, CaseIterable, Hashable {
         case .sleep:
             return "Sleep"
         case .nappy:
-            return "Nappy Change"
+            return "Nappy"
+        case .breastFeed:
+            return "Breast Feed"
         }
     }
 }

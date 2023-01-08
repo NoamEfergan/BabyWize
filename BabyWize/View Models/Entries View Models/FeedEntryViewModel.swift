@@ -13,6 +13,7 @@ final class FeedEntryViewModel: EntryViewModel {
     @Published var amount = ""
     @Published var feedDate: Date = .init()
     @Published var feedNote = ""
+    // TODO: Check this as default
     @Published var solidOrLiquid: Feed.SolidOrLiquid = .liquid
     var itemID = ""
 

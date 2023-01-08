@@ -28,7 +28,7 @@ final class NappyEntryViewModel: EntryViewModel {
             throw EntryError.general
         }
         let newNappy: NappyChange = .init(id: itemID, dateTime: changeDate, wetOrSoiled: wetOrSoiled)
-        dataManager.nappyData[index] = newNappy
+        dataManager.updateChange(newNappy, index: index)
         reset()
     }
 

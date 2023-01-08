@@ -25,6 +25,8 @@ struct InputDetailView: View {
                 SleepInputDetailView()
             case .nappy:
                 NappyInputDetailView()
+            case .breastFeed:
+                BreastFeedInputDetailView()
             }
         }
         .environment(\.editMode, $editMode)
