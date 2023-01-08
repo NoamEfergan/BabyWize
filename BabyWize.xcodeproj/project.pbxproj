@@ -20,6 +20,9 @@
 		050FF468293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
 		050FF469293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
 		050FF46F293B8ABD00F445DE /* LogSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF46E293B8ABD00F445DE /* LogSleep.swift */; };
+		0514C3AD2966C6B3005DD0C4 /* TipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3AC2966C6B3005DD0C4 /* TipManager.swift */; };
+		0514C3B02966C73C005DD0C4 /* productIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3AF2966C73C005DD0C4 /* productIdentifiers.swift */; };
+		0514C3B22966C7D6005DD0C4 /* TestTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3B12966C7D6005DD0C4 /* TestTipView.swift */; };
 		05187BB4295083B1002B6C49 /* BabyDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */; };
 		05187BB52950840E002B6C49 /* BabyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */; };
 		05187BB729508633002B6C49 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BB629508633002B6C49 /* FirebaseAuth */; };
@@ -88,7 +91,6 @@
 		05187BF9295091DE002B6C49 /* QuickInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE380D29028B13002D3D34 /* QuickInfoSection.swift */; };
 		05187BFA295091DE002B6C49 /* FeedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440BE2911C7690022D18E /* FeedChart.swift */; };
 		05187BFB295091DE002B6C49 /* SleepChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440C02911C80C0022D18E /* SleepChart.swift */; };
-		05187BFC295091DE002B6C49 /* BabyWizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyWizeApp.swift */; };
 		05187BFD295091DE002B6C49 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		05187BFF295091F7002B6C49 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BFE295091F7002B6C49 /* Swinject */; };
 		05187C0029509203002B6C49 /* SleepActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414E5294F0F71009A4791 /* SleepActivityLiveActivity.swift */; };
@@ -291,7 +293,11 @@
 		050AEEB9288DB3870052A2D1 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		050FF467293A3F6600F445DE /* IntentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentManager.swift; sourceTree = "<group>"; };
 		050FF46E293B8ABD00F445DE /* LogSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSleep.swift; sourceTree = "<group>"; };
+		0514C3AC2966C6B3005DD0C4 /* TipManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipManager.swift; sourceTree = "<group>"; };
+		0514C3AF2966C73C005DD0C4 /* productIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = productIdentifiers.swift; sourceTree = "<group>"; };
+		0514C3B12966C7D6005DD0C4 /* TestTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTipView.swift; sourceTree = "<group>"; };
 		05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManagerTests.swift; sourceTree = "<group>"; };
+		052366832968AF92008B58A2 /* Baby Wize.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Baby Wize.storekit"; sourceTree = "<group>"; };
 		053E48882939107800A90399 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		053E48932939107900A90399 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		053E48B42939120A00A90399 /* LogFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFeed.swift; sourceTree = "<group>"; };
@@ -470,6 +476,17 @@
 				058EAF38293BBDEE0030D49D /* LogNappy.swift */,
 			);
 			path = "Siri and shortcuts";
+			sourceTree = "<group>";
+		};
+		0514C3AE2966C710005DD0C4 /* Tip Jar */ = {
+			isa = PBXGroup;
+			children = (
+				0514C3AC2966C6B3005DD0C4 /* TipManager.swift */,
+				0514C3AF2966C73C005DD0C4 /* productIdentifiers.swift */,
+				0514C3B12966C7D6005DD0C4 /* TestTipView.swift */,
+				052366832968AF92008B58A2 /* Baby Wize.storekit */,
+			);
+			path = "Tip Jar";
 			sourceTree = "<group>";
 		};
 		0543E5A1294F12020046FE3F /* Timer */ = {
@@ -746,6 +763,7 @@
 		05DD68C72885FC4C0066BFEC /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				0514C3AE2966C710005DD0C4 /* Tip Jar */,
 				050FF466293A3B6700F445DE /* Siri and shortcuts */,
 				05DD68C82885FC520066BFEC /* Dependency Injection */,
 			);
@@ -1044,6 +1062,7 @@
 				05DD68D52886144E0066BFEC /* EntryType.swift in Sources */,
 				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,
 				054B1F6128CA31E00021C5BF /* CoreDataExtensions.swift in Sources */,
+				0514C3AD2966C6B3005DD0C4 /* TipManager.swift in Sources */,
 				0587BB5C29291C2C00F39B25 /* SharingViewModel.swift in Sources */,
 				05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */,
 				050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */,
@@ -1080,8 +1099,10 @@
 				0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */,
 				0587BB5129281F2C00F39B25 /* TimeInterval+extension.swift in Sources */,
 				05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */,
+				0514C3B22966C7D6005DD0C4 /* TestTipView.swift in Sources */,
 				050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
 				05817C5F28C788580040A4B0 /* DataController.swift in Sources */,
+				0514C3B02966C73C005DD0C4 /* productIdentifiers.swift in Sources */,
 				055CE1322925350200870066 /* FBKeys.swift in Sources */,
 				058038B629329EAA006477A2 /* LoadingOverlay.swift in Sources */,
 				05027FD4294E80CA00F8C6A8 /* AccessiblePicker.swift in Sources */,
@@ -1172,7 +1193,6 @@
 				05187BF9295091DE002B6C49 /* QuickInfoSection.swift in Sources */,
 				05187BFA295091DE002B6C49 /* FeedChart.swift in Sources */,
 				05187BFB295091DE002B6C49 /* SleepChart.swift in Sources */,
-				05187BFC295091DE002B6C49 /* BabyWizeApp.swift in Sources */,
 				05187BFD295091DE002B6C49 /* Assets.xcassets in Sources */,
 				3B64002A28D665C600241D65 /* AuthViewModel.swift in Sources */,
 				05187BB4295083B1002B6C49 /* BabyDataManagerTests.swift in Sources */,
@@ -1255,7 +1275,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddEntryWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AddEntryWidget/Info.plist;
@@ -1266,7 +1286,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1285,7 +1305,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddEntryWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AddEntryWidget/Info.plist;
@@ -1296,7 +1316,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1431,7 +1451,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyWize/BabyWize.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyWize/Preview Content\"";
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				ENABLE_PREVIEWS = YES;
@@ -1450,7 +1470,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1473,7 +1493,7 @@
 				CODE_SIGN_ENTITLEMENTS = BabyWize/BabyWize.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"BabyWize/Preview Content\"";
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				ENABLE_PREVIEWS = YES;
@@ -1492,7 +1512,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1587,7 +1607,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SleepActivity/Info.plist;
@@ -1599,7 +1619,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.SleepActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1615,7 +1635,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4J7W4CYA5S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SleepActivity/Info.plist;
@@ -1627,7 +1647,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.SleepActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
