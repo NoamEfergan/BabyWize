@@ -66,7 +66,7 @@
          referenceType = "1">
       </LocationScenarioReference>
       <StoreKitConfigurationFileReference
-         identifier = "../../BabyWize/Feature/Tip Jar/TipJarConfiguration.storekit">
+         identifier = "../../BabyWize/Feature/Tip Jar/Baby Wize.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
