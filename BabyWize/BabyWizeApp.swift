@@ -47,6 +47,7 @@ struct BabyWizeApp: App {
 
     @Environment(\.scenePhase) var scenePhase
     @State private var isShowingSplash = true
+    @StateObject private var store = TipManager()
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -65,6 +66,7 @@ struct BabyWizeApp: App {
                 HomeView()
                     .environmentObject(navigationVM)
                     .environment(\.colorScheme, .light)
+                    .environmentObject(store)
                     .opacity(isShowingSplash ? 0 : 1)
                     .onReceive(NotificationCenter.default.publisher(for: NSNotification.sleepTimerStart)) { _ in
                         if #available(iOS 16.1, *) {
