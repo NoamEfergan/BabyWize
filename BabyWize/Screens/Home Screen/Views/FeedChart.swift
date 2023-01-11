@@ -94,6 +94,7 @@ struct FeedChart: View {
                     .fontWeight(.heavy)
                 }
             }
+            .foregroundStyle(AppColours.tintPurple.gradient)
         }
         .foregroundColor(.secondary)
         .font(.system(.subheadline, design: .rounded))

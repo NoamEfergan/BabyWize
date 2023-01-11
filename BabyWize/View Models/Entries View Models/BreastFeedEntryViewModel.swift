@@ -11,7 +11,6 @@ import Foundation
 final class BreastFeedEntryViewModel: EntryViewModel {
     @InjectedObject private var dataManager: BabyDataManager
     @Inject private var defaultManager: UserDefaultManager
-    @Published var feedDate: Date = .init()
     @Published var startDate: Date = .init()
     @Published var endDate: Date = .init()
     @Published var selectedLiveOrOld: LiveOrOld = .Old
@@ -44,7 +43,7 @@ final class BreastFeedEntryViewModel: EntryViewModel {
             throw EntryError.invalidSleepDate
         }
 
-        let feed: BreastFeed = .init(id: UUID().uuidString, date: feedDate, start: startDate, end: endDate)
+        let feed: BreastFeed = .init(id: UUID().uuidString, date: startDate, start: startDate, end: endDate)
         dataManager.addBreastFeed(feed)
         reset()
     }
@@ -63,7 +62,7 @@ final class BreastFeedEntryViewModel: EntryViewModel {
         else {
             throw EntryError.general
         }
-        let newFeed: BreastFeed = .init(id: itemID, date: feedDate, start: startDate, end: endDate)
+        let newFeed: BreastFeed = .init(id: itemID, date: startDate, start: startDate, end: endDate)
         dataManager.updateBreastFeed(newFeed, index: index)
         reset()
     }
@@ -73,7 +72,6 @@ final class BreastFeedEntryViewModel: EntryViewModel {
             return
         }
         itemID = id
-        feedDate = item.date
         startDate = item.start
         endDate = item.end
     }
@@ -81,7 +79,6 @@ final class BreastFeedEntryViewModel: EntryViewModel {
     func reset() {
         startDate = .init()
         endDate = .init()
-        feedDate = .init()
     }
 
     // MARK: - Private methods
