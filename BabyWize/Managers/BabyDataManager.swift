@@ -375,12 +375,9 @@ final class BabyDataManager: ObservableObject {
             return getLast(for:.breastFeed)
         }
 
-        switch lastBreastFeed.date.compare(lastFeed.date) {
-        // lastBreastFeed is older than lastFeed
-        case .orderedAscending:
+        if lastBreastFeed.date < lastFeed.date {
             return getLast(for: .liquidFeed)
-        // lastFeed is older than lastBreastFeed
-        default:
+        } else {
             return getLast(for: .breastFeed)
         }
     }
