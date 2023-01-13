@@ -11,16 +11,17 @@ import Swinject
 
 // MARK: - Inject
 @propertyWrapper
-struct Inject<Component> {
-    let wrappedValue: Component
+public struct Inject<Component: Sendable> {
+    public let wrappedValue: Component
 
-    init(resolver: ResolverProtocol = Resolver.shared) {
-        wrappedValue = resolver.resolve(Component.self)
+    public init() {
+        wrappedValue = Resolver.shared.resolve(Component.self)
     }
 }
 
 // MARK: - InjectedObject
-@propertyWrapper public struct InjectedObject<Service>: DynamicProperty where Service: ObservableObject {
+@propertyWrapper
+public struct InjectedObject<Service>: DynamicProperty where Service: ObservableObject {
     @ObservedObject private var service: Service
     public init() {
         service = Resolver.shared.resolve(Service.self)

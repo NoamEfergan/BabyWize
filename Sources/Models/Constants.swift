@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 // MARK: - Constants
-enum Constants: String {
+public enum Constants: String {
     case preferredUnit
     case preferredUnitSolids
 
@@ -20,28 +20,28 @@ enum Constants: String {
 }
 
 // MARK: - UserConstants
-enum UserConstants {
-    static let isLoggedIn = "IsLoggedIn"
-    static let hasAccount = "HasAccount"
-    static let userID = "UserID"
-    static let sharedIDs = "SharedIDs"
-    static let email = "email"
-    static let hasTimerRunning = "timerRunning"
-    static let hasFeedTimerRunning = "feedTimerRunning"
-    static let sleepStartTime = "sleepStart"
-    static let feedStartTime = "feedStart"
-    static let initialInstallDate = "initialInstall"
-    static let hasAskedForReview = "askedForReview"
+public enum UserConstants {
+    public static let isLoggedIn = "IsLoggedIn"
+    public static let hasAccount = "HasAccount"
+    public static let userID = "UserID"
+    public static let sharedIDs = "SharedIDs"
+    public static let email = "email"
+    public static let hasTimerRunning = "timerRunning"
+    public static let hasFeedTimerRunning = "feedTimerRunning"
+    public static let sleepStartTime = "sleepStart"
+    public static let feedStartTime = "feedStart"
+    public static let initialInstallDate = "initialInstall"
+    public static let hasAskedForReview = "askedForReview"
 }
 
 // MARK: - GenericNetworkResponse
-enum GenericNetworkResponse {
+public enum GenericNetworkResponse {
     case succsess
     case fail(msg: String)
 }
 
 // MARK: - AppColours
-enum AppColours {
+public enum AppColours {
     public static let gradient: LinearGradient = .init(colors: [
         .init(hex: "#F5C0A7"),
         .init(hex: "#F2AAA2"),

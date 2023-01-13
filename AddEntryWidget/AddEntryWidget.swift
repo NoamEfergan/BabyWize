@@ -8,6 +8,7 @@
 import Intents
 import SwiftUI
 import WidgetKit
+import Models
 
 // MARK: - Provider
 struct Provider: IntentTimelineProvider {

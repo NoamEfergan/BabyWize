@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Models
 
 // MARK: - EditEntryView
 struct EditEntryView<Item: DataItem, ViewModel: EntryViewModel>: View {

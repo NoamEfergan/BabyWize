@@ -9,6 +9,7 @@ import ActivityKit
 import AppIntents
 import SwiftUI
 import Swinject
+import Models
 
 // MARK: - AppDelegate
 class AppDelegate: NSObject, UIApplicationDelegate {

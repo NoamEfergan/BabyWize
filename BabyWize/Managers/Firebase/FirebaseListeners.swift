@@ -5,11 +5,10 @@
 //  Created by Noam Efergan on 16/12/2022.
 //
 
-
-import FirebaseFirestoreCombineSwift
 import FirebaseFirestore
 import Foundation
 import Combine
+import Models
 
 extension FirebaseManager {
     func listenToLogin() {

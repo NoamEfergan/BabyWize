@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Models
 
 // MARK: - BreastFeedInputDetailView
 struct BreastFeedInputDetailView: View {

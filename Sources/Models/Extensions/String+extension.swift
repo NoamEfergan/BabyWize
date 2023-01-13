@@ -5,7 +5,7 @@
 //  Created by Noam Efergan on 30/10/2022.
 //
 import Foundation
-extension String {
+public extension String {
     static var nonAvailable = "--"
 
     func convertToTimeInterval() -> TimeInterval {

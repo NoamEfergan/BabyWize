@@ -7,6 +7,7 @@
 
 import Foundation
 import AppIntents
+import Models
 
 // MARK: - LogFeed
 struct LogFeed: AppIntent {
@@ -28,7 +29,6 @@ struct LogFeed: AppIntent {
     }
 
     func perform() async throws -> some IntentResult & ProvidesDialog {
-        // TODO: Place your refactored intent handler code here.
         guard let amount else {
             throw $amount.needsValueError("How much?")
         }

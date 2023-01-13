@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseCore
 import FirebaseFirestore
+import Models
 
 // MARK: - Firebase extensions
 

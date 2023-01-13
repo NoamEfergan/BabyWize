@@ -6,7 +6,7 @@
 //
 
 import Foundation
-extension TimeInterval {
+public extension TimeInterval {
     var displayableString: String {
         let hoursString = hour > 1 ? " hrs" : " hour"
         let minuteString = minute > 1 ? " mins" : " min"

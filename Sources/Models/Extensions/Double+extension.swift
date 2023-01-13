@@ -8,7 +8,7 @@
 import Foundation
 import Swinject
 
-extension Double {
+public extension Double {
     static func getRandomFeedAmount() -> Double {
         Self.random(in: 100.0 ..< 250.0)
     }
@@ -100,12 +100,24 @@ extension Double {
     }
 
     func solidFeedDisplayableAmount() -> String {
-        @InjectedObject var unitsManager: UserDefaultManager
-        return "\(roundDecimalPoint().description) \(unitsManager.solidUnits.title)"
+        var unit: SolidFeedUnits {
+            if let savedSolid = UserDefaults.standard.string(forKey: Constants.preferredUnitSolids.rawValue) {
+                return .init(rawValue: savedSolid) ?? .grams
+            } else {
+                return .grams
+            }
+        }
+        return "\(roundDecimalPoint().description) \(unit.title)"
     }
 
     func liquidFeedDisplayableAmount() -> String {
-        @InjectedObject var unitsManager: UserDefaultManager
-        return roundDecimalPoint().description + unitsManager.liquidUnits.title
+        var unit: LiquidFeedUnits {
+            if let savedLiquid = UserDefaults.standard.string(forKey: Constants.preferredUnit.rawValue) {
+                return .init(rawValue: savedLiquid) ?? .ml
+            } else {
+                return .ml
+            }
+        }
+        return roundDecimalPoint().description + unit.title
     }
 }

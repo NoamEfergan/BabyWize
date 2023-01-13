@@ -9,10 +9,10 @@ import CoreData
 import SwiftUI
 import Combine
 import Algorithms
+import Models
 
 final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
-
 
     @Inject private var firebaseManager: FirebaseManager
     @InjectedObject private var unitsManager: UserDefaultManager

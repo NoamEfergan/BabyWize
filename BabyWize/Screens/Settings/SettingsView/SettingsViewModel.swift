@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreImage.CIFilterBuiltins
+import Models
 
 // MARK: - SettingsViewModel
 final class SettingsViewModel: ObservableObject {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Models
 
 // MARK: - BreastFeedEntryViewModel
 final class BreastFeedEntryViewModel: EntryViewModel {

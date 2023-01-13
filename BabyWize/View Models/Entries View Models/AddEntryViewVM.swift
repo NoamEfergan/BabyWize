@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 import Combine
+import Models
+
 
 final class AddEntryViewVM: ObservableObject {
     @Inject private var defaultManager: UserDefaultManager

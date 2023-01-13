@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Notification.Name {
+public extension Notification.Name {
     static let didLogOut = Notification.Name("did-log-out")
     static let didLogIn = Notification.Name("did-log-in")
 }

@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 
 // MARK: - LiquidFeedUnits
-enum LiquidFeedUnits: String,Hashable, CaseIterable {
+public enum LiquidFeedUnits: String,Hashable, CaseIterable {
     case ml
     case ozUS = "oz (us)"
     case oz
 
-    var title: String {
+    public var title: String {
         switch self {
         case .ml:
             return "ml"
@@ -25,11 +25,11 @@ enum LiquidFeedUnits: String,Hashable, CaseIterable {
 }
 
 // MARK: - SolidFeedUnits
-enum SolidFeedUnits: String, CaseIterable {
+public enum SolidFeedUnits: String, CaseIterable {
     case grams
     case oz
 
-    var title: String {
+    public var title: String {
         switch self {
         case .grams:
             return "g"

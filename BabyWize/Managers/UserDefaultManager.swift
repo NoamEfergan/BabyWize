@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Models
 
 final class UserDefaultManager: ObservableObject {
     @Published var chartConfiguration: ChartConfiguration {

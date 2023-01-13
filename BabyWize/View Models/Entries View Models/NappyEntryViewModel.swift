@@ -7,6 +7,7 @@
 
 import Foundation
 import Swinject
+import Models
 
 final class NappyEntryViewModel: EntryViewModel {
     @InjectedObject private var dataManager: BabyDataManager

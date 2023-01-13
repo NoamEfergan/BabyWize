@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Date {
+public extension Date {
     func getTwoLinedString() -> String {
         let date = formatted(date: .abbreviated, time: .omitted)
         let time = formatted(date: .omitted, time: .shortened)

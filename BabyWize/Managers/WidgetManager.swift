@@ -7,6 +7,7 @@
 
 import Foundation
 import WidgetKit
+import Models
 
 struct WidgetManager {
     @Inject private var dataManager: BabyDataManager

@@ -10,6 +10,7 @@ import Swinject
 import Firebase
 import FirebaseCore
 import FirebaseFirestore
+import Models
 
 enum ContainerBuilder {
     static func buildMainContainer() -> Container {

@@ -8,6 +8,7 @@
 import AppIntents
 import Charts
 import SwiftUI
+import Models
 
 
 // MARK: - InfoView

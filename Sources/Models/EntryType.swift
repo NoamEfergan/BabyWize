@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum EntryType: String, CaseIterable, Hashable {
+public enum EntryType: String, CaseIterable, Hashable {
     case liquidFeed, sleep, nappy, solidFeed, breastFeed
 
-    var title: String {
+    public var title: String {
         switch self {
         case .liquidFeed, .solidFeed:
             return "Feed"

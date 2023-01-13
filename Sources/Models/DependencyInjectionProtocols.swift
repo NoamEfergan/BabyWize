@@ -9,20 +9,20 @@ import Foundation
 import Swinject
 
 // MARK: - ResolverProtocol
-protocol ResolverProtocol {
+public protocol ResolverProtocol {
     func resolve<T>(_ type: T.Type) -> T
 }
 
 // MARK: - Resolver
-final class Resolver: ResolverProtocol {
-    static let shared = Resolver()
+public final class Resolver: ResolverProtocol {
+    public static let shared = Resolver()
     private var container: Container = .init()
 
-    func resolve<T>(_: T.Type) -> T {
+    public func resolve<T>(_: T.Type) -> T {
         container.resolve(T.self)!
     }
 
-    func setDependencyContainer(_ container: Container) {
+    public func setDependencyContainer(_ container: Container) {
         self.container = container
     }
 }

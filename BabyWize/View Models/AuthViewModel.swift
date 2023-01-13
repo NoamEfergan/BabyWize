@@ -8,6 +8,7 @@
 import Network
 import FirebaseAuth
 import Foundation
+import Models
 
 final class AuthViewModel: ObservableObject {
     @InjectedObject private var defaultsManager: UserDefaultManager

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Models
 
 final class SharingViewModel: ObservableObject {
     @InjectedObject private var defaultsManager: UserDefaultManager

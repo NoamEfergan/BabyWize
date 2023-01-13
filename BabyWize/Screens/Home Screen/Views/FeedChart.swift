@@ -7,6 +7,7 @@
 
 import Charts
 import SwiftUI
+import Models
 
 // MARK: - FeedChart
 struct FeedChart: View {

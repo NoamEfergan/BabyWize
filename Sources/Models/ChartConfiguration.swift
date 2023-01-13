@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum ChartConfiguration: String, CaseIterable {
+public enum ChartConfiguration: String, CaseIterable {
     case joint, separate
 }

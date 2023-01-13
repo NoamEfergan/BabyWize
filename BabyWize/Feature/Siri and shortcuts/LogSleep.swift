@@ -7,6 +7,7 @@
 
 import Foundation
 import AppIntents
+import Models
 
 struct LogSleep: AppIntent {
     @Inject private var dataManager: BabyDataManager

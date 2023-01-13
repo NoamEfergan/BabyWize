@@ -6,6 +6,7 @@
 //
 import Foundation
 import AppIntents
+import Models
 
 // MARK: - LogNappy
 struct LogNappy: AppIntent {

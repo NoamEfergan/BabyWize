@@ -9,6 +9,7 @@ import FirebaseCore
 import FirebaseFirestore
 import Foundation
 import Combine
+import Models
 
 // MARK: - FirebaseManager
 class FirebaseManager {

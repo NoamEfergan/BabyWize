@@ -7,6 +7,7 @@
 
 import SwiftUI
 import StoreKit
+import Models
 
 // MARK: - SettingsView
 struct SettingsView: View {
