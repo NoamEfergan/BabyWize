@@ -13,7 +13,6 @@ import Models
 final class SleepEntryViewModel: EntryViewModel {
     @InjectedObject private var dataManager: BabyDataManager
     @Inject private var defaultManager: UserDefaultManager
-    @Published var sleepDate: Date = .init()
     @Published var startDate: Date = .init()
     @Published var endDate: Date = .init()
     @Published var selectedLiveOrOld: LiveOrOld = .Old
@@ -46,7 +45,7 @@ final class SleepEntryViewModel: EntryViewModel {
             throw EntryError.invalidSleepDate
         }
 
-        let sleep: Sleep = .init(id: UUID().uuidString, date: sleepDate, start: startDate, end: endDate)
+        let sleep: Sleep = .init(id: UUID().uuidString, date: startDate, start: startDate, end: endDate)
         dataManager.addSleep(sleep)
         reset()
     }
@@ -85,7 +84,7 @@ final class SleepEntryViewModel: EntryViewModel {
         else {
             throw EntryError.general
         }
-        let newSleep: Sleep = .init(id: itemID, date: sleepDate, start: startDate, end: endDate)
+        let newSleep: Sleep = .init(id: itemID, date: startDate, start: startDate, end: endDate)
         dataManager.updateSleep(newSleep, index: index)
         reset()
     }
@@ -95,7 +94,6 @@ final class SleepEntryViewModel: EntryViewModel {
             return
         }
         itemID = id
-        sleepDate = item.date
         startDate = item.start
         endDate = item.end
     }
@@ -103,7 +101,6 @@ final class SleepEntryViewModel: EntryViewModel {
     func reset() {
         startDate = .init()
         endDate = .init()
-        sleepDate = .init()
     }
 }
 

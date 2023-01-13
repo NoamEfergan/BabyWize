@@ -9,6 +9,7 @@ import SwiftUI
 
 // MARK: - QuickInfoView
 struct QuickInfoView: View {
+    @EnvironmentObject private var navigationVM: NavigationViewModel
     let color: Color
     var backgroundColor: Color? = nil
     let title: String
@@ -46,6 +47,7 @@ struct QuickInfoView: View {
                 Spacer()
             }
         }
+
         .animation(.easeInOut, value: value)
         .multilineTextAlignment(.leading)
         .padding(.horizontal)
@@ -53,7 +55,12 @@ struct QuickInfoView: View {
         .frame(minHeight: 100)
         .frame(maxWidth: .infinity)
         .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
-            .foregroundColor(backgroundColor ?? color.opacity(0.2)))
+            .foregroundColor(backgroundColor ?? color.opacity(0.2))
+            .onTapGesture {
+                if shouldShowInfo {
+                    navigationVM.path.append(Screens.feed)
+                }
+            })
     }
 }
 

@@ -715,6 +715,7 @@
 				056DC4882916AA8100B30720 /* AccessibleViews */,
 				0587BB552928306B00F39B25 /* LabelledDivider.swift */,
 				058038B529329EAA006477A2 /* LoadingOverlay.swift */,
+				05678653296CBA6B00D09C56 /* QuickEntryView.swift */,
 			);
 			path = "Global Views";
 			sourceTree = "<group>";
@@ -1053,6 +1054,7 @@
 				05A42A672905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
 				056BC6C1294C71B200339442 /* FirebaseListeners.swift in Sources */,
 				050FF468293A3F6600F445DE /* IntentManager.swift in Sources */,
+				05678654296CBA6C00D09C56 /* QuickEntryView.swift in Sources */,
 				05DD68C42885FB2C0066BFEC /* BabyDataManager.swift in Sources */,
 				056083812884147800728F1F /* HomeView.swift in Sources */,
 				058EAF39293BBDEE0030D49D /* LogNappy.swift in Sources */,
