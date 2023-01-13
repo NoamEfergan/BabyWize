@@ -11,3 +11,4 @@ fastlane/report.xml
 fastlane/test_output
 ReleaseApp.app.dSYM.zip
 ReleaseApp.ipa
+.swiftpm/xcode/xcuserdata/noam.efergan.xcuserdatad/xcschemes/xcschememanagement.plist

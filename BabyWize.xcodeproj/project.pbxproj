@@ -329,7 +329,7 @@
 		05DD68DD28861CD70066BFEC /* SleepEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntryView.swift; sourceTree = "<group>"; };
 		05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyEntryView.swift; sourceTree = "<group>"; };
 		05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		05F07AFA2971F5C60041A283 /* BabyWize */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BabyWize; sourceTree = "<group>"; };
+		05F07B0729720C370041A283 /* BabyWize */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BabyWize; sourceTree = "<group>"; };
 		05FE380B2902895F002D3D34 /* QuickInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickInfoView.swift; sourceTree = "<group>"; };
 		05FE380D29028B13002D3D34 /* QuickInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickInfoSection.swift; sourceTree = "<group>"; };
 		3B64002428D65B0700241D65 /* GrayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayTextField.swift; sourceTree = "<group>"; };
@@ -475,7 +475,7 @@
 		056083722884147800728F1F = {
 			isa = PBXGroup;
 			children = (
-				05F07AF92971F5C60041A283 /* Packages */,
+				05F07B0729720C370041A283 /* BabyWize */,
 				05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */,
 				050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */,
 				0560837D2884147800728F1F /* BabyWize */,
@@ -715,7 +715,6 @@
 				056DC4882916AA8100B30720 /* AccessibleViews */,
 				0587BB552928306B00F39B25 /* LabelledDivider.swift */,
 				058038B529329EAA006477A2 /* LoadingOverlay.swift */,
-				05678653296CBA6B00D09C56 /* QuickEntryView.swift */,
 			);
 			path = "Global Views";
 			sourceTree = "<group>";
@@ -730,14 +729,6 @@
 				0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */,
 			);
 			path = EntryView;
-			sourceTree = "<group>";
-		};
-		05F07AF92971F5C60041A283 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				05F07AFA2971F5C60041A283 /* BabyWize */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1054,7 +1045,6 @@
 				05A42A672905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
 				056BC6C1294C71B200339442 /* FirebaseListeners.swift in Sources */,
 				050FF468293A3F6600F445DE /* IntentManager.swift in Sources */,
-				05678654296CBA6C00D09C56 /* QuickEntryView.swift in Sources */,
 				05DD68C42885FB2C0066BFEC /* BabyDataManager.swift in Sources */,
 				056083812884147800728F1F /* HomeView.swift in Sources */,
 				058EAF39293BBDEE0030D49D /* LogNappy.swift in Sources */,
