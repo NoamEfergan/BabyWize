@@ -63,4 +63,6 @@ enum AppColours {
     ],
     startPoint: .topLeading,
     endPoint: .bottomTrailing)
+
+    static let tintPurple = Color(hex: "#5354EC")
 }

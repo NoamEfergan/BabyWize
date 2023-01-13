@@ -24,7 +24,6 @@ struct SleepEntryView: View {
             }
             switch vm.selectedLiveOrOld {
             case .Old:
-                AccessibleDatePicker(label: "When", value: $vm.sleepDate)
                 AccessibleDatePicker(label: "From", value: $vm.startDate)
                 AccessibleDatePicker(label: "Until", value: $vm.endDate)
             case .Live:

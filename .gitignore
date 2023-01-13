@@ -4,7 +4,7 @@ BabyWize/.DS_Store
 .DS_Store
 *.xcuserstate
 .idea
-BabyWize.xcodeproj/xcuserdatals
+BabyWize.xcodeproj/xcuserdata
 *.xcbkptlist
 fastlane/README.md
 fastlane/report.xml

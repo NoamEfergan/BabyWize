@@ -65,7 +65,7 @@ struct HomeView: View {
                             Image(systemName: "person.circle")
                                 .resizable()
                                 .frame(width: 32, height: 32)
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(AppColours.tintPurple.gradient)
                         }
                         .accessibilityRemoveTraits(.isImage)
                         .accessibilityAddTraits(.isButton)
@@ -79,7 +79,7 @@ struct HomeView: View {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
                                 .frame(width: 32, height: 32)
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(AppColours.tintPurple.gradient)
                                 .rotationEffect(.degrees(iconRotation))
                         }
                     }
@@ -153,7 +153,7 @@ struct HomeView: View {
                 }
             }
         }
-        .tint(Color(hex: "#5354EC"))
+        .tint(AppColours.tintPurple)
     }
 
     // MARK: - Navigation

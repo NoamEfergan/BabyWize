@@ -24,9 +24,9 @@ struct BreastFeedEntryView: View {
             }
             switch vm.selectedLiveOrOld {
             case .Old:
-                AccessibleDatePicker(label: "When", value: $vm.feedDate)
                 AccessibleDatePicker(label: "From", value: $vm.startDate)
                 AccessibleDatePicker(label: "Until", value: $vm.endDate)
+
             case .Live:
                 if let startDate {
                     TimerView(startDate: startDate)
