@@ -8,12 +8,16 @@
 import Foundation
 import AppIntents
 @preconcurrency import Models
+import Managers
 
-struct LogSleep: AppIntent {
-    @Inject private var dataManager: BabyDataManager
-    static var title: LocalizedStringResource = "Log a sleep"
-    static var description: IntentDescription? = "Quickly and hands free log a sleep into your Baby Wize database"
-    static var suggestedInvocationPhrase = "Log a sleep on baby wize"
+public struct LogSleep: AppIntent {
+    @Inject var dataManager: BabyDataManager
+    public static var title: LocalizedStringResource = "Log a sleep"
+    public static var description: IntentDescription? =
+        "Quickly and hands free log a sleep into your Baby Wize database"
+    public static var suggestedInvocationPhrase = "Log a sleep on baby wize"
+
+    public init() {}
 
     @Parameter(title: "From", requestValueDialog: "From when")
     var start: Date?
@@ -21,11 +25,11 @@ struct LogSleep: AppIntent {
     @Parameter(title: "Until", requestValueDialog: "Until when")
     var end: Date?
 
-    static var parameterSummary: some ParameterSummary {
+    public static var parameterSummary: some ParameterSummary {
         Summary("Add a sleep to your Baby Wize sleep entries")
     }
 
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         guard let start else {
             throw $start.needsValueError("When did they go to sleep?")
         }

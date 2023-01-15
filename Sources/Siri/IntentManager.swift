@@ -10,6 +10,6 @@ import Intents
 import AppIntents
 
 // MARK: - IntentManager
-struct IntentManager {
-    static func requestSiriAuth() {}
+public enum IntentManager {
+    public static func requestSiriAuth() {}
 }

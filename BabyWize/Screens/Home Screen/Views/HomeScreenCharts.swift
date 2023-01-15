@@ -8,6 +8,7 @@
 import Charts
 import SwiftUI
 import Models
+import Managers
 
 // MARK: - HomeScreenCharts
 struct HomeScreenCharts: View {

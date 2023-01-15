@@ -12,22 +12,22 @@ import Combine
 import Models
 
 // MARK: - FirebaseManager
-class FirebaseManager {
+public class FirebaseManager {
     typealias FirebaseDocument = FirebaseFirestore.DocumentReference
-    var defaultsManager: UserDefaultManager
-    var authVM: AuthViewModel
-    var bag = Set<AnyCancellable>()
-    var listenerRegistration: ListenerRegistration?
-    let db = Firestore.firestore()
+    public var defaultsManager: UserDefaultManager
+    public var authVM: AuthViewModel
+    public var bag = Set<AnyCancellable>()
+    public var listenerRegistration: ListenerRegistration?
+    public let db = Firestore.firestore()
 
-    var dataManager: BabyDataManager?
+    public var dataManager: BabyDataManager?
 
-    init(authVM: AuthViewModel, defaultsManager: UserDefaultManager) {
+    public init(authVM: AuthViewModel, defaultsManager: UserDefaultManager) {
         self.authVM = authVM
         self.defaultsManager = defaultsManager
     }
 
-    func setup(with dataManager: BabyDataManager) {
+    public func setup(with dataManager: BabyDataManager) {
         Task { [weak self] in
             guard let self else {
                 return
@@ -42,13 +42,13 @@ class FirebaseManager {
 
     // MARK: - Public methods
 
-    func fetchAllFromRemote() async {
+    public func fetchAllFromRemote() async {
         await getAllFeeds()
         await getAllSleeps()
         await getAllChanges()
     }
 
-    func createUser(with givenId: String) {
+    public func createUser(with givenId: String) {
         let document: FirebaseDocument = db.collection(FBKeys.kUsers).document(givenId)
         document.setData([FBKeys.kShared: []]) { error in
             if let error {
@@ -57,7 +57,7 @@ class FirebaseManager {
         }
     }
 
-    func removeIdFromShared(_ Id: String) {
+    public func removeIdFromShared(_ Id: String) {
         guard let userID = defaultsManager.userID else {
             return
         }
@@ -92,7 +92,7 @@ class FirebaseManager {
         }
     }
 
-    func fetchSharedDataIfAvailable(id: String, addID: Bool = false) async {
+    public func fetchSharedDataIfAvailable(id: String, addID: Bool = false) async {
         do {
             let user = try await db.collection(FBKeys.kUsers).document(id).getDocument()
             if let sharingAccounts = user.get(FBKeys.kShared) as? [[String: String]] {
@@ -121,7 +121,7 @@ class FirebaseManager {
 
     // MARK: - Add
 
-    func addFeed(_ item: Feed) {
+    public func addFeed(_ item: Feed) {
         guard let userID = defaultsManager.userID else {
             print("Failed to add feed to remote, no userID")
             return
@@ -149,7 +149,7 @@ class FirebaseManager {
             }
     }
 
-    func addSleep(_ item: Sleep) {
+    public func addSleep(_ item: Sleep) {
         guard let userID = defaultsManager.userID else {
             print("Failed to add sleep to remote, no userID")
             return
@@ -174,7 +174,7 @@ class FirebaseManager {
             }
     }
 
-    func addNappyChange(_ item: NappyChange) {
+    public func addNappyChange(_ item: NappyChange) {
         guard let userID = defaultsManager.userID else {
             print("Failed to add nappy change to remote, no userID")
             return
@@ -198,7 +198,7 @@ class FirebaseManager {
             }
     }
 
-    func addBreastFeed(_ item: BreastFeed) {
+    public func addBreastFeed(_ item: BreastFeed) {
         guard let userID = defaultsManager.userID else {
             print("Failed to add breast feed to remote, no userID")
             return
@@ -224,7 +224,7 @@ class FirebaseManager {
     }
 
     @discardableResult
-    func getSharedData(for id: String,email: String, addID: Bool = true) async -> Bool {
+    public func getSharedData(for id: String,email: String, addID: Bool = true) async -> Bool {
         do {
             let collection = try await db
                 .collection(FBKeys.kUsers)
@@ -252,7 +252,37 @@ class FirebaseManager {
         }
     }
 
-    // MARK: - Get/ edit
+    public func deleteAccount(userID: String) {
+        db.collection(FBKeys.kUsers).document(userID).delete { error in
+            if let error {
+                print("Failed to delete account with error: \(error.localizedDescription)")
+            } else {
+                print("account deleted")
+            }
+        }
+    }
+
+    // MARK: - Delete
+
+    public func removeItems(items: [any DataItem], key: String) {
+        guard let userID = defaultsManager.userID else {
+            return
+        }
+        let batch = db.batch()
+        for item in items {
+            let ref = db.collection(FBKeys.kUsers).document(userID).collection(key).document(item.id)
+            batch.deleteDocument(ref)
+        }
+        batch.commit { error in
+            if let error {
+                print("Failed to delete item with: \(error)")
+            } else {
+                print("Remove successfully ")
+            }
+        }
+    }
+
+    // MARK: - Private methods
 
     private func getAllSleeps() async {
         guard let userID = defaultsManager.userID,
@@ -296,28 +326,6 @@ class FirebaseManager {
         await dataManager?.mergeFeedsWithRemote(feeds)
     }
 
-    // MARK: - Delete
-
-    func removeItems(items: [any DataItem], key: String) {
-        guard let userID = defaultsManager.userID else {
-            return
-        }
-        let batch = db.batch()
-        for item in items {
-            let ref = db.collection(FBKeys.kUsers).document(userID).collection(key).document(item.id)
-            batch.deleteDocument(ref)
-        }
-        batch.commit { error in
-            if let error {
-                print("Failed to delete item with: \(error)")
-            } else {
-                print("Remove successfully ")
-            }
-        }
-    }
-
-    // MARK: - Private methods
-
     private func addIdToShared(_ id: String, email: String) async {
         guard let userID = defaultsManager.userID, let userEmail = defaultsManager.email else {
             return
@@ -356,16 +364,6 @@ class FirebaseManager {
         } else {
             let id = await authVM.anonymousLogin()
             defaultsManager.userID = id
-        }
-    }
-
-    func deleteAccount(userID: String) {
-        db.collection(FBKeys.kUsers).document(userID).delete { error in
-            if let error {
-                print("Failed to delete account with error: \(error.localizedDescription)")
-            } else {
-                print("account deleted")
-            }
         }
     }
 }

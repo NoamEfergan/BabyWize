@@ -12,8 +12,8 @@ import FirebaseCore
 import FirebaseFirestore
 import Models
 
-enum ContainerBuilder {
-    static func buildMainContainer() -> Container {
+public enum ContainerBuilder {
+    public static func buildMainContainer() -> Container {
         let mainContainer = Container()
         registerManagers(to: mainContainer)
         return mainContainer
@@ -39,7 +39,7 @@ enum ContainerBuilder {
         }.inObjectScope(.container)
     }
 
-    static func buildMockContainer() -> Container {
+    public static func buildMockContainer() -> Container {
         let mockConatiner = Container()
         registerMockManagers(to: mockConatiner)
         return mockConatiner

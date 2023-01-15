@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Models
+import Managers
 
 // MARK: - InputDetailView
 struct InputDetailView: View {

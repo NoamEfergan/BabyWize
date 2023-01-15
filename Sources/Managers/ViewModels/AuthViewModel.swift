@@ -10,19 +10,19 @@ import FirebaseAuth
 import Foundation
 import Models
 
-final class AuthViewModel: ObservableObject {
+public final class AuthViewModel: ObservableObject {
     @InjectedObject private var defaultsManager: UserDefaultManager
-    @Published var isLoading = false
-    @Published var isRegistering = false
-    @Published var hasError = false
-    @Published var errorMsg = ""
+    @Published public var isLoading = false
+    @Published public var isRegistering = false
+    @Published public var hasError = false
+    @Published public var errorMsg = ""
 
-    @Published var didLogIn = false
-    @Published var didRegister: String?
-    @Published var didDeleteAccount: String?
+    @Published public var didLogIn = false
+    @Published public var didRegister: String?
+    @Published public var didDeleteAccount: String?
     let monitor = NWPathMonitor()
 
-    func validateEmail(_ email: String) -> Bool {
+    public func validateEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
         let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
@@ -30,13 +30,13 @@ final class AuthViewModel: ObservableObject {
     }
 
     /// Check's if the password contains at least one capital letter, one number, and is at least 8 chars long
-    func validatePassword(_ password: String) -> Bool {
+    public func validatePassword(_ password: String) -> Bool {
         let passwordRegex = "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{8,}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password)
     }
 
     @MainActor
-    func createAccount(email: String, password: String) async -> Bool {
+    public func createAccount(email: String, password: String) async -> Bool {
         isRegistering = true
         defer {
             isRegistering = false
@@ -62,7 +62,7 @@ final class AuthViewModel: ObservableObject {
 
     @MainActor
     @discardableResult
-    func login(email: String, password: String, shouldSaveToKeychain: Bool = true) async -> String? {
+    public func login(email: String, password: String, shouldSaveToKeychain: Bool = true) async -> String? {
         isLoading = true
         defer {
             isLoading = false
@@ -86,7 +86,7 @@ final class AuthViewModel: ObservableObject {
         }
     }
 
-    func deleteAccountAndLogOut() {
+    public func deleteAccountAndLogOut() {
         guard let userID = defaultsManager.userID else {
             return
         }
@@ -95,7 +95,7 @@ final class AuthViewModel: ObservableObject {
         logOut()
     }
 
-    func logOut() {
+    public func logOut() {
         isLoading = true
         defer {
             isLoading = false
@@ -112,6 +112,18 @@ final class AuthViewModel: ObservableObject {
             print("There was an issue when trying to sign in: \(error)")
             hasError = true
             return
+        }
+    }
+
+    @MainActor
+    public func anonymousLogin() async -> String? {
+        do {
+            let authResult = try await Auth.auth().signInAnonymously()
+            print("UserID (login):" + authResult.user.uid + " Signed in anonymously")
+            return authResult.user.uid
+        } catch {
+            print(error.localizedDescription)
+            return nil
         }
     }
 
@@ -133,18 +145,6 @@ final class AuthViewModel: ObservableObject {
     private func removeCredentialsFromKeychain() {
         if let credentials = try? KeychainManager.fetchCredentials() {
             try? KeychainManager.removeCredentials(credentials)
-        }
-    }
-
-    @MainActor
-    func anonymousLogin() async -> String? {
-        do {
-            let authResult = try await Auth.auth().signInAnonymously()
-            print("UserID (login):" + authResult.user.uid + " Signed in anonymously")
-            return authResult.user.uid
-        } catch {
-            print(error.localizedDescription)
-            return nil
         }
     }
 }

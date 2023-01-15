@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 import Models
-
+import Managers
 
 final class AddEntryViewVM: ObservableObject {
     @Inject private var defaultManager: UserDefaultManager

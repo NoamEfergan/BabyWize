@@ -8,38 +8,38 @@
 import SwiftUI
 import Models
 
-final class UserDefaultManager: ObservableObject {
-    @Published var chartConfiguration: ChartConfiguration {
+public final class UserDefaultManager: ObservableObject {
+    @Published public var chartConfiguration: ChartConfiguration {
         didSet {
             UserDefaults.standard.set(chartConfiguration.rawValue, forKey: Constants.chartConfiguration.rawValue)
         }
     }
 
-    @Published var liquidUnits: LiquidFeedUnits {
+    @Published public var liquidUnits: LiquidFeedUnits {
         didSet {
             UserDefaults.standard.set(liquidUnits.rawValue, forKey: Constants.preferredUnit.rawValue)
         }
     }
 
-    @Published var solidUnits: SolidFeedUnits {
+    @Published public var solidUnits: SolidFeedUnits {
         didSet {
             UserDefaults.standard.set(solidUnits.rawValue, forKey: Constants.preferredUnitSolids.rawValue)
         }
     }
 
-    @Published var hasTimerRunning: Bool {
+    @Published public var hasTimerRunning: Bool {
         didSet {
             UserDefaults.standard.set(hasTimerRunning, forKey: UserConstants.hasTimerRunning)
         }
     }
 
-    @Published var hasFeedTimerRunning: Bool {
+    @Published public var hasFeedTimerRunning: Bool {
         didSet {
             UserDefaults.standard.set(hasFeedTimerRunning, forKey: UserConstants.hasFeedTimerRunning)
         }
     }
 
-    var sleepStartDate: Date? {
+    public var sleepStartDate: Date? {
         get {
             UserDefaults.standard.object(forKey: UserConstants.sleepStartTime) as? Date
         }
@@ -48,7 +48,7 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
-    var feedStartDate: Date? {
+    public var feedStartDate: Date? {
         get {
             UserDefaults.standard.object(forKey: UserConstants.feedStartTime) as? Date
         }
@@ -57,7 +57,7 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
-    var hasAccount: Bool {
+    public var hasAccount: Bool {
         get {
             UserDefaults.standard.bool(forKey: UserConstants.hasAccount)
         }
@@ -66,7 +66,7 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
-    var isLoggedIn: Bool {
+    public var isLoggedIn: Bool {
         get {
             UserDefaults.standard.bool(forKey: UserConstants.isLoggedIn)
         }
@@ -75,9 +75,9 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
-    @Published var sharingAccounts: [SharingAccount]
+    @Published public var sharingAccounts: [SharingAccount]
 
-    func addNewSharingAccount(_ account: SharingAccount) {
+    public func addNewSharingAccount(_ account: SharingAccount) {
         DispatchQueue.main.async { [weak self] in
             guard let self else {
                 return
@@ -93,7 +93,7 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
-    func removeSharingAccount(with id: String) {
+    public func removeSharingAccount(with id: String) {
         DispatchQueue.main.async { [weak self] in
             guard let self else {
                 return
@@ -105,7 +105,7 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
-    var userID: String? {
+    public var userID: String? {
         get {
             UserDefaults.standard.string(forKey: UserConstants.userID)
         }
@@ -114,7 +114,7 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
-    var email: String? {
+    public var email: String? {
         get {
             UserDefaults.standard.string(forKey: UserConstants.email)
         }
@@ -123,7 +123,7 @@ final class UserDefaultManager: ObservableObject {
         }
     }
 
-    init() {
+    public init() {
         if let savedLiquid = UserDefaults.standard.string(forKey: Constants.preferredUnit.rawValue) {
             liquidUnits = .init(rawValue: savedLiquid) ?? .ml
         } else {

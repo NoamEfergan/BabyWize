@@ -7,23 +7,27 @@
 import Foundation
 import AppIntents
 @preconcurrency import Models
+import Managers
 
 // MARK: - LogNappy
-struct LogNappy: AppIntent {
+public struct LogNappy: AppIntent {
     @Inject private var dataManager: BabyDataManager
-    static var title: LocalizedStringResource = "Log a nappy change"
-    static var description: IntentDescription? = "Quickly and hands free log a nappy change into you Baby Wize database"
-    static var suggestedInvocationPhrase = "Log a nappy change on baby wize"
+    public static var title: LocalizedStringResource = "Log a nappy change"
+    public static var description: IntentDescription? =
+        "Quickly and hands free log a nappy change into you Baby Wize database"
+    public static var suggestedInvocationPhrase = "Log a nappy change on baby wize"
+
+    public init() {}
 
     @Parameter(title: "Wet or soiled?",
                requestValueDialog: "Was it a wet nappy or a soiled nappy?")
     var wetOrSoiled: IntentWetOrSoiled?
 
-    static var parameterSummary: some ParameterSummary {
+    public static var parameterSummary: some ParameterSummary {
         Summary("Log a \(\.$wetOrSoiled) nappy change")
     }
 
-    func perform() async throws -> some IntentResult {
+    public func perform() async throws -> some IntentResult {
         guard let wetOrSoiled else {
             throw $wetOrSoiled.needsValueError("Was the nappy wet or soiled?")
         }
@@ -36,10 +40,10 @@ struct LogNappy: AppIntent {
 }
 
 // MARK: - IntentWetOrSoiled
-enum IntentWetOrSoiled: String, AppEnum {
-    static var typeDisplayRepresentation = TypeDisplayRepresentation("WetOrSoiled")
+public enum IntentWetOrSoiled: String, AppEnum {
+    public static var typeDisplayRepresentation = TypeDisplayRepresentation("WetOrSoiled")
 
-    static var caseDisplayRepresentations: [IntentWetOrSoiled : DisplayRepresentation] =
+    public static var caseDisplayRepresentations: [IntentWetOrSoiled : DisplayRepresentation] =
         [
             .wet : .init(stringLiteral: "Wet"),
             .soiled : .init(stringLiteral: "Soiled")

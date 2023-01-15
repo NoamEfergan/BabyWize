@@ -15,35 +15,17 @@
 		050AEE9C288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 050AEE98288C64190052A2D1 /* AddEntryWidget.intentdefinition */; };
 		050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 050AEE98288C64190052A2D1 /* AddEntryWidget.intentdefinition */; };
 		050AEEA0288C641A0052A2D1 /* AddEntryWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEEA6288C6B170052A2D1 /* WidgetManager.swift */; };
-		050FF468293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
-		050FF469293A3F6600F445DE /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
-		050FF46F293B8ABD00F445DE /* LogSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF46E293B8ABD00F445DE /* LogSleep.swift */; };
 		0514C3A72963024C005DD0C4 /* BreastFeedEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A62963024C005DD0C4 /* BreastFeedEntryViewModel.swift */; };
 		0514C3A82963024C005DD0C4 /* BreastFeedEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A62963024C005DD0C4 /* BreastFeedEntryViewModel.swift */; };
 		0514C3AA29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */; };
 		0514C3AB29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */; };
 		05187BB4295083B1002B6C49 /* BabyDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */; };
-		05187BB52950840E002B6C49 /* BabyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */; };
 		05187BB729508633002B6C49 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BB629508633002B6C49 /* FirebaseAuth */; };
 		05187BB92950912B002B6C49 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BB82950912B002B6C49 /* FirebaseAuth */; };
 		05187BBB2950914D002B6C49 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BBA2950914D002B6C49 /* FirebaseFirestore */; };
 		05187BBD2950914D002B6C49 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BBC2950914D002B6C49 /* FirebaseFirestoreCombine-Community */; };
-		05187BBE29509187002B6C49 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DC332291C2D5C009C0A61 /* UserDefaultManager.swift */; };
-		05187BBF29509188002B6C49 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DC332291C2D5C009C0A61 /* UserDefaultManager.swift */; };
-		05187BC0295091DE002B6C49 /* LogFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E48B42939120A00A90399 /* LogFeed.swift */; };
-		05187BC1295091DE002B6C49 /* IntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF467293A3F6600F445DE /* IntentManager.swift */; };
-		05187BC2295091DE002B6C49 /* LogSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050FF46E293B8ABD00F445DE /* LogSleep.swift */; };
-		05187BC3295091DE002B6C49 /* LogNappy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EAF38293BBDEE0030D49D /* LogNappy.swift */; };
-		05187BC5295091DE002B6C49 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05711B272906E5470023EA34 /* KeychainManager.swift */; };
-		05187BC6295091DE002B6C49 /* SwinjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C12885B8460066BFEC /* SwinjectManager.swift */; };
-		05187BC7295091DE002B6C49 /* WidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEEA6288C6B170052A2D1 /* WidgetManager.swift */; };
-		05187BC9295091DE002B6C49 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A602905A5790040A543 /* FirebaseManager.swift */; };
-		05187BCA295091DE002B6C49 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
-		05187BCB295091DE002B6C49 /* FirebaseListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056BC6C0294C71B200339442 /* FirebaseListeners.swift */; };
 		05187BCC295091DE002B6C49 /* AddEntryViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5AE294F42BC0046FE3F /* AddEntryViewVM.swift */; };
 		05187BCD295091DE002B6C49 /* InfoScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68F12887015A00C90710 /* InfoScreenViewModel.swift */; };
-		05187BCE295091DE002B6C49 /* SharingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5B29291C2C00F39B25 /* SharingViewModel.swift */; };
 		05187BDE295091DE002B6C49 /* Info View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E42886AF0500C90710 /* Info View.swift */; };
 		05187BDF295091DE002B6C49 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE30FFB28D5DCF100E75D22 /* RegisterView.swift */; };
 		05187BE0295091DE002B6C49 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
@@ -85,7 +67,6 @@
 		0523667B29687D94008B58A2 /* FeedActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0523666C29687D93008B58A2 /* FeedActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0523667F29687F64008B58A2 /* FeedActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523667229687D93008B58A2 /* FeedActivityLiveActivity.swift */; };
 		05236682296884FB008B58A2 /* BreastFeedInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05236681296884FB008B58A2 /* BreastFeedInputDetailView.swift */; };
-		053E48B52939120A00A90399 /* LogFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E48B42939120A00A90399 /* LogFeed.swift */; };
 		0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
 		0543E5A4294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
 		0543E5A6294F132E0046FE3F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A5294F132E0046FE3F /* TimerView.swift */; };
@@ -100,7 +81,6 @@
 		056083902884147900728F1F /* BabyWizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560838F2884147900728F1F /* BabyWizeTests.swift */; };
 		0560839A2884147900728F1F /* BabyWizeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083992884147900728F1F /* BabyWizeUITests.swift */; };
 		0560839C2884147900728F1F /* BabyWizeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */; };
-		056BC6C1294C71B200339442 /* FirebaseListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056BC6C0294C71B200339442 /* FirebaseListeners.swift */; };
 		056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D7C7B28F32FB500E3514D /* LoadingView.swift */; };
 		056DC4832916A0EC00B30720 /* AccessibleLabeledContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */; };
 		056DC4872916AA7900B30720 /* AccessibleLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */; };
@@ -116,10 +96,8 @@
 		056DC49D2916F8FF00B30720 /* FeedInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC49C2916F8FF00B30720 /* FeedInputDetailView.swift */; };
 		056DC4A12916F9EE00B30720 /* SleepInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4A02916F9EE00B30720 /* SleepInputDetailView.swift */; };
 		056DC4A32916FA7500B30720 /* NappyInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4A22916FA7500B30720 /* NappyInputDetailView.swift */; };
-		05711B282906E5470023EA34 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05711B272906E5470023EA34 /* KeychainManager.swift */; };
 		057440BF2911C7690022D18E /* FeedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440BE2911C7690022D18E /* FeedChart.swift */; };
 		057440C12911C80C0022D18E /* SleepChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440C02911C80C0022D18E /* SleepChart.swift */; };
-		057DC333291C2D5C009C0A61 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DC332291C2D5C009C0A61 /* UserDefaultManager.swift */; };
 		058038A6293289AE006477A2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058038A5293289AE006477A2 /* SettingsViewModel.swift */; };
 		058038B629329EAA006477A2 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058038B529329EAA006477A2 /* LoadingOverlay.swift */; };
 		058414E0294F0F71009A4791 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE91288C64190052A2D1 /* WidgetKit.framework */; };
@@ -130,8 +108,6 @@
 		058414EE294F0F72009A4791 /* SleepActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 058414DF294F0F71009A4791 /* SleepActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		058414F2294F104E009A4791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		0587BB562928306B00F39B25 /* LabelledDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB552928306B00F39B25 /* LabelledDivider.swift */; };
-		0587BB5C29291C2C00F39B25 /* SharingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5B29291C2C00F39B25 /* SharingViewModel.swift */; };
-		058EAF39293BBDEE0030D49D /* LogNappy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EAF38293BBDEE0030D49D /* LogNappy.swift */; };
 		059C68E52886AF0500C90710 /* Info View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E42886AF0500C90710 /* Info View.swift */; };
 		059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EB2886BD6E00C90710 /* InputDetailView.swift */; };
 		059C68F02886D8CD00C90710 /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EF2886D8CD00C90710 /* EditEntryView.swift */; };
@@ -139,8 +115,6 @@
 		05A42A50290549D90040A543 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 05A42A4F290549D90040A543 /* Algorithms */; };
 		05A42A52290596540040A543 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A51290596540040A543 /* LoginView.swift */; };
 		05A42A53290596540040A543 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A51290596540040A543 /* LoginView.swift */; };
-		05A42A612905A5790040A543 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A602905A5790040A543 /* FirebaseManager.swift */; };
-		05A42A672905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */; };
 		05ABD7052910217C00E1C755 /* PlaceholderChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ABD7042910217C00E1C755 /* PlaceholderChart.swift */; };
 		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
 		05CC3ADD2951EB3800D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3ADC2951EB3800D306C8 /* GoogleService-Info.plist */; };
@@ -150,8 +124,6 @@
 		05CC3AE12951EB3800D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3ADC2951EB3800D306C8 /* GoogleService-Info.plist */; };
 		05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */; };
 		05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05DD68BE2885B7E40066BFEC /* Swinject */; };
-		05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C12885B8460066BFEC /* SwinjectManager.swift */; };
-		05DD68C42885FB2C0066BFEC /* BabyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */; };
 		05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D22886140C0066BFEC /* AddEntryView.swift */; };
 		05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D6288619B50066BFEC /* EntryViewModel.swift */; };
 		05DD68DC28861C930066BFEC /* FeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DB28861C930066BFEC /* FeedEntryView.swift */; };
@@ -162,13 +134,13 @@
 		05F07AFE2971F9FA0041A283 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07AFD2971F9FA0041A283 /* Models */; };
 		05F07B002971FA000041A283 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07AFF2971FA000041A283 /* Models */; };
 		05F07B0E297475E30041A283 /* TipJar in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07B0D297475E30041A283 /* TipJar */; };
+		05F07B10297478110041A283 /* Siri in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07B0F297478110041A283 /* Siri */; };
+		05F07B12297478160041A283 /* Managers in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07B11297478160041A283 /* Managers */; };
 		05FBF42D2971F45F00A4E4DE /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 05FBF42C2971F45F00A4E4DE /* Models */; };
 		05FE380C2902895F002D3D34 /* QuickInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE380B2902895F002D3D34 /* QuickInfoView.swift */; };
 		05FE380E29028B13002D3D34 /* QuickInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE380D29028B13002D3D34 /* QuickInfoSection.swift */; };
 		3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002428D65B0700241D65 /* GrayTextField.swift */; };
-		3B64002728D6620800241D65 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002628D6620800241D65 /* AuthViewModel.swift */; };
 		3B64002928D665AA00241D65 /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002828D665AA00241D65 /* SignInTests.swift */; };
-		3B64002A28D665C600241D65 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002628D6620800241D65 /* AuthViewModel.swift */; };
 		3BE30FE628D5D25A00E75D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		3BE30FF028D5D59000E75D22 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FEF28D5D59000E75D22 /* FirebaseDatabase */; };
 		3BE30FF228D5D59000E75D22 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF128D5D59000E75D22 /* FirebaseDatabaseSwift */; };
@@ -252,10 +224,7 @@
 		050AEE99288C641A0052A2D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		050AEE9B288C641A0052A2D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		050AEEA5288C6A860052A2D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		050AEEA6288C6B170052A2D1 /* WidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetManager.swift; sourceTree = "<group>"; };
 		050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AddEntryWidgetExtension.entitlements; sourceTree = "<group>"; };
-		050FF467293A3F6600F445DE /* IntentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentManager.swift; sourceTree = "<group>"; };
-		050FF46E293B8ABD00F445DE /* LogSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSleep.swift; sourceTree = "<group>"; };
 		0514C3A62963024C005DD0C4 /* BreastFeedEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedEntryViewModel.swift; sourceTree = "<group>"; };
 		0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedEntryView.swift; sourceTree = "<group>"; };
 		05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManagerTests.swift; sourceTree = "<group>"; };
@@ -267,7 +236,6 @@
 		05236681296884FB008B58A2 /* BreastFeedInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedInputDetailView.swift; sourceTree = "<group>"; };
 		053E48882939107800A90399 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		053E48932939107900A90399 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		053E48B42939120A00A90399 /* LogFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFeed.swift; sourceTree = "<group>"; };
 		0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimeComponent.swift; sourceTree = "<group>"; };
 		0543E5A5294F132E0046FE3F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		0543E5AE294F42BC0046FE3F /* AddEntryViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryViewVM.swift; sourceTree = "<group>"; };
@@ -281,7 +249,6 @@
 		056083952884147900728F1F /* BabyWizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyWizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		056083992884147900728F1F /* BabyWizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITests.swift; sourceTree = "<group>"; };
 		0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		056BC6C0294C71B200339442 /* FirebaseListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListeners.swift; sourceTree = "<group>"; };
 		056D7C7B28F32FB500E3514D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleLabeledContent.swift; sourceTree = "<group>"; };
 		056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleLabeledTextField.swift; sourceTree = "<group>"; };
@@ -292,10 +259,9 @@
 		056DC49C2916F8FF00B30720 /* FeedInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInputDetailView.swift; sourceTree = "<group>"; };
 		056DC4A02916F9EE00B30720 /* SleepInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepInputDetailView.swift; sourceTree = "<group>"; };
 		056DC4A22916FA7500B30720 /* NappyInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyInputDetailView.swift; sourceTree = "<group>"; };
-		05711B272906E5470023EA34 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		057440BE2911C7690022D18E /* FeedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedChart.swift; sourceTree = "<group>"; };
 		057440C02911C80C0022D18E /* SleepChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepChart.swift; sourceTree = "<group>"; };
-		057DC332291C2D5C009C0A61 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		0576C8582974796C00148F8F /* BabyWize */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BabyWize; sourceTree = "<group>"; };
 		058038A5293289AE006477A2 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		058038B529329EAA006477A2 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		058414DF294F0F71009A4791 /* SleepActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SleepActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,32 +270,24 @@
 		058414E9294F0F72009A4791 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058414EB294F0F72009A4791 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0587BB552928306B00F39B25 /* LabelledDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledDivider.swift; sourceTree = "<group>"; };
-		0587BB5B29291C2C00F39B25 /* SharingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingViewModel.swift; sourceTree = "<group>"; };
-		058EAF38293BBDEE0030D49D /* LogNappy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogNappy.swift; sourceTree = "<group>"; };
 		059C68E42886AF0500C90710 /* Info View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info View.swift"; sourceTree = "<group>"; };
 		059C68EB2886BD6E00C90710 /* InputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDetailView.swift; sourceTree = "<group>"; };
 		059C68EF2886D8CD00C90710 /* EditEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryView.swift; sourceTree = "<group>"; };
 		059C68F12887015A00C90710 /* InfoScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoScreenViewModel.swift; sourceTree = "<group>"; };
 		05A42A51290596540040A543 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		05A42A602905A5790040A543 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataExtensions.swift; sourceTree = "<group>"; };
 		05ABD7042910217C00E1C755 /* PlaceholderChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaceholderChart.swift; path = ../../../../PlaceholderChart.swift; sourceTree = "<group>"; };
 		05B8AF6D2886989C00BBC41B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		05CC3ADC2951EB3800D306C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCharts.swift; sourceTree = "<group>"; };
-		05DD68C12885B8460066BFEC /* SwinjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectManager.swift; sourceTree = "<group>"; };
-		05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManager.swift; sourceTree = "<group>"; };
 		05DD68D22886140C0066BFEC /* AddEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
 		05DD68D6288619B50066BFEC /* EntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewModel.swift; sourceTree = "<group>"; };
 		05DD68DB28861C930066BFEC /* FeedEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEntryView.swift; sourceTree = "<group>"; };
 		05DD68DD28861CD70066BFEC /* SleepEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntryView.swift; sourceTree = "<group>"; };
 		05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyEntryView.swift; sourceTree = "<group>"; };
 		05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		05F07B0C297473320041A283 /* BabyWize */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BabyWize; sourceTree = "<group>"; };
 		05FE380B2902895F002D3D34 /* QuickInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickInfoView.swift; sourceTree = "<group>"; };
 		05FE380D29028B13002D3D34 /* QuickInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickInfoSection.swift; sourceTree = "<group>"; };
 		3B64002428D65B0700241D65 /* GrayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayTextField.swift; sourceTree = "<group>"; };
-		3B64002628D6620800241D65 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		3B64002828D665AA00241D65 /* SignInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTests.swift; sourceTree = "<group>"; };
 		3BE30FE828D5D2B900E75D22 /* BabyWize.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyWize.entitlements; sourceTree = "<group>"; };
 		3BE30FFB28D5DCF100E75D22 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -367,7 +325,9 @@
 				05580E7728CB2B7300E4ECDE /* Algorithms in Frameworks */,
 				3BE30FF628D5D59000E75D22 /* FirebaseFirestoreSwift in Frameworks */,
 				05187BB729508633002B6C49 /* FirebaseAuth in Frameworks */,
+				05F07B12297478160041A283 /* Managers in Frameworks */,
 				3BE30FF028D5D59000E75D22 /* FirebaseDatabase in Frameworks */,
+				05F07B10297478110041A283 /* Siri in Frameworks */,
 				3BE30FF828D5D59000E75D22 /* FirebaseStorage in Frameworks */,
 				05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */,
 				3BE30FF428D5D59000E75D22 /* FirebaseFirestore in Frameworks */,
@@ -428,17 +388,6 @@
 			path = AddEntryWidget;
 			sourceTree = "<group>";
 		};
-		050FF466293A3B6700F445DE /* Siri and shortcuts */ = {
-			isa = PBXGroup;
-			children = (
-				053E48B42939120A00A90399 /* LogFeed.swift */,
-				050FF467293A3F6600F445DE /* IntentManager.swift */,
-				050FF46E293B8ABD00F445DE /* LogSleep.swift */,
-				058EAF38293BBDEE0030D49D /* LogNappy.swift */,
-			);
-			path = "Siri and shortcuts";
-			sourceTree = "<group>";
-		};
 		0523666F29687D93008B58A2 /* FeedActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,7 +411,7 @@
 		056083722884147800728F1F = {
 			isa = PBXGroup;
 			children = (
-				05F07B0C297473320041A283 /* BabyWize */,
+				0576C8582974796C00148F8F /* BabyWize */,
 				05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */,
 				050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */,
 				0560837D2884147800728F1F /* BabyWize */,
@@ -495,7 +444,6 @@
 				3BE30FE828D5D2B900E75D22 /* BabyWize.entitlements */,
 				050AEEA5288C6A860052A2D1 /* Info.plist */,
 				05DD68C72885FC4C0066BFEC /* Feature */,
-				05DD68C02885B8110066BFEC /* Managers */,
 				05DD68BA2885B7810066BFEC /* View Models */,
 				05DD68AB2885B65B0066BFEC /* Screens */,
 				0560837E2884147800728F1F /* BabyWizeApp.swift */,
@@ -597,16 +545,6 @@
 			path = InputDetailView;
 			sourceTree = "<group>";
 		};
-		05A42A652905A96B0040A543 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				05A42A602905A5790040A543 /* FirebaseManager.swift */,
-				05A42A662905A97B0040A543 /* FirebaseDataExtensions.swift */,
-				056BC6C0294C71B200339442 /* FirebaseListeners.swift */,
-			);
-			path = Firebase;
-			sourceTree = "<group>";
-		};
 		05B8AF6A2886985800BBC41B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,29 +593,13 @@
 			children = (
 				056DC48D2916F34700B30720 /* Entries View Models */,
 				059C68F12887015A00C90710 /* InfoScreenViewModel.swift */,
-				3B64002628D6620800241D65 /* AuthViewModel.swift */,
-				0587BB5B29291C2C00F39B25 /* SharingViewModel.swift */,
 			);
 			path = "View Models";
-			sourceTree = "<group>";
-		};
-		05DD68C02885B8110066BFEC /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				05711B272906E5470023EA34 /* KeychainManager.swift */,
-				05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */,
-				05DD68C12885B8460066BFEC /* SwinjectManager.swift */,
-				050AEEA6288C6B170052A2D1 /* WidgetManager.swift */,
-				057DC332291C2D5C009C0A61 /* UserDefaultManager.swift */,
-				05A42A652905A96B0040A543 /* Firebase */,
-			);
-			path = Managers;
 			sourceTree = "<group>";
 		};
 		05DD68C72885FC4C0066BFEC /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				050FF466293A3B6700F445DE /* Siri and shortcuts */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -782,6 +704,8 @@
 				05187BB629508633002B6C49 /* FirebaseAuth */,
 				05FBF42C2971F45F00A4E4DE /* Models */,
 				05F07B0D297475E30041A283 /* TipJar */,
+				05F07B0F297478110041A283 /* Siri */,
+				05F07B11297478160041A283 /* Managers */,
 			);
 			productName = BabyTracker;
 			productReference = 0560837B2884147800728F1F /* BabyWize.app */;
@@ -975,7 +899,6 @@
 				050AEE97288C64190052A2D1 /* AddEntryWidget.swift in Sources */,
 				050AEE9C288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
 				056DC49A2916F60F00B30720 /* EntryViewModel.swift in Sources */,
-				050FF469293A3F6600F445DE /* IntentManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,17 +922,11 @@
 				0543E5AF294F42BC0046FE3F /* AddEntryViewVM.swift in Sources */,
 				05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */,
 				3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */,
-				050FF46F293B8ABD00F445DE /* LogSleep.swift in Sources */,
 				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,
-				0587BB5C29291C2C00F39B25 /* SharingViewModel.swift in Sources */,
-				050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */,
-				05A42A612905A5790040A543 /* FirebaseManager.swift in Sources */,
 				05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */,
-				05DD68C22885B8460066BFEC /* SwinjectManager.swift in Sources */,
 				056DC4872916AA7900B30720 /* AccessibleLabeledTextField.swift in Sources */,
 				059C68F02886D8CD00C90710 /* EditEntryView.swift in Sources */,
 				056DC48A2916AC4400B30720 /* AccessibleDatePicker.swift in Sources */,
-				057DC333291C2D5C009C0A61 /* UserDefaultManager.swift in Sources */,
 				05ABD7052910217C00E1C755 /* PlaceholderChart.swift in Sources */,
 				05236682296884FB008B58A2 /* BreastFeedInputDetailView.swift in Sources */,
 				05FE380E29028B13002D3D34 /* QuickInfoSection.swift in Sources */,
@@ -1019,15 +936,8 @@
 				05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */,
 				056DC49D2916F8FF00B30720 /* FeedInputDetailView.swift in Sources */,
 				056DC4A12916F9EE00B30720 /* SleepInputDetailView.swift in Sources */,
-				053E48B52939120A00A90399 /* LogFeed.swift in Sources */,
-				05A42A672905A97B0040A543 /* FirebaseDataExtensions.swift in Sources */,
-				056BC6C1294C71B200339442 /* FirebaseListeners.swift in Sources */,
-				050FF468293A3F6600F445DE /* IntentManager.swift in Sources */,
-				05DD68C42885FB2C0066BFEC /* BabyDataManager.swift in Sources */,
 				056083812884147800728F1F /* HomeView.swift in Sources */,
-				058EAF39293BBDEE0030D49D /* LogNappy.swift in Sources */,
 				056DC4A32916FA7500B30720 /* NappyInputDetailView.swift in Sources */,
-				3B64002728D6620800241D65 /* AuthViewModel.swift in Sources */,
 				0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */,
 				05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */,
 				050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
@@ -1042,7 +952,6 @@
 				0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */,
 				059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */,
 				0543E5AD294F22AE0046FE3F /* SleepActivityLiveActivity.swift in Sources */,
-				05711B282906E5470023EA34 /* KeychainManager.swift in Sources */,
 				3BE30FFC28D5DCF100E75D22 /* RegisterView.swift in Sources */,
 				057440C12911C80C0022D18E /* SleepChart.swift in Sources */,
 				058038A6293289AE006477A2 /* SettingsViewModel.swift in Sources */,
@@ -1057,19 +966,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05187BC0295091DE002B6C49 /* LogFeed.swift in Sources */,
-				05187BC1295091DE002B6C49 /* IntentManager.swift in Sources */,
-				05187BC2295091DE002B6C49 /* LogSleep.swift in Sources */,
-				05187BC3295091DE002B6C49 /* LogNappy.swift in Sources */,
-				05187BC5295091DE002B6C49 /* KeychainManager.swift in Sources */,
-				05187BC6295091DE002B6C49 /* SwinjectManager.swift in Sources */,
-				05187BC7295091DE002B6C49 /* WidgetManager.swift in Sources */,
-				05187BC9295091DE002B6C49 /* FirebaseManager.swift in Sources */,
-				05187BCA295091DE002B6C49 /* FirebaseDataExtensions.swift in Sources */,
-				05187BCB295091DE002B6C49 /* FirebaseListeners.swift in Sources */,
 				05187BCC295091DE002B6C49 /* AddEntryViewVM.swift in Sources */,
 				05187BCD295091DE002B6C49 /* InfoScreenViewModel.swift in Sources */,
-				05187BCE295091DE002B6C49 /* SharingViewModel.swift in Sources */,
 				05187BDE295091DE002B6C49 /* Info View.swift in Sources */,
 				05187BDF295091DE002B6C49 /* RegisterView.swift in Sources */,
 				05187BE0295091DE002B6C49 /* SettingsView.swift in Sources */,
@@ -1104,15 +1002,12 @@
 				05187BFA295091DE002B6C49 /* FeedChart.swift in Sources */,
 				05187BFB295091DE002B6C49 /* SleepChart.swift in Sources */,
 				05187BFD295091DE002B6C49 /* Assets.xcassets in Sources */,
-				3B64002A28D665C600241D65 /* AuthViewModel.swift in Sources */,
 				05187BB4295083B1002B6C49 /* BabyDataManagerTests.swift in Sources */,
 				05A42A53290596540040A543 /* LoginView.swift in Sources */,
 				3B64002928D665AA00241D65 /* SignInTests.swift in Sources */,
 				056DC4942916F47900B30720 /* SleepEntryViewModel.swift in Sources */,
 				056DC4982916F53D00B30720 /* NappyEntryViewModel.swift in Sources */,
 				056083902884147900728F1F /* BabyWizeTests.swift in Sources */,
-				05187BBE29509187002B6C49 /* UserDefaultManager.swift in Sources */,
-				05187BB52950840E002B6C49 /* BabyDataManager.swift in Sources */,
 				056DC4902916F36B00B30720 /* FeedEntryViewModel.swift in Sources */,
 				056DC49B2916F61000B30720 /* EntryViewModel.swift in Sources */,
 			);
@@ -1124,7 +1019,6 @@
 			files = (
 				0560839A2884147900728F1F /* BabyWizeUITests.swift in Sources */,
 				0560839C2884147900728F1F /* BabyWizeUITestsLaunchTests.swift in Sources */,
-				05187BBF29509188002B6C49 /* UserDefaultManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1769,6 +1663,14 @@
 		05F07B0D297475E30041A283 /* TipJar */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TipJar;
+		};
+		05F07B0F297478110041A283 /* Siri */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Siri;
+		};
+		05F07B11297478160041A283 /* Managers */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Managers;
 		};
 		05FBF42C2971F45F00A4E4DE /* Models */ = {
 			isa = XCSwiftPackageProductDependency;

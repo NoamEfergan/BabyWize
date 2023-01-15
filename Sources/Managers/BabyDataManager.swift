@@ -11,7 +11,7 @@ import Combine
 import Algorithms
 import Models
 
-final class BabyDataManager: ObservableObject {
+public final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
 
     @Inject private var firebaseManager: FirebaseManager
@@ -19,37 +19,37 @@ final class BabyDataManager: ObservableObject {
 
     // MARK: - Exposed variables
 
-    @Published var sleepData: [Sleep] = [] {
+    @Published public var sleepData: [Sleep] = [] {
         didSet {
             lastSleepString = getLast(for: .sleep)
         }
     }
 
-    @Published var feedData: [Feed] = [] {
+    @Published public var feedData: [Feed] = [] {
         didSet {
             lastFeedString = getLastFeed()
         }
     }
 
-    @Published var breastFeedData: [BreastFeed] = [] {
+    @Published public var breastFeedData: [BreastFeed] = [] {
         didSet {
             lastFeedString = getLastFeed()
         }
     }
 
-    @Published var nappyData: [NappyChange] = [] {
+    @Published public var nappyData: [NappyChange] = [] {
         didSet {
             lastChangeString = getLast(for: .nappy)
         }
     }
 
-    @Published var lastFeedString: String = .nonAvailable
-    @Published var lastSleepString: String = .nonAvailable
-    @Published var lastChangeString: String = .nonAvailable
+    @Published public var lastFeedString: String = .nonAvailable
+    @Published public var lastSleepString: String = .nonAvailable
+    @Published public var lastChangeString: String = .nonAvailable
 
     private var bag = Set<AnyCancellable>()
 
-    init() {
+    public init() {
         listenToUnitChanges()
         firebaseManager.setup(with: self)
         NotificationCenter.default.addObserver(self,
@@ -60,7 +60,7 @@ final class BabyDataManager: ObservableObject {
 
     // MARK: - Public methods
 
-    func getIsEmpty(for type: EntryType) -> Bool {
+    public func getIsEmpty(for type: EntryType) -> Bool {
         switch type {
         case .liquidFeed:
             return feedData.filter(\.isLiquids).isEmpty
@@ -75,7 +75,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func getAverage(for type: EntryType) -> String {
+    public func getAverage(for type: EntryType) -> String {
         switch type {
         case .liquidFeed:
             return getAverageFeed(isSolid: false)
@@ -90,7 +90,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func getBiggest(for type: EntryType) -> String {
+    public func getBiggest(for type: EntryType) -> String {
         switch type {
         case .liquidFeed:
             if let max = feedData
@@ -121,7 +121,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func getSmallest(for type: EntryType) -> String {
+    public func getSmallest(for type: EntryType) -> String {
         switch type {
         case .liquidFeed:
             if let min = feedData
@@ -151,7 +151,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func mergeFeedsWithRemote(_ remoteFeeds: [Feed]) {
+    public func mergeFeedsWithRemote(_ remoteFeeds: [Feed]) {
         defer {
             feedData = feedData.uniqued(on: { $0.id })
         }
@@ -173,7 +173,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func mergeSleepsWithRemote(_ remoteSleeps: [Sleep]) {
+    public func mergeSleepsWithRemote(_ remoteSleeps: [Sleep]) {
         defer {
             sleepData = sleepData.uniqued(on: { $0.id })
         }
@@ -195,7 +195,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func mergeChangesWithRemote(_ remoteChanges: [NappyChange]) {
+    public func mergeChangesWithRemote(_ remoteChanges: [NappyChange]) {
         defer {
             nappyData = nappyData.uniqued(on: { $0.id })
         }
@@ -220,7 +220,7 @@ final class BabyDataManager: ObservableObject {
     // MARK: - CRUD methods
 
     // ADD
-    func addFeed(_ item: Feed, updateRemote: Bool = true) {
+    public func addFeed(_ item: Feed, updateRemote: Bool = true) {
         feedData.append(item)
         feedData = feedData.uniqued(on: { $0.id })
         if updateRemote {
@@ -228,7 +228,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func addSleep(_ item: Sleep, updateRemote: Bool = true) {
+    public func addSleep(_ item: Sleep, updateRemote: Bool = true) {
         sleepData.append(item)
         sleepData = sleepData.uniqued(on: { $0.id })
         if updateRemote {
@@ -236,7 +236,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func addNappyChange(_ item: NappyChange, updateRemote: Bool = true) {
+    public func addNappyChange(_ item: NappyChange, updateRemote: Bool = true) {
         nappyData.append(item)
         nappyData = nappyData.uniqued(on: { $0.id })
         if updateRemote {
@@ -244,7 +244,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func addBreastFeed(_ item: BreastFeed, updateRemote: Bool = true) {
+    public func addBreastFeed(_ item: BreastFeed, updateRemote: Bool = true) {
         breastFeedData.append(item)
         breastFeedData = breastFeedData.uniqued(on: { $0.id })
         if updateRemote {
@@ -254,7 +254,7 @@ final class BabyDataManager: ObservableObject {
 
     // Update
 
-    func updateFeed(_ item: Feed, index: Array<Feed>.Index, updateRemote: Bool = true) {
+    public func updateFeed(_ item: Feed, index: Array<Feed>.Index, updateRemote: Bool = true) {
         if updateRemote {
             firebaseManager.addFeed(item)
         } else {
@@ -262,21 +262,21 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func updateSleep(_ item: Sleep, index: Array<Sleep>.Index, updateRemote: Bool = true) {
+    public func updateSleep(_ item: Sleep, index: Array<Sleep>.Index, updateRemote: Bool = true) {
         sleepData[index] = item
         if updateRemote {
             firebaseManager.addSleep(item)
         }
     }
 
-    func updateChange(_ item: NappyChange, index: Array<NappyChange>.Index, updateRemote: Bool = true) {
+    public func updateChange(_ item: NappyChange, index: Array<NappyChange>.Index, updateRemote: Bool = true) {
         nappyData[index] = item
         if updateRemote {
             firebaseManager.addNappyChange(item)
         }
     }
 
-    func updateBreastFeed(_ item: BreastFeed, index: Array<Sleep>.Index, updateRemote: Bool = true) {
+    public func updateBreastFeed(_ item: BreastFeed, index: Array<Sleep>.Index, updateRemote: Bool = true) {
         breastFeedData[index] = item
         if updateRemote {
             firebaseManager.addBreastFeed(item)
@@ -285,7 +285,7 @@ final class BabyDataManager: ObservableObject {
 
     // Remove
 
-    func removeFeed(item: Feed, includingRemote: Bool = true) {
+    public func removeFeed(item: Feed, includingRemote: Bool = true) {
         guard let index = feedData.firstIndex(where: { $0.id == item.id }) else {
             print("Failed to find feed to remvoe")
             return
@@ -297,7 +297,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func removeFeed(at offsets: IndexSet, includingRemote: Bool = true) {
+    public func removeFeed(at offsets: IndexSet, includingRemote: Bool = true) {
         let localFeeds = offsets.compactMap {
             feedData[$0]
         }.uniqued(on: { $0.id })
@@ -307,7 +307,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func removeSleep(at offsets: IndexSet, includingRemote: Bool = true) {
+    public func removeSleep(at offsets: IndexSet, includingRemote: Bool = true) {
         let localSleeps = offsets.compactMap {
             sleepData[$0]
         }.uniqued(on: { $0.id })
@@ -317,7 +317,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func removeChange(at offsets: IndexSet, includingRemote: Bool = true) {
+    public func removeChange(at offsets: IndexSet, includingRemote: Bool = true) {
         let localChanges = offsets.compactMap {
             nappyData[$0]
         }.uniqued(on: { $0.id })
@@ -327,7 +327,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func removeBreastFeed(at offsets: IndexSet, includingRemote: Bool = true) {
+    public func removeBreastFeed(at offsets: IndexSet, includingRemote: Bool = true) {
         let localFeeds = offsets.compactMap {
             breastFeedData[$0]
         }.uniqued(on: { $0.id })
@@ -337,7 +337,7 @@ final class BabyDataManager: ObservableObject {
         }
     }
 
-    func removeAll(for entry: EntryType, includingRemote: Bool = true) {
+    public func removeAll(for entry: EntryType, includingRemote: Bool = true) {
         switch entry {
         case .liquidFeed:
             let indices = feedData.filter(\.isLiquids).indices.compactMap { Int($0) }

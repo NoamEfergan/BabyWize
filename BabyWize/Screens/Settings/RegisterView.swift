@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Models
+import Managers
 
 // MARK: - RegisterView
 struct RegisterView: View {

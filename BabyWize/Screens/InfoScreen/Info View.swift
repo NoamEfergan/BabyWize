@@ -9,7 +9,8 @@ import AppIntents
 import Charts
 import SwiftUI
 import Models
-
+import Managers
+import Siri
 
 // MARK: - InfoView
 struct InfoView: View {

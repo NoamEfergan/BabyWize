@@ -8,6 +8,7 @@
 import Foundation
 import Swinject
 import Models
+import Managers
 
 // MARK: - SleepEntryViewModel
 final class SleepEntryViewModel: EntryViewModel {

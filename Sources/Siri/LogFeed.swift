@@ -7,16 +7,19 @@
 
 import Foundation
 import AppIntents
+import Managers
 @preconcurrency import Models
 
 // MARK: - LogFeed
-struct LogFeed: AppIntent {
+public struct LogFeed: AppIntent {
     @Inject private var dataManager: BabyDataManager
     static let intentClassName = "LogFeedIntent"
 
-    static var title: LocalizedStringResource = "Log a feed"
+    public static var title: LocalizedStringResource = "Log a feed"
     static var description = IntentDescription("Quickly and hands free log a feed")
     static var suggestedInvocationPhrase = "Log a feed on baby wize"
+
+    public init() {}
 
     @Parameter(title: "Amount", requestValueDialog: "How much?")
     var amount: Double?
@@ -24,11 +27,11 @@ struct LogFeed: AppIntent {
     @Parameter(title: "Solid or liquid", requestValueDialog: "Is it a solid feed or a liquid feed?")
     var solidOrLiquid: IntentSolidOrLiquid?
 
-    static var parameterSummary: some ParameterSummary {
+    public static var parameterSummary: some ParameterSummary {
         Summary("Add a \(\.$solidOrLiquid) feed of \(\.$amount) to my entries.")
     }
 
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    public func perform() async throws -> some IntentResult & ProvidesDialog {
         guard let amount else {
             throw $amount.needsValueError("How much?")
         }
@@ -54,10 +57,10 @@ struct LogFeed: AppIntent {
 }
 
 // MARK: - IntentSolidOrLiquid
-enum IntentSolidOrLiquid: String, AppEnum {
-    static var typeDisplayRepresentation = TypeDisplayRepresentation("SolidOrLiquid")
+public enum IntentSolidOrLiquid: String, AppEnum {
+    public static var typeDisplayRepresentation = TypeDisplayRepresentation("SolidOrLiquid")
 
-    static var caseDisplayRepresentations: [IntentSolidOrLiquid : DisplayRepresentation] =
+    public static var caseDisplayRepresentations: [IntentSolidOrLiquid : DisplayRepresentation] =
         [
             .liquid : .init(stringLiteral: "Liquid"),
             .solid : .init(stringLiteral: "Solid")

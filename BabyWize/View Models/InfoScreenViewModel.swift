@@ -9,6 +9,7 @@ import Foundation
 import Intents
 import AppIntents
 import Models
+import Managers
 
 final class InfoScreenVM: ObservableObject {
     @InjectedObject private var dataManager: BabyDataManager

@@ -113,8 +113,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/peripheryapp/periphery",
       "state" : {
-        "revision" : "e35cf67254a1ec9db6f5e9a802bbfa670aec4757",
-        "version" : "2.11.0"
+        "revision" : "4a3088214e8330586a475a6a0b428424402bab92",
+        "version" : "2.12.0"
       }
     },
     {

@@ -9,6 +9,7 @@ import SwiftUI
 import StoreKit
 import Models
 import TipJar
+import Managers
 
 // MARK: - SettingsView
 struct SettingsView: View {

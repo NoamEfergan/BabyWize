@@ -9,6 +9,7 @@ import Charts
 import SwiftUI
 import StoreKit
 import Models
+import Managers
 
 // MARK: - Screens
 enum Screens: String {

@@ -9,11 +9,13 @@ import Foundation
 import WidgetKit
 import Models
 
-struct WidgetManager {
+public struct WidgetManager {
     @Inject private var dataManager: BabyDataManager
     static let suiteName = "group.babyData"
 
-    func setLatest() {
+    public init() {}
+
+    public func setLatest() {
         let lastFeed = dataManager.lastFeedString
         let lastSleep = dataManager.lastSleepString
         let lastNappy = dataManager.lastChangeString

@@ -11,6 +11,8 @@ import SwiftUI
 import Swinject
 import Models
 import TipJar
+import Managers
+import Siri
 
 // MARK: - AppDelegate
 class AppDelegate: NSObject, UIApplicationDelegate {

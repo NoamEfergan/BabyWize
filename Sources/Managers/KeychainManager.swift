@@ -7,21 +7,21 @@
 
 import Foundation
 
-struct KeychainManager {
+public enum KeychainManager {
     static let server = "Babywize"
 
-    struct Credentials {
+    public struct Credentials {
         var email: String
         var password: String
     }
 
-    enum KeychainError: Error {
+    public enum KeychainError: Error {
         case noPassword
         case unexpectedPasswordData
         case unhandledError(status: OSStatus)
     }
 
-    static func removeCredentials(_ credentials: Credentials) throws {
+    public static func removeCredentials(_ credentials: Credentials) throws {
         let account = credentials.email
         let password = credentials.password.data(using: String.Encoding.utf8)!
         let query: [String: Any] = [
@@ -37,7 +37,7 @@ struct KeychainManager {
         }
     }
 
-    static func updateCredentials(_ credentials: Credentials) throws {
+    public static func updateCredentials(_ credentials: Credentials) throws {
         let account = credentials.email
         let password = credentials.password.data(using: String.Encoding.utf8)!
         let query: [String: Any] = [
@@ -55,7 +55,7 @@ struct KeychainManager {
         }
     }
 
-    static func setCredentials(_ credentials: Credentials) throws {
+    public static func setCredentials(_ credentials: Credentials) throws {
         let account = credentials.email
         let password = credentials.password.data(using: String.Encoding.utf8)!
         let query: [String: Any] = [
@@ -71,7 +71,7 @@ struct KeychainManager {
         }
     }
 
-    static func fetchCredentials() throws -> Credentials {
+    public static func fetchCredentials() throws -> Credentials {
         // Construct query
         let query: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,

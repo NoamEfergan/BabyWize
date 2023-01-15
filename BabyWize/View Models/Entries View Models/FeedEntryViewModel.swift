@@ -8,6 +8,7 @@
 import Foundation
 import Swinject
 import Models
+import Managers
 
 final class FeedEntryViewModel: EntryViewModel {
     @InjectedObject private var dataManager: BabyDataManager

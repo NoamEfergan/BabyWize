@@ -9,19 +9,21 @@ import Foundation
 import SwiftUI
 import Models
 
-final class SharingViewModel: ObservableObject {
+public final class SharingViewModel: ObservableObject {
     @InjectedObject private var defaultsManager: UserDefaultManager
     @Inject private var firebaseManager: FirebaseManager
     private let baseURL = "app.babywize://"
     private var id: String?
     private var email: String?
-    @Published var isShowingAcceptAlert = false
-    @Published var acceptAlertTitle = ""
-    @Published var hasError = false
-    @Published var isLoading = false
-    @Published var errorMsg = ""
+    @Published public var isShowingAcceptAlert = false
+    @Published public var acceptAlertTitle = ""
+    @Published public var hasError = false
+    @Published public var isLoading = false
+    @Published public var errorMsg = ""
 
-    func extractInfo(from url: URL) {
+    public init() {}
+
+    public func extractInfo(from url: URL) {
         let urlString = url.absoluteString
         let components = urlString.components(separatedBy: baseURL).last?.components(separatedBy: "-")
         let id = components?.first
@@ -32,7 +34,7 @@ final class SharingViewModel: ObservableObject {
         isShowingAcceptAlert = true
     }
 
-    func didAcceptSharing() {
+    public func didAcceptSharing() {
         guard defaultsManager.email != nil else {
             hasError = true
             errorMsg = "You will need to create an account to share data"
