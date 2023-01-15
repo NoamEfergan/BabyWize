@@ -161,6 +161,7 @@
 		05F07AFC2971F97C0041A283 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07AFB2971F97C0041A283 /* Models */; };
 		05F07AFE2971F9FA0041A283 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07AFD2971F9FA0041A283 /* Models */; };
 		05F07B002971FA000041A283 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07AFF2971FA000041A283 /* Models */; };
+		05F07B0E297475E30041A283 /* TipJar in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07B0D297475E30041A283 /* TipJar */; };
 		05FBF42D2971F45F00A4E4DE /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 05FBF42C2971F45F00A4E4DE /* Models */; };
 		05FE380C2902895F002D3D34 /* QuickInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE380B2902895F002D3D34 /* QuickInfoView.swift */; };
 		05FE380E29028B13002D3D34 /* QuickInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE380D29028B13002D3D34 /* QuickInfoSection.swift */; };
@@ -324,7 +325,7 @@
 		05DD68DD28861CD70066BFEC /* SleepEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntryView.swift; sourceTree = "<group>"; };
 		05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyEntryView.swift; sourceTree = "<group>"; };
 		05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		05F07B0729720C370041A283 /* BabyWize */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BabyWize; sourceTree = "<group>"; };
+		05F07B0C297473320041A283 /* BabyWize */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BabyWize; sourceTree = "<group>"; };
 		05FE380B2902895F002D3D34 /* QuickInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickInfoView.swift; sourceTree = "<group>"; };
 		05FE380D29028B13002D3D34 /* QuickInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickInfoSection.swift; sourceTree = "<group>"; };
 		3B64002428D65B0700241D65 /* GrayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayTextField.swift; sourceTree = "<group>"; };
@@ -360,6 +361,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F07B0E297475E30041A283 /* TipJar in Frameworks */,
 				05FBF42D2971F45F00A4E4DE /* Models in Frameworks */,
 				3BE30FF228D5D59000E75D22 /* FirebaseDatabaseSwift in Frameworks */,
 				05580E7728CB2B7300E4ECDE /* Algorithms in Frameworks */,
@@ -460,7 +462,7 @@
 		056083722884147800728F1F = {
 			isa = PBXGroup;
 			children = (
-				05F07B0729720C370041A283 /* BabyWize */,
+				05F07B0C297473320041A283 /* BabyWize */,
 				05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */,
 				050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */,
 				0560837D2884147800728F1F /* BabyWize */,
@@ -779,6 +781,7 @@
 				3BE30FF728D5D59000E75D22 /* FirebaseStorage */,
 				05187BB629508633002B6C49 /* FirebaseAuth */,
 				05FBF42C2971F45F00A4E4DE /* Models */,
+				05F07B0D297475E30041A283 /* TipJar */,
 			);
 			productName = BabyTracker;
 			productReference = 0560837B2884147800728F1F /* BabyWize.app */;
@@ -1762,6 +1765,10 @@
 		05F07AFF2971FA000041A283 /* Models */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Models;
+		};
+		05F07B0D297475E30041A283 /* TipJar */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TipJar;
 		};
 		05FBF42C2971F45F00A4E4DE /* Models */ = {
 			isa = XCSwiftPackageProductDependency;
