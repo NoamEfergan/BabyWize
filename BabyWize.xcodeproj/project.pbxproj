@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05027FD4294E80CA00F8C6A8 /* AccessiblePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05027FD3294E80CA00F8C6A8 /* AccessiblePicker.swift */; };
 		050AEE92288C64190052A2D1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE91288C64190052A2D1 /* WidgetKit.framework */; };
 		050AEE94288C64190052A2D1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE93288C64190052A2D1 /* SwiftUI.framework */; };
 		050AEE97288C64190052A2D1 /* AddEntryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AEE96288C64190052A2D1 /* AddEntryWidget.swift */; };
@@ -15,40 +14,12 @@
 		050AEE9C288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 050AEE98288C64190052A2D1 /* AddEntryWidget.intentdefinition */; };
 		050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 050AEE98288C64190052A2D1 /* AddEntryWidget.intentdefinition */; };
 		050AEEA0288C641A0052A2D1 /* AddEntryWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		0514C3A72963024C005DD0C4 /* BreastFeedEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A62963024C005DD0C4 /* BreastFeedEntryViewModel.swift */; };
-		0514C3A82963024C005DD0C4 /* BreastFeedEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A62963024C005DD0C4 /* BreastFeedEntryViewModel.swift */; };
-		0514C3AA29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */; };
-		0514C3AB29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */; };
 		05187BB4295083B1002B6C49 /* BabyDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */; };
 		05187BB729508633002B6C49 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BB629508633002B6C49 /* FirebaseAuth */; };
 		05187BB92950912B002B6C49 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BB82950912B002B6C49 /* FirebaseAuth */; };
 		05187BBB2950914D002B6C49 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BBA2950914D002B6C49 /* FirebaseFirestore */; };
 		05187BBD2950914D002B6C49 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BBC2950914D002B6C49 /* FirebaseFirestoreCombine-Community */; };
-		05187BCC295091DE002B6C49 /* AddEntryViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5AE294F42BC0046FE3F /* AddEntryViewVM.swift */; };
-		05187BCD295091DE002B6C49 /* InfoScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68F12887015A00C90710 /* InfoScreenViewModel.swift */; };
 		05187BDE295091DE002B6C49 /* Info View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E42886AF0500C90710 /* Info View.swift */; };
-		05187BDF295091DE002B6C49 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE30FFB28D5DCF100E75D22 /* RegisterView.swift */; };
-		05187BE0295091DE002B6C49 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
-		05187BE1295091DE002B6C49 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058038A5293289AE006477A2 /* SettingsViewModel.swift */; };
-		05187BE2295091DE002B6C49 /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
-		05187BE3295091DE002B6C49 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A5294F132E0046FE3F /* TimerView.swift */; };
-		05187BE4295091DE002B6C49 /* InputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EB2886BD6E00C90710 /* InputDetailView.swift */; };
-		05187BE5295091DE002B6C49 /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EF2886D8CD00C90710 /* EditEntryView.swift */; };
-		05187BE6295091DE002B6C49 /* FeedInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC49C2916F8FF00B30720 /* FeedInputDetailView.swift */; };
-		05187BE7295091DE002B6C49 /* SleepInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4A02916F9EE00B30720 /* SleepInputDetailView.swift */; };
-		05187BE8295091DE002B6C49 /* NappyInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4A22916FA7500B30720 /* NappyInputDetailView.swift */; };
-		05187BE9295091DE002B6C49 /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D22886140C0066BFEC /* AddEntryView.swift */; };
-		05187BEA295091DE002B6C49 /* FeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DB28861C930066BFEC /* FeedEntryView.swift */; };
-		05187BEB295091DE002B6C49 /* SleepEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DD28861CD70066BFEC /* SleepEntryView.swift */; };
-		05187BEC295091DE002B6C49 /* NappyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */; };
-		05187BED295091DE002B6C49 /* GrayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002428D65B0700241D65 /* GrayTextField.swift */; };
-		05187BEE295091DE002B6C49 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D7C7B28F32FB500E3514D /* LoadingView.swift */; };
-		05187BEF295091DE002B6C49 /* AccessibleLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */; };
-		05187BF0295091DE002B6C49 /* AccessibleLabeledContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */; };
-		05187BF1295091DE002B6C49 /* AccessibleDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4892916AC4400B30720 /* AccessibleDatePicker.swift */; };
-		05187BF2295091DE002B6C49 /* AccessiblePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05027FD3294E80CA00F8C6A8 /* AccessiblePicker.swift */; };
-		05187BF3295091DE002B6C49 /* LabelledDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB552928306B00F39B25 /* LabelledDivider.swift */; };
-		05187BF4295091DE002B6C49 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058038B529329EAA006477A2 /* LoadingOverlay.swift */; };
 		05187BF5295091DE002B6C49 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083802884147800728F1F /* HomeView.swift */; };
 		05187BF6295091DE002B6C49 /* PlaceholderChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ABD7042910217C00E1C755 /* PlaceholderChart.swift */; };
 		05187BF7295091DE002B6C49 /* QuickInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE380B2902895F002D3D34 /* QuickInfoView.swift */; };
@@ -66,13 +37,7 @@
 		0523667729687D94008B58A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0523667629687D94008B58A2 /* Assets.xcassets */; };
 		0523667B29687D94008B58A2 /* FeedActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0523666C29687D93008B58A2 /* FeedActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0523667F29687F64008B58A2 /* FeedActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523667229687D93008B58A2 /* FeedActivityLiveActivity.swift */; };
-		05236682296884FB008B58A2 /* BreastFeedInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05236681296884FB008B58A2 /* BreastFeedInputDetailView.swift */; };
-		0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
-		0543E5A4294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */; };
-		0543E5A6294F132E0046FE3F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A5294F132E0046FE3F /* TimerView.swift */; };
-		0543E5A7294F132E0046FE3F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5A5294F132E0046FE3F /* TimerView.swift */; };
 		0543E5AD294F22AE0046FE3F /* SleepActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414E5294F0F71009A4791 /* SleepActivityLiveActivity.swift */; };
-		0543E5AF294F42BC0046FE3F /* AddEntryViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543E5AE294F42BC0046FE3F /* AddEntryViewVM.swift */; };
 		05580E7728CB2B7300E4ECDE /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 05580E7628CB2B7300E4ECDE /* Algorithms */; };
 		0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyWizeApp.swift */; };
 		056083812884147800728F1F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083802884147800728F1F /* HomeView.swift */; };
@@ -81,25 +46,14 @@
 		056083902884147900728F1F /* BabyWizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560838F2884147900728F1F /* BabyWizeTests.swift */; };
 		0560839A2884147900728F1F /* BabyWizeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083992884147900728F1F /* BabyWizeUITests.swift */; };
 		0560839C2884147900728F1F /* BabyWizeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */; };
-		056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D7C7B28F32FB500E3514D /* LoadingView.swift */; };
-		056DC4832916A0EC00B30720 /* AccessibleLabeledContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */; };
-		056DC4872916AA7900B30720 /* AccessibleLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */; };
-		056DC48A2916AC4400B30720 /* AccessibleDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4892916AC4400B30720 /* AccessibleDatePicker.swift */; };
-		056DC48F2916F36B00B30720 /* FeedEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC48E2916F36B00B30720 /* FeedEntryViewModel.swift */; };
-		056DC4902916F36B00B30720 /* FeedEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC48E2916F36B00B30720 /* FeedEntryViewModel.swift */; };
-		056DC4932916F47900B30720 /* SleepEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4922916F47900B30720 /* SleepEntryViewModel.swift */; };
-		056DC4942916F47900B30720 /* SleepEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4922916F47900B30720 /* SleepEntryViewModel.swift */; };
-		056DC4972916F53D00B30720 /* NappyEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4962916F53D00B30720 /* NappyEntryViewModel.swift */; };
-		056DC4982916F53D00B30720 /* NappyEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4962916F53D00B30720 /* NappyEntryViewModel.swift */; };
-		056DC49A2916F60F00B30720 /* EntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D6288619B50066BFEC /* EntryViewModel.swift */; };
-		056DC49B2916F61000B30720 /* EntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D6288619B50066BFEC /* EntryViewModel.swift */; };
-		056DC49D2916F8FF00B30720 /* FeedInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC49C2916F8FF00B30720 /* FeedInputDetailView.swift */; };
-		056DC4A12916F9EE00B30720 /* SleepInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4A02916F9EE00B30720 /* SleepInputDetailView.swift */; };
-		056DC4A32916FA7500B30720 /* NappyInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4A22916FA7500B30720 /* NappyInputDetailView.swift */; };
 		057440BF2911C7690022D18E /* FeedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440BE2911C7690022D18E /* FeedChart.swift */; };
 		057440C12911C80C0022D18E /* SleepChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440C02911C80C0022D18E /* SleepChart.swift */; };
-		058038A6293289AE006477A2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058038A5293289AE006477A2 /* SettingsViewModel.swift */; };
-		058038B629329EAA006477A2 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058038B529329EAA006477A2 /* LoadingOverlay.swift */; };
+		0576C85A2974AD9800148F8F /* SettingsView in Frameworks */ = {isa = PBXBuildFile; productRef = 0576C8592974AD9800148F8F /* SettingsView */; };
+		0576C85C2974ADA300148F8F /* AccessibleViews in Frameworks */ = {isa = PBXBuildFile; productRef = 0576C85B2974ADA300148F8F /* AccessibleViews */; };
+		0576C85E2974ADA300148F8F /* EntryViews in Frameworks */ = {isa = PBXBuildFile; productRef = 0576C85D2974ADA300148F8F /* EntryViews */; };
+		0576C8602974ADA300148F8F /* GlobalViews in Frameworks */ = {isa = PBXBuildFile; productRef = 0576C85F2974ADA300148F8F /* GlobalViews */; };
+		0576C8622974ADA300148F8F /* InputDetailViews in Frameworks */ = {isa = PBXBuildFile; productRef = 0576C8612974ADA300148F8F /* InputDetailViews */; };
+		0576C8642974B38600148F8F /* ViewModels in Frameworks */ = {isa = PBXBuildFile; productRef = 0576C8632974B38600148F8F /* ViewModels */; };
 		058414E0294F0F71009A4791 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE91288C64190052A2D1 /* WidgetKit.framework */; };
 		058414E1294F0F71009A4791 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050AEE93288C64190052A2D1 /* SwiftUI.framework */; };
 		058414E4294F0F71009A4791 /* SleepActivityBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058414E3294F0F71009A4791 /* SleepActivityBundle.swift */; };
@@ -107,16 +61,9 @@
 		058414EA294F0F72009A4791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058414E9294F0F72009A4791 /* Assets.xcassets */; };
 		058414EE294F0F72009A4791 /* SleepActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 058414DF294F0F71009A4791 /* SleepActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		058414F2294F104E009A4791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
-		0587BB562928306B00F39B25 /* LabelledDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB552928306B00F39B25 /* LabelledDivider.swift */; };
 		059C68E52886AF0500C90710 /* Info View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E42886AF0500C90710 /* Info View.swift */; };
-		059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EB2886BD6E00C90710 /* InputDetailView.swift */; };
-		059C68F02886D8CD00C90710 /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EF2886D8CD00C90710 /* EditEntryView.swift */; };
-		059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68F12887015A00C90710 /* InfoScreenViewModel.swift */; };
 		05A42A50290549D90040A543 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 05A42A4F290549D90040A543 /* Algorithms */; };
-		05A42A52290596540040A543 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A51290596540040A543 /* LoginView.swift */; };
-		05A42A53290596540040A543 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A51290596540040A543 /* LoginView.swift */; };
 		05ABD7052910217C00E1C755 /* PlaceholderChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ABD7042910217C00E1C755 /* PlaceholderChart.swift */; };
-		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
 		05CC3ADD2951EB3800D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3ADC2951EB3800D306C8 /* GoogleService-Info.plist */; };
 		05CC3ADE2951EB3800D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3ADC2951EB3800D306C8 /* GoogleService-Info.plist */; };
 		05CC3ADF2951EB3800D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3ADC2951EB3800D306C8 /* GoogleService-Info.plist */; };
@@ -124,11 +71,6 @@
 		05CC3AE12951EB3800D306C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CC3ADC2951EB3800D306C8 /* GoogleService-Info.plist */; };
 		05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */; };
 		05DD68BF2885B7E40066BFEC /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05DD68BE2885B7E40066BFEC /* Swinject */; };
-		05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D22886140C0066BFEC /* AddEntryView.swift */; };
-		05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D6288619B50066BFEC /* EntryViewModel.swift */; };
-		05DD68DC28861C930066BFEC /* FeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DB28861C930066BFEC /* FeedEntryView.swift */; };
-		05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DD28861CD70066BFEC /* SleepEntryView.swift */; };
-		05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */; };
 		05DF6CF82917CBBC00EACE7C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */; };
 		05F07AFC2971F97C0041A283 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07AFB2971F97C0041A283 /* Models */; };
 		05F07AFE2971F9FA0041A283 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 05F07AFD2971F9FA0041A283 /* Models */; };
@@ -139,7 +81,6 @@
 		05FBF42D2971F45F00A4E4DE /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 05FBF42C2971F45F00A4E4DE /* Models */; };
 		05FE380C2902895F002D3D34 /* QuickInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE380B2902895F002D3D34 /* QuickInfoView.swift */; };
 		05FE380E29028B13002D3D34 /* QuickInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE380D29028B13002D3D34 /* QuickInfoSection.swift */; };
-		3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002428D65B0700241D65 /* GrayTextField.swift */; };
 		3B64002928D665AA00241D65 /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64002828D665AA00241D65 /* SignInTests.swift */; };
 		3BE30FE628D5D25A00E75D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056083822884147900728F1F /* Assets.xcassets */; };
 		3BE30FF028D5D59000E75D22 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FEF28D5D59000E75D22 /* FirebaseDatabase */; };
@@ -147,7 +88,6 @@
 		3BE30FF428D5D59000E75D22 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF328D5D59000E75D22 /* FirebaseFirestore */; };
 		3BE30FF628D5D59000E75D22 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF528D5D59000E75D22 /* FirebaseFirestoreSwift */; };
 		3BE30FF828D5D59000E75D22 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3BE30FF728D5D59000E75D22 /* FirebaseStorage */; };
-		3BE30FFC28D5DCF100E75D22 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE30FFB28D5DCF100E75D22 /* RegisterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,7 +155,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		05027FD3294E80CA00F8C6A8 /* AccessiblePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessiblePicker.swift; sourceTree = "<group>"; };
 		050AEE8F288C64190052A2D1 /* AddEntryWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AddEntryWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		050AEE91288C64190052A2D1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		050AEE93288C64190052A2D1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -225,20 +164,14 @@
 		050AEE9B288C641A0052A2D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		050AEEA5288C6A860052A2D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AddEntryWidgetExtension.entitlements; sourceTree = "<group>"; };
-		0514C3A62963024C005DD0C4 /* BreastFeedEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedEntryViewModel.swift; sourceTree = "<group>"; };
-		0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedEntryView.swift; sourceTree = "<group>"; };
 		05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManagerTests.swift; sourceTree = "<group>"; };
 		0523666C29687D93008B58A2 /* FeedActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FeedActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0523667029687D93008B58A2 /* FeedActivityBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedActivityBundle.swift; sourceTree = "<group>"; };
 		0523667229687D93008B58A2 /* FeedActivityLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedActivityLiveActivity.swift; sourceTree = "<group>"; };
 		0523667629687D94008B58A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0523667829687D94008B58A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05236681296884FB008B58A2 /* BreastFeedInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedInputDetailView.swift; sourceTree = "<group>"; };
 		053E48882939107800A90399 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		053E48932939107900A90399 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimeComponent.swift; sourceTree = "<group>"; };
-		0543E5A5294F132E0046FE3F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		0543E5AE294F42BC0046FE3F /* AddEntryViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryViewVM.swift; sourceTree = "<group>"; };
 		0560837B2884147800728F1F /* BabyWize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyWize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0560837E2884147800728F1F /* BabyWizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeApp.swift; sourceTree = "<group>"; };
 		056083802884147800728F1F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -249,48 +182,23 @@
 		056083952884147900728F1F /* BabyWizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyWizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		056083992884147900728F1F /* BabyWizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITests.swift; sourceTree = "<group>"; };
 		0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		056D7C7B28F32FB500E3514D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleLabeledContent.swift; sourceTree = "<group>"; };
-		056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleLabeledTextField.swift; sourceTree = "<group>"; };
-		056DC4892916AC4400B30720 /* AccessibleDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleDatePicker.swift; sourceTree = "<group>"; };
-		056DC48E2916F36B00B30720 /* FeedEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEntryViewModel.swift; sourceTree = "<group>"; };
-		056DC4922916F47900B30720 /* SleepEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntryViewModel.swift; sourceTree = "<group>"; };
-		056DC4962916F53D00B30720 /* NappyEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyEntryViewModel.swift; sourceTree = "<group>"; };
-		056DC49C2916F8FF00B30720 /* FeedInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInputDetailView.swift; sourceTree = "<group>"; };
-		056DC4A02916F9EE00B30720 /* SleepInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepInputDetailView.swift; sourceTree = "<group>"; };
-		056DC4A22916FA7500B30720 /* NappyInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyInputDetailView.swift; sourceTree = "<group>"; };
 		057440BE2911C7690022D18E /* FeedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedChart.swift; sourceTree = "<group>"; };
 		057440C02911C80C0022D18E /* SleepChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepChart.swift; sourceTree = "<group>"; };
 		0576C8582974796C00148F8F /* BabyWize */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BabyWize; sourceTree = "<group>"; };
-		058038A5293289AE006477A2 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		058038B529329EAA006477A2 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		058414DF294F0F71009A4791 /* SleepActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SleepActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		058414E3294F0F71009A4791 /* SleepActivityBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepActivityBundle.swift; sourceTree = "<group>"; };
 		058414E5294F0F71009A4791 /* SleepActivityLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepActivityLiveActivity.swift; sourceTree = "<group>"; };
 		058414E9294F0F72009A4791 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058414EB294F0F72009A4791 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0587BB552928306B00F39B25 /* LabelledDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledDivider.swift; sourceTree = "<group>"; };
 		059C68E42886AF0500C90710 /* Info View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info View.swift"; sourceTree = "<group>"; };
-		059C68EB2886BD6E00C90710 /* InputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDetailView.swift; sourceTree = "<group>"; };
-		059C68EF2886D8CD00C90710 /* EditEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryView.swift; sourceTree = "<group>"; };
-		059C68F12887015A00C90710 /* InfoScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoScreenViewModel.swift; sourceTree = "<group>"; };
-		05A42A51290596540040A543 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		05ABD7042910217C00E1C755 /* PlaceholderChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaceholderChart.swift; path = ../../../../PlaceholderChart.swift; sourceTree = "<group>"; };
-		05B8AF6D2886989C00BBC41B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		05CC3ADC2951EB3800D306C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCharts.swift; sourceTree = "<group>"; };
-		05DD68D22886140C0066BFEC /* AddEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
-		05DD68D6288619B50066BFEC /* EntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewModel.swift; sourceTree = "<group>"; };
-		05DD68DB28861C930066BFEC /* FeedEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEntryView.swift; sourceTree = "<group>"; };
-		05DD68DD28861CD70066BFEC /* SleepEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntryView.swift; sourceTree = "<group>"; };
-		05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyEntryView.swift; sourceTree = "<group>"; };
 		05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		05FE380B2902895F002D3D34 /* QuickInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickInfoView.swift; sourceTree = "<group>"; };
 		05FE380D29028B13002D3D34 /* QuickInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickInfoSection.swift; sourceTree = "<group>"; };
-		3B64002428D65B0700241D65 /* GrayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayTextField.swift; sourceTree = "<group>"; };
 		3B64002828D665AA00241D65 /* SignInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTests.swift; sourceTree = "<group>"; };
 		3BE30FE828D5D2B900E75D22 /* BabyWize.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyWize.entitlements; sourceTree = "<group>"; };
-		3BE30FFB28D5DCF100E75D22 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,12 +228,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F07B0E297475E30041A283 /* TipJar in Frameworks */,
+				0576C85C2974ADA300148F8F /* AccessibleViews in Frameworks */,
 				05FBF42D2971F45F00A4E4DE /* Models in Frameworks */,
+				0576C85E2974ADA300148F8F /* EntryViews in Frameworks */,
 				3BE30FF228D5D59000E75D22 /* FirebaseDatabaseSwift in Frameworks */,
 				05580E7728CB2B7300E4ECDE /* Algorithms in Frameworks */,
 				3BE30FF628D5D59000E75D22 /* FirebaseFirestoreSwift in Frameworks */,
+				0576C8622974ADA300148F8F /* InputDetailViews in Frameworks */,
 				05187BB729508633002B6C49 /* FirebaseAuth in Frameworks */,
 				05F07B12297478160041A283 /* Managers in Frameworks */,
+				0576C85A2974AD9800148F8F /* SettingsView in Frameworks */,
+				0576C8642974B38600148F8F /* ViewModels in Frameworks */,
+				0576C8602974ADA300148F8F /* GlobalViews in Frameworks */,
 				3BE30FF028D5D59000E75D22 /* FirebaseDatabase in Frameworks */,
 				05F07B10297478110041A283 /* Siri in Frameworks */,
 				3BE30FF828D5D59000E75D22 /* FirebaseStorage in Frameworks */,
@@ -399,15 +313,6 @@
 			path = FeedActivity;
 			sourceTree = "<group>";
 		};
-		0543E5A1294F12020046FE3F /* Timer */ = {
-			isa = PBXGroup;
-			children = (
-				0543E5A2294F121E0046FE3F /* CountdownTimeComponent.swift */,
-				0543E5A5294F132E0046FE3F /* TimerView.swift */,
-			);
-			path = Timer;
-			sourceTree = "<group>";
-		};
 		056083722884147800728F1F = {
 			isa = PBXGroup;
 			children = (
@@ -443,8 +348,6 @@
 			children = (
 				3BE30FE828D5D2B900E75D22 /* BabyWize.entitlements */,
 				050AEEA5288C6A860052A2D1 /* Info.plist */,
-				05DD68C72885FC4C0066BFEC /* Feature */,
-				05DD68BA2885B7810066BFEC /* View Models */,
 				05DD68AB2885B65B0066BFEC /* Screens */,
 				0560837E2884147800728F1F /* BabyWizeApp.swift */,
 				056083822884147900728F1F /* Assets.xcassets */,
@@ -480,39 +383,6 @@
 			path = BabyWizeUITests;
 			sourceTree = "<group>";
 		};
-		056DC4882916AA8100B30720 /* AccessibleViews */ = {
-			isa = PBXGroup;
-			children = (
-				056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */,
-				056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */,
-				056DC4892916AC4400B30720 /* AccessibleDatePicker.swift */,
-				05027FD3294E80CA00F8C6A8 /* AccessiblePicker.swift */,
-			);
-			path = AccessibleViews;
-			sourceTree = "<group>";
-		};
-		056DC48D2916F34700B30720 /* Entries View Models */ = {
-			isa = PBXGroup;
-			children = (
-				05DD68D6288619B50066BFEC /* EntryViewModel.swift */,
-				056DC48E2916F36B00B30720 /* FeedEntryViewModel.swift */,
-				056DC4922916F47900B30720 /* SleepEntryViewModel.swift */,
-				056DC4962916F53D00B30720 /* NappyEntryViewModel.swift */,
-				0543E5AE294F42BC0046FE3F /* AddEntryViewVM.swift */,
-				0514C3A62963024C005DD0C4 /* BreastFeedEntryViewModel.swift */,
-			);
-			path = "Entries View Models";
-			sourceTree = "<group>";
-		};
-		058038A42932899A006477A2 /* SettingsView */ = {
-			isa = PBXGroup;
-			children = (
-				05B8AF6D2886989C00BBC41B /* SettingsView.swift */,
-				058038A5293289AE006477A2 /* SettingsViewModel.swift */,
-			);
-			path = SettingsView;
-			sourceTree = "<group>";
-		};
 		058414E2294F0F71009A4791 /* SleepActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,35 +402,10 @@
 			path = InfoScreen;
 			sourceTree = "<group>";
 		};
-		059C68EA2886BD5C00C90710 /* InputDetailView */ = {
-			isa = PBXGroup;
-			children = (
-				059C68EB2886BD6E00C90710 /* InputDetailView.swift */,
-				059C68EF2886D8CD00C90710 /* EditEntryView.swift */,
-				056DC49C2916F8FF00B30720 /* FeedInputDetailView.swift */,
-				056DC4A02916F9EE00B30720 /* SleepInputDetailView.swift */,
-				056DC4A22916FA7500B30720 /* NappyInputDetailView.swift */,
-				05236681296884FB008B58A2 /* BreastFeedInputDetailView.swift */,
-			);
-			path = InputDetailView;
-			sourceTree = "<group>";
-		};
-		05B8AF6A2886985800BBC41B /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				3BE30FFB28D5DCF100E75D22 /* RegisterView.swift */,
-				058038A42932899A006477A2 /* SettingsView */,
-				05A42A51290596540040A543 /* LoginView.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		05DD68AB2885B65B0066BFEC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				059C68E32886AEF800C90710 /* InfoScreen */,
-				05B8AF6A2886985800BBC41B /* Settings */,
-				05DD68D1288613FF0066BFEC /* Global Views */,
 				05DD68AC2885B6690066BFEC /* Home Screen */,
 			);
 			path = Screens;
@@ -586,49 +431,6 @@
 				057440C02911C80C0022D18E /* SleepChart.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		05DD68BA2885B7810066BFEC /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-				056DC48D2916F34700B30720 /* Entries View Models */,
-				059C68F12887015A00C90710 /* InfoScreenViewModel.swift */,
-			);
-			path = "View Models";
-			sourceTree = "<group>";
-		};
-		05DD68C72885FC4C0066BFEC /* Feature */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Feature;
-			sourceTree = "<group>";
-		};
-		05DD68D1288613FF0066BFEC /* Global Views */ = {
-			isa = PBXGroup;
-			children = (
-				0543E5A1294F12020046FE3F /* Timer */,
-				059C68EA2886BD5C00C90710 /* InputDetailView */,
-				05DD68DA28861C820066BFEC /* EntryView */,
-				3B64002428D65B0700241D65 /* GrayTextField.swift */,
-				056D7C7B28F32FB500E3514D /* LoadingView.swift */,
-				056DC4882916AA8100B30720 /* AccessibleViews */,
-				0587BB552928306B00F39B25 /* LabelledDivider.swift */,
-				058038B529329EAA006477A2 /* LoadingOverlay.swift */,
-			);
-			path = "Global Views";
-			sourceTree = "<group>";
-		};
-		05DD68DA28861C820066BFEC /* EntryView */ = {
-			isa = PBXGroup;
-			children = (
-				05DD68D22886140C0066BFEC /* AddEntryView.swift */,
-				05DD68DB28861C930066BFEC /* FeedEntryView.swift */,
-				05DD68DD28861CD70066BFEC /* SleepEntryView.swift */,
-				05DD68DF28861DAC0066BFEC /* NappyEntryView.swift */,
-				0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */,
-			);
-			path = EntryView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -706,6 +508,12 @@
 				05F07B0D297475E30041A283 /* TipJar */,
 				05F07B0F297478110041A283 /* Siri */,
 				05F07B11297478160041A283 /* Managers */,
+				0576C8592974AD9800148F8F /* SettingsView */,
+				0576C85B2974ADA300148F8F /* AccessibleViews */,
+				0576C85D2974ADA300148F8F /* EntryViews */,
+				0576C85F2974ADA300148F8F /* GlobalViews */,
+				0576C8612974ADA300148F8F /* InputDetailViews */,
+				0576C8632974B38600148F8F /* ViewModels */,
 			);
 			productName = BabyTracker;
 			productReference = 0560837B2884147800728F1F /* BabyWize.app */;
@@ -898,7 +706,6 @@
 			files = (
 				050AEE97288C64190052A2D1 /* AddEntryWidget.swift in Sources */,
 				050AEE9C288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
-				056DC49A2916F60F00B30720 /* EntryViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,50 +722,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05DD68DC28861C930066BFEC /* FeedEntryView.swift in Sources */,
 				05FE380C2902895F002D3D34 /* QuickInfoView.swift in Sources */,
-				05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */,
-				0514C3A72963024C005DD0C4 /* BreastFeedEntryViewModel.swift in Sources */,
-				0543E5AF294F42BC0046FE3F /* AddEntryViewVM.swift in Sources */,
 				05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */,
-				3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */,
-				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,
-				05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */,
-				056DC4872916AA7900B30720 /* AccessibleLabeledTextField.swift in Sources */,
-				059C68F02886D8CD00C90710 /* EditEntryView.swift in Sources */,
-				056DC48A2916AC4400B30720 /* AccessibleDatePicker.swift in Sources */,
 				05ABD7052910217C00E1C755 /* PlaceholderChart.swift in Sources */,
-				05236682296884FB008B58A2 /* BreastFeedInputDetailView.swift in Sources */,
 				05FE380E29028B13002D3D34 /* QuickInfoSection.swift in Sources */,
 				059C68E52886AF0500C90710 /* Info View.swift in Sources */,
-				0587BB562928306B00F39B25 /* LabelledDivider.swift in Sources */,
-				0543E5A6294F132E0046FE3F /* TimerView.swift in Sources */,
-				05DD68D32886140C0066BFEC /* AddEntryView.swift in Sources */,
-				056DC49D2916F8FF00B30720 /* FeedInputDetailView.swift in Sources */,
-				056DC4A12916F9EE00B30720 /* SleepInputDetailView.swift in Sources */,
 				056083812884147800728F1F /* HomeView.swift in Sources */,
-				056DC4A32916FA7500B30720 /* NappyInputDetailView.swift in Sources */,
-				0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */,
-				05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */,
 				050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
-				058038B629329EAA006477A2 /* LoadingOverlay.swift in Sources */,
-				05027FD4294E80CA00F8C6A8 /* AccessiblePicker.swift in Sources */,
 				0523667F29687F64008B58A2 /* FeedActivityLiveActivity.swift in Sources */,
-				05DD68E028861DAC0066BFEC /* NappyEntryView.swift in Sources */,
-				056DC48F2916F36B00B30720 /* FeedEntryViewModel.swift in Sources */,
-				056DC4832916A0EC00B30720 /* AccessibleLabeledContent.swift in Sources */,
 				057440BF2911C7690022D18E /* FeedChart.swift in Sources */,
-				056DC4932916F47900B30720 /* SleepEntryViewModel.swift in Sources */,
 				0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */,
-				059C68F22887015A00C90710 /* InfoScreenViewModel.swift in Sources */,
 				0543E5AD294F22AE0046FE3F /* SleepActivityLiveActivity.swift in Sources */,
-				3BE30FFC28D5DCF100E75D22 /* RegisterView.swift in Sources */,
 				057440C12911C80C0022D18E /* SleepChart.swift in Sources */,
-				058038A6293289AE006477A2 /* SettingsViewModel.swift in Sources */,
-				05A42A52290596540040A543 /* LoginView.swift in Sources */,
-				056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */,
-				056DC4972916F53D00B30720 /* NappyEntryViewModel.swift in Sources */,
-				0514C3AA29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -966,33 +741,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05187BCC295091DE002B6C49 /* AddEntryViewVM.swift in Sources */,
-				05187BCD295091DE002B6C49 /* InfoScreenViewModel.swift in Sources */,
 				05187BDE295091DE002B6C49 /* Info View.swift in Sources */,
-				05187BDF295091DE002B6C49 /* RegisterView.swift in Sources */,
-				05187BE0295091DE002B6C49 /* SettingsView.swift in Sources */,
-				05187BE1295091DE002B6C49 /* SettingsViewModel.swift in Sources */,
-				05187BE2295091DE002B6C49 /* CountdownTimeComponent.swift in Sources */,
-				05187BE3295091DE002B6C49 /* TimerView.swift in Sources */,
-				05187BE4295091DE002B6C49 /* InputDetailView.swift in Sources */,
-				05187BE5295091DE002B6C49 /* EditEntryView.swift in Sources */,
-				05187BE6295091DE002B6C49 /* FeedInputDetailView.swift in Sources */,
-				05187BE7295091DE002B6C49 /* SleepInputDetailView.swift in Sources */,
-				05187BE8295091DE002B6C49 /* NappyInputDetailView.swift in Sources */,
-				05187BE9295091DE002B6C49 /* AddEntryView.swift in Sources */,
-				05187BEA295091DE002B6C49 /* FeedEntryView.swift in Sources */,
-				05187BEB295091DE002B6C49 /* SleepEntryView.swift in Sources */,
-				05187BEC295091DE002B6C49 /* NappyEntryView.swift in Sources */,
-				05187BED295091DE002B6C49 /* GrayTextField.swift in Sources */,
-				05187BEE295091DE002B6C49 /* LoadingView.swift in Sources */,
-				0514C3A82963024C005DD0C4 /* BreastFeedEntryViewModel.swift in Sources */,
-				05187BEF295091DE002B6C49 /* AccessibleLabeledTextField.swift in Sources */,
-				05187BF0295091DE002B6C49 /* AccessibleLabeledContent.swift in Sources */,
-				05187BF1295091DE002B6C49 /* AccessibleDatePicker.swift in Sources */,
-				05187BF2295091DE002B6C49 /* AccessiblePicker.swift in Sources */,
-				05187BF3295091DE002B6C49 /* LabelledDivider.swift in Sources */,
-				05187BF4295091DE002B6C49 /* LoadingOverlay.swift in Sources */,
-				0514C3AB29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */,
 				05187BF5295091DE002B6C49 /* HomeView.swift in Sources */,
 				05187BF6295091DE002B6C49 /* PlaceholderChart.swift in Sources */,
 				05187C0029509203002B6C49 /* SleepActivityLiveActivity.swift in Sources */,
@@ -1003,13 +752,8 @@
 				05187BFB295091DE002B6C49 /* SleepChart.swift in Sources */,
 				05187BFD295091DE002B6C49 /* Assets.xcassets in Sources */,
 				05187BB4295083B1002B6C49 /* BabyDataManagerTests.swift in Sources */,
-				05A42A53290596540040A543 /* LoginView.swift in Sources */,
 				3B64002928D665AA00241D65 /* SignInTests.swift in Sources */,
-				056DC4942916F47900B30720 /* SleepEntryViewModel.swift in Sources */,
-				056DC4982916F53D00B30720 /* NappyEntryViewModel.swift in Sources */,
 				056083902884147900728F1F /* BabyWizeTests.swift in Sources */,
-				056DC4902916F36B00B30720 /* FeedEntryViewModel.swift in Sources */,
-				056DC49B2916F61000B30720 /* EntryViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1026,10 +770,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0543E5A7294F132E0046FE3F /* TimerView.swift in Sources */,
 				058414E4294F0F71009A4791 /* SleepActivityBundle.swift in Sources */,
 				058414E6294F0F71009A4791 /* SleepActivityLiveActivity.swift in Sources */,
-				0543E5A4294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1637,6 +1379,30 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 05580E7528CB2B7300E4ECDE /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
+		};
+		0576C8592974AD9800148F8F /* SettingsView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SettingsView;
+		};
+		0576C85B2974ADA300148F8F /* AccessibleViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AccessibleViews;
+		};
+		0576C85D2974ADA300148F8F /* EntryViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EntryViews;
+		};
+		0576C85F2974ADA300148F8F /* GlobalViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GlobalViews;
+		};
+		0576C8612974ADA300148F8F /* InputDetailViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InputDetailViews;
+		};
+		0576C8632974B38600148F8F /* ViewModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ViewModels;
 		};
 		05A42A4F290549D90040A543 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;

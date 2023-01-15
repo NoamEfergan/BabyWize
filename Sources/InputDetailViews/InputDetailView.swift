@@ -1,0 +1,55 @@
+//
+//  InputDetailView.swift
+//  BabyWize
+//
+//  Created by Noam Efergan on 19/07/2022.
+//
+
+import SwiftUI
+import Models
+import Managers
+
+// MARK: - InputDetailView
+public struct InputDetailView: View {
+    let type: EntryType
+    @InjectedObject private var dataManager: BabyDataManager
+    @State private var editMode = EditMode.inactive
+    @State private var isShowingEntryView = false
+
+    public init(type: EntryType) {
+        self.type = type
+    }
+
+    public var body: some View {
+        Group {
+            switch type {
+            case .liquidFeed:
+                FeedInputDetailView(solidOrLiquid: .liquid)
+            case .solidFeed:
+                FeedInputDetailView(solidOrLiquid: .solid)
+            case .sleep:
+                SleepInputDetailView()
+            case .nappy:
+                NappyInputDetailView()
+            case .breastFeed:
+                BreastFeedInputDetailView()
+            }
+        }
+        .environment(\.editMode, $editMode)
+    }
+}
+
+// MARK: - InputDetailView_Previews
+struct InputDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            InputDetailView(type: .liquidFeed)
+        }
+        NavigationStack {
+            InputDetailView(type: .sleep)
+        }
+        NavigationStack {
+            InputDetailView(type: .nappy)
+        }
+    }
+}

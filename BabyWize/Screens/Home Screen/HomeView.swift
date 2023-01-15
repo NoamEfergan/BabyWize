@@ -11,12 +11,6 @@ import StoreKit
 import Models
 import Managers
 
-// MARK: - Screens
-enum Screens: String {
-    case home, settings, newEntry, feed, sleep, detailInputLiquidFeed,detailInputSolidFeed, detailInputNappy,
-         detailInputSleep,detailInputBreastFeed , none
-}
-
 // MARK: - HomeView
 struct HomeView: View {
     @InjectedObject private var dataManager: BabyDataManager

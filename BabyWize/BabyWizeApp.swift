@@ -23,11 +23,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 }
 
-// MARK: - NavigationViewModel
-final class NavigationViewModel: ObservableObject {
-    @Published var path: [Screens] = []
-}
-
 // MARK: - BabyWizeApp
 @main
 struct BabyWizeApp: App {
