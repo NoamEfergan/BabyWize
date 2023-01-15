@@ -10,6 +10,7 @@ import AppIntents
 import SwiftUI
 import Swinject
 import Models
+import TipJar
 
 // MARK: - AppDelegate
 class AppDelegate: NSObject, UIApplicationDelegate {

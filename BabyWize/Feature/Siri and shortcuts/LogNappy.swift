@@ -6,7 +6,7 @@
 //
 import Foundation
 import AppIntents
-import Models
+@preconcurrency import Models
 
 // MARK: - LogNappy
 struct LogNappy: AppIntent {

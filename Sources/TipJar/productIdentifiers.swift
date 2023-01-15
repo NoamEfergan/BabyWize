@@ -7,7 +7,7 @@
 
 import Foundation
 
-let myTipProductIdentifiers = [
+public let myTipProductIdentifiers = [
     "app.babywize.tinyTip",
     "app.babywize.smallTip",
     "app.babywize.mediumTip",

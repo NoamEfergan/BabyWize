@@ -8,6 +8,7 @@
 import SwiftUI
 import StoreKit
 import Models
+import TipJar
 
 // MARK: - SettingsView
 struct SettingsView: View {

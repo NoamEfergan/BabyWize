@@ -7,6 +7,7 @@ let package = Package(name: "BabyWize",
                       platforms: [.iOS(.v16)],
                       products: [
                           .library(name: "Models",targets: ["Models"]),
+                          .library(name: "TipJar",targets: ["TipJar"]),
                       ],
                       dependencies: [
                           .package(url: "https://github.com/Swinject/Swinject.git", .upToNextMajor(from: "2.8.1")),
@@ -14,4 +15,5 @@ let package = Package(name: "BabyWize",
                       ],
                       targets: [
                           .target(name: "Models",dependencies: ["Swinject"]),
+                          .target(name: "TipJar",dependencies: []),
                       ])

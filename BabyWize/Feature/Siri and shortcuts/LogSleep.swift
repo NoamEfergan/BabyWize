@@ -7,7 +7,7 @@
 
 import Foundation
 import AppIntents
-import Models
+@preconcurrency import Models
 
 struct LogSleep: AppIntent {
     @Inject private var dataManager: BabyDataManager

@@ -23,8 +23,6 @@
 		0514C3A82963024C005DD0C4 /* BreastFeedEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A62963024C005DD0C4 /* BreastFeedEntryViewModel.swift */; };
 		0514C3AA29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */; };
 		0514C3AB29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */; };
-		0514C3AD2966C6B3005DD0C4 /* TipManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3AC2966C6B3005DD0C4 /* TipManager.swift */; };
-		0514C3B02966C73C005DD0C4 /* productIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0514C3AF2966C73C005DD0C4 /* productIdentifiers.swift */; };
 		05187BB4295083B1002B6C49 /* BabyDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */; };
 		05187BB52950840E002B6C49 /* BabyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C32885FB2C0066BFEC /* BabyDataManager.swift */; };
 		05187BB729508633002B6C49 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 05187BB629508633002B6C49 /* FirebaseAuth */; };
@@ -259,8 +257,6 @@
 		050FF46E293B8ABD00F445DE /* LogSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSleep.swift; sourceTree = "<group>"; };
 		0514C3A62963024C005DD0C4 /* BreastFeedEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedEntryViewModel.swift; sourceTree = "<group>"; };
 		0514C3A929630382005DD0C4 /* BreastFeedEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedEntryView.swift; sourceTree = "<group>"; };
-		0514C3AC2966C6B3005DD0C4 /* TipManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipManager.swift; sourceTree = "<group>"; };
-		0514C3AF2966C73C005DD0C4 /* productIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = productIdentifiers.swift; sourceTree = "<group>"; };
 		05187BB3295083B1002B6C49 /* BabyDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyDataManagerTests.swift; sourceTree = "<group>"; };
 		0523666C29687D93008B58A2 /* FeedActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FeedActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0523667029687D93008B58A2 /* FeedActivityBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedActivityBundle.swift; sourceTree = "<group>"; };
@@ -268,7 +264,6 @@
 		0523667629687D94008B58A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0523667829687D94008B58A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05236681296884FB008B58A2 /* BreastFeedInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedInputDetailView.swift; sourceTree = "<group>"; };
-		052366832968AF92008B58A2 /* Baby Wize.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Baby Wize.storekit"; sourceTree = "<group>"; };
 		053E48882939107800A90399 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		053E48932939107900A90399 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		053E48B42939120A00A90399 /* LogFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFeed.swift; sourceTree = "<group>"; };
@@ -442,16 +437,6 @@
 			path = "Siri and shortcuts";
 			sourceTree = "<group>";
 		};
-		0514C3AE2966C710005DD0C4 /* Tip Jar */ = {
-			isa = PBXGroup;
-			children = (
-				0514C3AC2966C6B3005DD0C4 /* TipManager.swift */,
-				0514C3AF2966C73C005DD0C4 /* productIdentifiers.swift */,
-				052366832968AF92008B58A2 /* Baby Wize.storekit */,
-			);
-			path = "Tip Jar";
-			sourceTree = "<group>";
-		};
 		0523666F29687D93008B58A2 /* FeedActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,7 +495,6 @@
 				05DD68C72885FC4C0066BFEC /* Feature */,
 				05DD68C02885B8110066BFEC /* Managers */,
 				05DD68BA2885B7810066BFEC /* View Models */,
-				05DD68B02885B6FD0066BFEC /* Models */,
 				05DD68AB2885B65B0066BFEC /* Screens */,
 				0560837E2884147800728F1F /* BabyWizeApp.swift */,
 				056083822884147900728F1F /* Assets.xcassets */,
@@ -664,13 +648,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		05DD68B02885B6FD0066BFEC /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		05DD68BA2885B7810066BFEC /* View Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,7 +675,6 @@
 		05DD68C72885FC4C0066BFEC /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				0514C3AE2966C710005DD0C4 /* Tip Jar */,
 				050FF466293A3B6700F445DE /* Siri and shortcuts */,
 			);
 			path = Feature;
@@ -1022,7 +998,6 @@
 				3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */,
 				050FF46F293B8ABD00F445DE /* LogSleep.swift in Sources */,
 				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,
-				0514C3AD2966C6B3005DD0C4 /* TipManager.swift in Sources */,
 				0587BB5C29291C2C00F39B25 /* SharingViewModel.swift in Sources */,
 				050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */,
 				05A42A612905A5790040A543 /* FirebaseManager.swift in Sources */,
@@ -1053,7 +1028,6 @@
 				0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */,
 				05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */,
 				050AEE9D288C641A0052A2D1 /* AddEntryWidget.intentdefinition in Sources */,
-				0514C3B02966C73C005DD0C4 /* productIdentifiers.swift in Sources */,
 				058038B629329EAA006477A2 /* LoadingOverlay.swift in Sources */,
 				05027FD4294E80CA00F8C6A8 /* AccessiblePicker.swift in Sources */,
 				0523667F29687F64008B58A2 /* FeedActivityLiveActivity.swift in Sources */,

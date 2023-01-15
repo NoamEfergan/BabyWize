@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreImage.CIFilterBuiltins
 import Models
+import TipJar
 
 // MARK: - SettingsViewModel
 final class SettingsViewModel: ObservableObject {

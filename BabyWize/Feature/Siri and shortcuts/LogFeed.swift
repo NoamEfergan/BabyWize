@@ -7,7 +7,7 @@
 
 import Foundation
 import AppIntents
-import Models
+@preconcurrency import Models
 
 // MARK: - LogFeed
 struct LogFeed: AppIntent {

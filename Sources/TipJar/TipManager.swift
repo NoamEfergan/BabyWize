@@ -9,11 +9,11 @@ import Foundation
 import StoreKit
 
 // MARK: - TipsError
-enum TipsError: LocalizedError {
+public enum TipsError: LocalizedError {
     case failedVerification
     case system(Error)
 
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .failedVerification:
             return "User transaction verification failed"
@@ -24,11 +24,11 @@ enum TipsError: LocalizedError {
 }
 
 // MARK: - TipsAction
-enum TipsAction: Equatable {
+public enum TipsAction: Equatable {
     case successful
     case failed(TipsError)
 
-    static func == (lhs: TipsAction, rhs: TipsAction) -> Bool {
+    public static func == (lhs: TipsAction, rhs: TipsAction) -> Bool {
         switch (lhs, rhs) {
         case (.successful, .successful):
             return true
@@ -45,9 +45,9 @@ typealias TransactionListener = Task<Void, Error>
 
 // MARK: - TipManager
 @MainActor
-final class TipManager: ObservableObject {
-    @Published private(set) var items = [Product]()
-    @Published private(set) var action: TipsAction? {
+public final class TipManager: ObservableObject {
+    @Published public var items = [Product]()
+    @Published public var action: TipsAction? {
         didSet {
             switch action {
             case .failed:
@@ -58,9 +58,9 @@ final class TipManager: ObservableObject {
         }
     }
 
-    @Published var hasError = false
+    @Published public var hasError = false
 
-    var error: TipsError? {
+    public var error: TipsError? {
         switch action {
         case .failed(let err):
             return err
@@ -71,7 +71,7 @@ final class TipManager: ObservableObject {
 
     private var transactionListener: TransactionListener?
 
-    init() {
+    public init() {
         transactionListener = configureTransactionListener()
 
         Task { [weak self] in
@@ -83,7 +83,7 @@ final class TipManager: ObservableObject {
         transactionListener?.cancel()
     }
 
-    func purchase(_ item: Product) async {
+    public func purchase(_ item: Product) async {
         do {
             let result = try await item.purchase()
 
@@ -95,7 +95,7 @@ final class TipManager: ObservableObject {
         }
     }
 
-    func reset() {
+    public func reset() {
         action = nil
     }
 }
