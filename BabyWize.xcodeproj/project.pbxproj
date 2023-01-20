@@ -184,7 +184,7 @@
 		0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		057440BE2911C7690022D18E /* FeedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedChart.swift; sourceTree = "<group>"; };
 		057440C02911C80C0022D18E /* SleepChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepChart.swift; sourceTree = "<group>"; };
-		0576C8582974796C00148F8F /* BabyWize */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BabyWize; sourceTree = "<group>"; };
+		0576C868297A985A00148F8F /* BabyWizeModules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BabyWizeModules; path = ../BabyWizeModules; sourceTree = "<group>"; };
 		058414DF294F0F71009A4791 /* SleepActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SleepActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		058414E3294F0F71009A4791 /* SleepActivityBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepActivityBundle.swift; sourceTree = "<group>"; };
 		058414E5294F0F71009A4791 /* SleepActivityLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepActivityLiveActivity.swift; sourceTree = "<group>"; };
@@ -316,7 +316,7 @@
 		056083722884147800728F1F = {
 			isa = PBXGroup;
 			children = (
-				0576C8582974796C00148F8F /* BabyWize */,
+				0576C8652976F8E700148F8F /* Packages */,
 				05DF6CF72917CBBC00EACE7C /* Launch Screen.storyboard */,
 				050AEEA9288C6BB10052A2D1 /* AddEntryWidgetExtension.entitlements */,
 				0560837D2884147800728F1F /* BabyWize */,
@@ -381,6 +381,14 @@
 				0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */,
 			);
 			path = BabyWizeUITests;
+			sourceTree = "<group>";
+		};
+		0576C8652976F8E700148F8F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				0576C868297A985A00148F8F /* BabyWizeModules */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 		058414E2294F0F71009A4791 /* SleepActivity */ = {

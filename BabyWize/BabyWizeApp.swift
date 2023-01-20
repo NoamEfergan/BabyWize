@@ -13,6 +13,7 @@ import Models
 import TipJar
 import Managers
 import Siri
+import ViewModels
 
 // MARK: - AppDelegate
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -67,14 +68,14 @@ struct BabyWizeApp: App {
                     .environment(\.colorScheme, .light)
                     .environmentObject(store)
                     .opacity(isShowingSplash ? 0 : 1)
-                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.sleepTimerStart)) { _ in
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name.sleepTimerStart)) { _ in
                         if #available(iOS 16.1, *) {
                             startSleepActivity()
                         } else {
                             print("Tried to start live activity from iOS 16")
                         }
                     }
-                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.sleepTimerEnd)) { _ in
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name.sleepTimerEnd)) { _ in
                         if #available(iOS 16.1, *) {
                             endSleepActivity()
                         } else {
@@ -82,14 +83,14 @@ struct BabyWizeApp: App {
                             print("Tried to end live activity from iOS 16")
                         }
                     }
-                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.feedTimerStart)) { _ in
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name.feedTimerStart)) { _ in
                         if #available(iOS 16.1, *) {
                             startFeedActivity()
                         } else {
                             print("Tried to start live activity from iOS 16")
                         }
                     }
-                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.feedTimerEnd)) { _ in
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name.feedTimerEnd)) { _ in
                         if #available(iOS 16.1, *) {
                             endFeedActivity()
                         } else {

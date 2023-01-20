@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import ViewModels
+import Models
 
 // MARK: - QuickInfoView
 struct QuickInfoView: View {

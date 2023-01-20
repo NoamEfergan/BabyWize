@@ -10,6 +10,11 @@ import SwiftUI
 import StoreKit
 import Models
 import Managers
+import ViewModels
+import GlobalViews
+import EntryViews
+import SettingsView
+import InputDetailViews
 
 // MARK: - HomeView
 struct HomeView: View {
