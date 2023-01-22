@@ -153,7 +153,7 @@ final class BabyDataManager: ObservableObject {
 
     func mergeFeedsWithRemote(_ remoteFeeds: [Feed]) {
         defer {
-            feedData = feedData.uniqued(on: { $0.id })
+            feedData = feedData.uniqued(on: \.id)
         }
         if feedData.isEmpty {
             remoteFeeds.forEach { addFeed($0) }
@@ -175,7 +175,7 @@ final class BabyDataManager: ObservableObject {
 
     func mergeSleepsWithRemote(_ remoteSleeps: [Sleep]) {
         defer {
-            sleepData = sleepData.uniqued(on: { $0.id })
+            sleepData = sleepData.uniqued(on: \.id)
         }
         if sleepData.isEmpty {
             remoteSleeps.forEach { addSleep($0) }
@@ -197,7 +197,7 @@ final class BabyDataManager: ObservableObject {
 
     func mergeChangesWithRemote(_ remoteChanges: [NappyChange]) {
         defer {
-            nappyData = nappyData.uniqued(on: { $0.id })
+            nappyData = nappyData.uniqued(on: \.id)
         }
         if nappyData.isEmpty {
             remoteChanges.forEach { addNappyChange($0) }
@@ -222,7 +222,7 @@ final class BabyDataManager: ObservableObject {
     // ADD
     func addFeed(_ item: Feed, updateRemote: Bool = true) {
         feedData.append(item)
-        feedData = feedData.uniqued(on: { $0.id })
+        feedData = feedData.uniqued(on: \.id)
         if updateRemote {
             firebaseManager.addFeed(item)
         }
@@ -230,7 +230,7 @@ final class BabyDataManager: ObservableObject {
 
     func addSleep(_ item: Sleep, updateRemote: Bool = true) {
         sleepData.append(item)
-        sleepData = sleepData.uniqued(on: { $0.id })
+        sleepData = sleepData.uniqued(on: \.id)
         if updateRemote {
             firebaseManager.addSleep(item)
         }
@@ -238,7 +238,7 @@ final class BabyDataManager: ObservableObject {
 
     func addNappyChange(_ item: NappyChange, updateRemote: Bool = true) {
         nappyData.append(item)
-        nappyData = nappyData.uniqued(on: { $0.id })
+        nappyData = nappyData.uniqued(on: \.id)
         if updateRemote {
             firebaseManager.addNappyChange(item)
         }
@@ -246,7 +246,7 @@ final class BabyDataManager: ObservableObject {
 
     func addBreastFeed(_ item: BreastFeed, updateRemote: Bool = true) {
         breastFeedData.append(item)
-        breastFeedData = breastFeedData.uniqued(on: { $0.id })
+        breastFeedData = breastFeedData.uniqued(on: \.id)
         if updateRemote {
             firebaseManager.addBreastFeed(item)
         }
@@ -298,9 +298,13 @@ final class BabyDataManager: ObservableObject {
     }
 
     func removeFeed(at offsets: IndexSet, includingRemote: Bool = true) {
-        let localFeeds = offsets.compactMap {
-            feedData[$0]
-        }.uniqued(on: { $0.id })
+        let localFeeds: [Feed] = offsets.compactMap {
+            // Check if index is in bounds
+            guard $0 < feedData.count else {
+                return nil
+            }
+            return feedData[$0]
+        }.uniqued(on: \.id)
         feedData.remove(atOffsets: offsets)
         if includingRemote {
             firebaseManager.removeItems(items: localFeeds, key: FBKeys.kFeeds)
@@ -308,9 +312,13 @@ final class BabyDataManager: ObservableObject {
     }
 
     func removeSleep(at offsets: IndexSet, includingRemote: Bool = true) {
-        let localSleeps = offsets.compactMap {
-            sleepData[$0]
-        }.uniqued(on: { $0.id })
+        let localSleeps: [Sleep] = offsets.compactMap {
+            // Check if index is in bounds
+            guard $0 < sleepData.count else {
+                return nil
+            }
+            return sleepData[$0]
+        }.uniqued(on: \.id)
         sleepData.remove(atOffsets: offsets)
         if includingRemote {
             firebaseManager.removeItems(items: localSleeps, key: FBKeys.kSleeps)
@@ -318,9 +326,13 @@ final class BabyDataManager: ObservableObject {
     }
 
     func removeChange(at offsets: IndexSet, includingRemote: Bool = true) {
-        let localChanges = offsets.compactMap {
-            nappyData[$0]
-        }.uniqued(on: { $0.id })
+        let localChanges: [NappyChange] = offsets.compactMap {
+            // Check if index is in bounds
+            guard $0 < nappyData.count else {
+                return nil
+            }
+            return nappyData[$0]
+        }.uniqued(on: \.id)
         nappyData.remove(atOffsets: offsets)
         if includingRemote {
             firebaseManager.removeItems(items: localChanges, key: FBKeys.kChanges)
@@ -328,9 +340,13 @@ final class BabyDataManager: ObservableObject {
     }
 
     func removeBreastFeed(at offsets: IndexSet, includingRemote: Bool = true) {
-        let localFeeds = offsets.compactMap {
-            breastFeedData[$0]
-        }.uniqued(on: { $0.id })
+        let localFeeds: [BreastFeed] = offsets.compactMap {
+            // Check if index is in bounds
+            guard $0 < breastFeedData.count else {
+                return nil
+            }
+            return breastFeedData[$0]
+        }.uniqued(on: \.id)
         breastFeedData.remove(atOffsets: offsets)
         if includingRemote {
             firebaseManager.removeItems(items: localFeeds, key: FBKeys.kBreast)

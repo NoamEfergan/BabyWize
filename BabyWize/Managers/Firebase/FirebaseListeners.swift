@@ -47,8 +47,13 @@ extension FirebaseManager {
             .$didDeleteAccount
             .receive(on: DispatchQueue.main)
             .sink { [weak self] userID in
+                guard let self else {
+                    return
+                }
+                let sharingAccountIds = self.defaultsManager.sharingAccounts.compactMap { $0.id }
+                sharingAccountIds.forEach { self.removeIdFromShared($0) }
                 if let userID {
-                    self?.deleteAccount(userID: userID)
+                    self.deleteAccount(userID: userID)
                 }
             }
             .store(in: &bag)

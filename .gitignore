@@ -11,3 +11,5 @@ fastlane/report.xml
 fastlane/test_output
 ReleaseApp.app.dSYM.zip
 ReleaseApp.ipa
+.build
+.swiftpm
