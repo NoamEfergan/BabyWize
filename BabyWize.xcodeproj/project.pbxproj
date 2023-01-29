@@ -130,6 +130,7 @@
 		056083A9288417F700728F1F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
 		056BC6BD294C6EFF00339442 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 056BC6BC294C6EFF00339442 /* FirebaseFirestoreCombine-Community */; };
 		056BC6C1294C71B200339442 /* FirebaseListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056BC6C0294C71B200339442 /* FirebaseListeners.swift */; };
+		056D033E2986BC75003A1ACC /* IntentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D033D2986BC75003A1ACC /* IntentError.swift */; };
 		056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D7C7B28F32FB500E3514D /* LoadingView.swift */; };
 		056DC4832916A0EC00B30720 /* AccessibleLabeledContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */; };
 		056DC4872916AA7900B30720 /* AccessibleLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */; };
@@ -167,6 +168,7 @@
 		0587BB562928306B00F39B25 /* LabelledDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB552928306B00F39B25 /* LabelledDivider.swift */; };
 		0587BB582928EA8C00F39B25 /* NSNotification+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB572928EA8C00F39B25 /* NSNotification+extension.swift */; };
 		0587BB5C29291C2C00F39B25 /* SharingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5B29291C2C00F39B25 /* SharingViewModel.swift */; };
+		058E1FFB297D9E51001A8E71 /* StartSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E1FFA297D9E51001A8E71 /* StartSleep.swift */; };
 		058EAF39293BBDEE0030D49D /* LogNappy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EAF38293BBDEE0030D49D /* LogNappy.swift */; };
 		059C68E52886AF0500C90710 /* Info View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E42886AF0500C90710 /* Info View.swift */; };
 		059C68E82886B66B00C90710 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
@@ -338,6 +340,7 @@
 		0560839B2884147900728F1F /* BabyWizeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		056083A8288417F700728F1F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		056BC6C0294C71B200339442 /* FirebaseListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListeners.swift; sourceTree = "<group>"; };
+		056D033D2986BC75003A1ACC /* IntentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentError.swift; sourceTree = "<group>"; };
 		056D7C7B28F32FB500E3514D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleLabeledContent.swift; sourceTree = "<group>"; };
 		056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleLabeledTextField.swift; sourceTree = "<group>"; };
@@ -364,6 +367,7 @@
 		0587BB552928306B00F39B25 /* LabelledDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledDivider.swift; sourceTree = "<group>"; };
 		0587BB572928EA8C00F39B25 /* NSNotification+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+extension.swift"; sourceTree = "<group>"; };
 		0587BB5B29291C2C00F39B25 /* SharingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingViewModel.swift; sourceTree = "<group>"; };
+		058E1FFA297D9E51001A8E71 /* StartSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSleep.swift; sourceTree = "<group>"; };
 		058EAF38293BBDEE0030D49D /* LogNappy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogNappy.swift; sourceTree = "<group>"; };
 		059C68E42886AF0500C90710 /* Info View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info View.swift"; sourceTree = "<group>"; };
 		059C68E72886B66B00C90710 /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
@@ -499,6 +503,8 @@
 				050FF467293A3F6600F445DE /* IntentManager.swift */,
 				050FF46E293B8ABD00F445DE /* LogSleep.swift */,
 				058EAF38293BBDEE0030D49D /* LogNappy.swift */,
+				058E1FFA297D9E51001A8E71 /* StartSleep.swift */,
+				056D033D2986BC75003A1ACC /* IntentError.swift */,
 			);
 			path = "Siri and shortcuts";
 			sourceTree = "<group>";
@@ -1119,6 +1125,7 @@
 				05FE380C2902895F002D3D34 /* QuickInfoView.swift in Sources */,
 				05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */,
 				0514C3A72963024C005DD0C4 /* BreastFeedEntryViewModel.swift in Sources */,
+				056D033E2986BC75003A1ACC /* IntentError.swift in Sources */,
 				0543E5AF294F42BC0046FE3F /* AddEntryViewVM.swift in Sources */,
 				05DD68AF2885B68B0066BFEC /* HomeScreenCharts.swift in Sources */,
 				3B64002528D65B0700241D65 /* GrayTextField.swift in Sources */,
@@ -1164,6 +1171,7 @@
 				05DD68D9288619DB0066BFEC /* LiquidFeedUnits.swift in Sources */,
 				3B64002728D6620800241D65 /* AuthViewModel.swift in Sources */,
 				0543E5A3294F121E0046FE3F /* CountdownTimeComponent.swift in Sources */,
+				058E1FFB297D9E51001A8E71 /* StartSleep.swift in Sources */,
 				0587BB5129281F2C00F39B25 /* TimeInterval+extension.swift in Sources */,
 				05DD68D7288619B50066BFEC /* EntryViewModel.swift in Sources */,
 				0514C3B22966C7D6005DD0C4 /* TestTipView.swift in Sources */,

@@ -108,6 +108,13 @@ struct HomeView: View {
                 }
                 .sheet(isPresented: $isShowingNewEntrySheet) {
                     AddEntryView(vm: addEntryViewVM)
+                        .task {
+                            if defaultsManager.hasTimerRunning {
+                                addEntryViewVM.entryType = .sleep
+                            } else if defaultsManager.hasFeedTimerRunning {
+                                addEntryViewVM.entryType = .breastFeed
+                            }
+                        }
                         .presentationDetents([.fraction(0.45), .medium])
                         .onDisappear {
                             wantsToAddEntry = false

@@ -27,10 +27,16 @@ struct AddEntryView: View {
                 FeedEntryView(vm: vm.feedVM)
             case .sleep:
                 SleepEntryView(vm: vm.sleepVM)
+                    .task {
+                        vm.sleepVM.selectedLiveOrOld = defaultManager.hasTimerRunning ? .Live : .Old
+                    }
             case .nappy:
                 NappyEntryView(vm: vm.nappyVM)
             case .breastFeed:
                 BreastFeedEntryView(vm: vm.breastFeedVM)
+                    .task {
+                        vm.breastFeedVM.selectedLiveOrOld = defaultManager.hasFeedTimerRunning ? .Live : .Old
+                    }
             }
             if !vm.errorText.isEmpty {
                 Text(vm.errorText)
