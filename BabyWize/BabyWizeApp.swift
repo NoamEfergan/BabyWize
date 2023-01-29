@@ -200,11 +200,11 @@ struct ShortcutProvider: AppShortcutsProvider {
                         ]),
             AppShortcut(intent: StartSleep(),
                         phrases: [
-                            "Start a sleep timer change on \(.applicationName)"
+                            "Start a sleep timer on \(.applicationName)"
                         ]),
             AppShortcut(intent: StartFeed(),
                         phrases: [
-                            "Start a feed timer change on \(.applicationName)"
+                            "Start a feed timer on \(.applicationName)"
                         ])
         ]
 }
