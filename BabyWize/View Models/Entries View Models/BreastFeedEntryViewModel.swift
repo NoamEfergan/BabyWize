@@ -98,11 +98,7 @@ final class BreastFeedEntryViewModel: EntryViewModel {
     }
 
     func startFeedTimer() {
-        defaultManager.hasFeedTimerRunning = false
-        defaultManager.feedStartDate = nil
-        defaultManager.hasFeedTimerRunning = true
-        defaultManager.feedStartDate = .now
-        NotificationCenter.default.post(name: NSNotification.feedTimerStart , object: nil)
+        defaultManager.startBreastFeedTimer()
     }
 }
 

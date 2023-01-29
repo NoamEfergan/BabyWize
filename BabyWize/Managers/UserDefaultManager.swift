@@ -178,4 +178,14 @@ final class UserDefaultManager: ObservableObject {
             NotificationCenter.default.post(name: NSNotification.sleepTimerStart , object: nil)
         }
     }
+
+    public func startBreastFeedTimer() {
+        DispatchQueue.main.async {
+            self.hasFeedTimerRunning = false
+            self.feedStartDate = nil
+            self.hasFeedTimerRunning = true
+            self.feedStartDate = .now
+            NotificationCenter.default.post(name: NSNotification.feedTimerStart , object: nil)
+        }
+    }
 }

@@ -131,6 +131,7 @@
 		056BC6BD294C6EFF00339442 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 056BC6BC294C6EFF00339442 /* FirebaseFirestoreCombine-Community */; };
 		056BC6C1294C71B200339442 /* FirebaseListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056BC6C0294C71B200339442 /* FirebaseListeners.swift */; };
 		056D033E2986BC75003A1ACC /* IntentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D033D2986BC75003A1ACC /* IntentError.swift */; };
+		056D03402986D118003A1ACC /* StartFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D033F2986D118003A1ACC /* StartFeed.swift */; };
 		056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D7C7B28F32FB500E3514D /* LoadingView.swift */; };
 		056DC4832916A0EC00B30720 /* AccessibleLabeledContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */; };
 		056DC4872916AA7900B30720 /* AccessibleLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */; };
@@ -341,6 +342,7 @@
 		056083A8288417F700728F1F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		056BC6C0294C71B200339442 /* FirebaseListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListeners.swift; sourceTree = "<group>"; };
 		056D033D2986BC75003A1ACC /* IntentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentError.swift; sourceTree = "<group>"; };
+		056D033F2986D118003A1ACC /* StartFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFeed.swift; sourceTree = "<group>"; };
 		056D7C7B28F32FB500E3514D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		056DC4822916A0EC00B30720 /* AccessibleLabeledContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleLabeledContent.swift; sourceTree = "<group>"; };
 		056DC4862916AA7900B30720 /* AccessibleLabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleLabeledTextField.swift; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 				050FF46E293B8ABD00F445DE /* LogSleep.swift */,
 				058EAF38293BBDEE0030D49D /* LogNappy.swift */,
 				058E1FFA297D9E51001A8E71 /* StartSleep.swift */,
+				056D033F2986D118003A1ACC /* StartFeed.swift */,
 				056D033D2986BC75003A1ACC /* IntentError.swift */,
 			);
 			path = "Siri and shortcuts";
@@ -1198,6 +1201,7 @@
 				058038A6293289AE006477A2 /* SettingsViewModel.swift in Sources */,
 				05A42A52290596540040A543 /* LoginView.swift in Sources */,
 				056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */,
+				056D03402986D118003A1ACC /* StartFeed.swift in Sources */,
 				056DC4972916F53D00B30720 /* NappyEntryViewModel.swift in Sources */,
 				0514C3AA29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */,
 				0514C3A32962F6ED005DD0C4 /* BreastFeedView.swift in Sources */,

@@ -7,12 +7,11 @@
 
 import Foundation
 import AppIntents
-import SwiftUI
 
 struct StartSleep: AppIntent {
     @Inject private var defaultManager: UserDefaultManager
     static var title: LocalizedStringResource = "Start a sleep timer"
-    static var description: IntentDescription? = "Quickly start a breast feeding timer"
+    static var description: IntentDescription? = "Quickly start a sleep timer"
     static var suggestedInvocationPhrase = "Start a sleep on baby wize"
 
     @MainActor
@@ -24,4 +23,3 @@ struct StartSleep: AppIntent {
         return .result(dialog: "Timer has started, it's visible in the app")
     }
 }
-
