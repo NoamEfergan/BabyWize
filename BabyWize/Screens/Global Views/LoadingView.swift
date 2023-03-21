@@ -17,9 +17,9 @@ struct LoadingView<Content>: View where Content: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .center) {
-                self.content()
-                    .disabled(self.isShowing)
-                    .blur(radius: self.isShowing ? 3 : 0)
+                content()
+                    .disabled(isShowing)
+                    .blur(radius: isShowing ? 3 : 0)
 
                 ProgressView(text)
                     .frame(width: geometry.size.width / 2,
@@ -27,8 +27,8 @@ struct LoadingView<Content>: View where Content: View {
                     .background(Color.secondary.colorInvert())
                     .foregroundColor(Color.primary)
                     .cornerRadius(20)
-                    .opacity(self.isShowing ? 1 : 0)
-                    .scaleEffect(self.isShowing ? 1 : 0.1)
+                    .opacity(isShowing ? 1 : 0)
+                    .scaleEffect(isShowing ? 1 : 0.1)
                     .animation(.easeInOut, value: isShowing)
             }
         }

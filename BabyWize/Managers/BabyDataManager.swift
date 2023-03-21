@@ -356,9 +356,11 @@ final class BabyDataManager: ObservableObject {
     func removeAll(for entry: EntryType, includingRemote: Bool = true) {
         switch entry {
         case .liquidFeed:
-            let indices = feedData.filter(\.isLiquids).indices.compactMap { Int($0) }
-            let indexSet = IndexSet(indices)
-            removeFeed(at: indexSet, includingRemote: includingRemote)
+            let liquidFeeds = feedData.filter(\.isLiquids)
+            feedData.removeAll(where: \.isLiquids)
+            if includingRemote {
+                firebaseManager.removeItems(items: liquidFeeds, key: FBKeys.kFeeds)
+            }
 
         case .sleep:
             let indices = sleepData.indices.compactMap { Int($0) }
@@ -371,13 +373,16 @@ final class BabyDataManager: ObservableObject {
             removeChange(at: indexSet, includingRemote: includingRemote)
 
         case .solidFeed:
-            let indices = feedData.filter(\.isSolids).indices.compactMap { Int($0) }
-            let indexSet = IndexSet(indices)
-            removeFeed(at: indexSet, includingRemote: includingRemote)
+            let solidFeeds = feedData.filter(\.isSolids)
+            feedData.removeAll(where: \.isSolids)
+            if includingRemote {
+                firebaseManager.removeItems(items: solidFeeds, key: FBKeys.kFeeds)
+            }
         case .breastFeed:
-            let indices = breastFeedData.indices.compactMap { Int($0) }
-            let indexSet = IndexSet(indices)
-            removeSleep(at: indexSet, includingRemote: includingRemote)
+            if includingRemote {
+                firebaseManager.removeItems(items: breastFeedData, key: FBKeys.kBreast)
+            }
+            breastFeedData.removeAll()
         }
     }
 
@@ -501,7 +506,6 @@ final class BabyDataManager: ObservableObject {
 
             })
             .store(in: &bag)
-
 
         unitsManager
             .$solidUnits

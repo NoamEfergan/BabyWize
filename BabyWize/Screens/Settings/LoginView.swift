@@ -122,7 +122,7 @@ struct LoginView: View {
         if !hasPasswordError, !hasEmailError {
             Task {
                 if let _ = await vm.login(email: email, password: password) {
-                    self.presentationMode.wrappedValue.dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
         }

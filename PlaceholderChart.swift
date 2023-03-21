@@ -140,8 +140,8 @@ extension PlaceholderChart {
                  amount: 150,
                  note: nil,
                  solidOrLiquid: Feed.SolidOrLiquid.liquid)
-            ]
-            .sorted(by: { $0.date < $1.date })
+        ]
+        .sorted(by: { $0.date < $1.date })
         }
 
 
