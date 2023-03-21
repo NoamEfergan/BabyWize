@@ -17,6 +17,7 @@ final class AuthViewModel: ObservableObject {
     @Published var errorMsg = ""
 
     @Published var didLogIn = false
+    @Published var didLogOut: [String] = []
     @Published var didRegister: String?
     @Published var didDeleteAccount: String?
     let monitor = NWPathMonitor()
@@ -101,6 +102,7 @@ final class AuthViewModel: ObservableObject {
         }
         do {
             try Auth.auth().signOut()
+            didLogOut = defaultsManager.sharingAccounts.compactMap { $0.id }
             hasError = false
             defaultsManager.logOut()
             NotificationCenter.default.post(name: .didLogOut, object: nil)

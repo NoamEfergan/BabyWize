@@ -12,8 +12,7 @@ import Swinject
 
 // MARK: - AppDelegate
 class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_: UIApplication,
-                     didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil)
+    func application(_: UIApplication,didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil)
         -> Bool {
         true
     }
@@ -131,9 +130,13 @@ struct BabyWizeApp: App {
             }
             let attributes = SleepActivityAttributes(name: "Baby Sleep Timer")
             let state = SleepActivityAttributes.ContentState()
-            _sleepActivity = try? Activity<SleepActivityAttributes>
-                .request(attributes: attributes, contentState: state, pushType: nil)
-            print("Started live sleep activity")
+            do {
+                _sleepActivity = try Activity<SleepActivityAttributes>
+                    .request(attributes: attributes, contentState: state, pushType: nil)
+                print("Started live sleep activity")
+            } catch {
+                print("Failed to start live activity with error: \(error.localizedDescription)")
+            }
         }
     }
 
@@ -145,9 +148,13 @@ struct BabyWizeApp: App {
             }
             let attributes = FeedActivityAttributes(name: "Baby Feed Timer")
             let state = FeedActivityAttributes.ContentState()
-            _feedActivity = try? Activity<FeedActivityAttributes>
-                .request(attributes: attributes, contentState: state, pushType: nil)
-            print("Started live feed activity")
+            do {
+                _feedActivity = try Activity<FeedActivityAttributes>
+                    .request(attributes: attributes, contentState: state, pushType: nil)
+                print("Started live feed activity")
+            } catch {
+                print("Failed to start live activity with error: \(error.localizedDescription)")
+            }
         }
     }
 
@@ -190,6 +197,14 @@ struct ShortcutProvider: AppShortcutsProvider {
             AppShortcut(intent: LogNappy(),
                         phrases: [
                             "Log a nappy change on \(.applicationName)"
+                        ]),
+            AppShortcut(intent: StartSleep(),
+                        phrases: [
+                            "Start a sleep timer on \(.applicationName)"
+                        ]),
+            AppShortcut(intent: StartFeed(),
+                        phrases: [
+                            "Start a feed timer on \(.applicationName)"
                         ])
         ]
 }

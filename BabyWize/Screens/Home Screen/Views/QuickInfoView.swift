@@ -58,7 +58,7 @@ struct QuickInfoView: View {
             .foregroundColor(backgroundColor ?? color.opacity(0.2))
             .onTapGesture {
                 if shouldShowInfo {
-                    navigationVM.path.append(Screens.feed)
+                    navigationVM.path.append(leadingTo)
                 }
             })
     }
