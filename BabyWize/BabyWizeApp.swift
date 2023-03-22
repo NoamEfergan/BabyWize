@@ -110,6 +110,7 @@ struct BabyWizeApp: App {
                     let sleepIntent = LogSleep()
                     try await IntentDonationManager.shared.donate(intent: feedIntent)
                     try await IntentDonationManager.shared.donate(intent: sleepIntent)
+                    Resolver.shared.resolve(WatchAppManager.self).startSession()
                 } catch {
                     print("Failed with error: \(error.localizedDescription)")
                 }
@@ -180,32 +181,3 @@ struct BabyWizeApp: App {
         }
     }
 }
-
-// MARK: - ShortcutProvider
-struct ShortcutProvider: AppShortcutsProvider {
-    static var shortcutTileColor: ShortcutTileColor = .pink
-    static var appShortcuts: [AppShortcut] =
-        [
-            AppShortcut(intent: LogFeed(),
-                        phrases: [
-                            "Log a feed on \(.applicationName)"
-                        ]),
-            AppShortcut(intent: LogSleep(),
-                        phrases: [
-                            "Log a sleep on \(.applicationName)"
-                        ]),
-            AppShortcut(intent: LogNappy(),
-                        phrases: [
-                            "Log a nappy change on \(.applicationName)"
-                        ]),
-            AppShortcut(intent: StartSleep(),
-                        phrases: [
-                            "Start a sleep timer on \(.applicationName)"
-                        ]),
-            AppShortcut(intent: StartFeed(),
-                        phrases: [
-                            "Start a feed timer on \(.applicationName)"
-                        ])
-        ]
-}
-

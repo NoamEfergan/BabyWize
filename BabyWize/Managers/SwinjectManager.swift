@@ -36,6 +36,9 @@ enum ContainerBuilder {
             FirebaseManager(authVM: r.resolve(AuthViewModel.self)!,
                             defaultsManager: r.resolve(UserDefaultManager.self)!)
         }.inObjectScope(.container)
+        container.register(WatchAppManager.self) { _ in
+            WatchAppManager()
+        }.inObjectScope(.container)
     }
 
     static func buildMockContainer() -> Container {
