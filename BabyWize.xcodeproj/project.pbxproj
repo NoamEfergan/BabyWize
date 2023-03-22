@@ -120,6 +120,8 @@
 		05580E7728CB2B7300E4ECDE /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 05580E7628CB2B7300E4ECDE /* Algorithms */; };
 		055BC03529CB1DCD00CD2759 /* ShortcutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055BC03429CB1DCD00CD2759 /* ShortcutProvider.swift */; };
 		055BC03629CB201900CD2759 /* BabyWizeWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 05CB7C5429CA0311000E8602 /* BabyWizeWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		055BC03C29CB348000CD2759 /* WatchAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055BC03B29CB348000CD2759 /* WatchAppManager.swift */; };
+		055BC03D29CB378400CD2759 /* FBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE1312925350200870066 /* FBKeys.swift */; };
 		055CE1302922DDCA00870066 /* ChartConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE12F2922DDCA00870066 /* ChartConfiguration.swift */; };
 		055CE1322925350200870066 /* FBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE1312925350200870066 /* FBKeys.swift */; };
 		0560837F2884147800728F1F /* BabyWizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560837E2884147800728F1F /* BabyWizeApp.swift */; };
@@ -196,7 +198,7 @@
 		05B8AF69288633A100BBC41B /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+extension.swift */; };
 		05B8AF6E2886989C00BBC41B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6D2886989C00BBC41B /* SettingsView.swift */; };
 		05CB7C5729CA0311000E8602 /* BabyWizeWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CB7C5629CA0311000E8602 /* BabyWizeWatchApp.swift */; };
-		05CB7C5929CA0311000E8602 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CB7C5829CA0311000E8602 /* ContentView.swift */; };
+		05CB7C5929CA0311000E8602 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CB7C5829CA0311000E8602 /* MainView.swift */; };
 		05CB7C5B29CA0312000E8602 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05CB7C5A29CA0312000E8602 /* Assets.xcassets */; };
 		05CB7C5E29CA0312000E8602 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05CB7C5D29CA0312000E8602 /* Preview Assets.xcassets */; };
 		05CB7C6429CA0500000E8602 /* WatchAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CB7C6329CA0500000E8602 /* WatchAppManager.swift */; };
@@ -354,6 +356,7 @@
 		0543E5A5294F132E0046FE3F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		0543E5AE294F42BC0046FE3F /* AddEntryViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryViewVM.swift; sourceTree = "<group>"; };
 		055BC03429CB1DCD00CD2759 /* ShortcutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutProvider.swift; sourceTree = "<group>"; };
+		055BC03B29CB348000CD2759 /* WatchAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppManager.swift; sourceTree = "<group>"; };
 		055CE12F2922DDCA00870066 /* ChartConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartConfiguration.swift; sourceTree = "<group>"; };
 		055CE1312925350200870066 /* FBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBKeys.swift; sourceTree = "<group>"; };
 		0560837B2884147800728F1F /* BabyWize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyWize.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -414,7 +417,7 @@
 		05B8AF6D2886989C00BBC41B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		05CB7C5429CA0311000E8602 /* BabyWizeWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BabyWizeWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CB7C5629CA0311000E8602 /* BabyWizeWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyWizeWatchApp.swift; sourceTree = "<group>"; };
-		05CB7C5829CA0311000E8602 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		05CB7C5829CA0311000E8602 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		05CB7C5A29CA0312000E8602 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05CB7C5D29CA0312000E8602 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		05CB7C6329CA0500000E8602 /* WatchAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppManager.swift; sourceTree = "<group>"; };
@@ -584,6 +587,14 @@
 			path = Timer;
 			sourceTree = "<group>";
 		};
+		055BC03A29CB345B00CD2759 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				055BC03B29CB348000CD2759 /* WatchAppManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		056083722884147800728F1F = {
 			isa = PBXGroup;
 			children = (
@@ -747,8 +758,9 @@
 		05CB7C5529CA0311000E8602 /* BabyWizeWatch Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				055BC03A29CB345B00CD2759 /* Managers */,
 				05CB7C5629CA0311000E8602 /* BabyWizeWatchApp.swift */,
-				05CB7C5829CA0311000E8602 /* ContentView.swift */,
+				05CB7C5829CA0311000E8602 /* MainView.swift */,
 				05CB7C5A29CA0312000E8602 /* Assets.xcassets */,
 				05CB7C5C29CA0312000E8602 /* Preview Content */,
 			);
@@ -1421,8 +1433,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05CB7C5929CA0311000E8602 /* ContentView.swift in Sources */,
+				05CB7C5929CA0311000E8602 /* MainView.swift in Sources */,
+				055BC03C29CB348000CD2759 /* WatchAppManager.swift in Sources */,
 				05CB7C5729CA0311000E8602 /* BabyWizeWatchApp.swift in Sources */,
+				055BC03D29CB378400CD2759 /* FBKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

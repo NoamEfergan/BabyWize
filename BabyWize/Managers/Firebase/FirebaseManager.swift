@@ -49,7 +49,7 @@ class FirebaseManager {
 
     func createUser(with givenId: String) {
         let document: FirebaseDocument = db.collection(FBKeys.kUsers).document(givenId)
-        document.setData([FBKeys.kShared: []]) { error in
+        document.setData([FBKeys.kShared: [String]()]) { error in
             if let error {
                 print("Failed with error: \(error.localizedDescription)")
             }
@@ -71,11 +71,11 @@ class FirebaseManager {
                 document = try transaction.getDocument(ref)
             } catch {
                 print("Failed with error: \(error.localizedDescription)")
-                return [:]
+                return [String:String]()
             }
             guard var shared: [String: String] = document.data()?[FBKeys.kShared] as? [String: String] else {
                 print("Failed to map remote document to array of dictionaries")
-                return [:]
+                return [String:String]()
             }
 
             shared.removeValue(forKey: Id)

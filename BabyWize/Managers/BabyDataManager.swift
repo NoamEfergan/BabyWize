@@ -13,7 +13,7 @@ import Algorithms
 final class BabyDataManager: ObservableObject {
     // MARK: - Private variables
 
-
+    @Inject private var watchManager: WatchAppManager
     @Inject private var firebaseManager: FirebaseManager
     @InjectedObject private var unitsManager: UserDefaultManager
 
@@ -22,18 +22,21 @@ final class BabyDataManager: ObservableObject {
     @Published var sleepData: [Sleep] = [] {
         didSet {
             lastSleepString = getLast(for: .sleep)
+            sendLatestValuesData()
         }
     }
 
     @Published var feedData: [Feed] = [] {
         didSet {
             lastFeedString = getLastFeed()
+            sendLatestValuesData()
         }
     }
 
     @Published var breastFeedData: [BreastFeed] = [] {
         didSet {
             lastFeedString = getLastFeed()
+            sendLatestValuesData()
         }
     }
 
@@ -534,5 +537,13 @@ final class BabyDataManager: ObservableObject {
                 }
             })
             .store(in: &bag)
+    }
+
+    private func sendLatestValuesData() {
+        watchManager.sendDictionary([
+            .lastFeed: lastFeedString,
+            .lastSleep: lastSleepString,
+            .lastChange: lastChangeString
+        ])
     }
 }

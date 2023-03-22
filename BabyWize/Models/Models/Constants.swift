@@ -17,6 +17,9 @@ enum Constants: String {
     case savedSleep = "SavedSleep"
     case savedChange = "SavedNappyChange"
     case chartConfiguration
+    case lastFeed
+    case lastSleep
+    case lastChange
 }
 
 // MARK: - UserConstants

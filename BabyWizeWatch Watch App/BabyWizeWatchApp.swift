@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct BabyWizeWatch_Watch_AppApp: App {
+    let watchManager = WatchAppManager()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
+                .task {
+                    watchManager.startSession()
+                }
         }
     }
 }
