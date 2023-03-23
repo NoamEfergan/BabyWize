@@ -175,6 +175,11 @@
 		0587BB5C29291C2C00F39B25 /* SharingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5B29291C2C00F39B25 /* SharingViewModel.swift */; };
 		058E1FFB297D9E51001A8E71 /* StartSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E1FFA297D9E51001A8E71 /* StartSleep.swift */; };
 		058EAF39293BBDEE0030D49D /* LogNappy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EAF38293BBDEE0030D49D /* LogNappy.swift */; };
+		05916AD329CB42BC0073DCF9 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
+		05916AD429CB42C60073DCF9 /* TimeInterval+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */; };
+		05916AD529CB433F0073DCF9 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
+		05916AD629CB44C30073DCF9 /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+extension.swift */; };
+		05916ADB29CB45540073DCF9 /* FeedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916ADA29CB45540073DCF9 /* FeedChart.swift */; };
 		059C68E52886AF0500C90710 /* Info View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E42886AF0500C90710 /* Info View.swift */; };
 		059C68E82886B66B00C90710 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EB2886BD6E00C90710 /* InputDetailView.swift */; };
@@ -401,6 +406,7 @@
 		0587BB5B29291C2C00F39B25 /* SharingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingViewModel.swift; sourceTree = "<group>"; };
 		058E1FFA297D9E51001A8E71 /* StartSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSleep.swift; sourceTree = "<group>"; };
 		058EAF38293BBDEE0030D49D /* LogNappy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogNappy.swift; sourceTree = "<group>"; };
+		05916ADA29CB45540073DCF9 /* FeedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedChart.swift; sourceTree = "<group>"; };
 		059C68E42886AF0500C90710 /* Info View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info View.swift"; sourceTree = "<group>"; };
 		059C68E72886B66B00C90710 /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
 		059C68EB2886BD6E00C90710 /* InputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDetailView.swift; sourceTree = "<group>"; };
@@ -714,6 +720,14 @@
 			path = SleepActivity;
 			sourceTree = "<group>";
 		};
+		05916AD729CB45320073DCF9 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				05916ADA29CB45540073DCF9 /* FeedChart.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		059C68E32886AEF800C90710 /* InfoScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,6 +772,7 @@
 		05CB7C5529CA0311000E8602 /* BabyWizeWatch Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				05916AD729CB45320073DCF9 /* Charts */,
 				055BC03A29CB345B00CD2759 /* Managers */,
 				05CB7C5629CA0311000E8602 /* BabyWizeWatchApp.swift */,
 				05CB7C5829CA0311000E8602 /* MainView.swift */,
@@ -1433,10 +1448,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05916AD329CB42BC0073DCF9 /* DataItem.swift in Sources */,
+				05916ADB29CB45540073DCF9 /* FeedChart.swift in Sources */,
 				05CB7C5929CA0311000E8602 /* MainView.swift in Sources */,
 				055BC03C29CB348000CD2759 /* WatchAppManager.swift in Sources */,
+				05916AD429CB42C60073DCF9 /* TimeInterval+extension.swift in Sources */,
 				05CB7C5729CA0311000E8602 /* BabyWizeWatchApp.swift in Sources */,
 				055BC03D29CB378400CD2759 /* FBKeys.swift in Sources */,
+				05916AD529CB433F0073DCF9 /* Date+extension.swift in Sources */,
+				05916AD629CB44C30073DCF9 /* Array+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1495,7 +1515,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1525,7 +1545,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.AddEntryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1555,7 +1575,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.FeedActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1584,7 +1604,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.FeedActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1737,7 +1757,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1779,7 +1799,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1886,7 +1906,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.SleepActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1914,7 +1934,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.SleepActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1942,7 +1962,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1950,7 +1970,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1972,7 +1992,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.BabyWize.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1980,7 +2000,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};

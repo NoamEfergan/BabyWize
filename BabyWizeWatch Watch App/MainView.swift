@@ -11,9 +11,12 @@ import Charts
 // MARK: - MainView
 struct MainView: View {
     var body: some View {
-        VStack {
-            Text("Hello, world!")
+        TabView {
+            FeedChart()
+                .accessibilityLabel("Feed Chart")
         }
+        .tabViewStyle(.page)
+        .indexViewStyle(.page)
         .padding()
     }
 }
