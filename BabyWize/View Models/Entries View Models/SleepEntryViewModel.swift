@@ -105,8 +105,3 @@ extension SleepEntryViewModel {
         case Live, Old
     }
 }
-
-extension NSNotification {
-    static let sleepTimerStart = NSNotification.Name("SleepTimerStart")
-    static let sleepTimerEnd = NSNotification.Name("SleepTimerEnd")
-}

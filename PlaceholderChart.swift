@@ -50,7 +50,7 @@ struct PlaceholderChart: View {
                 .foregroundStyle(Color.blue.gradient)
         }
         .frame(height: 200)
-        .frame(width: UIScreen.main.bounds.width)
+        .frame(maxWidth: .infinity)
         .onAppear {
             if !didAnimateFeedAlready {
                 feedData.removeAll()
@@ -80,7 +80,7 @@ struct PlaceholderChart: View {
         }
         .chartYAxis(.hidden)
         .frame(height: 200)
-        .frame(width: UIScreen.main.bounds.width)
+        .frame(maxWidth: .infinity)
         .onAppear {
             if !didAnimateSleepAlready {
                 sleepData.removeAll()

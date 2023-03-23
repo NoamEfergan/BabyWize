@@ -12,7 +12,7 @@ import Charts
 struct MainView: View {
     var body: some View {
         TabView {
-            FeedChart()
+            FeedChart(feedData: MockEntries.mockFeed, breastFeedData: [])
                 .accessibilityLabel("Feed Chart")
         }
         .tabViewStyle(.page)

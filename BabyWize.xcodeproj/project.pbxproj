@@ -179,7 +179,27 @@
 		05916AD429CB42C60073DCF9 /* TimeInterval+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */; };
 		05916AD529CB433F0073DCF9 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
 		05916AD629CB44C30073DCF9 /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+extension.swift */; };
-		05916ADB29CB45540073DCF9 /* FeedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916ADA29CB45540073DCF9 /* FeedChart.swift */; };
+		05916ADE29CC55310073DCF9 /* LiquidFeedChartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916ADD29CC55310073DCF9 /* LiquidFeedChartContainer.swift */; };
+		05916AE029CC55520073DCF9 /* FeedMarkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916ADF29CC55520073DCF9 /* FeedMarkHelper.swift */; };
+		05916AE129CC56140073DCF9 /* LiquidFeedChartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916ADD29CC55310073DCF9 /* LiquidFeedChartContainer.swift */; };
+		05916AE229CC56EA0073DCF9 /* FeedMarkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916ADF29CC55520073DCF9 /* FeedMarkHelper.swift */; };
+		05916AE429CC570B0073DCF9 /* FeedChartModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916AE329CC570B0073DCF9 /* FeedChartModifier.swift */; };
+		05916AE529CC570B0073DCF9 /* FeedChartModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916AE329CC570B0073DCF9 /* FeedChartModifier.swift */; };
+		05916AE929CC5B590073DCF9 /* Double+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CD288603820066BFEC /* Double+extension.swift */; };
+		05916AEA29CC5B8F0073DCF9 /* Swinject+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C52885FC0F0066BFEC /* Swinject+extension.swift */; };
+		05916AEC29CC5BA60073DCF9 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 05916AEB29CC5BA60073DCF9 /* Swinject */; };
+		05916AED29CC5BB50073DCF9 /* LiquidFeedUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D8288619DB0066BFEC /* LiquidFeedUnits.swift */; };
+		05916AEE29CC5BBB0073DCF9 /* DependencyInjectionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68C92885FC720066BFEC /* DependencyInjectionProtocols.swift */; };
+		05916AEF29CC5BCD0073DCF9 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DC332291C2D5C009C0A61 /* UserDefaultManager.swift */; };
+		05916AF029CC5BFC0073DCF9 /* NSNotification+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB572928EA8C00F39B25 /* NSNotification+extension.swift */; };
+		05916AF129CC5C3F0073DCF9 /* SharingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058038A2292D98C8006477A2 /* SharingAccount.swift */; };
+		05916AF229CC5C510073DCF9 /* ChartConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE12F2922DDCA00870066 /* ChartConfiguration.swift */; };
+		05916AF329CC5C590073DCF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF6628862C7C00BBC41B /* Constants.swift */; };
+		05916AF429CC5C710073DCF9 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A42A56290598860040A543 /* Color+extension.swift */; };
+		05916AF529CC6A2C0073DCF9 /* FeedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440BE2911C7690022D18E /* FeedChart.swift */; };
+		05916AF629CC6A520073DCF9 /* PlaceholderChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ABD7042910217C00E1C755 /* PlaceholderChart.swift */; };
+		05916AF729CC6AB60073DCF9 /* EntryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68D42886144E0066BFEC /* EntryType.swift */; };
+		05916AF929CC6EBD0073DCF9 /* SwinjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916AF829CC6EBD0073DCF9 /* SwinjectManager.swift */; };
 		059C68E52886AF0500C90710 /* Info View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E42886AF0500C90710 /* Info View.swift */; };
 		059C68E82886B66B00C90710 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68E72886B66B00C90710 /* DataItem.swift */; };
 		059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C68EB2886BD6E00C90710 /* InputDetailView.swift */; };
@@ -291,7 +311,7 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		050AEEA1288C641A0052A2D1 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
@@ -300,18 +320,18 @@
 				058414EE294F0F72009A4791 /* SleepActivityExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 		055BC03929CB201900CD2759 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
 				055BC03629CB201900CD2759 /* BabyWizeWatch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 		058038B4293292BC006477A2 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -406,7 +426,10 @@
 		0587BB5B29291C2C00F39B25 /* SharingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingViewModel.swift; sourceTree = "<group>"; };
 		058E1FFA297D9E51001A8E71 /* StartSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSleep.swift; sourceTree = "<group>"; };
 		058EAF38293BBDEE0030D49D /* LogNappy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogNappy.swift; sourceTree = "<group>"; };
-		05916ADA29CB45540073DCF9 /* FeedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedChart.swift; sourceTree = "<group>"; };
+		05916ADD29CC55310073DCF9 /* LiquidFeedChartContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidFeedChartContainer.swift; sourceTree = "<group>"; };
+		05916ADF29CC55520073DCF9 /* FeedMarkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMarkHelper.swift; sourceTree = "<group>"; };
+		05916AE329CC570B0073DCF9 /* FeedChartModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedChartModifier.swift; sourceTree = "<group>"; };
+		05916AF829CC6EBD0073DCF9 /* SwinjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectManager.swift; sourceTree = "<group>"; };
 		059C68E42886AF0500C90710 /* Info View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info View.swift"; sourceTree = "<group>"; };
 		059C68E72886B66B00C90710 /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
 		059C68EB2886BD6E00C90710 /* InputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDetailView.swift; sourceTree = "<group>"; };
@@ -518,6 +541,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05916AEC29CC5BA60073DCF9 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +621,7 @@
 			isa = PBXGroup;
 			children = (
 				055BC03B29CB348000CD2759 /* WatchAppManager.swift */,
+				05916AF829CC6EBD0073DCF9 /* SwinjectManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -720,12 +745,15 @@
 			path = SleepActivity;
 			sourceTree = "<group>";
 		};
-		05916AD729CB45320073DCF9 /* Charts */ = {
+		05916ADC29CC54FD0073DCF9 /* FeedChart */ = {
 			isa = PBXGroup;
 			children = (
-				05916ADA29CB45540073DCF9 /* FeedChart.swift */,
+				057440BE2911C7690022D18E /* FeedChart.swift */,
+				05916ADD29CC55310073DCF9 /* LiquidFeedChartContainer.swift */,
+				05916ADF29CC55520073DCF9 /* FeedMarkHelper.swift */,
+				05916AE329CC570B0073DCF9 /* FeedChartModifier.swift */,
 			);
-			path = Charts;
+			path = FeedChart;
 			sourceTree = "<group>";
 		};
 		059C68E32886AEF800C90710 /* InfoScreen */ = {
@@ -772,7 +800,6 @@
 		05CB7C5529CA0311000E8602 /* BabyWizeWatch Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				05916AD729CB45320073DCF9 /* Charts */,
 				055BC03A29CB345B00CD2759 /* Managers */,
 				05CB7C5629CA0311000E8602 /* BabyWizeWatchApp.swift */,
 				05CB7C5829CA0311000E8602 /* MainView.swift */,
@@ -817,7 +844,7 @@
 				05FE380B2902895F002D3D34 /* QuickInfoView.swift */,
 				05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */,
 				05FE380D29028B13002D3D34 /* QuickInfoSection.swift */,
-				057440BE2911C7690022D18E /* FeedChart.swift */,
+				05916ADC29CC54FD0073DCF9 /* FeedChart */,
 				057440C02911C80C0022D18E /* SleepChart.swift */,
 			);
 			path = Views;
@@ -1080,6 +1107,9 @@
 			dependencies = (
 			);
 			name = "BabyWizeWatch Watch App";
+			packageProductDependencies = (
+				05916AEB29CC5BA60073DCF9 /* Swinject */,
+			);
 			productName = "BabyWizeWatch Watch App";
 			productReference = 05CB7C5429CA0311000E8602 /* BabyWizeWatch Watch App.app */;
 			productType = "com.apple.product-type.application";
@@ -1246,6 +1276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05DD68DC28861C930066BFEC /* FeedEntryView.swift in Sources */,
+				05916ADE29CC55310073DCF9 /* LiquidFeedChartContainer.swift in Sources */,
 				05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */,
 				05FE380C2902895F002D3D34 /* QuickInfoView.swift in Sources */,
 				05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */,
@@ -1257,6 +1288,7 @@
 				05A42A57290598860040A543 /* Color+extension.swift in Sources */,
 				058038A3292D98C8006477A2 /* SharingAccount.swift in Sources */,
 				050FF46F293B8ABD00F445DE /* LogSleep.swift in Sources */,
+				05916AE429CC570B0073DCF9 /* FeedChartModifier.swift in Sources */,
 				059C68E82886B66B00C90710 /* DataItem.swift in Sources */,
 				05DD68D52886144E0066BFEC /* EntryType.swift in Sources */,
 				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,
@@ -1328,6 +1360,7 @@
 				056D03402986D118003A1ACC /* StartFeed.swift in Sources */,
 				056DC4972916F53D00B30720 /* NappyEntryViewModel.swift in Sources */,
 				0514C3AA29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */,
+				05916AE029CC55520073DCF9 /* FeedMarkHelper.swift in Sources */,
 				0514C3A32962F6ED005DD0C4 /* BreastFeedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1449,13 +1482,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				05916AD329CB42BC0073DCF9 /* DataItem.swift in Sources */,
-				05916ADB29CB45540073DCF9 /* FeedChart.swift in Sources */,
+				05916AEA29CC5B8F0073DCF9 /* Swinject+extension.swift in Sources */,
+				05916AF029CC5BFC0073DCF9 /* NSNotification+extension.swift in Sources */,
 				05CB7C5929CA0311000E8602 /* MainView.swift in Sources */,
+				05916AF429CC5C710073DCF9 /* Color+extension.swift in Sources */,
+				05916AEE29CC5BBB0073DCF9 /* DependencyInjectionProtocols.swift in Sources */,
 				055BC03C29CB348000CD2759 /* WatchAppManager.swift in Sources */,
 				05916AD429CB42C60073DCF9 /* TimeInterval+extension.swift in Sources */,
+				05916AE229CC56EA0073DCF9 /* FeedMarkHelper.swift in Sources */,
 				05CB7C5729CA0311000E8602 /* BabyWizeWatchApp.swift in Sources */,
+				05916AE529CC570B0073DCF9 /* FeedChartModifier.swift in Sources */,
+				05916AF329CC5C590073DCF9 /* Constants.swift in Sources */,
+				05916AED29CC5BB50073DCF9 /* LiquidFeedUnits.swift in Sources */,
+				05916AF729CC6AB60073DCF9 /* EntryType.swift in Sources */,
+				05916AF629CC6A520073DCF9 /* PlaceholderChart.swift in Sources */,
+				05916AF929CC6EBD0073DCF9 /* SwinjectManager.swift in Sources */,
+				05916AE129CC56140073DCF9 /* LiquidFeedChartContainer.swift in Sources */,
+				05916AF529CC6A2C0073DCF9 /* FeedChart.swift in Sources */,
 				055BC03D29CB378400CD2759 /* FBKeys.swift in Sources */,
+				05916AE929CC5B590073DCF9 /* Double+extension.swift in Sources */,
 				05916AD529CB433F0073DCF9 /* Date+extension.swift in Sources */,
+				05916AEF29CC5BCD0073DCF9 /* UserDefaultManager.swift in Sources */,
+				05916AF229CC5C510073DCF9 /* ChartConfiguration.swift in Sources */,
+				05916AF129CC5C3F0073DCF9 /* SharingAccount.swift in Sources */,
 				05916AD629CB44C30073DCF9 /* Array+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2143,6 +2192,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3BE30FEC28D5D59000E75D22 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreCombine-Community";
+		};
+		05916AEB29CC5BA60073DCF9 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05DD68BD2885B7E40066BFEC /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 		05A42A4F290549D90040A543 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;

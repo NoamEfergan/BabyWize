@@ -108,8 +108,3 @@ extension BreastFeedEntryViewModel {
         case Live, Old
     }
 }
-
-extension NSNotification {
-    static let feedTimerStart = NSNotification.Name("FeedTimerStart")
-    static let feedTimerEnd = NSNotification.Name("FeedTimerEnd")
-}

@@ -20,6 +20,7 @@ struct FeedChart: View {
     private let timeTitle = "Time"
     private let amountTitle = "Amount"
     private let durationTitle = "Duration"
+    private let markHelper = FeedMarkHelper()
     @Environment(\.dynamicTypeSize) var typeSize
 
     var body: some View {
@@ -36,25 +37,23 @@ struct FeedChart: View {
                         isShowingJoint = defaultManager.chartConfiguration == .joint
                     }
             } else {
-                Group {
-                    if showTitle {
-                        if isShowingJoint {
-                            jointChart
-                        } else {
-                            separateCharts
-                        }
+                if showTitle {
+                    if isShowingJoint {
+                        jointChart
                     } else {
                         separateCharts
                     }
+                } else {
+                    separateCharts
                 }
             }
         }
         .onAppear {
             isShowingJoint = defaultManager.chartConfiguration == .joint
         }
-        .onChange(of: defaultManager.chartConfiguration, perform: { newValue in
+        .onChange(of: defaultManager.chartConfiguration) { newValue in
             isShowingJoint = newValue == .joint
-        })
+        }
         .animation(.easeInOut, value: isShowingJoint)
     }
 
@@ -68,14 +67,18 @@ struct FeedChart: View {
                     .font(.system(.title, design: .rounded))
                     .padding(.leading)
                 Spacer()
+                #if os(iOS)
                 menuButton
+                #endif
             }
             VStack {
                 Text(feedInfoTitle)
                     .font(.system(.title, design: .rounded))
                     .padding(.leading)
                 Spacer()
+                #if os(iOS)
                 menuButton
+                #endif
             }
         }
     }
@@ -84,6 +87,7 @@ struct FeedChart: View {
     private var menuButton: some View {
         VStack(alignment: .leading) {
             Text("Displaying:")
+            #if os(iOS)
             Menu(defaultManager.chartConfiguration.rawValue.capitalized) {
                 ForEach(ChartConfiguration.allCases, id: \.self) { config in
                     Button(config.rawValue.capitalized) {
@@ -95,6 +99,7 @@ struct FeedChart: View {
                 }
             }
             .foregroundStyle(AppColours.tintPurple.gradient)
+            #endif
         }
         .foregroundColor(.secondary)
         .font(.system(.subheadline, design: .rounded))
@@ -109,21 +114,7 @@ struct FeedChart: View {
     @ViewBuilder
     private var separateCharts: some View {
         if !feedData.filter(\.isLiquids).isEmpty {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Liquids")
-                    .font(.system(.subheadline, design: .rounded))
-                    .foregroundColor(.secondary)
-                    .padding(.leading)
-                ScrollView(.horizontal) {
-                    Chart(feedData.filter(\.isLiquids).sorted(by: { $0.date < $1.date })) { feed in
-                        getLiquidsChart(for: feed)
-                    }
-                    .chartModifier(plotWidth: plotWidth)
-                }
-                .scrollIndicators(.visible)
-            }
-            .transition(.push(from: .bottom))
-            .frame(minHeight: 200)
+            LiquidFeedChartContainer(data: feedData.filter(\.isLiquids), plotWidth: plotWidth)
         }
         if !feedData.filter(\.isSolids).isEmpty {
             VStack(alignment: .leading, spacing: 0) {
@@ -135,7 +126,7 @@ struct FeedChart: View {
                     Chart(feedData.filter(\.isSolids).sorted(by: { $0.date < $1.date })) { feed in
                         getSolidsChart(for: feed)
                     }
-                    .chartModifier(plotWidth: plotWidth)
+                    .feedChartModifier(plotWidth: plotWidth)
                 }
                 .scrollIndicators(.visible)
             }
@@ -160,10 +151,10 @@ struct FeedChart: View {
                         if feed.solidOrLiquid == .solid {
                             getSolidsChart(for: feed)
                         } else {
-                            getLiquidsChart(for: feed)
+                            markHelper.getLiquidsChart(for: feed)
                         }
                     }
-                    .chartModifier(plotWidth: plotWidth)
+                    .feedChartModifier(plotWidth: plotWidth)
                 }
             }
 
@@ -185,7 +176,7 @@ struct FeedChart: View {
                     Chart(breastFeedData.sorted(by: { $0.date < $1.date })) { feed in
                         getBreastFeedChart(for: feed)
                     }
-                    .chartModifier(plotWidth: plotWidth)
+                    .feedChartModifier(plotWidth: plotWidth)
                     .chartYAxis(.hidden)
                 }
                 .scrollIndicators(.visible)
@@ -193,34 +184,6 @@ struct FeedChart: View {
             .transition(.push(from: .top))
             .frame(minHeight: 200)
         }
-    }
-
-    // MARK: - Liquid chart
-
-    @ChartContentBuilder
-    private func getLiquidsChart(for feed: Feed) -> some ChartContent {
-        let unit = feed.amount.roundDecimalPoint()
-        getBarMark(for: feed, amount: unit)
-            .foregroundStyle(Color.clear)
-            .annotation(position: .top, alignment: .center) {
-                Text(feed.note ?? "")
-                    .foregroundColor(.secondary)
-                    .font(.footnote)
-            }
-            .accessibilityHidden(true)
-
-        getPointMark(for: feed, amount: unit)
-            .foregroundStyle(Color.blue.gradient)
-            .annotation(position: .bottom, alignment: .center) {
-                Text(feed.amount.liquidFeedDisplayableAmount())
-                    .foregroundColor(.secondary)
-                    .font(.footnote)
-            }
-            .accessibilityLabel(feed.date.formatted())
-            .accessibilityValue("\(feed.amount.liquidFeedDisplayableAmount()), \(feed.solidOrLiquid.title)")
-        getLineMark(for: feed, amount: unit, series: "Liquids")
-            .foregroundStyle(Color.blue.gradient)
-            .accessibilityHidden(true)
     }
 
     // MARK: - Solid chart
@@ -252,6 +215,7 @@ struct FeedChart: View {
     }
 
     // MARK: - Breast feeding chart
+
     @ChartContentBuilder
     private func getBreastFeedChart(for feed: BreastFeed) -> some ChartContent {
         let duration = feed.getDisplayableString()
@@ -346,26 +310,5 @@ struct FeedChart_Previews: PreviewProvider {
                       breastFeedData: PlaceholderChart.MockData.mockBreast,
                       showTitle: false)
         }
-    }
-}
-
-// MARK: - ChartModifier
-private struct ChartModifier: ViewModifier {
-    let plotWidth: CGFloat
-    func body(content: Content) -> some View {
-        content
-            .chartPlotStyle(content: { plotArea in
-                plotArea.frame(width: plotWidth)
-            })
-            .frame(maxHeight: .greatestFiniteMagnitude)
-            .frame(minWidth: UIScreen.main.bounds.width)
-            .frame(maxWidth: .greatestFiniteMagnitude)
-            .padding()
-    }
-}
-
-private extension View {
-    func chartModifier(plotWidth: CGFloat) -> some View {
-        modifier(ChartModifier(plotWidth: plotWidth))
     }
 }
