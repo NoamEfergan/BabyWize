@@ -13,3 +13,4 @@ ReleaseApp.app.dSYM.zip
 ReleaseApp.ipa
 .build
 .swiftpm
+.DS_Store

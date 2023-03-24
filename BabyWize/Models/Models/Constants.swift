@@ -20,6 +20,8 @@ enum Constants: String {
     case lastFeed
     case lastSleep
     case lastChange
+    case timeTitle = "Time"
+    case amountTitle = "Amount"
 }
 
 // MARK: - UserConstants

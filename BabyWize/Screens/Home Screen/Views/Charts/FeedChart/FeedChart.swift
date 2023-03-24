@@ -20,7 +20,6 @@ struct FeedChart: View {
     private let timeTitle = "Time"
     private let amountTitle = "Amount"
     private let durationTitle = "Duration"
-    private let markHelper = FeedMarkHelper()
     @Environment(\.dynamicTypeSize) var typeSize
 
     var body: some View {
@@ -114,24 +113,16 @@ struct FeedChart: View {
     @ViewBuilder
     private var separateCharts: some View {
         if !feedData.filter(\.isLiquids).isEmpty {
-            LiquidFeedChartContainer(data: feedData.filter(\.isLiquids), plotWidth: plotWidth)
+            ChartContainer(title: "Liquids",
+                           data: feedData.filter(\.isLiquids),
+                           plotWidth: plotWidth,
+                           foregroundGradient: Color.blue.gradient)
         }
         if !feedData.filter(\.isSolids).isEmpty {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Solids")
-                    .font(.system(.subheadline, design: .rounded))
-                    .foregroundColor(.secondary)
-                    .padding(.leading)
-                ScrollView(.horizontal) {
-                    Chart(feedData.filter(\.isSolids).sorted(by: { $0.date < $1.date })) { feed in
-                        getSolidsChart(for: feed)
-                    }
-                    .feedChartModifier(plotWidth: plotWidth)
-                }
-                .scrollIndicators(.visible)
-            }
-            .transition(.push(from: .top))
-            .frame(minHeight: 200)
+            ChartContainer(title: "Solids",
+                           data: feedData.filter(\.isSolids),
+                           plotWidth: plotWidth,
+                           foregroundGradient: Color.orange.gradient)
         }
 
         breastFeedChart
@@ -148,11 +139,11 @@ struct FeedChart: View {
 
                 ScrollView(.horizontal) {
                     Chart(feedData.sorted(by: { $0.date < $1.date })) { feed in
-                        if feed.solidOrLiquid == .solid {
-                            getSolidsChart(for: feed)
-                        } else {
-                            markHelper.getLiquidsChart(for: feed)
-                        }
+                        BWChart(feed: feed,
+                                series: feed.solidOrLiquid.title,
+                                foregroundGradient: feed.solidOrLiquid == .solid
+                                    ? Color.orange.gradient
+                                    : Color.blue.gradient)
                     }
                     .feedChartModifier(plotWidth: plotWidth)
                 }
@@ -184,34 +175,6 @@ struct FeedChart: View {
             .transition(.push(from: .top))
             .frame(minHeight: 200)
         }
-    }
-
-    // MARK: - Solid chart
-
-    @ChartContentBuilder
-    private func getSolidsChart(for feed: Feed) -> some ChartContent {
-        let amount = feed.amount
-        getBarMark(for: feed, amount: amount)
-            .foregroundStyle(Color.clear)
-            .annotation(position: .top, alignment: .center) {
-                Text(feed.note ?? "")
-                    .foregroundColor(.secondary)
-                    .font(.footnote)
-            }
-            .accessibilityHidden(true)
-
-        getPointMark(for: feed, amount: amount)
-            .foregroundStyle(Color.orange.gradient)
-            .annotation(position: .bottom, alignment: .center) {
-                Text(amount.solidFeedDisplayableAmount())
-                    .foregroundColor(.secondary)
-                    .font(.footnote)
-            }
-            .accessibilityLabel(feed.date.formatted())
-            .accessibilityValue("\(feed.amount.solidFeedDisplayableAmount()), \(feed.solidOrLiquid.title)")
-        getLineMark(for: feed, amount: amount, series: "Solids")
-            .foregroundStyle(Color.orange.gradient)
-            .accessibilityHidden(true)
     }
 
     // MARK: - Breast feeding chart
@@ -302,12 +265,12 @@ struct FeedChart: View {
 struct FeedChart_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            FeedChart(feedData: PlaceholderChart.MockData.mockFeed.getUpTo(limit: 7),
-                      breastFeedData: PlaceholderChart.MockData.mockBreast)
+            FeedChart(feedData: MockEntries.mockFeed.getUpTo(limit: 7),
+                      breastFeedData: MockEntries.mockBreast)
         }
         ScrollView {
-            FeedChart(feedData: PlaceholderChart.MockData.mockFeed,
-                      breastFeedData: PlaceholderChart.MockData.mockBreast,
+            FeedChart(feedData: MockEntries.mockFeed,
+                      breastFeedData: MockEntries.mockBreast,
                       showTitle: false)
         }
     }

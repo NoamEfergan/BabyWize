@@ -84,6 +84,6 @@ struct SleepChart: View {
 // MARK: - SleepChart_Previews
 struct SleepChart_Previews: PreviewProvider {
     static var previews: some View {
-        SleepChart(sleepData: PlaceholderChart.MockData.mockSleep)
+        SleepChart(sleepData: MockEntries.mockSleep)
     }
 }

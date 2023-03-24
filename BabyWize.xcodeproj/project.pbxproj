@@ -151,6 +151,19 @@
 		056DC49D2916F8FF00B30720 /* FeedInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC49C2916F8FF00B30720 /* FeedInputDetailView.swift */; };
 		056DC4A12916F9EE00B30720 /* SleepInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4A02916F9EE00B30720 /* SleepInputDetailView.swift */; };
 		056DC4A32916FA7500B30720 /* NappyInputDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056DC4A22916FA7500B30720 /* NappyInputDetailView.swift */; };
+		056F46F129CDA00E005BAFF3 /* BWLineMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F46F029CDA00E005BAFF3 /* BWLineMark.swift */; };
+		056F46F229CDA00E005BAFF3 /* BWLineMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F46F029CDA00E005BAFF3 /* BWLineMark.swift */; };
+		056F46F429CDA0EB005BAFF3 /* BWPointMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F46F329CDA0EB005BAFF3 /* BWPointMark.swift */; };
+		056F46F529CDA0EB005BAFF3 /* BWPointMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F46F329CDA0EB005BAFF3 /* BWPointMark.swift */; };
+		056F46F729CDA13F005BAFF3 /* BWBarMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F46F629CDA13F005BAFF3 /* BWBarMark.swift */; };
+		056F46F829CDA13F005BAFF3 /* BWBarMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F46F629CDA13F005BAFF3 /* BWBarMark.swift */; };
+		056F470229CDA3CB005BAFF3 /* ChartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F470129CDA3CB005BAFF3 /* ChartContainer.swift */; };
+		056F470329CDA3CB005BAFF3 /* ChartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F470129CDA3CB005BAFF3 /* ChartContainer.swift */; };
+		056F470529CDA3DF005BAFF3 /* MockEntries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F470429CDA3DF005BAFF3 /* MockEntries.swift */; };
+		056F470629CDA3DF005BAFF3 /* MockEntries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F470429CDA3DF005BAFF3 /* MockEntries.swift */; };
+		056F470729CDA459005BAFF3 /* MockEntries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F470429CDA3DF005BAFF3 /* MockEntries.swift */; };
+		056F470929CDA4C8005BAFF3 /* BWChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F470829CDA4C8005BAFF3 /* BWChart.swift */; };
+		056F470A29CDA4C8005BAFF3 /* BWChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F470829CDA4C8005BAFF3 /* BWChart.swift */; };
 		05711B282906E5470023EA34 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05711B272906E5470023EA34 /* KeychainManager.swift */; };
 		057440BF2911C7690022D18E /* FeedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440BE2911C7690022D18E /* FeedChart.swift */; };
 		057440C12911C80C0022D18E /* SleepChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057440C02911C80C0022D18E /* SleepChart.swift */; };
@@ -179,10 +192,6 @@
 		05916AD429CB42C60073DCF9 /* TimeInterval+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587BB5029281F2C00F39B25 /* TimeInterval+extension.swift */; };
 		05916AD529CB433F0073DCF9 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056083A8288417F700728F1F /* Date+extension.swift */; };
 		05916AD629CB44C30073DCF9 /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8AF68288633A100BBC41B /* Array+extension.swift */; };
-		05916ADE29CC55310073DCF9 /* LiquidFeedChartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916ADD29CC55310073DCF9 /* LiquidFeedChartContainer.swift */; };
-		05916AE029CC55520073DCF9 /* FeedMarkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916ADF29CC55520073DCF9 /* FeedMarkHelper.swift */; };
-		05916AE129CC56140073DCF9 /* LiquidFeedChartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916ADD29CC55310073DCF9 /* LiquidFeedChartContainer.swift */; };
-		05916AE229CC56EA0073DCF9 /* FeedMarkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916ADF29CC55520073DCF9 /* FeedMarkHelper.swift */; };
 		05916AE429CC570B0073DCF9 /* FeedChartModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916AE329CC570B0073DCF9 /* FeedChartModifier.swift */; };
 		05916AE529CC570B0073DCF9 /* FeedChartModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916AE329CC570B0073DCF9 /* FeedChartModifier.swift */; };
 		05916AE929CC5B590073DCF9 /* Double+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD68CD288603820066BFEC /* Double+extension.swift */; };
@@ -408,6 +417,12 @@
 		056DC49C2916F8FF00B30720 /* FeedInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInputDetailView.swift; sourceTree = "<group>"; };
 		056DC4A02916F9EE00B30720 /* SleepInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepInputDetailView.swift; sourceTree = "<group>"; };
 		056DC4A22916FA7500B30720 /* NappyInputDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NappyInputDetailView.swift; sourceTree = "<group>"; };
+		056F46F029CDA00E005BAFF3 /* BWLineMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWLineMark.swift; sourceTree = "<group>"; };
+		056F46F329CDA0EB005BAFF3 /* BWPointMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWPointMark.swift; sourceTree = "<group>"; };
+		056F46F629CDA13F005BAFF3 /* BWBarMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWBarMark.swift; sourceTree = "<group>"; };
+		056F470129CDA3CB005BAFF3 /* ChartContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartContainer.swift; sourceTree = "<group>"; };
+		056F470429CDA3DF005BAFF3 /* MockEntries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEntries.swift; sourceTree = "<group>"; };
+		056F470829CDA4C8005BAFF3 /* BWChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWChart.swift; sourceTree = "<group>"; };
 		05711B272906E5470023EA34 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		057440BE2911C7690022D18E /* FeedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedChart.swift; sourceTree = "<group>"; };
 		057440C02911C80C0022D18E /* SleepChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepChart.swift; sourceTree = "<group>"; };
@@ -426,8 +441,6 @@
 		0587BB5B29291C2C00F39B25 /* SharingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingViewModel.swift; sourceTree = "<group>"; };
 		058E1FFA297D9E51001A8E71 /* StartSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSleep.swift; sourceTree = "<group>"; };
 		058EAF38293BBDEE0030D49D /* LogNappy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogNappy.swift; sourceTree = "<group>"; };
-		05916ADD29CC55310073DCF9 /* LiquidFeedChartContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidFeedChartContainer.swift; sourceTree = "<group>"; };
-		05916ADF29CC55520073DCF9 /* FeedMarkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMarkHelper.swift; sourceTree = "<group>"; };
 		05916AE329CC570B0073DCF9 /* FeedChartModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedChartModifier.swift; sourceTree = "<group>"; };
 		05916AF829CC6EBD0073DCF9 /* SwinjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectManager.swift; sourceTree = "<group>"; };
 		059C68E42886AF0500C90710 /* Info View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info View.swift"; sourceTree = "<group>"; };
@@ -725,6 +738,25 @@
 			path = "Entries View Models";
 			sourceTree = "<group>";
 		};
+		056F46EE29CD9FEF005BAFF3 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				05916ADC29CC54FD0073DCF9 /* FeedChart */,
+				056F46EF29CD9FF8005BAFF3 /* Chart Marks */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		056F46EF29CD9FF8005BAFF3 /* Chart Marks */ = {
+			isa = PBXGroup;
+			children = (
+				056F46F029CDA00E005BAFF3 /* BWLineMark.swift */,
+				056F46F329CDA0EB005BAFF3 /* BWPointMark.swift */,
+				056F46F629CDA13F005BAFF3 /* BWBarMark.swift */,
+			);
+			path = "Chart Marks";
+			sourceTree = "<group>";
+		};
 		058038A42932899A006477A2 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,9 +781,9 @@
 			isa = PBXGroup;
 			children = (
 				057440BE2911C7690022D18E /* FeedChart.swift */,
-				05916ADD29CC55310073DCF9 /* LiquidFeedChartContainer.swift */,
-				05916ADF29CC55520073DCF9 /* FeedMarkHelper.swift */,
 				05916AE329CC570B0073DCF9 /* FeedChartModifier.swift */,
+				056F470129CDA3CB005BAFF3 /* ChartContainer.swift */,
+				056F470829CDA4C8005BAFF3 /* BWChart.swift */,
 			);
 			path = FeedChart;
 			sourceTree = "<group>";
@@ -840,11 +872,11 @@
 		05DD68AD2885B6710066BFEC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				056F46EE29CD9FEF005BAFF3 /* Charts */,
 				05ABD7042910217C00E1C755 /* PlaceholderChart.swift */,
 				05FE380B2902895F002D3D34 /* QuickInfoView.swift */,
 				05DD68AE2885B68B0066BFEC /* HomeScreenCharts.swift */,
 				05FE380D29028B13002D3D34 /* QuickInfoSection.swift */,
-				05916ADC29CC54FD0073DCF9 /* FeedChart */,
 				057440C02911C80C0022D18E /* SleepChart.swift */,
 			);
 			path = Views;
@@ -885,6 +917,7 @@
 				055CE12F2922DDCA00870066 /* ChartConfiguration.swift */,
 				055CE1312925350200870066 /* FBKeys.swift */,
 				058038A2292D98C8006477A2 /* SharingAccount.swift */,
+				056F470429CDA3DF005BAFF3 /* MockEntries.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1276,7 +1309,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				05DD68DC28861C930066BFEC /* FeedEntryView.swift in Sources */,
-				05916ADE29CC55310073DCF9 /* LiquidFeedChartContainer.swift in Sources */,
 				05B8AF6728862C7C00BBC41B /* Constants.swift in Sources */,
 				05FE380C2902895F002D3D34 /* QuickInfoView.swift in Sources */,
 				05DD68DE28861CD70066BFEC /* SleepEntryView.swift in Sources */,
@@ -1294,6 +1326,7 @@
 				059C68EC2886BD6E00C90710 /* InputDetailView.swift in Sources */,
 				0514C3AD2966C6B3005DD0C4 /* TipManager.swift in Sources */,
 				0587BB5C29291C2C00F39B25 /* SharingViewModel.swift in Sources */,
+				056F46F729CDA13F005BAFF3 /* BWBarMark.swift in Sources */,
 				05DD68C62885FC0F0066BFEC /* Swinject+extension.swift in Sources */,
 				050AEEA7288C6B170052A2D1 /* WidgetManager.swift in Sources */,
 				05A42A612905A5790040A543 /* FirebaseManager.swift in Sources */,
@@ -1324,7 +1357,10 @@
 				056083812884147800728F1F /* HomeView.swift in Sources */,
 				058EAF39293BBDEE0030D49D /* LogNappy.swift in Sources */,
 				050AEEBA288DB3870052A2D1 /* Secrets.swift in Sources */,
+				056F470529CDA3DF005BAFF3 /* MockEntries.swift in Sources */,
+				056F470929CDA4C8005BAFF3 /* BWChart.swift in Sources */,
 				056DC4A32916FA7500B30720 /* NappyInputDetailView.swift in Sources */,
+				056F470229CDA3CB005BAFF3 /* ChartContainer.swift in Sources */,
 				05CB7C6429CA0500000E8602 /* WatchAppManager.swift in Sources */,
 				05DD68D9288619DB0066BFEC /* LiquidFeedUnits.swift in Sources */,
 				3B64002728D6620800241D65 /* AuthViewModel.swift in Sources */,
@@ -1337,6 +1373,7 @@
 				0514C3B02966C73C005DD0C4 /* productIdentifiers.swift in Sources */,
 				055CE1322925350200870066 /* FBKeys.swift in Sources */,
 				058038B629329EAA006477A2 /* LoadingOverlay.swift in Sources */,
+				056F46F429CDA0EB005BAFF3 /* BWPointMark.swift in Sources */,
 				05027FD4294E80CA00F8C6A8 /* AccessiblePicker.swift in Sources */,
 				0523667F29687F64008B58A2 /* FeedActivityLiveActivity.swift in Sources */,
 				0587BB582928EA8C00F39B25 /* NSNotification+extension.swift in Sources */,
@@ -1356,11 +1393,11 @@
 				057440C12911C80C0022D18E /* SleepChart.swift in Sources */,
 				058038A6293289AE006477A2 /* SettingsViewModel.swift in Sources */,
 				05A42A52290596540040A543 /* LoginView.swift in Sources */,
+				056F46F129CDA00E005BAFF3 /* BWLineMark.swift in Sources */,
 				056D7C7C28F32FB500E3514D /* LoadingView.swift in Sources */,
 				056D03402986D118003A1ACC /* StartFeed.swift in Sources */,
 				056DC4972916F53D00B30720 /* NappyEntryViewModel.swift in Sources */,
 				0514C3AA29630382005DD0C4 /* BreastFeedEntryView.swift in Sources */,
-				05916AE029CC55520073DCF9 /* FeedMarkHelper.swift in Sources */,
 				0514C3A32962F6ED005DD0C4 /* BreastFeedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1393,6 +1430,7 @@
 				05187BD6295091DE002B6C49 /* Double+extension.swift in Sources */,
 				05187BD7295091DE002B6C49 /* Array+extension.swift in Sources */,
 				05187BD8295091DE002B6C49 /* String+extension.swift in Sources */,
+				056F470729CDA459005BAFF3 /* MockEntries.swift in Sources */,
 				05187BD9295091DE002B6C49 /* NSNotification+extension.swift in Sources */,
 				05187BDA295091DE002B6C49 /* Secrets.swift in Sources */,
 				05187BDE295091DE002B6C49 /* Info View.swift in Sources */,
@@ -1489,16 +1527,19 @@
 				05916AEE29CC5BBB0073DCF9 /* DependencyInjectionProtocols.swift in Sources */,
 				055BC03C29CB348000CD2759 /* WatchAppManager.swift in Sources */,
 				05916AD429CB42C60073DCF9 /* TimeInterval+extension.swift in Sources */,
-				05916AE229CC56EA0073DCF9 /* FeedMarkHelper.swift in Sources */,
 				05CB7C5729CA0311000E8602 /* BabyWizeWatchApp.swift in Sources */,
 				05916AE529CC570B0073DCF9 /* FeedChartModifier.swift in Sources */,
 				05916AF329CC5C590073DCF9 /* Constants.swift in Sources */,
 				05916AED29CC5BB50073DCF9 /* LiquidFeedUnits.swift in Sources */,
 				05916AF729CC6AB60073DCF9 /* EntryType.swift in Sources */,
+				056F470629CDA3DF005BAFF3 /* MockEntries.swift in Sources */,
 				05916AF629CC6A520073DCF9 /* PlaceholderChart.swift in Sources */,
 				05916AF929CC6EBD0073DCF9 /* SwinjectManager.swift in Sources */,
-				05916AE129CC56140073DCF9 /* LiquidFeedChartContainer.swift in Sources */,
+				056F46F529CDA0EB005BAFF3 /* BWPointMark.swift in Sources */,
 				05916AF529CC6A2C0073DCF9 /* FeedChart.swift in Sources */,
+				056F470A29CDA4C8005BAFF3 /* BWChart.swift in Sources */,
+				056F46F829CDA13F005BAFF3 /* BWBarMark.swift in Sources */,
+				056F470329CDA3CB005BAFF3 /* ChartContainer.swift in Sources */,
 				055BC03D29CB378400CD2759 /* FBKeys.swift in Sources */,
 				05916AE929CC5B590073DCF9 /* Double+extension.swift in Sources */,
 				05916AD529CB433F0073DCF9 /* Date+extension.swift in Sources */,
@@ -1506,6 +1547,7 @@
 				05916AF229CC5C510073DCF9 /* ChartConfiguration.swift in Sources */,
 				05916AF129CC5C3F0073DCF9 /* SharingAccount.swift in Sources */,
 				05916AD629CB44C30073DCF9 /* Array+extension.swift in Sources */,
+				056F46F229CDA00E005BAFF3 /* BWLineMark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
