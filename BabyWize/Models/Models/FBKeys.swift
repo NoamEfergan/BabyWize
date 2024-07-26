@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FBKeys {
+enum FBKeys {
     static let kUsers = "users"
     static let kFeeds = "feeds"
     static let kSleeps = "sleeps"

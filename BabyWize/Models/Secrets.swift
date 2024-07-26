@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Secrets {
+enum Secrets {
     static let realmAppId = "BabyWize-slhwk"
 }

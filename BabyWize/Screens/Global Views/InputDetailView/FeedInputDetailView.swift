@@ -69,7 +69,7 @@ struct FeedInputDetailView: View {
             } header: {
                 Text("Swipe right to edit, left to remove")
             }
-        footer: {
+            footer: {
                 Button("Remove All") {
                     isShowingAlert.toggle()
                 }

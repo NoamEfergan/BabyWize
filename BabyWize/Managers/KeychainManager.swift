@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct KeychainManager {
+enum KeychainManager {
     static let server = "Babywize"
 
     struct Credentials {

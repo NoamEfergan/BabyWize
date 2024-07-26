@@ -30,7 +30,7 @@ struct FeedActivityLiveActivity: Widget {
                 .activityBackgroundTint(.clear)
                 .activitySystemActionForegroundColor(Color.black)
         }
-    dynamicIsland: { _ in
+        dynamicIsland: { _ in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.bottom) {
                     timeView
