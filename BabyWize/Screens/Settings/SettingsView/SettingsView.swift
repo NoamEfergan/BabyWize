@@ -128,9 +128,6 @@ struct SettingsView: View {
                 .foregroundStyle(AppColours.errorGradient)
             } header: {
                 Text("Contact")
-            } footer: {
-                Text("We're always available at contact@babywize.app")
-                    .accentColor(accentColour)
             }
         }
         .listStyle(.insetGrouped)
